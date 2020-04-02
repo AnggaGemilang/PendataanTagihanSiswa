@@ -41,7 +41,11 @@
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
         <div class="row" style="background: #1A9B96 !important; height: 65px; align-content: center;">
+            @if($status=='tambah')
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Tagihan</p>
+            @else
+            <p class="text-light m-0 pl-4" style="font-weight: 500;">Perbaharui Tagihan</p>
+            @endif
         </div>
 
         <form id="form-tambah-tagihan" @if($status=='tambah' ) action="" @else
@@ -51,7 +55,8 @@
 
             <div class="row m-3 mt-4 pt-2">
                 <div class="form-group w-100">
-                    <label for="nama_tagihan" @if($status=="tambah") data-idtipetagihan="{{ $last_id->id+1 }}" @endif id="label_tipetagihan_id">Nama Tagihan</label>
+                    <label for="nama_tagihan" @if($status=="tambah" ) data-idtipetagihan="{{ $last_id->id+1 }}" @endif
+                        id="label_tipetagihan_id">Nama Tagihan</label>
                     <input type="text" class="form-control greylight-bg" name="nama_tagihan" id="nama_tagihan"
                         aria-describedby="helpId" placeholder="Masukkan Nama Tagihan" @if($status=='update' )
                         value="{{ $tipetagihan->nama_tagihan }}" @endif
@@ -69,8 +74,9 @@
                 </div>
             </div>
 
+            @if($status=="tambah")
             <div class="row m-3">
-                <div class="form-group w-100">
+                <div class="form-group w-100 mb-2">
                     <label for="id_kelas">Kelas</label><br>
                     <select class="select-move" id="tipekelas" name="tipekelas[]" multiple>
                         @foreach ($tipekelas as $tp)
@@ -79,10 +85,11 @@
                     </select>
                 </div>
             </div>
+            @endif
 
             <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light" style="background: #1A9B96 !important;">Tambah
-                    Tagihan</button>
+                <button type="submit" class="btn w-100 text-light" style="background: #1A9B96 !important;">@if($status=='tambah')Tambah
+                    Tagihan @else Perbaharui Tagihan @endif</button>
             </div>
         </form>
 
@@ -94,10 +101,10 @@
 
 @push('extras-js')
 <script>
-    $('#tipekelas').on('change', function(){
+    $('#tipekelas').on('change', function () {
         var kelas_id = $(this).val();
         var tipetagihanid = $("#label_tipetagihan_id").data('idtipetagihan');
-        $('#form-tambah-tagihan').attr("action","tambah/store/"+kelas_id+"/"+tipetagihanid);
+        $('#form-tambah-tagihan').attr("action", "tambah/store/" + kelas_id + "/" + tipetagihanid);
     });
 </script>
 @endpush

@@ -14,6 +14,7 @@ use App\Kelas;
 use App\Role;
 use App\Siswa;
 use App\Petugas;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
@@ -58,5 +59,38 @@ class ProfilController extends Controller
     public function ubahpassword()
     {
         return view('pages.ubahpassword');
+    }
+
+    public function fetch_oldpassword($old)
+    {
+        $status = '';
+        if (Hash::check($old, Auth::user()->password)) {
+            $status = "benar";
+        }else{
+            $status = "salah";
+        }
+        return $status;
+    }
+
+    public function ubahstore(Request $request, $id,$role)
+    {
+        if($role=="siswa")
+        {
+            $siswa = Siswa::find($id);
+            $siswa->password = Hash::make($request->password_baru);
+            $siswa->update();
+        }else{
+            $petugas = Petugas::find($id);
+            $petugas->password = Hash::make($request->password_baru);
+            $petugas->update();
+        }
+
+        $notification = array(
+            'title' => 'Berhasil',
+            'description' => 'Password Berhasil Diubah!',
+            'alert-type' => 'success'
+        );
+
+        return redirect('ubahpassword')->with($notification);
     }
 }

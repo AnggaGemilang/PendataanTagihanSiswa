@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFFFFF !important;">
+<nav class="navbar top navbar-expand-lg navbar-light" style="background: #FFFFFF !important; position: fixed; min-width: 81%; right: 0px; transition: all 0.3s; left: 250px; z-index: 999;">
     <div class="container-fluid">
 
         <button type="button" id="sidebarCollapse" class="btn btn-info"

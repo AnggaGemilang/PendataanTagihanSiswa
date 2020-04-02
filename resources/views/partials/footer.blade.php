@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFFFFF !important; position: absolute; min-width: 100%; bottom: 0;">
+<nav class="navbar bottom navbar-expand-lg navbar-light" style="background: #FFFFFF !important; position: absolute; min-width: 100%; bottom: 0; right: 0px;">
     <div class="container-fluid">
         <div class="col">
             <span>

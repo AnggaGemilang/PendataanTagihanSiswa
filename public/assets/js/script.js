@@ -1,3 +1,35 @@
+/* ---------------------------------------------------
+    SIDEBAR COLLAPSE
+----------------------------------------------------- */
+
+$('#sidebarCollapse').on('click', function(){
+    if($('#content-section').attr('status')=="true"){
+        $('#content-section').css('margin-left','250px');
+        $('nav.navbar.top').css('left','250px');
+        $('#content-section').attr('status','false');
+        $('#profil-list > a > h6').show();
+        $('#item-list > a > span').show();
+        $('#item-list > a > i').css('width','18px');
+        $('.child-item-list > li > a > span').show();
+        $('.child-item-list > li > a > i').css('width','18px');
+        $('[data-toggle="tooltip"]').tooltip('disable')
+    }else{
+        $('#content-section').css('margin-left','80px');
+        $('nav.navbar.top').css('left','80px');
+        $('#content-section').attr('status','true');
+        $('#profil-list > a > h6').hide();
+        $('#item-list > a > span').hide();
+        $('#item-list > a > i').css('width','37px');
+        $('.child-item-list > li > a > span').hide();
+        $('.child-item-list > li > a > i').css('width','36px');
+        $('[data-toggle="tooltip"]').tooltip('enable');
+    }
+});
+
+/* ---------------------------------------------------
+    DROPDOWN BUTTON OPTION
+----------------------------------------------------- */
+
 $(document).ready(function () {
     $('#btn-dropdownnavbar').click(function () {
         $(".dropdown-navbar-status").fadeToggle();
@@ -10,6 +42,10 @@ $(document).ready(function () {
     });
 });
 
+/* ---------------------------------------------------
+    DELETE DATA AJAX
+----------------------------------------------------- */
+ 
 $("#table-refresh").on('click', '#btn-hapus', function (e) {
     e.stopPropagation();
     var link = $(this).attr('data-url');
@@ -52,7 +88,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
                     title: 'Gagal',
                     confirmButtonColor: "#3AA9A5",
                     text: 'Data Gagal Dihapus!',
-                })
+                });
             }
         });
 });
@@ -105,6 +141,10 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
         });
 });
 
+/* ---------------------------------------------------
+    INPUT FILE
+----------------------------------------------------- */
+
 $('.infile-label').on('click', function () {
     console.log($(this).nextAll().eq(1).show());
     $($(this).next()).on('change', function () {
@@ -136,6 +176,10 @@ $('.ubah-profil-btn').on('click', function () {
     });
 });
 
+/* ---------------------------------------------------
+    HREF ROW TABLE
+----------------------------------------------------- */
+
 $("#table-refresh").on("click", "#row-main", function (e) {
     var href = $(this).attr("href");
     if (href) {
@@ -143,12 +187,20 @@ $("#table-refresh").on("click", "#row-main", function (e) {
     }
 });
 
+/* ---------------------------------------------------
+    FILTER CARI LIHAT DATA
+----------------------------------------------------- */
+
 $("#field_cari").on("keyup", function () {
     var value = $(this).val().toLowerCase();
     $("#table-refresh tr").not('#header-tr').filter(function () {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
 });
+
+/* ---------------------------------------------------
+    UBAH TIPE INPUT PASSWORD MENJADI TEXT
+----------------------------------------------------- */
 
 $('.btn-eye').on('click', function (e) {
     e.stopPropagation();
@@ -161,6 +213,10 @@ $('.btn-eye').on('click', function (e) {
     }
     return false;
 });
+
+/* ---------------------------------------------------
+    SELECT OPTION MULTIPLE
+----------------------------------------------------- */
 
 tail.select(".select-move", {
     search: false,

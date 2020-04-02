@@ -1,7 +1,3 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
@@ -303,6 +299,11 @@ input[type=checkbox] {
     background: #008A85 !important;
 }
 
+#main-content
+{
+    padding-top: 105px !important;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -317,7 +318,10 @@ input[type=checkbox] {
     max-width: 250px;
     background: #1A9B96;
     color: #fff;
+    min-height: 100% !important;
     transition: all 0.3s;
+    position: fixed;
+    z-index: 999;
 }
 
 #sidebar.active {
@@ -434,6 +438,7 @@ a.article:hover {
 
 #content-section {
     width: 100%;
+    margin-left: 250px;
     position: relative;
     min-height: 100vh;
     transition: all 0.3s;

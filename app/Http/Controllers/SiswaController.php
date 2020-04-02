@@ -155,6 +155,7 @@ class SiswaController extends Controller
             \File::delete($gambar_lama);
         }
         $siswa->delete();
+        $tagihan = Tagihan::where('siswa_id',$id)->get()->each->delete();
 
         return redirect()->back();
     }

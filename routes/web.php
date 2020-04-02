@@ -19,6 +19,9 @@ Route::get('pembayaran/cetak_pdf/{jenis_filter}/{periode}', 'PembayaranControlle
 Route::get('test-pdf', 'PembayaranController@test')->name('cetak_laporan');
 
 Route::get('ubahpassword', 'ProfilController@ubahpassword')->name('ubahpassword');
+Route::get('ubahpassword/fetch/{old}', 'ProfilController@fetch_oldpassword')->name('ubahpassword_fetch');
+Route::post('ubahpassword/store/{id}/{role}', 'ProfilController@ubahstore')->name('ubahpassword_store');
+
 Route::get('profil/{slug}', 'ProfilController@index')->name('profile');
 Route::post('profil/{slug}/perbaharui/store', 'ProfilController@update')->name('perbaharui_profile');
 

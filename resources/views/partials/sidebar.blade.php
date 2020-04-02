@@ -21,7 +21,7 @@ if(\Request::is('/')) {
 }
 @endphp
 
-<div class="wrapper">
+<div class="wrapper" style="overflow: auto;">
     <nav id="sidebar">
         <div class="sidebar-header" style="padding-top: 28px;">
             <h3 style="font-size: 20px;">
@@ -32,85 +32,86 @@ if(\Request::is('/')) {
         </div>
 
         <ul class="list-unstyled components">
-            <li style="padding: 15px 0px">
+            <li style="padding: 15px 0px" id="profil-list">
                 <a href="{{url('profil/' . Auth::User()->slug)}}">
-                    <div style="width: 56px; height: 56px; border-radius: 50px; float: left; margin-left: 2px; border: 3px solid white;">
+                    <div
+                        style="width: 56px; height: 56px; border-radius: 50px; float: left; margin-left: 2px; border: 3px solid white;">
                         <img src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->profil) }}"
-                        style="width:50px; height:50px; border-radius:60px;object-fit: cover;" alt="">
+                            style="width:50px; height:50px; border-radius:60px;object-fit: cover;" alt="">
                     </div>
                     <h6 style="margin-left: 75px; margin-top: 5px;">{{ Auth::User()->nama_siswa }}</h6>
                     <h6 style="margin-left: 75px;" class="mb-0">{{ Auth::User()->nis }}</h6>
                     <div class="clearfix"></div>
                 </a>
             </li>
-            <li class="{{ @$dashboard }}">
+            <li class="{{ @$dashboard }}" id="item-list" style="margin-top: -2px;" data-toggle="tooltip" data-placement="right" title="Home">
                 <a href="{{ url('/') }}">
                     <i class="fas fa-home" style="width: 18px;"></i>
-                    Home
+                    <span>Home</span>
                 </a>
             </li>
-            <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }}">
+            <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }}" id="item-list">
                 <a href="#pageSubPembayaran" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-briefcase" style="width: 18px;"></i>
-                    Pembayaran
+                    <span>Pembayaran</span>
                 </a>
-                <ul class="collapse list-unstyled" id="pageSubPembayaran">
+                <ul class="child-item-list collapse list-unstyled" id="pageSubPembayaran">
                     <li class="{{ @$history_pembayaran }}">
-                        <a href="{{ url('pembayaran/history') }}">
-                            <i class="fas fa-history pl-4 "></i>
-                            History
+                        <a href="{{ url('pembayaran/history') }}" style="padding-left: 35px;" data-toggle="tooltip" data-placement="right" title="History">
+                            <i class="fas fa-history" style="width: 18px;"></i>
+                            <span>History</span>
                         </a>
                     </li>
                     <li class="{{ @$entri_pembayaran }}">
-                        <a href="{{ url('pembayaran/entripembayaran') }}">
-                            <i class="fas fa-notes-medical pl-4 pr-1"></i>
-                            Entri
+                        <a href="{{ url('pembayaran/entripembayaran') }}" style="padding-left: 35px;" data-toggle="tooltip" data-placement="right" title="Entri">
+                            <i class="fas fa-notes-medical" style="width: 18px;"></i>
+                            <span>Entri</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="{{ @$data_siswa }} {{ @$data_kelas }} {{ @$data_petugas }} {{ @$data_tagihan }}">
+            <li class="{{ @$data_siswa }} {{ @$data_kelas }} {{ @$data_petugas }} {{ @$data_tagihan }}" id="item-list">
                 <a href="#pageSubKelola" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy" style="width: 18px;"></i>
-                    Kelola Data
+                    <span>Kelola Data</span>
                 </a>
-                <ul class="collapse list-unstyled" id="pageSubKelola">
+                <ul class="child-item-list collapse list-unstyled" id="pageSubKelola">
                     <li class="{{ @$data_siswa }}">
-                        <a href="{{ url('/data/siswa') }}">
-                            <i class="fas fa-user-graduate pl-4 pr-1"></i>
-                            Data Siswa
+                        <a href="{{ url('/data/siswa') }}" style="padding-left: 27px;" data-toggle="tooltip" data-placement="right" title="Data Siswa">
+                            <i class="fas fa-user-graduate" style="width: 18px;"></i>
+                            <span>Data Siswa</span>
                         </a>
                     </li>
                     <li class="{{ @$data_kelas }}">
-                        <a href="{{ url('/data/kelas') }}">
-                            <i class="fas fa-glass-whiskey pl-4"></i>
-                            Data Kelas
+                        <a href="{{ url('/data/kelas') }}" style="padding-left: 27px;" data-toggle="tooltip" data-placement="right" title="Data Kelas">
+                            <i class="fas fa-glass-whiskey" style="width: 18px;"></i>
+                            <span>Data Kelas</span>
                         </a>
                     </li>
                     <li class="{{ @$data_petugas }}">
-                        <a href="{{ url('/data/petugas') }}">
-                            <i class="fas fa-cube pl-4"></i>
-                            Data Petugas
+                        <a href="{{ url('/data/petugas') }}" style="padding-left: 27px;" data-toggle="tooltip" data-placement="right" title="Data Petugas">
+                            <i class="fas fa-cube" style="width: 18px;"></i>
+                            <span>Data Petugas</span>
                         </a>
                     </li>
                     <li class="{{ @$data_tagihan }}">
-                        <a href="{{ url('/data/tagihan') }}">
-                            <i class="fas fa-file-invoice-dollar pl-4 pr-1"></i>
-                            Data Tagihan
+                        <a href="{{ url('/data/tagihan') }}" style="padding-left: 27px;" data-toggle="tooltip" data-placement="right" title="Data Tagihan">
+                            <i class="fas fa-file-invoice-dollar" style="width: 18px;"></i>
+                            <span>Data Tagihan</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="{{ @$data_pembayaran }}">
-                <a href="{{ url('/pembayaran/data') }}">
+            <li class="{{ @$data_pembayaran }}" id="item-list">
+                <a href="{{ url('/pembayaran/data') }}" data-toggle="tooltip" data-placement="right" title="Data Pembayaran">
                     <i class="fas fa-image" style="width: 18px;"></i>
-                    Data Pembayaran
+                    <span>Data Pembayaran</span>
                 </a>
             </li>
-            <li class="{{ @$ubah_password }}">
-                <a href="{{ url('ubahpassword') }}">
+            <li class="{{ @$ubah_password }}" id="item-list">
+                <a href="{{ url('ubahpassword') }}" data-toggle="tooltip" data-placement="right" title="Ubah Password">
                     <i class="fas fa-key" style="width: 18px;"></i>
-                    Ubah Password
+                    <span>Ubah Password</span>
                 </a>
             </li>
         </ul>
