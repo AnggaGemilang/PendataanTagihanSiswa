@@ -27,7 +27,7 @@
                                 <h4>:</h4>
                             </td>
                             <td>
-                                <h4>{{ $siswa->nis }}</h4>
+                                <h4>{{ $auth->nomor_induk }}</h4>
                             </td>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@
                                 <h4>:</h4>
                             </td>
                             <td>
-                                <h4>{{ $siswa->email }}</h4>
+                                <h4>{{ $auth->email }}</h4>
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +86,7 @@
                     class="fas fa-ellipsis-v"></i></button>
             <div class="dropdown-navbar dropdown-detail">
                 <ul class="pl-0 mb-0">
-                    <a href="{{ url('data/siswa/perbaharui/' . $siswa->slug) }}">
+                    <a href="{{ url('data/siswa/perbaharui/' . $siswa->slug . '/' . $siswa->id) }}">
                         <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                     </a>
                     <li style="list-style: none;"><button type="button" data-direct="{{ url('data/siswa') }}"

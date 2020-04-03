@@ -46,7 +46,7 @@
                     @foreach ($siswa as $s)
                     <tr href="siswa/detail/{{ $s->slug }}/{{ $s->id }}" id="row-main">
                         <th scope="row">{{ $no++ }}</th>
-                        <td>{{ $s->nis }}</td>
+                        <td>{{ $s->autentikasi->nomor_induk }}</td>
                         <td>{{ $s->nama_siswa }}</td>
                         <td>{{ $s->class->nama_kelas }}</td>
                         <td>
@@ -56,7 +56,7 @@
                         <td>
                             <button type="button" data-url="{{ url('data/siswa/hapus/' . $s->id) }}" class="btn btn-danger text-light" id="btn-hapus"
                                 style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
-                            <a href="{{ url('data/siswa/perbaharui/' . $s->slug) }}" class="btn btn-success text-light"
+                            <a href="{{ url('data/siswa/perbaharui/' . $s->slug . '/' . $s->id) }}" class="btn btn-success text-light"
                                 style="padding: 4px 15px; font-size: 14.5px;">Edit</a>
                         </td>
                     </tr>

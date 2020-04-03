@@ -16,15 +16,12 @@ class SiswaSeeder extends Seeder
     public function run()
     {
         Siswa::create([
-            'nis' => 1718117111,
             'nisn' => 201231203,
             'nama_siswa' => 'Angga Gemilang',
             'slug' => Str::slug('Angga Gemilang','-'),
             'alamat' => 'Jalan Ciguruwik Babakan Sukamulya RT. 02 RW. 13 No. 53',
             'kelas_id' => 1,
             'no_telp' => '083195008217',
-            'email' => 'angga@mail.id',
-            'password' => Hash::make('123456789'),
             'profil' => '',
             'tipekelas_id' => 1,
             'role_id' => 1,

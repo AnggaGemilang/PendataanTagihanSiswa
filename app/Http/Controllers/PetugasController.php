@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Hash;
+use App\Autentikasi;
 use App\Petugas;
 use App\Role;
 use Image;
@@ -67,18 +68,23 @@ class PetugasController extends Controller
             $constraint->aspectRatio();
         })->save($path.$nama_gambar);
 
+        $petugas_id = Petugas::orderBy('id','desc')->first()->id+1;
+
         $petugas = new Petugas;
-        $petugas->nip = $request->nip;
         $petugas->nama_petugas = $request->nama_petugas;
-        $petugas->email = $request->email;
-        $petugas->password = Hash::make($request->password);
         $petugas->slug = Str::slug($request->nama_petugas,'-');
         $petugas->profil = $nama_gambar;
         $petugas->role_id = $request->role;
         $petugas->no_telp = $request->no_telp;
-        $petugas->created_at = Carbon::now()->format('Y-m-d H:i:s');
-        $petugas->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $petugas->save();
+
+        $auth = new Autentikasi;
+        $auth->nomor_induk = $request->nip;
+        $auth->email = $request->email;
+        $auth->password = Hash::make($request->password);
+        $auth->role_id = $request->role;
+        $auth->petugas_id = $petugas_id;
+        $auth->save();
 
         $notification = array(
             'title' => 'Berhasil',
@@ -89,25 +95,18 @@ class PetugasController extends Controller
         return redirect('data/petugas')->with($notification);
     }
 
-    public function showupdate(Request $request, $slug)
+    public function showupdate(Request $request, $slug, $id)
     {
         $role = Role::find([2,3]);
+        $auth = Autentikasi::where('petugas_id', $id)->first();
         $petugas = Petugas::where('slug',$slug)->first();
-        return view('pages.tambahpetugas', compact(['petugas','role']))->with('status','update');
+        return view('pages.tambahpetugas', compact(['petugas','role','auth']))->with('status','update');
     }
 
-    public function update(Request $request, $slug)
+    public function update(Request $request, $slug, $id)
     {
         $petugas = Petugas::where('slug',$slug)->first();
-        $petugas->nip = $request->nip;
         $petugas->nama_petugas = $request->nama_petugas;
-        $petugas->email = $request->email;
-
-        if(strlen($request->password)>0)
-        {
-            $petugas->password = Hash::make($request->password);
-        }
-
         $petugas->no_telp = $request->no_telp;
         $petugas->slug = Str::slug($request->nama_petugas,'-');
         $petugas->role_id = $request->role;
@@ -126,6 +125,15 @@ class PetugasController extends Controller
         }
         $petugas->update();
 
+        $auth = Autentikasi::where('petugas_id',$id)->first();
+        $auth->nomor_induk = $request->nip;
+        $auth->email = $request->email;
+        if(strlen($request->password)>0)
+        {
+            $auth->password = Hash::make($request->password);
+        }
+        $auth->update();
+
         $notification = array(
             'title' => 'Berhasil',
             'description' => 'Petugas Berhasil Diperbaharui!',
@@ -143,6 +151,9 @@ class PetugasController extends Controller
             \File::delete($gambar_lama);
         }
         $petugas->delete();
+
+        $auth = Autentikasi::where('petugas_id',$id)->first();
+        $auth->delete();
         
         $notification = array(
             'title' => 'Berhasil',

@@ -33,14 +33,28 @@ if(\Request::is('/')) {
 
         <ul class="list-unstyled components">
             <li style="padding: 15px 0px" id="profil-list">
-                <a href="{{url('profil/' . Auth::User()->slug)}}">
+                <a @if(Auth::User()->role_id=="1") 
+                    href="{{url('profil/' . Auth::User()->siswa->slug . '/' . Auth::User()->siswa->id . '/' . Auth::User()->role_id)}}" 
+                    @else 
+                    href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"  
+                    @endif >
                     <div
                         style="width: 56px; height: 56px; border-radius: 50px; float: left; margin-left: 2px; border: 3px solid white;">
-                        <img src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->profil) }}"
+                        <img 
+                        @if(Auth::User()->role_id=="1") 
+                        src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
+                        @else 
+                        src="{{ asset('uploaded/images/profil_petugas/' . Auth::User()->petugas->profil) }}"
+                        @endif
                             style="width:50px; height:50px; border-radius:60px;object-fit: cover;" alt="">
                     </div>
-                    <h6 style="margin-left: 75px; margin-top: 5px;">{{ Auth::User()->nama_siswa }}</h6>
-                    <h6 style="margin-left: 75px;" class="mb-0">{{ Auth::User()->nis }}</h6>
+                    @if(Auth::User()->role_id=="1") 
+                    <h6 style="margin-left: 75px; margin-top: 5px;">{{ Auth::User()->siswa->nama_siswa }}</h6>
+                    <h6 style="margin-left: 75px;" class="mb-0">{{ Auth::User()->siswa->autentikasi->nomor_induk }}</h6>
+                    @else 
+                    <h6 style="margin-left: 75px; margin-top: 5px;">{{ Auth::User()->petugas->nama_petugas }}</h6>
+                    <h6 style="margin-left: 75px;" class="mb-0">{{ Auth::User()->petugas->autentikasi->nomor_induk }}</h6>
+                    @endif
                     <div class="clearfix"></div>
                 </a>
             </li>
@@ -109,7 +123,7 @@ if(\Request::is('/')) {
                 </a>
             </li>
             <li class="{{ @$ubah_password }}" id="item-list">
-                <a href="{{ url('ubahpassword') }}" data-toggle="tooltip" data-placement="right" title="Ubah Password">
+                <a href="{{ url('ubahpassword/') }}" data-toggle="tooltip" data-placement="right" title="Ubah Password">
                     <i class="fas fa-key" style="width: 18px;"></i>
                     <span>Ubah Password</span>
                 </a>

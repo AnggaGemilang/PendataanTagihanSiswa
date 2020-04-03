@@ -23,7 +23,10 @@
     </div>
 
     <div class="col-md-12">
-        <form action="{{ url('profil/' . $siswa->slug . '/perbaharui/store' ) }}" method="post"
+
+        @if($auth->role_id=='1')
+
+        <form action="{{ url('profil/' . $auth->siswa->slug . '/' . $auth->siswa->role_id . '/' . $auth->siswa->id . '/perbaharui/store' ) }}" method="post"
             enctype="multipart/form-data">
 
             {{ csrf_field() }}
@@ -34,7 +37,7 @@
                         <div class="form-group w-100">
                             <label for="nis">NIS</label>
                             <input type="text" class="form-control" name="nis" id="nis" aria-describedby="helpId"
-                                placeholder="Masukkan Nama Lengkap" value="{{ $siswa->nis }}" disabled
+                                placeholder="Masukkan Nama Lengkap" value="{{ $auth->nomor_induk }}" disabled
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
@@ -42,7 +45,7 @@
                         <div class="form-group w-100">
                             <label for="nisn">NISN</label>
                             <input type="text" class="form-control" name="nisn" id="nisn" aria-describedby="helpId"
-                                placeholder="Masukkan NISN Siswa" value="{{ $siswa->nisn }}" disabled
+                                placeholder="Masukkan NISN Siswa" value="{{ $auth->siswa->nisn }}" disabled
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
@@ -51,7 +54,7 @@
                             <label for="nama_siswa">Nama Lengkap</label>
                             <input type="text" class="form-control" name="nama_siswa" id="nama_siswa"
                                 aria-describedby="helpId" placeholder="Masukkan NIS Siswa"
-                                value="{{ $siswa->nama_siswa }}"
+                                value="{{ $auth->siswa->nama_siswa }}"
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
@@ -62,7 +65,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                                 <option value="">Pilih Kelas</option>
                                 @foreach($kelas as $k)
-                                <option value="{{ $k->id }}" {{ $siswa->kelas_id==$k->id ? 'selected' : '' }}>
+                                <option value="{{ $k->id }}" {{ $auth->siswa->kelas_id==$k->id ? 'selected' : '' }}>
                                     {{ $k->nama_kelas }}</option>
                                 @endforeach
                             </select>
@@ -71,7 +74,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row justify-content-center pt-4 mt-3">
-                        <img src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->profil) }}"
+                        <img src="{{ asset('uploaded/images/profil_siswa/' . $auth->siswa->profil) }}"
                             style="width:250px; height:250px; border-radius:150px;object-fit: cover;" alt="">
                     </div>
                     <div class="row justify-content-center">
@@ -86,15 +89,15 @@
                 <div class="form-group w-100">
                     <label for="no_telp">Nomor Telepon</label>
                     <input type="text" class="form-control" name="no_telp" id="no_telp" aria-describedby="helpId"
-                        placeholder="Masukkan Nomor Telepon" value="{{ $siswa->no_telp }}"
+                        placeholder="Masukkan Nomor Telepon" value="{{ $auth->siswa->no_telp }}"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group w-100">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" aria-describedby="helpId"
-                        placeholder="Masukkan Email Siswa" value="{{ $siswa->email }}" disabled
+                    <label for="email_siswa">Email</label>
+                    <input type="text" class="form-control" name="email_siswa" id="email_siswa" aria-describedby="helpId"
+                        placeholder="Masukkan Email Siswa" value="{{ $auth->email }}" disabled
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
@@ -103,7 +106,7 @@
                     <label for="alamat">Alamat</label>
                     <textarea name="alamat" id="alamat" rows="5" class="form-control w-100"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        placeholder="Masukkan Alamat Siswa">{{ $siswa->alamat }}</textarea>
+                        placeholder="Masukkan Alamat Siswa">{{ $auth->siswa->alamat }}</textarea>
                 </div>
             </div>
             <div class="row">
@@ -113,7 +116,7 @@
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Kelas</option>
                         @foreach($role as $r)
-                        <option value="{{ $r->id }}" {{ $siswa->role->id==$r->id ? 'selected' : '' }}>
+                        <option value="{{ $r->id }}" {{ $auth->siswa->role->id==$r->id ? 'selected' : '' }}>
                             {{ $r->nama_role }}</option>
                         @endforeach
                     </select>
@@ -125,6 +128,85 @@
                     Data</button>
             </div>
         </form>
+
+        @else
+
+        <form action="{{ url('profil/' . $auth->petugas->slug . '/' . $auth->petugas->id . '/' . $auth->petugas->role_id . '/perbaharui/store' ) }}" method="post"
+            enctype="multipart/form-data">
+
+            {{ csrf_field() }}
+
+            <div class="row mt-3">
+                <div class="col-md-8 pl-0">
+                    <div class="row m-1">
+                        <div class="form-group w-100">
+                            <label for="nip">NIP</label>
+                            <input type="text" class="form-control" name="nip" id="nip" aria-describedby="helpId"
+                                placeholder="Masukkan Nama Lengkap" value="{{ $auth->nomor_induk }}" disabled
+                                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="form-group w-100">
+                            <label for="nama_petugas">Nama Lengkap</label>
+                            <input type="text" class="form-control" name="nama_petugas" id="nama_petugas"
+                                aria-describedby="helpId" placeholder="Masukkan NIS Siswa"
+                                value="{{ $auth->petugas->nama_petugas }}"
+                                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="form-group w-100">
+                            <label for="no_telp">Nomor Telepon</label>
+                            <input type="text" class="form-control" name="no_telp" id="no_telp" aria-describedby="helpId"
+                                placeholder="Masukkan Nomor Telepon" value="{{ $auth->petugas->no_telp }}"
+                                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="form-group w-100">
+                            <label for="email_petugas">Email</label>
+                            <input type="text" class="form-control" name="email_petugas" id="email_petugas" aria-describedby="helpId"
+                                placeholder="Masukkan Email Siswa" value="{{ $auth->email }}" disabled
+                                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row justify-content-center pt-4 mt-3">
+                        <img src="{{ asset('uploaded/images/profil_petugas/' . $auth->petugas->profil) }}"
+                            style="width:250px; height:250px; border-radius:150px;object-fit: cover;" alt="">
+                    </div>
+                    <div class="row justify-content-center">
+                        <label for="profil" class="btn ubah-profil-btn"
+                        style="background: #3AA9A5; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
+                        Profil</label>
+                        <input type="file" name="profil" id="profil" class="d-none">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group w-100">
+                    <label for="role">Role</label>
+                    <select name="id_kelas" id="id_kelas" class="form-control w-100 pl-2" disabled
+                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        <option value="">Pilih Kelas</option>
+                        @foreach($role as $r)
+                        <option value="{{ $r->id }}" {{ $auth->petugas->role->id==$r->id ? 'selected' : '' }}>
+                            {{ $r->nama_role }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <button type="submit" class="btn mt-3 w-100"
+                    style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
+                    Data</button>
+            </div>
+        </form>
+
+        @endif
+
     </div>
 </div>
 

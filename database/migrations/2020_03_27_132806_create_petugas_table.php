@@ -15,16 +15,12 @@ class CreatePetugasTable extends Migration
     {
         Schema::create('t_petugas', function (Blueprint $table) {
             $table->id('id');
-            $table->bigInteger('nip')->unsigned();
             $table->string('nama_petugas', 200);
-            $table->string('email', 150)->unique();
-            $table->string('password');
             $table->string('no_telp', 13)->nullable();
             $table->string('slug', 200);
             $table->string('profil')->nullable();
             $table->integer('role_id');
             $table->softDeletes();
-            $table->rememberToken();
             $table->timestamps();
         });
     }

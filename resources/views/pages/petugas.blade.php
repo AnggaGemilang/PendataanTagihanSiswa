@@ -44,9 +44,9 @@
                     @foreach ($petugas as $p)
                     <tr href="petugas/detail/{{ $p->slug }}" id="row-main">
                         <th scope="row">{{ $no++ }}</th>
-                        <td>{{ $p->nip }}</td>
+                        <td>{{ $p->autentikasi->nomor_induk }}</td>
                         <td>{{ $p->nama_petugas }}</td>
-                        <td>{{ $p->email }}</td>
+                        <td>{{ $p->autentikasi->email }}</td>
                         <td>{{ $p->role->nama_role }}</td>
                         <td>
                             <img src="{{ asset('uploaded/images/profil_petugas/' . $p->profil) }}"
@@ -54,7 +54,7 @@
                         </td>
                         <td>
                             <button type="button" data-url="{{ url('data/petugas/hapus/' . $p->id) }}" class="btn btn-danger text-light" id="btn-hapus" style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
-                            <a href="{{ url('data/petugas/perbaharui/' . $p->slug) }}" class="btn btn-success text-light" style="padding: 4px 15px; font-size: 14.5px;">Edit</a>
+                            <a href="{{ url('data/petugas/perbaharui/' . $p->slug . '/' . $p->id) }}" class="btn btn-success text-light" style="padding: 4px 15px; font-size: 14.5px;">Edit</a>
                         </td>
                     </tr>
                     @endforeach

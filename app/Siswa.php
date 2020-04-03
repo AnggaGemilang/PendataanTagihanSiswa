@@ -2,14 +2,10 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Authenticatable
+class Siswa extends Model
 {
-    use Notifiable;
-
     protected $table = 't_siswa';
 
     protected $fillable = [
@@ -21,18 +17,13 @@ class Siswa extends Authenticatable
     	return $this->belongsTo(Kelas::class,'kelas_id','id');
     }
 
+    public function autentikasi()
+    {
+    	return $this->hasOne(Autentikasi::class);
+    }
+
     public function role()
     {
     	return $this->belongsTo(Role::class,'role_id','id');
-    }
-
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-
-    public function getAuthPassword()
-    {
-      return $this->password;
     }
 }

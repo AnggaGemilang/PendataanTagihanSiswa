@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Siswa::class,
+            'model' => App\Autentikasi::class,
         ],
     ],
 

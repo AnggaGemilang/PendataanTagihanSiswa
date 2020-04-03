@@ -27,7 +27,11 @@
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Password</p>
         </div>
 
-        <form action="{{ url('ubahpassword/store/' . Auth::user()->id  . '/' . Auth::user()->role->nama_role ) }}"
+        <form @if(Auth::user()->role_id=='1')
+            action="{{ url('ubahpassword/store/' . Auth::user()->siswa->id  . '/' . Auth::user()->siswa->role->nama_role ) }}"
+            @else
+            action="{{ url('ubahpassword/store/' . Auth::user()->petugas->id  . '/' . Auth::user()->petugas->role->nama_role ) }}"
+            @endif
             method="POST" id="form-submit">
 
             {{ csrf_field() }}

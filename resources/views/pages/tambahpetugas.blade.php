@@ -47,7 +47,7 @@
         </div>
 
         <form method="POST" @if($status=="tambah" ) action="{{ url('data/petugas/tambah/store') }}" @else
-            action="{{ url('data/petugas/perbaharui/' . $petugas->slug . '/store') }}" @endif
+            action="{{ url('data/petugas/perbaharui/' . $petugas->slug . '/' . $petugas->id . '/store') }}" @endif
             enctype="multipart/form-data">
 
             {{ csrf_field() }}
@@ -58,7 +58,7 @@
                     <input type="number" class="form-control greylight-bg" name="nip" id="nip" aria-describedby="helpId"
                         placeholder="Masukkan NIP Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $petugas->nip }}" @endif>
+                        @if($status=='update' ) value="{{ $auth->nomor_induk }}" @endif>
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
                     <input type="email" class="form-control greylight-bg" name="email" id="email"
                         aria-describedby="helpId" placeholder="Masukkan Email Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $petugas->email }}" @endif>
+                        @if($status=='update' ) value="{{ $auth->email }}" @endif>
                 </div>
             </div>
 
@@ -134,12 +134,14 @@
                 </div>
             </div>
 
+            @if($status=='update')
             <div class="row ml-3 mt-4">
                 <label class="check-wrapper">Ubah Password User
                     <input type="checkbox" name="cb_ubahpassword" id="cb_ubahpassword">
                     <span class="checkmark"></span>
                 </label>
             </div>
+            @endif
 
             <div class="row m-3 pb-4 pt-2">
                 <button type="submit" class="btn w-100 text-light" style="background: #1A9B96 !important;">

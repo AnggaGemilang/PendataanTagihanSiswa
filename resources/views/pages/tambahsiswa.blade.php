@@ -47,7 +47,7 @@
         </div>
 
         <form @if($status=='tambah') action="" id="form_tambah_siswa" @else
-            action="{{url('data/siswa/perbaharui/' . $siswa->slug . '/store')}}" @endif method="POST"
+            action="{{url('data/siswa/perbaharui/' . $siswa->id . '/store')}}" @endif method="POST"
             enctype="multipart/form-data">
             {{ csrf_field() }}
 
@@ -67,7 +67,7 @@
                     <input type="number" class="form-control greylight-bg" name="nis" id="nis" aria-describedby="helpId"
                         placeholder="Masukkan NIS Siswa"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $siswa->nis }}" @endif>
+                        @if($status=='update' ) value="{{ $auth->nomor_induk }}" @endif>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
                     <input type="email" class="form-control greylight-bg" name="email" id="email"
                         aria-describedby="helpId" placeholder="Masukkan Email Siswa"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $siswa->email }}" @endif>
+                        @if($status=='update') value="{{ $auth->email }}" @endif>
                 </div>
             </div>
 

@@ -31,14 +31,20 @@ $('#sidebarCollapse').on('click', function(){
 ----------------------------------------------------- */
 
 $(document).ready(function () {
-    $('#btn-dropdownnavbar').click(function () {
+    $('#btn-dropdownnavbar').click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
         $(".dropdown-navbar-status").fadeToggle();
+        return false;
     });
 });
 
 $(document).ready(function () {
-    $('.btn-toggle-option').click(function () {
+    $('.btn-toggle-option').click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
         $(".dropdown-detail").fadeToggle();
+        return false;
     });
 });
 

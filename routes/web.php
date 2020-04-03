@@ -22,15 +22,15 @@ Route::get('ubahpassword', 'ProfilController@ubahpassword')->name('ubahpassword'
 Route::get('ubahpassword/fetch/{old}', 'ProfilController@fetch_oldpassword')->name('ubahpassword_fetch');
 Route::post('ubahpassword/store/{id}/{role}', 'ProfilController@ubahstore')->name('ubahpassword_store');
 
-Route::get('profil/{slug}', 'ProfilController@index')->name('profile');
-Route::post('profil/{slug}/perbaharui/store', 'ProfilController@update')->name('perbaharui_profile');
+Route::get('profil/{slug}/{id}/{role_id}', 'ProfilController@index')->name('profile');
+Route::post('profil/{slug}/{id}/{role_id}/perbaharui/store', 'ProfilController@update')->name('perbaharui_profile');
 
 Route::get('data/siswa', 'SiswaController@index')->name('siswa');
 Route::get('data/siswa/detail/{slug}/{id}', 'SiswaController@detail')->name('detail_siswa');
 Route::get('data/siswa/tambah', 'SiswaController@tambah')->name('tambah_siswa');
-Route::get('data/siswa/perbaharui/{slug}', 'SiswaController@showupdate')->name('perbaharui_siswa');
+Route::get('data/siswa/perbaharui/{slug}/{id}', 'SiswaController@showupdate')->name('perbaharui_siswa');
 Route::post('data/siswa/tambah/store/{tipekelas_id}', 'SiswaController@store')->name('tambah_siswa_store');
-Route::post('data/siswa/perbaharui/{slug}/store', 'SiswaController@update')->name('perbaharui_siswa_store');
+Route::post('data/siswa/perbaharui/{id}/store', 'SiswaController@update')->name('perbaharui_siswa_store');
 Route::post('data/siswa/hapus/{id}', 'SiswaController@destroy')->name('hapus_siswa_store');
 
 Route::get('data/kelas', 'KelasController@index')->name('kelas');
@@ -43,10 +43,10 @@ Route::post('data/kelas/hapus/{id}', 'KelasController@destroy')->name('hapus_kel
 
 Route::get('data/petugas', 'PetugasController@index')->name('petugas');
 Route::get('data/petugas/detail/{slug}', 'PetugasController@detail')->name('detail_petugas');
-Route::get('data/petugas/perbaharui/{slug}', 'PetugasController@showupdate')->name('perbaharui_petugas');
+Route::get('data/petugas/perbaharui/{slug}/{id}', 'PetugasController@showupdate')->name('perbaharui_petugas');
 Route::get('data/petugas/tambah', 'PetugasController@tambah')->name('tambah_petugas');
 Route::post('data/petugas/tambah/store', 'PetugasController@store')->name('tambah_petugas_store');
-Route::post('data/petugas/perbaharui/{slug}/store', 'PetugasController@update')->name('perbaharui_petugas_store');
+Route::post('data/petugas/perbaharui/{slug}/{id}/store', 'PetugasController@update')->name('perbaharui_petugas_store');
 Route::post('data/petugas/hapus/{id}', 'PetugasController@destroy')->name('hapus_petugas_store');
 
 Route::get('data/tagihan', 'TagihanController@index')->name('tagihan');

@@ -11,7 +11,12 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active position-relative">
                     <a id="btn-dropdownnavbar" href="#"
-                        style="color: #008A85; font-weight: 500;">{{ Auth::User()->nama_siswa }}
+                        style="color: #008A85; font-weight: 500;">
+                        @if(Auth::User()->role_id=="1") 
+                        {{ Auth::User()->siswa->nama_siswa }} 
+                        @else 
+                        {{ Auth::User()->petugas->nama_petugas }} 
+                        @endif
                         <i class="fas fa-caret-down ml-2"></i>
                     </a>
                     <div class="dropdown-navbar dropdown-navbar-status"

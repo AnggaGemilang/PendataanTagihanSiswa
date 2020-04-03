@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Hash;
 use App\Siswa;
+use App\Autentikasi;
 use App\Pembayaran;
 use App\Tagihan;
 use App\Kelas;
@@ -36,11 +37,12 @@ class SiswaController extends Controller
 
     public function detail($slug,$id)
     {
+        $auth = Autentikasi::where('siswa_id',$id)->first();        
         $tagihan = Tagihan::where('siswa_id',$id)->where('tipetagihan_id','>=','2')->get();
         $tagihan_spp = Tagihan::where('siswa_id',$id)->where('tipetagihan_id','1')->get();
         $siswa = Siswa::where('slug',$slug)->first();
         $history = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
-        return view('pages.detailsiswa', compact(['siswa','history','tagihan_spp','tagihan']));
+        return view('pages.detailsiswa', compact(['siswa','history','tagihan_spp','tagihan','auth']));
     }
 
     public function store(Request $request, $tipekelas_id)
@@ -75,20 +77,27 @@ class SiswaController extends Controller
             $constraint->aspectRatio();
         })->save($path.$nama_gambar);
 
+        $siswa_id = Siswa::orderBy('id','desc')->first()->id+1;
+
         $siswa = new Siswa;
-        $siswa->nis = $request->nis;
         $siswa->nisn = $request->nisn;
         $siswa->nama_siswa = $request->nama_siswa;
         $siswa->slug = Str::slug($request->nama_siswa,'-');
         $siswa->alamat = $request->alamat;
         $siswa->no_telp = $request->no_telp;
         $siswa->kelas_id = $request->id_kelas;
-        $siswa->email = $request->email;
         $siswa->tipekelas_id = $tipekelas_id;
-        $siswa->password = bcrypt($request->password);
         $siswa->profil = $nama_gambar;
         $siswa->role_id = 1;
         $siswa->save();
+
+        $auth = new Autentikasi;
+        $auth->nomor_induk = $request->nis;
+        $auth->email = $request->email;
+        $auth->password = Hash::make($request->password);
+        $auth->role_id = 1;
+        $auth->siswa_id = $siswa_id;
+        $auth->save();
 
         $notification = array(
             'title' => 'Berhasil',
@@ -99,30 +108,23 @@ class SiswaController extends Controller
         return redirect('data/siswa')->with($notification);
     }
 
-    public function showupdate(Request $request, $slug)
+    public function showupdate(Request $request, $slug, $id)
     {
+        $auth = Autentikasi::where('siswa_id', $id)->first();
         $siswa = Siswa::where('slug', $slug)->first();
         $kelas = Kelas::all();
-        return view('pages.tambahsiswa', compact(['kelas','siswa']))->with('status','update');
+        return view('pages.tambahsiswa', compact(['kelas','siswa','auth']))->with('status','update');
     }
 
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $siswa = Siswa::where('slug', $slug)->first();
-        $siswa->nis = $request->nis;
+        $siswa = Siswa::find($id);
         $siswa->nisn = $request->nisn;
         $siswa->nama_siswa = $request->nama_siswa;
         $siswa->slug = Str::slug($request->nama_siswa,'-');
         $siswa->alamat = $request->alamat;
-        
-        if(strlen($request->password)>0)
-        {
-            $siswa->password = Hash::make($request->password);
-        }
-
         $siswa->no_telp = $request->no_telp;
         $siswa->kelas_id = $request->id_kelas;
-        $siswa->email = $request->email;
         $siswa->updated_at = Carbon::now()->format('Y-m-d H:i:s');
 
         if($request->hasfile('profil')){
@@ -137,6 +139,15 @@ class SiswaController extends Controller
             $siswa->profil = $nama_gambar;
         }
         $siswa->update();
+
+        $auth = Autentikasi::where('siswa_id',$id)->first();
+        $auth->nomor_induk = $request->nis;
+        $auth->email = $request->email;
+        if(strlen($request->password)>0)
+        {
+            $auth->password = Hash::make($request->password);
+        }
+        $auth->update();
 
         $notification = array(
             'title' => 'Berhasil',
@@ -155,6 +166,10 @@ class SiswaController extends Controller
             \File::delete($gambar_lama);
         }
         $siswa->delete();
+
+        $auth = Autentikasi::where('siswa_id',$id)->first();
+        $auth->delete();
+
         $tagihan = Tagihan::where('siswa_id',$id)->get()->each->delete();
 
         return redirect()->back();
