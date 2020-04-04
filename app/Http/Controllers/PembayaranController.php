@@ -88,12 +88,6 @@ class PembayaranController extends Controller
         return view('pages.datapembayaran', compact(['siswa','history','tagihan_spp','tagihan']));
     }
 
-    public function test()
-    {
-        $pembayaran = Pembayaran::all();
-        return view('layouts.report',['pembayaran'=>$pembayaran]);        
-    }
-
     public function cetak_pdf($jenis_filter, $periode)
     {
         $jenisfilter = '';

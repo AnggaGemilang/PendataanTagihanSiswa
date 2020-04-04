@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('pembayaran/cetak_pdf/{jenis_filter}/{periode}', 'PembayaranController@cetak_pdf')->name('cetak_laporan');
-Route::get('test-pdf', 'PembayaranController@test')->name('cetak_laporan');
 
 Route::get('ubahpassword', 'ProfilController@ubahpassword')->name('ubahpassword');
 Route::get('ubahpassword/fetch/{old}', 'ProfilController@fetch_oldpassword')->name('ubahpassword_fetch');

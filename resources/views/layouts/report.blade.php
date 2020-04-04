@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Laporan Pembayaran Tagihan Sekolah Siswa</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -13,6 +14,7 @@
 </head>
 
 <body>
+
     <center>
         <h4>Laporan Pembayaran Tagihan Sekolah Siswa</h4>
     </center>

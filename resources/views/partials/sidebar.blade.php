@@ -32,33 +32,33 @@ if(\Request::is('/')) {
         </div>
 
         <ul class="list-unstyled components">
-            <li style="padding: 15px 0px" id="profil-list">
-                <a @if(Auth::User()->role_id=="1") 
+            <li style="padding: 12px 0px" id="profil-list">
+                <a style="text-transform: capitalize;" @if(Auth::User()->role_id=="1") 
                     href="{{url('profil/' . Auth::User()->siswa->slug . '/' . Auth::User()->siswa->id . '/' . Auth::User()->role_id)}}" 
                     @else 
                     href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"  
                     @endif >
                     <div
-                        style="width: 56px; height: 56px; border-radius: 50px; float: left; margin-left: 2px; border: 3px solid white;">
+                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: 6px; margin-top: 3px;">
                         <img 
                         @if(Auth::User()->role_id=="1") 
                         src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
                         @else 
                         src="{{ asset('uploaded/images/profil_petugas/' . Auth::User()->petugas->profil) }}"
                         @endif
-                            style="width:50px; height:50px; border-radius:60px;object-fit: cover;" alt="">
+                            style="width:100%; height:100%; border-radius:60px;object-fit: cover;" alt="">
                     </div>
                     @if(Auth::User()->role_id=="1") 
-                    <h6 style="margin-left: 75px; margin-top: 5px;">{{ Auth::User()->siswa->nama_siswa }}</h6>
-                    <h6 style="margin-left: 75px;" class="mb-0">{{ Auth::User()->siswa->autentikasi->nomor_induk }}</h6>
+                    <h6 id="biodata-section" style="margin-left: 75px; margin-top: 7px;">{{ Auth::User()->siswa->nama_siswa }}</h6>
+                    <h6 id="biodata-section" style="margin-left: 75px;" class="mb-0">{{ Auth::User()->siswa->autentikasi->nomor_induk }}</h6>
                     @else 
-                    <h6 style="margin-left: 75px; margin-top: 5px;">{{ Auth::User()->petugas->nama_petugas }}</h6>
-                    <h6 style="margin-left: 75px;" class="mb-0">{{ Auth::User()->petugas->autentikasi->nomor_induk }}</h6>
+                    <h6 id="biodata-section" style="margin-left: 75px; margin-top: 7px;">{{ Auth::User()->petugas->nama_petugas }}</h6>
+                    <h6 id="biodata-section" style="margin-left: 75px;" class="mb-0">{{ Auth::User()->petugas->autentikasi->nomor_induk }}</h6>
                     @endif
                     <div class="clearfix"></div>
                 </a>
             </li>
-            <li class="{{ @$dashboard }}" id="item-list" style="margin-top: -2px;" data-toggle="tooltip" data-placement="right" title="Home">
+            <li class="{{ @$dashboard }}" id="item-list" data-toggle="tooltip" data-placement="right" title="Home">
                 <a href="{{ url('/') }}">
                     <i class="fas fa-home" style="width: 18px;"></i>
                     <span>Home</span>
@@ -76,14 +76,34 @@ if(\Request::is('/')) {
                             <span>History</span>
                         </a>
                     </li>
+
+                    @if(Auth::User()->role_id=="2" || Auth::User()->role_id=="3")
+
                     <li class="{{ @$entri_pembayaran }}">
                         <a href="{{ url('pembayaran/entripembayaran') }}" style="padding-left: 35px;" data-toggle="tooltip" data-placement="right" title="Entri">
                             <i class="fas fa-notes-medical" style="width: 18px;"></i>
                             <span>Entri</span>
                         </a>
                     </li>
+
+                    @endif
+
+                    @if(Auth::User()->role_id=="1")
+
+                    <li class="{{ @$data_pembayaran }}">
+                        <a href="{{ url('/pembayaran/data') }}" style="padding-left: 35px;" data-toggle="tooltip" data-placement="right" title="Data Pembayaran">
+                            <i class="fas fa-image" style="width: 18px;"></i>
+                            <span>Data</span>
+                        </a>
+                    </li>
+
+                    @endif
+
                 </ul>
             </li>
+
+            @if(Auth::User()->role_id=="2")
+
             <li class="{{ @$data_siswa }} {{ @$data_kelas }} {{ @$data_petugas }} {{ @$data_tagihan }}" id="item-list">
                 <a href="#pageSubKelola" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy" style="width: 18px;"></i>
@@ -116,12 +136,14 @@ if(\Request::is('/')) {
                     </li>
                 </ul>
             </li>
-            <li class="{{ @$data_pembayaran }}" id="item-list">
-                <a href="{{ url('/pembayaran/data') }}" data-toggle="tooltip" data-placement="right" title="Data Pembayaran">
-                    <i class="fas fa-image" style="width: 18px;"></i>
-                    <span>Data Pembayaran</span>
+            <li id="item-list">
+                <a href="" data-toggle="tooltip" data-placement="right" title="Ubah Password" id="btn-generate">
+                    <i class="fas fa-chart-pie" style="width: 18px;"></i>
+                    <span>Generate Laporan</span>
                 </a>
             </li>
+            @endif
+
             <li class="{{ @$ubah_password }}" id="item-list">
                 <a href="{{ url('ubahpassword/') }}" data-toggle="tooltip" data-placement="right" title="Ubah Password">
                     <i class="fas fa-key" style="width: 18px;"></i>

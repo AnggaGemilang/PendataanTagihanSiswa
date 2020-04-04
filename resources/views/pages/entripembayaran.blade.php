@@ -13,11 +13,11 @@
     <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
         <ol style="opacity: 0.7;">
-            <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
-            <li>Kemudian, pilih kelas siswa tersebut</li>
-            <li>Lalu, pilih nama siswa yang ingin membayar</li>
-            <li>Masukkan nominal uang yang akan siswa bayar</li>
-            <li>Terakhir, submit pembayaran dan data akan otomatis terupdate</li>
+            <li>Pilih Dahulu Kelas Siswa Yang Ingin Dientri</li>
+            <li>Pilih Nama Siswa Terkait</li>
+            <li>Pilih Jenis Tagihan Yang Akan Dibayarkan</li>
+            <li>Masukkan Nominal Uang Yang Akan Siswa Bayarkan</li>
+            <li>Submit Pembayaran Dan Data Tagihan Akan Otomatis Terakumulasi</li>
         </ol>
     </div>
 

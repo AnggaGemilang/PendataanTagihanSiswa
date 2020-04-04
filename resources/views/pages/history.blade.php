@@ -5,7 +5,7 @@
 
 <div id="main-content">
     <div class="row">
-        <div class="col-9">
+        <div @if(Auth::User()->role_id=="1" || Auth::User()->role_id=="3") class="col-12" @else class="col-9" @endif>
             <h1>History Pembayaran</h1>
             <nav class="breadcrumb">
                 <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
@@ -13,6 +13,7 @@
                 <span class="breadcrumb-item active"></span>
             </nav>
         </div>
+        @if(Auth::User()->role_id=="2")
         <div class="col-3 pl-0 d-flex justify-content-center align-items-center mt-4 pt-3">
             <button type="button" class="btn w-100" id="btn-generate"
                 style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 47px;">
@@ -20,10 +21,11 @@
                 <i class="ml-2 fas fa-file-download"></i>
             </button>
         </div>
+        @endif
     </div>
     <div class="clearfix"></div>
 
-    {{-- @if(Auth::User()->role->nama_role=="siswa") --}}
+    @if(Auth::User()->role_id=="1")
 
     @foreach ($history_siswa as $h)
     <a href="{{ url('data/siswa/detail/' . $h->tagihan->siswa->slug . '/' . $h->tagihan->siswa->id) }}">
@@ -37,12 +39,12 @@
                     <p class="float-right">{{ $h->created_at }}</p>
                 </div>
             </div>
-            <h4>{{ $h->tagihan->siswa->nama_siswa }}</h4>
+            <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
         </div>
     </a>
     @endforeach
 
-    {{-- @else --}}
+    @else
 
     @foreach ($history as $h)
     <a href="{{ url('data/siswa/detail/' . $h->tagihan->siswa->slug . '/' . $h->tagihan->siswa->id) }}">
@@ -56,12 +58,12 @@
                     <p class="float-right">{{ $h->created_at }}</p>
                 </div>
             </div>
-            <h4>{{ $h->tagihan->siswa->nama_siswa }}</h4>
+            <h4 style="margin-top: -5px;">{{ $h->tagihan->siswa->nama_siswa }}</h4>
         </div>
     </a>
     @endforeach
 
-    {{-- @endif --}}
+    @endif
 
 </div>
 
@@ -70,7 +72,7 @@
 
 @push('extras-js')
 <script>
-    $('#btn-generate').on('click', function () {
+    $('button#btn-generate').on('click', function () {
         var jenis_filter =
             "<select name='jenis_filter' id='jenis_filter' class='form-control greylight-bg w-100 pl-2' style='height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); margin-top: 10px;'>";
         jenis_filter += "<option value=''>Pilih Filter</option>";

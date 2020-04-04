@@ -17,5 +17,14 @@ class PetugasSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
+        Petugas::create([
+            'nama_petugas' => 'petugas',
+            'no_telp' => '081232323339',
+            'role_id' => 3,
+            'slug' => Str::slug('petugas','-'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

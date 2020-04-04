@@ -29,14 +29,13 @@
     </nav>
 
     <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
-        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
-        <ol style="opacity: 0.7;">
-            <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
-            <li>Kemudian, pilih kelas siswa tersebut</li>
-            <li>Lalu, pilih nama siswa yang ingin membayar</li>
-            <li>Masukkan nominal uang yang akan siswa bayar</li>
-            <li>Terakhir, submit pembayaran dan data akan otomatis terupdate</li>
-        </ol>
+        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal Yang Harus Diperhatikan Dalam Penambahan Data Tagihan</p>
+        <ul style="opacity: 0.7;">
+            <li>Pastikan Tagihan Telah Valid</li>
+            <li>Pastikan Data Siswa Sudah Lengkap</li>
+            <li style="padding-right: 150px;">Jika Data Tagihan Terlanjur Ditambahkan, Sedangkan Data Siswa Belum Lengkap. Maka Hapus Dulu Data Tagihan Tersebut, Lalu Lengkapi Dulu Data Siswa, Dan Tambahkan Lagi Data Tagihan</li>
+            <li>Anda Dapat Menambahkan Kelas Beberapa Sekaligus</li>
+        </ul>
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">

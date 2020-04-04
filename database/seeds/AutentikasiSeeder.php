@@ -32,5 +32,15 @@ class AutentikasiSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
+        Autentikasi::create([
+            'nomor_induk' => 686785685686,
+            'email' => 'petugas@mail.id',
+            'password' => Hash::make('123456789'),
+            'role_id' => 3,
+            'petugas_id' => 2,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

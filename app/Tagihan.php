@@ -13,10 +13,10 @@ class Tagihan extends Model
     ];
     public function tipetagihan()
     {
-    	return $this->belongsTo(TipeTagihan::class);
+    	return $this->belongsTo(TipeTagihan::class,'tipetagihan_id','id');
     }
     public function siswa()
     {
-    	return $this->belongsTo(Siswa::class);
+    	return $this->belongsTo(Siswa::class,'siswa_id','id');
     }
 }

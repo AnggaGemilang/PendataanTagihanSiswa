@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pembayaran;
 use Carbon\Carbon;
+use Auth;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function index()
     {
-        $today_time =  Carbon::now()->toDateString();
+        $today_time = Carbon::now()->toDateString();
         $history = Pembayaran::where('created_at', 'like', '%' . $today_time . '%')->orderBy('id', 'DESC')->get();
         $countbayar = $history->count();
         return view('pages.home', compact(['history','countbayar']));

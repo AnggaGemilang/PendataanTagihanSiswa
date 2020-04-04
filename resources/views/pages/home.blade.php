@@ -10,7 +10,7 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    {{-- @if(Auth::User()->role->nama_role=="siswa") --}}
+    @if(Auth::User()->role_id=="1")
 
     <div class="col-md-12"
         style="margin-top: 40px; background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 30px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    {{-- @else --}}
+    @else
 
     <div class="col-md-12 mt-4 pt-3">
         <div class="row">
@@ -71,7 +71,7 @@
     </a>
     @endforeach
 
-    {{-- @endif --}}
+    @endif
 
 </div>
 

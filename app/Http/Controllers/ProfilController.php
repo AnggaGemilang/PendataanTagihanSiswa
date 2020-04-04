@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($slug, $id, $role_id)
     {
         if($role_id=="1")

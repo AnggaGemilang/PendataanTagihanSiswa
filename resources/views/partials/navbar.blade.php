@@ -1,4 +1,5 @@
-<nav class="navbar top navbar-expand-lg navbar-light" style="background: #FFFFFF !important; position: fixed; min-width: 81%; right: 0px; transition: all 0.3s; left: 250px; z-index: 999;">
+<nav class="navbar top navbar-expand-lg navbar-light"
+    style="background: #FFFFFF !important; position: fixed; right: 0px; transition: all 0.3s; left: 250px; z-index: 999;">
     <div class="container-fluid">
 
         <button type="button" id="sidebarCollapse" class="btn btn-info"
@@ -11,18 +12,22 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active position-relative">
                     <a id="btn-dropdownnavbar" href="#"
-                        style="color: #008A85; font-weight: 500;">
-                        @if(Auth::User()->role_id=="1") 
-                        {{ Auth::User()->siswa->nama_siswa }} 
-                        @else 
-                        {{ Auth::User()->petugas->nama_petugas }} 
+                        style="color: #008A85; font-weight: 500; text-transform: capitalize;">
+                        @if(Auth::User()->role_id=="1")
+                        {{ Auth::User()->siswa->nama_siswa }}
+                        @else
+                        {{ Auth::User()->petugas->nama_petugas }}
                         @endif
                         <i class="fas fa-caret-down ml-2"></i>
                     </a>
                     <div class="dropdown-navbar dropdown-navbar-status"
                         style="min-width: 129px !important; z-index: 999;">
                         <ul class="pl-0">
-                            <a href="{{ url('profil/' . Auth::User()->slug) }}">
+                            <a @if(Auth::User()->role_id=="1")
+                                href="{{url('profil/' . Auth::User()->siswa->slug . '/' . Auth::User()->siswa->id . '/' . Auth::User()->role_id)}}"
+                                @else
+                                href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"
+                                @endif >
                                 <li><i class="fa fa-user" style="width: 29px;"></i>Profile</li>
                             </a>
                             <a href="" id="btn-about">

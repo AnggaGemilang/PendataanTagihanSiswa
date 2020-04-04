@@ -137,7 +137,7 @@
         </table>
     </div>
 
-    <div class="row m-1 mt-5 mb-4"
+    <div class="row m-1 mt-4 mb-4"
         style="background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 15px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
         <h3 class="p-2" style="font-weight: 600;">Tagihan Lainnya</h3>
         <table class="w-100">
@@ -177,6 +177,8 @@
         </table>
     </div>
 
+    @if($auth->role_id!='1')
+
     <div class="row mt-4 pt-3 ml-1">
         <h3>History Pembayaran</h3>
     </div>
@@ -198,6 +200,7 @@
     </a>
     @endforeach
 
+    @endif
 
 </div>
 

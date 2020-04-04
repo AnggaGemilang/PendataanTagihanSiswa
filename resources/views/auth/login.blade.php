@@ -24,10 +24,10 @@
 
                     <div class="row m-2 mt-3 pt-2">
                         <div class="form-group w-100">
-                            <label for="email">Username atau Email</label>
-                            <input id="email" type="email" name="email" id="email" value="{{ old('email') }}" required
+                            <label for="login">Email atau Nomor induk</label>
+                            <input id="login" type="login" name="login" id="login" value="{{ old('email') }}" required @if ($errors->has('nomor_induk') || $errors->has('email')) style="border: 1px solid red" @endif
                                 autocomplete="email" autofocus class="@error('email') is-invalid @enderror form-control greylight-bg pl-4 mt-1"
-                                aria-describedby="helpId" placeholder="Masukkan Username atau Siswa"
+                                aria-describedby="helpId" placeholder="Masukkan Email atau Nomor induk"
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="row m-2 mt-2 wrapper-password-field">
                         <div class="form-group w-100 position-relative">
                             <label for="pwd">Password</label>
-                            <input id="password" type="password" name="password" required
+                            <input id="password" type="password" name="password" required required @if ($errors->has('nomor_induk') || $errors->has('email')) style="border: 1px solid red" @endif
                                 autocomplete="current-password" class="@error('password') is-invalid @enderror form-pwd form-control greylight-bg pl-4 mt-1"
                                 aria-describedby="helpId" placeholder="Masukkan Password Siswa"
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">

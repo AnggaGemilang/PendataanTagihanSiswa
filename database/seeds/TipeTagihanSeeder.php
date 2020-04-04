@@ -14,9 +14,10 @@ class TipeTagihanSeeder extends Seeder
      */
     public function run()
     {
+
         TipeTagihan::create([
             'nama_tagihan' => 'SPP',
-            'slug' => Str::slug('SPP'),
+            'slug' => Str::slug('SPP','-'),
             'nominal' => 3600000,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

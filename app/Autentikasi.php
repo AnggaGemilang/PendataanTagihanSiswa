@@ -13,7 +13,7 @@ class Autentikasi extends Authenticatable
     protected $table = 't_autentikasi';
 
     protected $fillable = [
-        'email','password','role_id','angga_id','petugas_id','created_at','updated_at'
+        'email','password','nomor_induk','role_id','angga_id','petugas_id','created_at','updated_at'
     ];
 
     public function siswa()

@@ -92,9 +92,9 @@
                 <tr style="height: 75px;" href="{{ url('data/siswa/detail/' . $student->slug) }}" id="row-main">
                     <th>{{ $no++ }}</th>
                     <td>{{ $student->nisn }}</td>
-                    <td>{{ $student->nis }}</td>
+                    <td>{{ $student->autentikasi->nomor_induk }}</td>
                     <td>{{ $student->nama_siswa }}</td>
-                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->autentikasi->email }}</td>
                     <td>{{ $student->no_telp }}</td>
                     <td>
                         <img src="{{ asset('uploaded/images/profil_siswa/' . $student->profil) }}"

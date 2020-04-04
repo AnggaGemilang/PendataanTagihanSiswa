@@ -16,7 +16,7 @@
     <div class="row mt-4 ml-2">
         <div class="col-md-7">
             <div class="row">
-              <h2 class="mb-4 w-100" style="font-size: 40px;">{{ $petugas->nama_petugas }}</h2>
+              <h2 class="mb-4 w-100" style="font-size: 40px; text-transform: capitalize;">{{ $petugas->nama_petugas }}</h2>
                 <table>
                     <tbody>
                         <tr>
@@ -27,7 +27,7 @@
                                 <h4>:</h4>
                             </td>
                             <td>
-                                <h4>{{ $petugas->nip }}</h4>
+                                <h4>{{ $petugas->autentikasi->nomor_induk }}</h4>
                             </td>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@
                                 <h4>:</h4>
                             </td>
                             <td>
-                                <h4>{{ $petugas->email }}</h4>
+                                <h4>{{ $petugas->autentikasi->email }}</h4>
                             </td>
                         </tr>
                         <tr>

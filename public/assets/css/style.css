@@ -459,13 +459,28 @@ a.article:hover {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 1127px) {
     #sidebar {
         min-width: 80px;
         max-width: 80px;
         text-align: center;
         margin-left: -80px !important;
     }
+
+    .navbar.top
+    {
+        left: 0px !important;
+    }
+
+    #content-section {
+        width: 100%;
+        margin-left: 0px;
+        position: relative;
+        min-height: 100vh;
+        transition: all 0.3s;
+        padding-bottom: 80px;
+    }
+
     .dropdown-toggle::after {
         top: auto;
         bottom: 10px;
@@ -504,6 +519,9 @@ a.article:hover {
         margin-left: 0;
     }
     #sidebarCollapse span {
+        display: none;
+    }
+    #biodata-section{
         display: none;
     }
 }
