@@ -15,7 +15,7 @@
         </div>
         @if(Auth::User()->role_id=="2")
         <div class="col-3 pl-0 d-flex justify-content-center align-items-center mt-4 pt-3">
-            <button type="button" class="btn w-100" id="btn-generate"
+            <button type="button" class="btn w-100" id="btn-generate" data-baseurl="{{ url('/') }}"
                 style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 47px;">
                 Generate Report
                 <i class="ml-2 fas fa-file-download"></i>
@@ -25,12 +25,39 @@
     </div>
     <div class="clearfix"></div>
 
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="form-group position-relative">
+                <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
+                <input type="text" class="form-control pl-5" name="filter_history" id="filter_history"
+                    aria-describedby="helpId" placeholder="Cari Pembayaran Siswa Disini . . ."
+                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+            </div>
+        </div>
+        <div class="col-md-3 pl-0">
+            <div class="form-group">
+                <select class="custom-select" name="filter_tagihan" id="filter_tagihan"
+                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    <option selected value="">Plih Jenis Tagihan</option>
+                    @foreach ($tipetagihan as $tt)
+                    <option value="{{ $tt->nama_tagihan }}">{{ $tt->nama_tagihan }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3 pl-0">
+            <div class="form-group">
+                <input type="text" id="filter_tanggal" placeholder="Tanggal" class="date_picker w-100"
+                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 2px; height: 38px; outline: none; padding-left: 20px;">
+            </div>
+        </div>
+    </div>
+
     @if(Auth::User()->role_id=="1")
 
-    @foreach ($history_siswa as $h)
-    <a href="{{ url('data/siswa/detail/' . $h->tagihan->siswa->slug . '/' . $h->tagihan->siswa->id) }}">
-        <div class="col-md-12 mt-3 mb-4"
-            style="background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 25px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
+    <div class="row m-1" id="wrapper-history">
+        @foreach ($history_siswa as $h)
+        <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
             <div class="row">
                 <div class="col">
                     <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -41,15 +68,14 @@
             </div>
             <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
         </div>
-    </a>
-    @endforeach
+        @endforeach
+    </div>
 
     @else
 
-    @foreach ($history as $h)
-    <a href="{{ url('data/siswa/detail/' . $h->tagihan->siswa->slug . '/' . $h->tagihan->siswa->id) }}">
-        <div class="col-md-12 mt-3 mb-4"
-            style="background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 25px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
+    <div class="row m-1" id="wrapper-history">
+        @foreach ($history as $h)
+        <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
             <div class="row">
                 <div class="col">
                     <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -60,8 +86,9 @@
             </div>
             <h4 style="margin-top: -5px;">{{ $h->tagihan->siswa->nama_siswa }}</h4>
         </div>
-    </a>
-    @endforeach
+        </a>
+        @endforeach
+    </div>
 
     @endif
 
@@ -72,6 +99,42 @@
 
 @push('extras-js')
 <script>
+    $(function () {
+        $('.date_picker').datepicker({
+            format: "yyyy-mm-dd",
+            todayBtn: "linked",
+            language: "id",
+            orientation: "bottom auto",
+        });
+
+    });
+
+    $(document).on('click', '#item-history', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'history/detail/' + id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                swal.fire({
+                    html: data,
+                    showCloseButton: true,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    focusConfirm: false,
+                });
+            },
+            error: function (data) {
+                console.log("Gagal" + data);
+            }
+        });
+    });
+
+    var base_url = $('#btn-generate').attr('data-baseurl');
+    var periode;
+    var jenis_filter;
+
     $('button#btn-generate').on('click', function () {
         var jenis_filter =
             "<select name='jenis_filter' id='jenis_filter' class='form-control greylight-bg w-100 pl-2' style='height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); margin-top: 10px;'>";
@@ -128,7 +191,7 @@
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<a href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #3AA9A5;'>Generate Laporan</a>",
+                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #3AA9A5;'>Generate Laporan</a>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,
@@ -160,13 +223,18 @@
                     $(this).after(jenis_pertahun);
                 }
             }
-            $('.btn-generate').attr("href","cetak_pdf/" + jenis_filter);
-            $('.btn-generate').attr("jenis",jenis_filter);
+            $('.btn-generate').attr("href", "cetak_pdf/" + jenis_filter);
+            $('.btn-generate').attr("jenis", jenis_filter);
 
             $('#' + jenis_filter).on('change', function () {
-                var periode = $(this).children("option:selected").val();
-                var jenis_filter = $('.btn-generate').attr('jenis');
-                $('.btn-generate').attr("href","cetak_pdf/" + jenis_filter + "/" + periode);
+                periode = $(this).children("option:selected").val();
+                jenis_filter = $('.btn-generate').attr('jenis');
+            });
+
+            $('a#gen').on('click', function (e) {
+                e.preventDefault();
+                var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" + periode;
+                location.href = url;
             });
         });
     });

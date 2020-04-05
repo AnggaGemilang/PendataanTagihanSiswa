@@ -12,10 +12,21 @@
     </nav>
 
     <div class="row mt-4">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
                 <input type="text" class="form-control pl-5" name="field_cari" id="field_cari" aria-describedby="helpId" placeholder="Cari Petugas Disini . . ." style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+            </div>
+        </div>
+        <div class="col-md-3 pl-0">
+            <div class="form-group">
+                <select class="custom-select" name="filter_role" id="filter_role"
+                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    <option selected value="">Pilih Role</option>
+                    @foreach ($role as $r)
+                    <option value="{{ $r->nama_role }}">{{ $r->nama_role }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-md-3 pl-0">
@@ -62,7 +73,6 @@
             </table>
         </div>
     </div>
-
 </div>
 
 @include('partials.footer')

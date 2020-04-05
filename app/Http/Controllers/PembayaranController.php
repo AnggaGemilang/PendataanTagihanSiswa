@@ -27,6 +27,52 @@ class PembayaranController extends Controller
         return view('pages.entripembayaran', compact(['kelas','tipetagihan','siswa']));
     }
 
+    public function detail($id)
+    {
+        $data = Pembayaran::find($id);
+        $content = '<h2 style="text-align:left; margin-bottom:20px; font-weight:500;">Detail Pembayaran</h2>';
+        $content .= '<table>';
+        $content .= '<tr style="text-align:left;">';
+        $content .= '<td>NIS</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>' . $data->tagihan->siswa->autentikasi->nomor_induk ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align:left;">';
+        $content .= '<td>Nama Siswa</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>' . $data->tagihan->siswa->nama_siswa ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align: left;">';
+        $content .= '<td>Kelas</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>' . $data->kelas->nama_kelas ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align: left; margin-top: 5px;">';
+        $content .= '<td>Jenis Pembayaran</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>' . $data->tagihan->tipetagihan->nama_tagihan ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align: left; margin-top: 5px;">';
+        $content .= '<td>Petugas Pemeriksa</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>' . $data->petugas->nama_petugas ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align: left; margin-top: 5px;">';
+        $content .= '<td>Uang Diterima</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>Rp. ' . $data->nominal ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align: left; margin-top: 5px;">';
+        $content .= '<td>Sisa Tagihan</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td>Rp. ' . $data->sisa_tagihan ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '</table>';
+        $content .= '<a href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'" jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #3AA9A5;">Lihat Data Pembayaran</a>';
+        
+        echo json_encode($content);
+    }
+
     public function fetch($kelas_id)
     {
         $kelas = Kelas::find($kelas_id);
@@ -51,20 +97,26 @@ class PembayaranController extends Controller
 
     public function history()
     {
+        $tipetagihan = TipeTagihan::all();
         $id = Auth::user()->id;
         $history = Pembayaran::orderBy('id', 'DESC')->get();
         $history_siswa = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
-        return view('pages.history', compact(['history','history_siswa']));
+        return view('pages.history', compact(['history','history_siswa','tipetagihan','kelas']));
     }
 
     public function store(Request $request)
     {
+        $tagihan = Tagihan::find($request->jenis_pembayaran);
+        $tipetagihan = $tagihan->tipetagihan->nominal;
+        $sudahdibayar = $tagihan->sudah_dibayar;
+
         $entri = new Pembayaran;
         $entri->nominal = $request->nominal;
         $entri->siswa_id = $request->nama_siswa;
-        $entri->petugas_id = Auth::user()->id;
+        $entri->petugas_id = Auth::user()->petugas->id;
         $entri->kelas_id = $request->kelas_id;
         $entri->tagihan_id = $request->jenis_pembayaran;
+        $entri->sisa_tagihan = $tipetagihan - ($request->nominal+$sudahdibayar);
         $entri->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $entri->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $entri->save();

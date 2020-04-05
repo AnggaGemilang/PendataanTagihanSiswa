@@ -12,6 +12,11 @@ class Siswa extends Model
         'nis','nisn','nama_siswa','slug','alamat','no_telp','kelas_id','email','password','role_id','created_at','updated_at'
     ];
 
+    public function pembayaran()
+    {
+    	return $this->hasMany(Pembayaran::class);
+    }
+
     public function class()
     {
     	return $this->belongsTo(Kelas::class,'kelas_id','id');

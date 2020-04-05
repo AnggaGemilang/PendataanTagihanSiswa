@@ -27,13 +27,12 @@
     </nav>
 
     <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
-        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
+        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal - Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
-            <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
-            <li>Kemudian, pilih kelas siswa tersebut</li>
-            <li>Lalu, pilih nama siswa yang ingin membayar</li>
-            <li>Masukkan nominal uang yang akan siswa bayar</li>
-            <li>Terakhir, submit pembayaran dan data akan otomatis terupdate</li>
+            <li>Data Kelas Sebenarnya Sudah Diinput Seluruhnya</li>
+            <li>Jika Ada Kelas Baru, Pastikan Data Tersebut Valid</li>
+            <li>Masukkan Data Dengan Benar Dan Teliti</li>
+            <li>Jika Data Kelas Sudah Dimasukkan, Klik Tombol Tambah Kelas</li>
         </ol>
     </div>
 
@@ -53,9 +52,29 @@
             <div class="row m-3 mt-4 pt-2">
                 <div class="form-group w-100">
                     <label for="nama_kelas">Nama Kelas</label>
-                    <input type="text" class="form-control greylight-bg" name="nama_kelas" id="nama_kelas" aria-describedby="helpId"
-                        placeholder="Masukkan Nama Kelas" @if($status=='update' ) value="{{$kelas->nama_kelas}}" @endif
+                    <input type="text" class="form-control greylight-bg"  name="nama_kelas" id="nama_kelas" aria-describedby="helpId"
+                        placeholder="Masukkan Nama Kelas" @if($status=='tambah') value="{{ old('nama_kelas') }}" @else value="{{$kelas->nama_kelas}}" @endif
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group w-100">
+                    <label for="tipekelas_id">Tingkat Kelas</label>
+                    <select name="tipekelas_id" id="tipekelas_id" class="form-control greylight-bg w-100 pl-2"
+                        style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        <option value="">Pilih Tingkat Kelas</option>
+                        @foreach($tipekelas as $tk)
+                        <option value="{{ $tk->id }}"
+                            @if($status=='update' )
+                            {{ $kelas->id==$tk->id ? 'selected' : '' }} 
+                            @else
+                            {{ old('tipekelas_id')==$tk->id ? 'selected' : '' }}
+                            @endif>
+                            {{ $tk->nama_tipekelas }}
+                        </option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
@@ -63,7 +82,7 @@
                 <div class="form-group w-100">
                     <label for="jurusan">Jurusan</label>
                     <input type="text" class="form-control greylight-bg" name="jurusan" id="jurusan" aria-describedby="helpId"
-                        placeholder="Masukkan Jurusan Kelas" @if($status=='update' ) value="{{$kelas->jurusan}}" @endif
+                        placeholder="Masukkan Jurusan Kelas" @if($status=='update') value="{{$kelas->jurusan}}" @else value="{{ old('jurusan') }}" @endif
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
@@ -72,7 +91,7 @@
                 <div class="form-group w-100">
                     <label for="wali_kelas">Wali Kelas</label>
                     <input type="text" class="form-control greylight-bg" name="wali_kelas" id="wali_kelas" aria-describedby="helpId"
-                        placeholder="Masukkan Nama Wali Kelas" @if($status=='update' ) value="{{$kelas->wali_kelas}}"
+                        placeholder="Masukkan Nama Wali Kelas"  @if($status=='update' ) value="{{$kelas->wali_kelas}}" @else value="{{ old('wali_kelas') }}"
                         @endif style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>

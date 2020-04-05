@@ -56,6 +56,7 @@ Route::post('data/tagihan/perbaharui/{slug}/store', 'TagihanController@update')-
 Route::post('data/tagihan/hapus/{id}', 'TagihanController@destroy')->name('hapus_tagihan_store');
 
 Route::get('pembayaran/history', 'PembayaranController@history')->name('history');
+Route::get('pembayaran/history/detail/{id}', 'PembayaranController@detail')->name('detail_history');
 Route::get('pembayaran/entripembayaran', 'PembayaranController@index')->name('tambah_pembayaran');
 Route::post('pembayaran/entripembayaran/store', 'PembayaranController@store')->name('tambah_pembayaran_store');
 Route::get('pembayaran/entripembayaran/{id_kelas}/getsiswa', 'PembayaranController@fetch')->name('fetch_siswa');

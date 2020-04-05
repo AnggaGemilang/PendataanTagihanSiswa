@@ -16,10 +16,13 @@ class HomeController extends Controller
     
     public function index()
     {
+        $id = Auth::user()->id;
+        $history = Pembayaran::orderBy('id', 'DESC')->get();
+        $history_siswa = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
         $today_time = Carbon::now()->toDateString();
         $history = Pembayaran::where('created_at', 'like', '%' . $today_time . '%')->orderBy('id', 'DESC')->get();
         $countbayar = $history->count();
-        return view('pages.home', compact(['history','countbayar']));
+        return view('pages.home', compact(['history','countbayar','history','history_siswa']));
     }
 
     public function profile()

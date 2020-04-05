@@ -29,13 +29,18 @@
     </nav>
 
     <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
-        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal Yang Harus Diperhatikan Dalam Penambahan Data Tagihan</p>
-        <ul style="opacity: 0.7;">
-            <li>Pastikan Tagihan Telah Valid</li>
-            <li>Pastikan Data Siswa Sudah Lengkap</li>
-            <li style="padding-right: 150px;">Jika Data Tagihan Terlanjur Ditambahkan, Sedangkan Data Siswa Belum Lengkap. Maka Hapus Dulu Data Tagihan Tersebut, Lalu Lengkapi Dulu Data Siswa, Dan Tambahkan Lagi Data Tagihan</li>
-            <li>Anda Dapat Menambahkan Kelas Beberapa Sekaligus</li>
-        </ul>
+        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal - Hal Yang Harus Diperhatikan</p>
+        <ol style="opacity: 0.7;">
+            <li>Siapkan Terlebih Dahulu Data Tagihan</li>
+            <li>Pastikan Data Yang Telah Disiapkan Valid</li>
+            <li>Jika Data Tagihan Terlanjur Ditambahkan, Sedangkan Data Siswa Belum Lengkap
+                <ul style="margin-left: -20px;">
+                    <li>Pertama Hapus Dulu Data Tagihan Tersebut</li>
+                    <li>Kemudian Lengkapi Dulu Data Siswa</li>
+                    <li>Dan Terakhir Tambahkan Lagi Data Tagihan</li>
+                </ul>
+            </li>
+        </ol>
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">

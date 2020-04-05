@@ -20,6 +20,10 @@ class Pembayaran extends Model
     {
     	return $this->belongsTo(Kelas::class,'kelas_id','id');
     }
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class,'siswa_id','id');
+    }
     public function petugas()
     {
     	return $this->belongsTo(Petugas::class,'petugas_id','id');

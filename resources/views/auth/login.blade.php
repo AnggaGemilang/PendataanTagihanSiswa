@@ -25,27 +25,25 @@
                     <div class="row m-2 mt-3 pt-2">
                         <div class="form-group w-100">
                             <label for="login">Email atau Nomor induk</label>
-                            <input id="login" type="login" name="login" id="login" value="{{ old('email') }}" required @if ($errors->has('nomor_induk') || $errors->has('email')) style="border: 1px solid red" @endif
+                            <input id="login" type="login" name="login" id="login" value="{{ old('email') }}" required @if ($errors->has('email')) class="is-invalid form-pwd form-control greylight-bg pl-4 mt-1" @endif
                                 autocomplete="email" autofocus class="@error('email') is-invalid @enderror form-control greylight-bg pl-4 mt-1"
-                                aria-describedby="helpId" placeholder="Masukkan Email atau Nomor induk"
-                                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                                aria-describedby="helpId" placeholder="Masukkan Email atau Nomor induk" >
                         </div>
                     </div>
 
                     <div class="row m-2 mt-2 wrapper-password-field">
                         <div class="form-group w-100 position-relative">
                             <label for="pwd">Password</label>
-                            <input id="password" type="password" name="password" required required @if ($errors->has('nomor_induk') || $errors->has('email')) style="border: 1px solid red" @endif
+                            <input id="password" type="password" name="password" required @if ($errors->has('nomor_induk')) class="is-invalid form-pwd form-control greylight-bg pl-4 mt-1" @endif
                                 autocomplete="current-password" class="@error('password') is-invalid @enderror form-pwd form-control greylight-bg pl-4 mt-1"
-                                aria-describedby="helpId" placeholder="Masukkan Password Siswa"
-                                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                                aria-describedby="helpId" placeholder="Masukkan Password Siswa" >
                             <button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
                         </div>
                     </div>
 
                     <div class="row m-2 mt-3 pb-4">
                         <button type="submit" class="btn w-100 text-light"
-                            style="background: #B0A1FF; outline: #B0A1FF !important;">Login</button>
+                            style="background: #1EB5AD; outline: #B0A1FF !important;">Login</button>
                     </div>
                 </form>
 

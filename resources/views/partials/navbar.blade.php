@@ -11,7 +11,7 @@
         <div>
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active position-relative">
-                    <a id="btn-dropdownnavbar" href="#"
+                    <a id="btn-dropdownnavbar" href=""
                         style="color: #008A85; font-weight: 500; text-transform: capitalize;">
                         @if(Auth::User()->role_id=="1")
                         {{ Auth::User()->siswa->nama_siswa }}
@@ -33,8 +33,8 @@
                             <a href="" id="btn-about">
                                 <li><i class="fa fa-info-circle" style="width: 29px;"></i>About</li>
                             </a>
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="{{ route('logout') }}" id="btn-logout"
+                                onclick="">
                                 <li><i class="fas fa-sign-out-alt" style="width: 29px;"></i>Log Out</li>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -58,6 +58,29 @@
             showCloseButton: true,
             showConfirmButton: false,
         })
+    });
+
+    $('#btn-logout').click(function (e) {
+        e.preventDefault();
+        swal.fire({
+            title: "Apakah Anda Yakin?",
+            text: "Anda Akan Logout",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3AA9A5",
+            confirmButtonText: "Hapus",
+            cancelButtonText: "Batal",
+            closeOnConfirm: false,
+            closeOnCancel: false,
+        })
+        .then((result) => {
+            if (result.value) {
+                $('#btn-logout').attr("onclick","event.preventDefault(); document.getElementById('logout-form').submit();");
+                $('#logout-form').submit();
+            } else {
+                
+            }
+        });
     });
 </script>
 @endpush

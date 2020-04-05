@@ -240,6 +240,24 @@ input[type=checkbox] {
     transform: rotate(45deg);
 }
 
+#item-history
+{
+    background: #FFFFFF !important;
+    border-radius: 10px; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    padding-top: 15px; 
+    padding-bottom: 25px; 
+    box-shadow: 1px 2px 14px rgba(0,0,0,0.1);
+    transition: .5s;
+}
+
+#item-history:hover
+{
+    background: rgba(0,0,0,0.01) !important;
+    cursor: pointer;
+}
+
 /* ---------------------------------------------------
     Navbar
 ----------------------------------------------------- */

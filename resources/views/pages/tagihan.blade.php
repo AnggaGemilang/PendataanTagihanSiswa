@@ -15,7 +15,7 @@
         <div class="col-md-9">
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
-                <input type="text" class="form-control pl-5" name="" id="" aria-describedby="helpId" placeholder="Cari Tagihan Disini . . ." style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                <input type="text" class="form-control pl-5" name="" id="field_cari" aria-describedby="helpId" placeholder="Cari Tagihan Disini . . ." style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
             </div>
         </div>
         <div class="col-md-3 pl-0">
@@ -27,7 +27,7 @@
         <div class="col-md-12">
             <table class="table table-striped align-center" id="table-refresh">
                 <thead align="center">
-                    <tr>
+                    <tr id="header-tr">
                         <th scope="col">No</th>
                         <th scope="col">Nama Tagihan</th>
                         <th scope="col">Nominal</th>

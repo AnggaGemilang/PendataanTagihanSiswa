@@ -12,12 +12,26 @@
     </nav>
 
     <div class="row mt-4">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
                 <input type="text" class="form-control pl-5" name="field_cari" id="field_cari" aria-describedby="helpId"
                     placeholder="Cari Kelas Disini . . ."
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+            </div>
+        </div>
+        <div class="col-md-3 pl-0">
+            <div class="form-group">
+                <select class="custom-select" name="filter_kelas" id="filter_kelas"
+                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    <option selected value="">Plih Jurusan</option>
+                    <option value="rekayasa perangkat lunak">Rekayasa Perangkat Lunak</option>
+                    <option value="teknik komputer jaringan">Teknik Komputer Jaringan</option>
+                    <option value="multimedia">Multimedia</option>
+                    <option value="teknik audio video">Teknik Audio Video</option>
+                    <option value="teknik otomasi industri">Teknik Otomasi Industri</option>
+                    <option value="teknik instalasi tenaga listrik">Teknik Instalasi Tenaga Listrik</option>
+                </select>
             </div>
         </div>
         <div class="col-md-3 pl-0">
@@ -54,7 +68,7 @@
                             <button type="button" data-url="{{ url('data/kelas/hapus/' . $k->id) }}" class="btn btn-danger text-light" id="btn-hapus"
                                 style="padding: 4px 10px; font-size: 13px;">Hapus</button>
                             <a type="button" href="{{url('/data/kelas/perbaharui/' . $k->slug )}}"
-                                class="btn btn-success" style="padding: 4px 10px; font-size: 13px;">Edit</a>
+                                class="ml-1 btn btn-success" style="padding: 4px 10px; font-size: 13px;">Edit</a>
                         </td>
                     </tr>
                     @endforeach
@@ -62,12 +76,8 @@
             </table>
         </div>
     </div>
-
-    <div class="row m-3 float-right">
-        {{ $kelas->links() }}
-    </div>
-    <div class="clearfix"></div>
 </div>
 
 @include('partials.footer')
 @endsection
+

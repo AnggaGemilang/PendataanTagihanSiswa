@@ -27,13 +27,13 @@
     </nav>
 
     <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
-        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
+        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal - Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
-            <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
-            <li>Kemudian, pilih kelas siswa tersebut</li>
-            <li>Lalu, pilih nama siswa yang ingin membayar</li>
-            <li>Masukkan nominal uang yang akan siswa bayar</li>
-            <li>Terakhir, submit pembayaran dan data akan otomatis terupdate</li>
+            <li>Siapkan Terlebih Dahulu Data Siswa</li>
+            <li>Pastikan Data Yang Telah Disiapkan Valid</li>
+            <li>Foto Profil Maksimal Berukuran 300kb</li>
+            <li>Masukkan Data Dengan Baik Dan Teliti</li>
+            <li>Setelah Data Dimasukkan, Klik Tombol Tambah Siswa Untuk <i>Submit</i> Data</li>
         </ol>
     </div>
 
@@ -46,7 +46,7 @@
             @endif
         </div>
 
-        <form @if($status=='tambah') action="" id="form_tambah_siswa" @else
+        <form @if($status=='tambah' ) action="" id="form_tambah_siswa" @else
             action="{{url('data/siswa/perbaharui/' . $siswa->id . '/store')}}" @endif method="POST"
             enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -97,11 +97,11 @@
                     <input type="email" class="form-control greylight-bg" name="email" id="email"
                         aria-describedby="helpId" placeholder="Masukkan Email Siswa"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update') value="{{ $auth->email }}" @endif>
+                        @if($status=='update' ) value="{{ $auth->email }}" @endif>
                 </div>
             </div>
 
-            <div class="row m-3" @if($status=="update") style="display: none;" @endif>
+            <div class="row m-3" @if($status=="update" ) style="display: none;" @endif>
                 <div class="form-group w-100 position-relative">
                     <label for="password">Password</label>
                     <input type="password" class="form-pwd form-control greylight-bg" name="password" id="password"
@@ -127,7 +127,7 @@
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Kelas</option>
                         @foreach($kelas as $k)
-                    <option data-tipekelas_id="{{ $k->tipekelas_id }}" value="{{ $k->id }}" @if($status=='update' )
+                        <option data-tipekelas_id="{{ $k->tipekelas_id }}" value="{{ $k->id }}" @if($status=='update' )
                             {{ $siswa->kelas_id==$k->id ? 'selected' : '' }} @endif>{{ $k->nama_kelas }}</option>
                         @endforeach
                     </select>
@@ -148,6 +148,8 @@
                     <input type="file" name="profil" id="profil" class="infile float-left">
                     <span class="float-left"
                         style="margin-left: 20px; font-size: 13px; margin-top: 15px; color: #888888;"></span>
+                    <div class="clearfix"></div><br><br>
+                    <p style="font-size: 12px; margin-top: -45px;"><i>*Foto Maksimal Berukuran 1 Mb</i></p>
                 </div>
             </div>
 

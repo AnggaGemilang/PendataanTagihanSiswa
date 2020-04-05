@@ -11,6 +11,7 @@ use Hash;
 use App\Autentikasi;
 use App\Petugas;
 use App\Role;
+use App\Kelas;
 use Image;
 use File;
 
@@ -23,8 +24,9 @@ class PetugasController extends Controller
     
     public function index()
     {
-        $petugas = Petugas::paginate(10);
-        return view('pages.petugas', compact(['petugas']));
+        $petugas = Petugas::all();
+        $role = Role::find(['2','3']);
+        return view('pages.petugas', compact(['petugas','role']));
     }
 
     public function detail($slug)
@@ -41,21 +43,26 @@ class PetugasController extends Controller
 
     public function store(Request $request)
     {
-        // $messages = [
-        //     'required' => ':attribute wajib diisi',
-        //     'min' => ':attribute harus diisi minimal :min karakter',
-        //     'max' => ':attribute harus diisi maksimal :max karakter',
-        //     'email' => ':attribute memerlukan "@"'
-        // ];
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute terlalu pendek, minimal :min karakter',
+            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'email' => ':attribute memerlukan "@"',
+            'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+            'size' => ':attribute terlalu besar, maksimal berukuran :size',
+            'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+            'unique' => ':attribute sudah terpakai'
+        ];
 
-        // $this->validate($request, [
-        //     'nip' => 'bail|required|integer',
-        //     'nama_petugas' => 'bail|required|integer',
-        //     'email' => 'bail|required|string|max:255',
-        //     'password' => 'bail|required|string',
-        //     'profil' => 'bail|required|string',
-        //     'level' => 'bail|required|string',
-        // ], $messages);
+        $this->validate($request, [
+            'nama_petugas' => 'bail|required|string|max:200',
+            'profil' => 'bail|required|file|mimes:jpeg,bmp,png,jpg|max:1000',
+            'role_id' => 'bail|required|integer',
+            'no_telp' => 'bail|required|string|min:10|max:13',
+            'nomor_induk' => 'bail|required|string|min:10|max:30',
+            'email' => 'bail|required|email|unique:t_autentikasi',
+            'password' => 'bail|required|string|max:200',
+        ], $messages);
 
         $path = "uploaded/images/profil_petugas/";
         if(!File::isDirectory($path)){
@@ -68,21 +75,21 @@ class PetugasController extends Controller
             $constraint->aspectRatio();
         })->save($path.$nama_gambar);
 
-        $petugas_id = Petugas::orderBy('id','desc')->first()->id+1;
-
         $petugas = new Petugas;
         $petugas->nama_petugas = $request->nama_petugas;
         $petugas->slug = Str::slug($request->nama_petugas,'-');
         $petugas->profil = $nama_gambar;
-        $petugas->role_id = $request->role;
+        $petugas->role_id = $request->role_id;
         $petugas->no_telp = $request->no_telp;
         $petugas->save();
 
+        $petugas_id = Petugas::orderBy('id','desc')->first()->id;
+
         $auth = new Autentikasi;
-        $auth->nomor_induk = $request->nip;
+        $auth->nomor_induk = $request->nomor_induk;
         $auth->email = $request->email;
         $auth->password = Hash::make($request->password);
-        $auth->role_id = $request->role;
+        $auth->role_id = $request->role_id;
         $auth->petugas_id = $petugas_id;
         $auth->save();
 
@@ -105,11 +112,30 @@ class PetugasController extends Controller
 
     public function update(Request $request, $slug, $id)
     {
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute terlalu pendek, minimal :min karakter',
+            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'email' => ':attribute memerlukan "@"',
+            'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+            'size' => ':attribute terlalu besar, maksimal berukuran :size',
+            'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+            'unique' => ':attribute sudah terpakai'
+        ];
+
+        $this->validate($request, [
+            'nama_petugas' => 'bail|required|string|max:200',
+            'profil' => 'bail|file|mimes:jpeg,bmp,png,jpg|max:1000',
+            'role_id' => 'bail|required|integer',
+            'no_telp' => 'bail|required|string|min:10|max:13',
+            'nomor_induk' => 'bail|required|string|min:10|max:30'
+        ], $messages);
+
         $petugas = Petugas::where('slug',$slug)->first();
         $petugas->nama_petugas = $request->nama_petugas;
         $petugas->no_telp = $request->no_telp;
         $petugas->slug = Str::slug($request->nama_petugas,'-');
-        $petugas->role_id = $request->role;
+        $petugas->role_id = $request->role_id;
         $petugas->created_at = Carbon::now()->format('Y-m-d H:i:s');
 
         if($request->hasfile('profil')){
@@ -126,7 +152,7 @@ class PetugasController extends Controller
         $petugas->update();
 
         $auth = Autentikasi::where('petugas_id',$id)->first();
-        $auth->nomor_induk = $request->nip;
+        $auth->nomor_induk = $request->nomor_induk;
         $auth->email = $request->email;
         if(strlen($request->password)>0)
         {
@@ -152,8 +178,7 @@ class PetugasController extends Controller
         }
         $petugas->delete();
 
-        $auth = Autentikasi::where('petugas_id',$id)->first();
-        $auth->delete();
+        $auth = Autentikasi::where('petugas_id',$id)->first()->delete();
         
         $notification = array(
             'title' => 'Berhasil',

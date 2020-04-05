@@ -9,6 +9,7 @@ use App\TipeTagihan;
 use App\TipeKelas;
 use App\Tagihan;
 use App\Siswa;
+use App\Petugas;
 use App\Kelas;
 
 class TagihanController extends Controller
@@ -108,6 +109,13 @@ class TagihanController extends Controller
     {
         $tipetagihan = TipeTagihan::find($id)->delete();
         $tagihan = Tagihan::where('tipetagihan_id',$id)->get()->each->delete();
-        return redirect()->back();
+
+        $notification = array(
+            'title' => 'Berhasil',
+            'description' => 'Tagihan Berhasil Dihapus!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

@@ -29,11 +29,11 @@
     <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
         <ol style="opacity: 0.7;">
-            <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
-            <li>Kemudian, pilih kelas siswa tersebut</li>
-            <li>Lalu, pilih nama siswa yang ingin membayar</li>
-            <li>Masukkan nominal uang yang akan siswa bayar</li>
-            <li>Terakhir, submit pembayaran dan data akan otomatis terupdate</li>
+            <li>Siapkan Terlebih Dahulu Data Petugas</li>
+            <li>Pastikan Data Yang Telah Disiapkan Valid</li>
+            <li>Foto Profil Maksimal Berukuran 1 Mb</li>
+            <li>Masukkan Data Dengan Baik Dan Teliti</li>
+            <li>Setelah Data Dimasukkan, Klik Tombol Tambah Petugas Untuk <i>Submit</i> Data</li>
         </ol>
     </div>
 
@@ -54,11 +54,11 @@
 
             <div class="row m-3 mt-4 pt-2">
                 <div class="form-group w-100">
-                    <label for="nip">NIP</label>
-                    <input type="number" class="form-control greylight-bg" name="nip" id="nip" aria-describedby="helpId"
-                        placeholder="Masukkan NIP Petugas"
+                    <label for="nomor_induk">NIP</label>
+                    <input type="number" class="form-control greylight-bg" name="nomor_induk" id="nomor_induk" aria-describedby="helpId"
+                        placeholder="Masukkan NIP Petugas" 
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $auth->nomor_induk }}" @endif>
+                        @if($status=='update' ) value="{{ $auth->nomor_induk }}" @else value="{{ old('nomor_induk') }}" @endif>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
                     <input type="text" class="form-control greylight-bg" name="nama_petugas" id="nama_petugas"
                         aria-describedby="helpId" placeholder="Masukkan Username Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $petugas->nama_petugas }}" @endif>
+                        @if($status=='update' ) value="{{ $petugas->nama_petugas }}" @else value="{{ old('nama_petugas') }}" @endif>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
                     <input type="number" class="form-control greylight-bg" name="no_telp" id="no_telp"
                         aria-describedby="helpId" placeholder="Masukkan Nomor Telepon Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $petugas->no_telp }}" @endif>
+                        @if($status=='update' ) value="{{ $petugas->no_telp }}" @else value="{{ old('no_telp') }}" @endif>
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
                     <input type="email" class="form-control greylight-bg" name="email" id="email"
                         aria-describedby="helpId" placeholder="Masukkan Email Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $auth->email }}" @endif>
+                        @if($status=='update' ) value="{{ $auth->email }}" @else value="{{ old('email') }}" @endif>
                 </div>
             </div>
 
@@ -98,20 +98,26 @@
                     <input type="password" class="form-pwd form-control greylight-bg" name="password" id="password"
                         aria-describedby="helpId" placeholder="Masukkan Password Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
-                        @if($status=='update' ) value="{{ $petugas->password }}" @endif>
+                        @if($status=='update' ) value="{{ $petugas->password }}" @else value="{{ old('password') }}" @endif>
                     <button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
                 </div>
             </div>
 
             <div class="row m-3">
                 <div class="form-group w-100">
-                    <label for="role">Role</label>
-                    <select name="role" id="role" class="form-control greylight-bg w-100 pl-2"
+                    <label for="role_id">Role</label>
+                    <select name="role_id" id="role_id" class="form-control greylight-bg w-100 pl-2"
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Role</option>
                         @foreach($role as $r)
-                        <option value="{{ $r->id }}" @if($status=='update' )
-                            {{ $petugas->role->id==$r->id ? 'selected' : '' }} @endif>{{ $r->nama_role }}</option>
+                        <option value="{{ $r->id }}"
+                            @if($status=='update' )
+                            {{ $petugas->role->id==$r->id ? 'selected' : '' }}
+                            @else
+                            {{ old('role_id')==$r->id ? 'selected' : '' }}
+                            @endif>
+                            {{ $r->nama_role }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -129,13 +135,14 @@
                         <i class="far fa-file" style="color: #7E8387;"></i>
                     </label>
                     <input type="file" name="profil" id="profil" class="infile float-left">
-                    <span class="float-left"
-                        style="margin-left: 20px; font-size: 13px; margin-top: 15px; color: #888888;"></span>
+                    <span class="float-left" style="margin-left: 20px; font-size: 13px; margin-top: 15px; color: #888888;"></span>
+                    <div class="clearfix"></div><br><br>
+                    <p style="font-size: 12px; margin-top: -45px;"><i>*Foto Maksimal Berukuran 1 Mb</i></p>
                 </div>
             </div>
 
             @if($status=='update')
-            <div class="row ml-3 mt-4">
+            <div class="row ml-3">
                 <label class="check-wrapper">Ubah Password User
                     <input type="checkbox" name="cb_ubahpassword" id="cb_ubahpassword">
                     <span class="checkmark"></span>

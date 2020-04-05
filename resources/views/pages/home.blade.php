@@ -29,6 +29,24 @@
         </div>
     </div>
 
+    <div class="row mt-4 ml-1">
+        <h3>History Pembayaran</h3>
+    </div>
+
+    @foreach ($history_siswa as $h)
+    <div class="col-md-12 mt-3 mb-4" id="item-history">
+        <div class="row">
+            <div class="col">
+                <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
+            </div>
+            <div class="col">
+                <p class="float-right">{{ $h->created_at }}</p>
+            </div>
+        </div>
+        <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
+    </div>
+    @endforeach
+
     @else
 
     <div class="col-md-12 mt-4 pt-3">
@@ -55,9 +73,7 @@
     </div>
 
     @foreach ($history as $h)
-    <a href="{{ url('data/siswa/detail/' . $h->tagihan->siswa->slug . '/' . $h->tagihan->siswa->id) }}">
-        <div class="col-md-12 mt-3 mb-4"
-        style="background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 25px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
+    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
         <div class="row">
             <div class="col">
                 <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -68,7 +84,6 @@
         </div>
         <h4>{{ $h->tagihan->siswa->nama_siswa }}</h4>
     </div>
-    </a>
     @endforeach
 
     @endif
@@ -84,12 +99,37 @@
         var weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
         var date = new Date();
         $('#wrapper-clock').html(
-            weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " + date.getFullYear() + ", " + date.getHours() +
+            weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " + date
+            .getFullYear() + ", " + date.getHours() +
             ":" + date.getMinutes() + ":" + date.getSeconds()
         );
 
-        $('#tgl-hari').html(weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " + date.getFullYear());
+        $('#tgl-hari').html(weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " +
+            date.getFullYear());
         $('#waktu').html(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
-}, 500);
+    }, 500);
+
+    $(document).on('click', '#item-history', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'pembayaran/history/detail/' + id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                swal.fire({
+                    html: data,
+                    showCloseButton: true,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    focusConfirm: false,
+                });
+            },
+            error: function (data) {
+                console.log("Gagal" + data);
+            }
+        });
+    });
+
 </script>
 @endpush
