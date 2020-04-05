@@ -28,7 +28,7 @@ Route::get('data/siswa', 'SiswaController@index')->name('siswa');
 Route::get('data/siswa/detail/{slug}/{id}', 'SiswaController@detail')->name('detail_siswa');
 Route::get('data/siswa/tambah', 'SiswaController@tambah')->name('tambah_siswa');
 Route::get('data/siswa/perbaharui/{slug}/{id}', 'SiswaController@showupdate')->name('perbaharui_siswa');
-Route::post('data/siswa/tambah/store/{tipekelas_id}', 'SiswaController@store')->name('tambah_siswa_store');
+Route::post('data/siswa/tambah/store', 'SiswaController@store')->name('tambah_siswa_store');
 Route::post('data/siswa/perbaharui/{id}/store', 'SiswaController@update')->name('perbaharui_siswa_store');
 Route::post('data/siswa/hapus/{id}', 'SiswaController@destroy')->name('hapus_siswa_store');
 

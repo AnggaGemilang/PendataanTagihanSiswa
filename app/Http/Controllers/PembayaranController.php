@@ -30,6 +30,14 @@ class PembayaranController extends Controller
     public function detail($id)
     {
         $data = Pembayaran::find($id);
+
+        if($data->keterangan=='blm_lunas')
+        {
+            $ket = 'Belum Lunas';
+        } else {
+            $ket = 'Lunas';
+        }
+        
         $content = '<h2 style="text-align:left; margin-bottom:20px; font-weight:500;">Detail Pembayaran</h2>';
         $content .= '<table>';
         $content .= '<tr style="text-align:left;">';
@@ -66,6 +74,11 @@ class PembayaranController extends Controller
         $content .= '<td>Sisa Tagihan</td>';
         $content .= '<td width="20" align="center">:</td>';
         $content .= '<td>Rp. ' . $data->sisa_tagihan ?? "" . '</td>';
+        $content .= '</tr>';
+        $content .= '<tr style="text-align: left; margin-top: 5px;">';
+        $content .= '<td>Keterangan</td>';
+        $content .= '<td width="20" align="center">:</td>';
+        $content .= '<td class="text-capitalize">' . $ket . '</td>';
         $content .= '</tr>';
         $content .= '</table>';
         $content .= '<a href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'" jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #3AA9A5;">Lihat Data Pembayaran</a>';
@@ -110,16 +123,31 @@ class PembayaranController extends Controller
         $tipetagihan = $tagihan->tipetagihan->nominal;
         $sudahdibayar = $tagihan->sudah_dibayar;
 
+        if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
+        {
+            $ket = 'lunas';
+        } else {
+            $ket = 'blm_lunas';
+        }
+
         $entri = new Pembayaran;
         $entri->nominal = $request->nominal;
         $entri->siswa_id = $request->nama_siswa;
         $entri->petugas_id = Auth::user()->petugas->id;
         $entri->kelas_id = $request->kelas_id;
         $entri->tagihan_id = $request->jenis_pembayaran;
+        $entri->keterangan = $ket;
         $entri->sisa_tagihan = $tipetagihan - ($request->nominal+$sudahdibayar);
         $entri->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $entri->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $entri->save();
+
+        if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
+        {
+            $tagihan = Tagihan::find($request->jenis_pembayaran);
+            $tagihan->keterangan = 'lunas';
+            $tagihan->update();
+        }
 
         $notification = array(
             'title' => 'Berhasil',
@@ -133,8 +161,8 @@ class PembayaranController extends Controller
 
     public function data()
     {
-        $tagihan = Tagihan::where('siswa_id', Auth::user()->id )->where('tipetagihan_id','>=','2')->get();
-        $tagihan_spp = Tagihan::where('siswa_id', Auth::user()->id)->where('tipetagihan_id','1')->get();
+        $tagihan = Tagihan::where('siswa_id', Auth::user()->id)->where('tipetagihan_id','>=','6')->get();
+        $tagihan_spp = Tagihan::where('siswa_id', Auth::user()->id)->whereBetween('tipetagihan_id', [1, 5])->get();
         $siswa = Siswa::find(Auth::user()->id);
         $history = Pembayaran::where('siswa_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         return view('pages.datapembayaran', compact(['siswa','history','tagihan_spp','tagihan']));

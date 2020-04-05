@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-3 pl-0">
             <div class="form-group">
-                <select class="custom-select" name="filter_tagihan" id="filter_tagihan"
+                <select class="custom-select" name="filter_change_history" id="filter_change_history"
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
                     <option selected value="">Plih Jenis Tagihan</option>
                     @foreach ($tipetagihan as $tt)

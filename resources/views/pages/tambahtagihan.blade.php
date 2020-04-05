@@ -61,7 +61,7 @@
                 <div class="form-group w-100">
                     <label for="nama_tagihan" @if($status=="tambah" ) data-idtipetagihan="{{ $last_id->id+1 }}" @endif
                         id="label_tipetagihan_id">Nama Tagihan</label>
-                    <input type="text" class="form-control greylight-bg" name="nama_tagihan" id="nama_tagihan"
+                    <input type="text" class="form-control greylight-bg" name="nama_tagihan" id="nama_tagihan" required="required"
                         aria-describedby="helpId" placeholder="Masukkan Nama Tagihan" @if($status=='update' )
                         value="{{ $tipetagihan->nama_tagihan }}" @endif
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
@@ -71,7 +71,7 @@
             <div class="row m-3">
                 <div class="form-group w-100">
                     <label for="nominal">Nominal Biaya</label>
-                    <input type="text" class="form-control greylight-bg" name="nominal" id="nominal"
+                    <input type="text" class="form-control greylight-bg" name="nominal" id="nominal" required="required"
                         aria-describedby="helpId" placeholder="Masukkan Nominal Biaya " @if($status=='update' )
                         value="{{ $tipetagihan->nominal }}" @endif
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
@@ -81,8 +81,8 @@
             @if($status=="tambah")
             <div class="row m-3">
                 <div class="form-group w-100 mb-2">
-                    <label for="id_kelas">Kelas</label><br>
-                    <select class="select-move" id="tipekelas" name="tipekelas[]" multiple>
+                    <label for="id_kelas">Untuk Siswa Kelas</label><br>
+                    <select class="select-move" id="tipekelas" name="tipekelas[]" multiple required="required">
                         @foreach ($tipekelas as $tp)
                         <option value="{{ $tp->id }}">{{ $tp->nama_tipekelas }} ({{ $tp->desc }})</option>
                         @endforeach

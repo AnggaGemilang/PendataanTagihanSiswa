@@ -10,8 +10,7 @@ class AddTagihanTrigger extends Migration
     {
         DB::unprepared('CREATE TRIGGER add_tagihan AFTER INSERT ON `t_siswa` FOR EACH ROW
                 BEGIN
-                   INSERT INTO `t_tagihan` (`id`,`siswa_id`,`tipetagihan_id`,`sudah_dibayar`,`keterangan`,`created_at`,`updated_at`) VALUES (NULL,NEW.id,1,0,"blm_lunas", NULL, NULL);
-                   INSERT INTO `t_tagihan` (`id`,`siswa_id`,`tipetagihan_id`,`sudah_dibayar`,`keterangan`,`created_at`,`updated_at`) VALUES (NULL,NEW.id,2,0,"blm_lunas", NULL, NULL);
+                   INSERT INTO `t_tagihan` (`id`,`siswa_id`,`tipetagihan_id`,`sudah_dibayar`,`keterangan`,`created_at`,`updated_at`) VALUES (NULL,NEW.id,6,0,"blm_lunas", NULL, NULL);
                 END');
     }
     public function down()

@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-3 pl-0">
             <div class="form-group">
-                <select class="custom-select" name="filter_kelas" id="filter_kelas"
+                <select class="custom-select" name="filter_change_table" id="filter_change_table"
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
                     <option selected value="">Pilih Kelas</option>
                     @foreach ($kelas as $k)

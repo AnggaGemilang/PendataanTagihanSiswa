@@ -230,7 +230,23 @@ $("#field_cari").on("keyup", function () {
     });
 });
 
+$("#filter_change_table").on("change", function () {
+    var value = $(this).val().toLowerCase();
+    $("#table-refresh tr").not('#header-tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+});
+
+
 $("#filter_history").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    console.log(value);
+    $("#wrapper-history #item-history").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+});
+
+$("#filter_change_history").on("change", function () {
     var value = $(this).val().toLowerCase();
     console.log(value);
     $("#wrapper-history #item-history").filter(function () {
@@ -241,34 +257,6 @@ $("#filter_history").on("keyup", function () {
 $("#filter_tanggal").on("change", function () {
     var value = $(this).val().toLowerCase();
     console.log(value);
-    $("#wrapper-history #item-history").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-});
-
-$("#filter_kelas").on("change", function () {
-    var value = $(this).val().toLowerCase();
-    $("#table-refresh tr").not('#header-tr').filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-});
-
-$("#filter_role").on("change", function () {
-    var value = $(this).val().toLowerCase();
-    $("#table-refresh tr").not('#header-tr').filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-});
-
-$("#filter_jurusan").on("change", function () {
-    var value = $(this).val().toLowerCase();
-    $("#table-refresh tr").not('#header-tr').filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-});
-
-$("#filter_tagihan").on("change", function () {
-    var value = $(this).val().toLowerCase();
     $("#wrapper-history #item-history").filter(function () {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });

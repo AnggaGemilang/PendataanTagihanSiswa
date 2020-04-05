@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TipeTagihanSeeder::class);
         $this->call(PetugasSeeder::class);
         $this->call(TipeKelasSeeder::class);
+        $this->call(TagihanSeeder::class);
     }
 }

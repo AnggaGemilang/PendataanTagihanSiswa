@@ -61,7 +61,7 @@ class PetugasController extends Controller
             'no_telp' => 'bail|required|string|min:10|max:13',
             'nomor_induk' => 'bail|required|string|min:10|max:30',
             'email' => 'bail|required|email|unique:t_autentikasi',
-            'password' => 'bail|required|string|max:200',
+            'password' => 'bail|required|string|min:6|max:200',
         ], $messages);
 
         $path = "uploaded/images/profil_petugas/";
@@ -177,9 +177,7 @@ class PetugasController extends Controller
             \File::delete($gambar_lama);
         }
         $petugas->delete();
-
-        $auth = Autentikasi::where('petugas_id',$id)->first()->delete();
-        
+        $auth = Autentikasi::where('petugas_id', $id)->first()->delete();
         $notification = array(
             'title' => 'Berhasil',
             'description' => 'Petugas Berhasil Dihapus!',

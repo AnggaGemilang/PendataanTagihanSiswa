@@ -22,7 +22,10 @@
         </ol>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
+        <div class="row mt-4" style="background: #1A9B96 !important; height: 65px; align-content: center;">
+            <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Profil</p>
+        </div>
 
         @if($auth->role_id=='1')
 
@@ -32,7 +35,7 @@
             {{ csrf_field() }}
 
             <div class="row mt-3">
-                <div class="col-md-8 pl-0">
+                <div class="col-md-8 ml-3 mt-2">
                     <div class="row m-1">
                         <div class="form-group w-100">
                             <label for="nis">NIS</label>
@@ -72,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="flex: 0 0 32%;">
                     <div class="row justify-content-center pt-4 mt-3">
                         <img src="{{ asset('uploaded/images/profil_siswa/' . $auth->siswa->profil) }}"
                             style="width:250px; height:250px; border-radius:150px;object-fit: cover;" alt="">
@@ -85,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-3 mr-3 pl-1 pr-1">
                 <div class="form-group w-100">
                     <label for="no_telp">Nomor Telepon</label>
                     <input type="text" class="form-control" name="no_telp" id="no_telp" aria-describedby="helpId"
@@ -93,7 +96,7 @@
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-3 mr-3 pl-1 pr-1">
                 <div class="form-group w-100">
                     <label for="email_siswa">Email</label>
                     <input type="text" class="form-control" name="email_siswa" id="email_siswa" aria-describedby="helpId"
@@ -101,7 +104,7 @@
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-3 mr-3 pl-1 pr-1">
                 <div class="form-group w-100">
                     <label for="alamat">Alamat</label>
                     <textarea name="alamat" id="alamat" rows="5" class="form-control w-100"
@@ -109,7 +112,7 @@
                         placeholder="Masukkan Alamat Siswa">{{ $auth->siswa->alamat }}</textarea>
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-3 mr-3 pl-1 pr-1">
                 <div class="form-group w-100">
                     <label for="role">Role</label>
                     <select name="id_kelas" id="id_kelas" class="form-control w-100 pl-2" disabled
@@ -122,8 +125,8 @@
                     </select>
                 </div>
             </div>
-            <div class="row mb-2">
-                <button type="submit" class="btn mt-3 w-100"
+            <div class="row mb-2 ml-3 mr-3 mt-2">
+                <button type="submit" class="btn mt-3 w-100 mb-5"
                     style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
                     Data</button>
             </div>
@@ -137,7 +140,7 @@
             {{ csrf_field() }}
 
             <div class="row mt-3">
-                <div class="col-md-8 pl-0">
+                <div class="col-md-8 ml-3 mt-2">
                     <div class="row m-1">
                         <div class="form-group w-100">
                             <label for="nip">NIP</label>
@@ -172,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="flex: 0 0 32%;">
                     <div class="row justify-content-center pt-4 mt-3">
                         <img src="{{ asset('uploaded/images/profil_petugas/' . $auth->petugas->profil) }}"
                             style="width:250px; height:250px; border-radius:150px;object-fit: cover;" alt="">
@@ -185,7 +188,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-3 mr-3">
                 <div class="form-group w-100">
                     <label for="role">Role</label>
                     <select name="id_kelas" id="id_kelas" class="form-control w-100 pl-2" disabled
@@ -198,8 +201,8 @@
                     </select>
                 </div>
             </div>
-            <div class="row mb-2">
-                <button type="submit" class="btn mt-3 w-100"
+            <div class="row ml-3 mr-3 mt-2">
+                <button type="submit" class="btn mt-3 w-100 mb-5"
                     style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
                     Data</button>
             </div>

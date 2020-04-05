@@ -14,17 +14,44 @@ class TipeTagihanSeeder extends Seeder
      */
     public function run()
     {
-
         TipeTagihan::create([
-            'nama_tagihan' => 'SPP',
-            'slug' => Str::slug('SPP','-'),
+            'nama_tagihan' => 'SPP 2017/2018',
+            'slug' => Str::slug('SPP 2017/2018','-'),
+            'nominal' => 3600000,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        TipeTagihan::create([
+            'nama_tagihan' => 'SPP 2018/2019',
+            'slug' => Str::slug('SPP 2018/2019','-'),
+            'nominal' => 3600000,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        TipeTagihan::create([
+            'nama_tagihan' => 'SPP 2019/2020',
+            'slug' => Str::slug('SPP 2019/2020','-'),
+            'nominal' => 3600000,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        TipeTagihan::create([
+            'nama_tagihan' => 'SPP 2020/2021',
+            'slug' => Str::slug('SPP 2020/2021','-'),
+            'nominal' => 3600000,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        TipeTagihan::create([
+            'nama_tagihan' => 'SPP 2021/2022',
+            'slug' => Str::slug('SPP 2021/2022','-'),
             'nominal' => 3600000,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         TipeTagihan::create([
             'nama_tagihan' => 'Uang Bangunan',
-            'slug' => Str::slug('Uang Bangunan'),
+            'slug' => Str::slug('Uang Bangunan','-'),
             'nominal' => 6000000,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

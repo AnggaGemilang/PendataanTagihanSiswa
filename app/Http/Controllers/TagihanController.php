@@ -49,7 +49,7 @@ class TagihanController extends Controller
         $tipetagihan->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->save();
 
-        $kelasid_arr = explode(",",$kelas_id);
+        $kelasid_arr = explode(",", $kelas_id);
         $jumlah_siswa_arr = array();
 
         for($i=0; $i<count($kelasid_arr); $i++)
@@ -66,7 +66,6 @@ class TagihanController extends Controller
 
         for($x=0; $x<count($jumlah_siswa_arr); $x++)
         {
-            // dd($jumlah_siswa_arr);
             $tagihan = new Tagihan;
             $tagihan->siswa_id = $jumlah_siswa_arr[$x];
             $tagihan->tipetagihan_id = $tipetagihan_id;
