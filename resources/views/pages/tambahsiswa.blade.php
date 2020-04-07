@@ -183,7 +183,7 @@
             </div>
 
             @if($status=="update")
-            <div class="row ml-3 mt-4">
+            <div class="row ml-3" style="margin-top: -10px;">
                 <label class="check-wrapper">Ubah Password User
                     <input type="checkbox" name="cb_ubahpassword" id="cb_ubahpassword">
                     <span class="checkmark"></span>

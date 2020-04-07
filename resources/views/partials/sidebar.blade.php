@@ -22,6 +22,7 @@ if(\Request::is('/')) {
 @endphp
 
 <div class="wrapper" style="overflow: auto;">
+    <span id="tanda-responsive"></span>
     <nav id="sidebar">
         <div class="sidebar-header" style="padding-top: 28px;">
             <a href="{{ url('/') }}">
@@ -41,13 +42,13 @@ if(\Request::is('/')) {
                     href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"
                     @endif >
                     <div
-                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: 6px; margin-top: 3px;">
+                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: 3px; margin-top: 3px;">
                         <img @if(Auth::User()->role_id=="1")
                         src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
                         @else
                         src="{{ asset('uploaded/images/profil_petugas/' . Auth::User()->petugas->profil) }}"
                         @endif
-                        style="width:100%; height:100%; border-radius:60px;object-fit: cover;" alt="">
+                        style="width:100%; height:100%; border-radius:60px; object-fit: cover;" alt="">
                     </div>
                     @if(Auth::User()->role_id=="1")
                     <h6 id="biodata-section" style="margin-left: 75px; margin-top: 7px;">
@@ -72,7 +73,7 @@ if(\Request::is('/')) {
             <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }}" id="item-list">
                 <a href="#pageSubPembayaran" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-briefcase" style="width: 18px;"></i>
-                    <span>Pembayaran</span>
+                    <span class="pembayaranSPP">Pembayaran</span>
                 </a>
                 <ul class="child-item-list collapse list-unstyled" id="pageSubPembayaran">
                     <li class="{{ @$history_pembayaran }}">
@@ -115,7 +116,7 @@ if(\Request::is('/')) {
             <li class="{{ @$data_siswa }} {{ @$data_kelas }} {{ @$data_petugas }} {{ @$data_tagihan }}" id="item-list">
                 <a href="#pageSubKelola" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy" style="width: 18px;"></i>
-                    <span>Kelola Data</span>
+                    <span class="pembayaranSPP">Kelola Data</span>
                 </a>
                 <ul class="child-item-list collapse list-unstyled" id="pageSubKelola">
                     <li class="{{ @$data_siswa }}">
@@ -165,7 +166,7 @@ if(\Request::is('/')) {
         </ul>
     </nav>
 
-    <div id="content-section">
+    <div id="content-section" class="status-sd">
         @include('partials.navbar')
         <div id="content">
             @yield('content')

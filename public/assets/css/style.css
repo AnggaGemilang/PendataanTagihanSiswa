@@ -4,9 +4,19 @@ body {
     background: #fafafa;
 }
 
+#main-content
+{
+    min-width: 318px;
+}
+
 .clearfix
 {
     clear: both;
+}
+
+.table-wrapper
+{
+    overflow-x: auto;
 }
 
 tr#row-main:hover
@@ -90,12 +100,25 @@ a:focus {
     transition: all 0.3s;
 }
 
-.navbar {
+.navbar.top {
     padding: 15px 10px;
-    background: #fff;
     border: none;
     border-radius: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    background: #FFFFFF !important; 
+    position: fixed !important; 
+    right: 0px; transition: all 0.3s; 
+    left: 250px; 
+    z-index: 999;
+}
+
+.navbar.bottom
+{
+    background: #FFFFFF !important; 
+    position: absolute; 
+    min-width: 100%; 
+    bottom: 0; 
+    right: 0px;
 }
 
 .navbar-btn {
@@ -322,6 +345,7 @@ input[type=checkbox] {
     padding-top: 105px !important;
 }
 
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -478,6 +502,11 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 1127px) {
+    #tanda-responsive
+    {
+        display: none;
+    }
+
     #sidebar {
         min-width: 80px;
         max-width: 80px;
@@ -492,7 +521,7 @@ a.article:hover {
 
     #content-section {
         width: 100%;
-        margin-left: 0px;
+        margin-left: 0px !important;
         position: relative;
         min-height: 100vh;
         transition: all 0.3s;
@@ -541,5 +570,47 @@ a.article:hover {
     }
     #biodata-section{
         display: none;
+    }
+    .pembayaranSPP
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .container-fluid.atas-nav
+    {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+    }
+}
+
+@media (max-width: 663px) {
+    .container-fluid > .col.footer
+    {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex: 0 0 100%;
+    }
+
+    .container-fluid > .col.footer:nth-child(1)
+    {
+        margin-top: 5px;
+    }
+
+    .container-fluid > .col.footer:nth-child(2)
+    {
+        margin-top: 5px;
+    }
+
+    #content-section {
+        padding-bottom: 110px !important;
+    }
+}
+
+@media(max-width: 341px) {
+    #content-section {
+        padding-bottom: 130px !important;
     }
 }

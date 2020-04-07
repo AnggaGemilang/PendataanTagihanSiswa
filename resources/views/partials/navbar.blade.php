@@ -1,6 +1,5 @@
-<nav class="navbar top navbar-expand-lg navbar-light"
-    style="background: #FFFFFF !important; position: fixed; right: 0px; transition: all 0.3s; left: 250px; z-index: 999;">
-    <div class="container-fluid">
+<nav class="navbar top navbar-expand-lg navbar-light">
+    <div class="container-fluid atas-nav" style="min-width: 290px;">
 
         <button type="button" id="sidebarCollapse" class="btn btn-info"
             style="margin-top: 4px; margin-bottom:2px; background: #FFFFFF !important;">

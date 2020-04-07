@@ -41,11 +41,11 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-md-12">
+        <div class="col-md-12 table-wrapper">
             <table class="table table-striped align-center" id="table-refresh">
                 <thead align="center">
                     <tr id="header-tr">
-                        <th scope="col">No</th>
+                        <th class="except" scope="col">No</th>
                         <th scope="col">Nama Kelas</th>
                         <th scope="col">Tingkat</th>
                         <th scope="col">Jurusan</th>
@@ -59,7 +59,7 @@
                     @endphp
                     @foreach ($kelas as $k)
                     <tr href="kelas/detail/{{ $k->slug }}" id="row-main">
-                        <th scope="row">{{$no++}}</th>
+                        <th class="except" scope="row">{{$no++}}</th>
                         <td>{{$k->nama_kelas}}</td>
                         <td>{{$k->tipekelas->nama_tipekelas}}</td>
                         <td>{{$k->jurusan}}</td>
@@ -81,3 +81,37 @@
 @include('partials.footer')
 @endsection
 
+@push ('extras-css')
+<style>
+    th.except
+    {
+        min-width: 50px;
+    }
+    td:not(.except)
+    {
+        min-width: 115px !important;
+    }
+
+    @media (max-width: 768px) {
+        .row.mt-4 > .col-md-3
+        {
+            margin-left: 15px;
+        }
+    }
+
+    @media (max-width: 806px) {
+        td > a
+        {
+            margin-top: 5px;
+            width: 70px;
+            margin-left: 0 !important;
+        }
+
+        td > button
+        {
+            margin-left: 4px;
+            width: 70px;
+        }
+    }
+</style>
+@endpush

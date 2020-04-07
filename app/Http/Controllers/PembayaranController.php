@@ -41,44 +41,44 @@ class PembayaranController extends Controller
         $content = '<h2 style="text-align:left; margin-bottom:20px; font-weight:500;">Detail Pembayaran</h2>';
         $content .= '<table>';
         $content .= '<tr style="text-align:left;">';
-        $content .= '<td>NIS</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>' . $data->tagihan->siswa->autentikasi->nomor_induk ?? "" . '</td>';
+        $content .= '<td class="exceptt">NIS</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">' . $data->tagihan->siswa->autentikasi->nomor_induk ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align:left;">';
-        $content .= '<td>Nama Siswa</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>' . $data->tagihan->siswa->nama_siswa ?? "" . '</td>';
+        $content .= '<td class="exceptt">Nama Siswa</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">' . $data->tagihan->siswa->nama_siswa ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left;">';
-        $content .= '<td>Kelas</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>' . $data->kelas->nama_kelas ?? "" . '</td>';
+        $content .= '<td class="exceptt">Kelas</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">' . $data->kelas->nama_kelas ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
-        $content .= '<td>Jenis Pembayaran</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>' . $data->tagihan->tipetagihan->nama_tagihan ?? "" . '</td>';
+        $content .= '<td class="exceptt">Jenis Tagihan</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">' . $data->tagihan->tipetagihan->nama_tagihan ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
-        $content .= '<td>Petugas Pemeriksa</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>' . $data->petugas->nama_petugas ?? "" . '</td>';
+        $content .= '<td class="exceptt">Petugas Pemeriksa</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">' . $data->petugas->nama_petugas ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
-        $content .= '<td>Uang Diterima</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>Rp. ' . $data->nominal ?? "" . '</td>';
+        $content .= '<td class="exceptt">Uang Diterima</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">Rp. ' . $data->nominal ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
-        $content .= '<td>Sisa Tagihan</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td>Rp. ' . $data->sisa_tagihan ?? "" . '</td>';
+        $content .= '<td class="exceptt">Sisa Tagihan</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt">Rp. ' . $data->sisa_tagihan ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
-        $content .= '<td>Keterangan</td>';
-        $content .= '<td width="20" align="center">:</td>';
-        $content .= '<td class="text-capitalize">' . $ket . '</td>';
+        $content .= '<td class="exceptt">Keterangan</td>';
+        $content .= '<td class="exceptt" width="20" align="center">:</td>';
+        $content .= '<td class="exceptt" class="text-capitalize">' . $ket . '</td>';
         $content .= '</tr>';
         $content .= '</table>';
         $content .= '<a href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'" jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #3AA9A5;">Lihat Data Pembayaran</a>';
@@ -102,9 +102,20 @@ class PembayaranController extends Controller
         $tagihan = Tagihan::where('siswa_id', $siswa_id)->get();
         $output = "<option value=''>Pilih Pembayaran</option>";
         foreach($tagihan as $t)
-        {
-            $output .= "<option value='" . $t->id . "'>" . $t->tipetagihan->nama_tagihan . "</option>";
+        {   
+            $status = '';
+            if($t->keterangan=='lunas'){
+                $status = 'disabled';
+            }
+            $output .= "<option " . $status . " value='" . $t->id . "'>" . $t->tipetagihan->nama_tagihan . "</option>";
         }
+        return $output;
+    }
+
+    public function fetchSisaTagihan($tipetagihan)
+    {
+        $tagihan = Tagihan::find($tipetagihan);
+        $output = "<p style='font-size: 15px; margin-bottom: -10px !important;'>Sisa Tagihan : Rp. " . ($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar) . "</p>";
         return $output;
     }
 

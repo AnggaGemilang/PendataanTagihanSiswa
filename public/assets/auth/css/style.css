@@ -30,6 +30,8 @@ body
 
 .illustrasi-wrapper {
     height: 100%;
+    position: relative;
+    height: auto;
     margin-top: 36px;
 }
 
@@ -59,11 +61,16 @@ body
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
     .content-header
     {
         flex: 0 0 48% !important;
+        max-width: 100% !important;
     }   
+    .illustrasi-wrapper
+    {
+        display: none;
+    }
 }
 
 @media (max-width: 998px) {

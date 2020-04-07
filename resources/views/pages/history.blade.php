@@ -4,7 +4,7 @@
 @section('content')
 
 <div id="main-content">
-    <div class="row">
+    <div class="row paling-atas">
         <div @if(Auth::User()->role_id=="1" || Auth::User()->role_id=="3") class="col-12" @else class="col-9" @endif>
             <h1>History Pembayaran</h1>
             <nav class="breadcrumb">
@@ -63,7 +63,7 @@
                     <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
                 </div>
                 <div class="col">
-                    <p class="float-right">{{ $h->created_at }}</p>
+                    <p class="float-right kekiri">{{ $h->created_at }}</p>
                 </div>
             </div>
             <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
@@ -81,7 +81,7 @@
                     <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
                 </div>
                 <div class="col">
-                    <p class="float-right">{{ $h->created_at }}</p>
+                    <p class="float-right kekiri">{{ $h->created_at }}</p>
                 </div>
             </div>
             <h4 style="margin-top: -5px;">{{ $h->tagihan->siswa->nama_siswa }}</h4>
@@ -96,6 +96,54 @@
 
 @include('partials.footer')
 @endsection
+
+@push('extras-css')
+<style>
+    @media (max-width: 808px) {
+        .row.paling-atas>.col-9 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .row.paling-atas>.col-3 {
+            margin-top: -15px !important;
+            margin-bottom: 18px;
+            padding-left: 15px !important;
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
+    @media (max-width: 468px) {
+        #item-history>h3 {
+            margin-top: 5px !important;
+            margin-bottom: 0px !important;
+        }
+
+        .row>.col>p {
+            margin-bottom: 10px !important;
+        }
+
+        .row>.col:nth-child(2)>p {
+            margin-top: -7px !important;
+        }
+
+        .row>.col {
+            flex: 0 0 100%;
+        }
+
+        p.kekiri {
+            float: left !important;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .row.mt-3>.col-md-3 {
+            margin-left: 15px;
+        }
+    }
+</style>
+@endpush
 
 @push('extras-js')
 <script>

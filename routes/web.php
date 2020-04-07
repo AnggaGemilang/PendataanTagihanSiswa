@@ -49,6 +49,7 @@ Route::post('data/petugas/perbaharui/{slug}/{id}/store', 'PetugasController@upda
 Route::post('data/petugas/hapus/{id}', 'PetugasController@destroy')->name('hapus_petugas_store');
 
 Route::get('data/tagihan', 'TagihanController@index')->name('tagihan');
+Route::get('data/tagihan/detail/{slug}/{id}', 'TagihanController@detail')->name('detail_tagihan');
 Route::get('data/tagihan/tambah', 'TagihanController@tambah')->name('tambah_tagihan');
 Route::post('data/tagihan/tambah/store/{kelas_id}/{tipetagihan_id}', 'TagihanController@store')->name('tambah_tagihan_store');
 Route::get('data/tagihan/perbaharui/{slug}', 'TagihanController@showupdate')->name('perbaharui_tagihan');
@@ -61,6 +62,7 @@ Route::get('pembayaran/entripembayaran', 'PembayaranController@index')->name('ta
 Route::post('pembayaran/entripembayaran/store', 'PembayaranController@store')->name('tambah_pembayaran_store');
 Route::get('pembayaran/entripembayaran/{id_kelas}/getsiswa', 'PembayaranController@fetch')->name('fetch_siswa');
 Route::get('pembayaran/entripembayaran/{id_siswa}/getTagihan', 'PembayaranController@fetchTagihan')->name('fetch_tagihan');
+Route::get('pembayaran/entripembayaran/{id_tagihan}/getSisaTagihan', 'PembayaranController@fetchSisaTagihan')->name('fetch_sisa_tagihan');
 Route::get('pembayaran/data', 'PembayaranController@data')->name('datapembayaran');
 
 Auth::routes();

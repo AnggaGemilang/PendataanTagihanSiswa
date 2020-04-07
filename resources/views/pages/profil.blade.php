@@ -35,8 +35,8 @@
             {{ csrf_field() }}
 
             <div class="row mt-3">
-                <div class="col-md-8 ml-3 mt-2">
-                    <div class="row m-1">
+                <div class="col-md-8">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="nis">NIS</label>
                             <input type="text" class="form-control" name="nis" id="nis" aria-describedby="helpId"
@@ -44,7 +44,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
-                    <div class="row m-1">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="nisn">NISN</label>
                             <input type="text" class="form-control" name="nisn" id="nisn" aria-describedby="helpId"
@@ -52,7 +52,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
-                    <div class="row m-1">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="nama_siswa">Nama Lengkap</label>
                             <input type="text" class="form-control" name="nama_siswa" id="nama_siswa"
@@ -61,7 +61,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
-                    <div class="row m-1">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="kelas">Kelas</label>
                             <select name="kelas" id="kelas" class="form-control w-100 pl-2" disabled
@@ -75,13 +75,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" style="flex: 0 0 32%;">
-                    <div class="row justify-content-center pt-4 mt-3">
+                <div class="col foto-side">
+                    <div class="row justify-content-center pt-4 mt-3 mr-2">
                         <img src="{{ asset('uploaded/images/profil_siswa/' . $auth->siswa->profil) }}"
-                            style="width:250px; height:250px; border-radius:150px;object-fit: cover;" alt="">
+                            style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;" alt="">
                     </div>
                     <div class="row justify-content-center">
-                        <label for="profil" class="btn ubah-profil-btn"
+                        <label for="profil" class="btn ubah-profil-btn mr-3"
                         style="background: #3AA9A5; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
                         Profil</label>
                         <input type="file" name="profil" id="profil" class="d-none">
@@ -117,7 +117,7 @@
                     <label for="role">Role</label>
                     <select name="id_kelas" id="id_kelas" class="form-control w-100 pl-2" disabled
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
-                        <option value="">Pilih Kelas</option>
+                        <option value="">Pilih Role</option>
                         @foreach($role as $r)
                         <option value="{{ $r->id }}" {{ $auth->siswa->role->id==$r->id ? 'selected' : '' }}>
                             {{ $r->nama_role }}</option>
@@ -140,8 +140,8 @@
             {{ csrf_field() }}
 
             <div class="row mt-3">
-                <div class="col-md-8 ml-3 mt-2">
-                    <div class="row m-1">
+                <div class="col-md-8 mt-2">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="nip">NIP</label>
                             <input type="text" class="form-control" name="nip" id="nip" aria-describedby="helpId"
@@ -149,7 +149,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
-                    <div class="row m-1">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="nama_petugas">Nama Lengkap</label>
                             <input type="text" class="form-control" name="nama_petugas" id="nama_petugas"
@@ -158,7 +158,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
-                    <div class="row m-1">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="no_telp">Nomor Telepon</label>
                             <input type="text" class="form-control" name="no_telp" id="no_telp" aria-describedby="helpId"
@@ -166,7 +166,7 @@
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
-                    <div class="row m-1">
+                    <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="email_petugas">Email</label>
                             <input type="text" class="form-control" name="email_petugas" id="email_petugas" aria-describedby="helpId"
@@ -175,20 +175,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" style="flex: 0 0 32%;">
-                    <div class="row justify-content-center pt-4 mt-3">
+                <div class="col foto-side">
+                    <div class="row justify-content-center pt-4 mt-3 mr-2">
                         <img src="{{ asset('uploaded/images/profil_petugas/' . $auth->petugas->profil) }}"
-                            style="width:250px; height:250px; border-radius:150px;object-fit: cover;" alt="">
+                            style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;" alt="">
                     </div>
                     <div class="row justify-content-center">
-                        <label for="profil" class="btn ubah-profil-btn"
+                        <label for="profil" class="btn ubah-profil-btn mr-3"
                         style="background: #3AA9A5; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
                         Profil</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
                 </div>
             </div>
-            <div class="row ml-3 mr-3">
+            <div class="row ml-3 mr-3 form-bawah">
                 <div class="form-group w-100">
                     <label for="role">Role</label>
                     <select name="id_kelas" id="id_kelas" class="form-control w-100 pl-2" disabled
@@ -215,3 +215,34 @@
 
 @include('partials.footer')
 @endsection
+
+@push ('extras-css')
+<style>
+    @media (max-width: 988px) {
+        .row.mt-3 > .col-md-8
+        {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .col.foto-side > .row:nth-child(1)
+        {
+            margin-top: -30px !important;
+            margin-right: -13px !important;
+        }
+
+        .col.foto-side > .row:nth-child(2) > label
+        {
+            width: 100% !important;
+            margin-left: 32px;
+            margin-top: 30px !important;
+            margin-right: 32px !important;
+        }
+
+        .form-bawah
+        {
+            margin-top: 15px;
+        }
+    }
+</style>
+@endpush

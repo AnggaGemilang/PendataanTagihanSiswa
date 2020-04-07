@@ -56,7 +56,7 @@
 
             <div class="row m-3">
                 <div class="form-group w-100">
-                    <label for="jenis_pembayaran">Jenis Pembayaran</label>
+                    <label for="jenis_pembayaran">Jenis Tagihan</label>
                     <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-control greylight-bg w-100 pl-2"
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Pembayaran</option>
@@ -71,6 +71,7 @@
                         placeholder="Masukkan Nominal Pembayaran"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
+                <p id="sisa_tagihan_pembayaran"></p>
             </div>
     
             <div class="row m-3 pb-4 pt-2">
@@ -122,6 +123,26 @@
                 {
                     console.log(result);
                     $('#jenis_pembayaran').html(result);
+                }
+            })
+        }
+    });
+
+    $('#jenis_pembayaran').on('change', function(){
+        if($(this).val() != ''){
+            var tagihan_id = $(this).children("option:selected").val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "entripembayaran/" + tagihan_id + "/getSisaTagihan",
+                method: "GET",
+                data: {
+                    tagihan_id:tagihan_id,
+                    _token:_token,
+                },
+                success:function(result)
+                {
+                    console.log(result);
+                    $('#sisa_tagihan_pembayaran').html(result);
                 }
             })
         }

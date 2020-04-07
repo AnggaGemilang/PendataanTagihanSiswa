@@ -39,6 +39,13 @@ class TagihanController extends Controller
         return view('pages.tambahtagihan', compact(['tipekelas','last_id']))->with('status','tambah');
     }
 
+    public function detail($slug, $id)
+    {
+        $kelas = Kelas::all();
+        $tagihan = Tagihan::where('tipetagihan_id',$id)->get();
+        return view('pages.detailtagihan', compact(['tagihan','kelas']));
+    }
+
     public function store(Request $request, $kelas_id, $tipetagihan_id)
     {
         $tipetagihan = new TipeTagihan;
