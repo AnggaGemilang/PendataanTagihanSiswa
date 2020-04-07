@@ -26,7 +26,7 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
+    <div style="background: #E9ECEF; border-radius: 20px;" class="p-2 mt-4">
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal - Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
             <li>Siapkan Terlebih Dahulu Data Siswa</li>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #1A9B96 !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #2C2E3E !important; height: 65px; align-content: center;">
             @if ($status=='tambah')
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Siswa</p>
             @else
@@ -193,8 +193,8 @@
 
             <div class="row m-3 pb-4 pt-2">
                 <button type="submit" class="btn w-100 text-light"
-                    style="background: #1A9B96 !important;">@if($status=='update') Perbaharui Data @else Tambah Data
-                    @endif</button>
+                    style="background: #2C2E3E !important;">@if($status=='update') Perbaharui Data @else Tambah Data
+                    @endif<i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
 

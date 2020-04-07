@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-3 pl-0">
             <a type="button" href="{{url('/data/siswa/tambah')}}" class="btn w-100"
-                style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Siswa</a>
+                style="background: #2C2E3E; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Siswa</a>
         </div>
     </div>
 

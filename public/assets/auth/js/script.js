@@ -12,3 +12,7 @@ $(document).ready(function(){
         return false;
     });
 });
+
+$('.btn-login').on('click', function(){
+    $(this).attr('disabled');
+});

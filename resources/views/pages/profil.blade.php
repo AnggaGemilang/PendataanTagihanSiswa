@@ -11,7 +11,7 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
+    <div style="background: #E9ECEF; border-radius: 20px;" class="p-2 mt-4">
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cek Profil Saya</p>
         <ol style="opacity: 0.7;">
             <li>Pastikan data - data tersebut telah valid</li>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-md-12" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row mt-4" style="background: #1A9B96 !important; height: 65px; align-content: center;">
+        <div class="row mt-4" style="background: #2C2E3E !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Profil</p>
         </div>
 
@@ -82,7 +82,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <label for="profil" class="btn ubah-profil-btn mr-3"
-                        style="background: #3AA9A5; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
+                        style="background: #2C2E3E; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
                         Profil</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
@@ -127,7 +127,7 @@
             </div>
             <div class="row mb-2 ml-3 mr-3 mt-2">
                 <button type="submit" class="btn mt-3 w-100 mb-5"
-                    style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
+                    style="background: #2C2E3E; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
                     Data</button>
             </div>
         </form>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <label for="profil" class="btn ubah-profil-btn mr-3"
-                        style="background: #3AA9A5; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
+                        style="background: #2C2E3E; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
                         Profil</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
@@ -203,8 +203,8 @@
             </div>
             <div class="row ml-3 mr-3 mt-2">
                 <button type="submit" class="btn mt-3 w-100 mb-5"
-                    style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
-                    Data</button>
+                    style="background: #2C2E3E; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
+                    Data <i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
 

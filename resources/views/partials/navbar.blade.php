@@ -4,14 +4,14 @@
         <button type="button" id="sidebarCollapse" class="btn btn-info"
             style="margin-top: 4px; margin-bottom:2px; background: #FFFFFF !important;">
             <i class="fas fa-align-left"
-                style="font-size: 20px; margin-top: 5px; margin-bottom: 6px; color: #008A85;"></i>
+                style="font-size: 20px; margin-top: 5px; margin-bottom: 6px; color: #2C2E3E;"></i>
         </button>
 
         <div>
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active position-relative">
                     <a id="btn-dropdownnavbar" href=""
-                        style="color: #008A85; font-weight: 500; text-transform: capitalize;">
+                        style="color: #2C2E3E; font-weight: 500; text-transform: capitalize;">
                         @if(Auth::User()->role_id=="1")
                         {{ Auth::User()->siswa->nama_siswa }}
                         @else
@@ -66,7 +66,7 @@
             text: "Anda Akan Logout",
             icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#3AA9A5",
+            confirmButtonColor: "#2C2E3E",
             confirmButtonText: "Hapus",
             cancelButtonText: "Batal",
             closeOnConfirm: false,

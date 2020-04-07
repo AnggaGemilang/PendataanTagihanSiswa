@@ -11,7 +11,7 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    <div style="background: #E5F3F3; border-radius: 20px;" class="p-2 mt-4">
+    <div style="background: #E9ECEF; border-radius: 20px;" class="p-2 mt-4">
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
         <ol style="opacity: 0.7;">
             <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-md-12 mt-4" style="background: white; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #1A9B96 !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #2C2E3E !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Password</p>
         </div>
 
@@ -81,8 +81,8 @@
             </div>
 
             <div class="row m-3" style="padding-bottom: 40px;">
-                <button type="submit" class="btn w-100 text-light" style="background: #1A9B96 !important;">Ubah
-                    Password</button>
+                <button type="submit" class="btn w-100 text-light" style="background: #2C2E3E !important;">Ubah
+                    Password <i class="fas fa-save pl-2"></i></button>
         </form>
 
     </div>

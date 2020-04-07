@@ -12,16 +12,23 @@ $(document).ready(function() {
 
 //Function to the css rule
 function checkSize(){
+    // $('#sidebar').attr('style', 'min-width: 80px; max-width: 80px; text-align: center; margin-left: -80px !important;');
+    // $('.navbar.top').attr('style', 'left: 0px !important;');
+    // $('#content-section').attr('style', 'width: 100%; margin-left: 0px !important; position: relative; min-height: 100vh; transition: all 0.3s; padding-bottom: 80px;');
+
+    // $('.navbar.top').attr('style', 'padding: 15px 10px; border: none; border-radius: 0; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); background: #FFFFFF !important; position: fixed !important; position: fixed !important; right: 0px; transition: all 0.3s; left: 250px; z-index: 999;');
+    // $('#content-section').attr('style', 'width: 100%; margin-left: 250px; position: relative; min-height: 100vh; transition: all 0.3s; padding-bottom: 80px;');
+    // $('#sidebar').attr('style', 'min-width: 250px; max-width: 250px; background: #2C2E3E; color: #fff; min-height: 100% !important; transition: all 0.3s; position: fixed; z - index: 999;');
+
     if ($("#tanda-responsive").css("display") == "none" ){
         console.log('leungit');
-        $('#content-section').attr('status', 'false');
         $('#sidebarCollapse').on('click', function () {
-            if ($('#content-section').attr('status') == "true") {
-                $('#content-section').attr('status', 'false');
+            if ($('#content-section').hasClass('status-actived')) {
+                $('#content-section').removeClass('status-actived');
                 $('#content-section').attr('style', 'margin-left: 0px !important;');
                 $('nav.navbar.top').attr('style', 'left: 0px !important;');
             } else {
-                $('#content-section').attr('status', 'true');
+                $('#content-section').addClass('status-actived');
                 $('#content-section').attr('style','margin-left: 80px !important;');
                 $('nav.navbar.top').attr('style','left: 80px !important;');
                 $('#profil-list > a > h6').hide();
@@ -36,12 +43,11 @@ function checkSize(){
         console.log('muncul');
         $('#profil-list > a > h6').show();
         $('#item-list > a > span').show();
-        $('#content-section').attr('status', 'false');
         $('#sidebarCollapse').on('click', function () {
-            if ($('#content-section').attr('status') == "true") {
+            if ($('#content-section').hasClass('status-actived')) {
                 $('#content-section').css('margin-left', '250px');
                 $('nav.navbar.top').css('left', '250px');
-                $('#content-section').attr('status', 'false');
+                $('#content-section').removeClass('status-actived');
                 $('#profil-list > a > h6').show();
                 $('#item-list > a > span').show();
                 $('#item-list > a > i').css('width', '18px');
@@ -51,7 +57,7 @@ function checkSize(){
             } else {
                 $('#content-section').css('margin-left', '80px');
                 $('nav.navbar.top').css('left', '80px');
-                $('#content-section').attr('status', 'true');
+                $('#content-section').addClass('status-actived');
                 $('#profil-list > a > h6').hide();
                 $('#item-list > a > span').hide();
                 $('#item-list > a > i').css('width', '37px');

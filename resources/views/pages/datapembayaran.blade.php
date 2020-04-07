@@ -41,8 +41,8 @@
                         @endphp
                     </td>
                     <td>@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td><a type="button" class="btn btn-success"
-                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                    <td><a type="button" class="btn"
+                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px; background: #2C2E3E; color: white;"
                             href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
@@ -80,8 +80,8 @@
                         @endphp
                     </td>
                     <td>@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td><a type="button" class="btn btn-success"
-                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                    <td><a type="button" class="btn"
+                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px; background: #2C2E3E; color: white;"
                             href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach

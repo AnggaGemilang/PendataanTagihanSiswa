@@ -16,7 +16,7 @@
         @if(Auth::User()->role_id=="2")
         <div class="col-3 pl-0 d-flex justify-content-center align-items-center mt-4 pt-3">
             <button type="button" class="btn w-100" id="btn-generate" data-baseurl="{{ url('/') }}"
-                style="background: #3AA9A5; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 47px;">
+                style="background: #2C2E3E; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 47px;">
                 Generate Report
                 <i class="ml-2 fas fa-file-download"></i>
             </button>
@@ -239,7 +239,7 @@
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #3AA9A5;'>Generate Laporan</a>",
+                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #2C2E3E;'>Generate Laporan</a>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,

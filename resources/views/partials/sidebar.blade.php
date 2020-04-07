@@ -245,7 +245,7 @@ if(\Request::is('/')) {
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #3AA9A5;'>Generate Laporan</a>",
+                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #2C2E3E;'>Generate Laporan</a>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,
