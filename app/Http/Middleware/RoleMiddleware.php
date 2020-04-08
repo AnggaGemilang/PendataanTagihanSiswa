@@ -2,26 +2,16 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RoleMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
-     * @return mixed
-     */
-    public function handle($request, Closure $next, $roleName)
+    public function handle($request, Closure $next,...$roleId)
     {
-        if (!$request->autentikasi()->hasRole($roleName)) {
-            return redirect(RouteServiceProvider::HOME);
+        if (in_array($request->user()->role_id,$roleId)){
+            return $next($request);
         }
-
-        return $next($request);
+        return redirect('/');
     }
 }

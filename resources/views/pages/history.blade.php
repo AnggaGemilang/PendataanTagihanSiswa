@@ -29,9 +29,9 @@
         <div class="col-md-6">
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
-                <input type="text" class="form-control pl-5" name="filter_history" id="filter_history"
-                    aria-describedby="helpId" placeholder="Cari Pembayaran Siswa Disini . . ."
-                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                <input type="text" class="form-control pl-5 input-toggle-times" name="filter_history" id="filter_history" aria-describedby="helpId" placeholder="Cari Pembayaran Siswa Disini . . ."
+                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="col-md-3 pl-0">
@@ -46,9 +46,10 @@
             </div>
         </div>
         <div class="col-md-3 pl-0">
-            <div class="form-group">
+            <div class="form-group position-relative">
                 <input type="text" id="filter_tanggal" placeholder="Tanggal" class="date_picker w-100"
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 2px; height: 38px; outline: none; padding-left: 20px;">
+                    <button class="btn-times"><i class="fa fa-times"></i></button>
             </div>
         </div>
     </div>
@@ -147,6 +148,7 @@
 
 @push('extras-js')
 <script>
+    
     $(function () {
         $('.date_picker').datepicker({
             format: "yyyy-mm-dd",

@@ -14,7 +14,7 @@
                 {{ csrf_field() }}
                 <div class="row m-2 mt-3 pt-2">
                     <div class="form-group w-100">
-                        <input id="login" type="login" name="login" id="login" value="{{ old('email') }}" required 
+                        <input id="login" type="login" name="login" id="login" value="{{ old('login') }}" required 
                         autocomplete="off" autofocus class="greylight-bgmt-1"
                         aria-describedby="helpId" placeholder="Nomor Induk atau Email" >
                     </div>

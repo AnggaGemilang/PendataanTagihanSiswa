@@ -121,8 +121,12 @@ class PembayaranController extends Controller
 
     public function history()
     {
+        $id = '';
         $tipetagihan = TipeTagihan::all();
-        $id = Auth::user()->siswa->id;
+        if(Auth::user()->role_id=='1')
+        {
+            $id = Auth::user()->siswa->id;
+        }
         $history = Pembayaran::orderBy('id', 'DESC')->get();
         $history_siswa = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
         return view('pages.history', compact(['history','history_siswa','tipetagihan','kelas']));
@@ -159,23 +163,32 @@ class PembayaranController extends Controller
             $ket = 'blm_lunas';
         }
 
-        $entri = new Pembayaran;
-        $entri->nominal = $request->nominal;
-        $entri->siswa_id = $request->siswa_id;
-        $entri->petugas_id = Auth::user()->petugas->id;
-        $entri->kelas_id = $request->kelas_id;
-        $entri->tagihan_id = $request->tagihan_id;
-        $entri->keterangan = $ket;
-        $entri->sisa_tagihan = $tipetagihan - ($request->nominal+$sudahdibayar);
-        $entri->created_at = Carbon::now()->format('Y-m-d H:i:s');
-        $entri->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-        $entri->save();
-
-        if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
-        {
-            $tagihan = Tagihan::find($request->tagihan_id);
-            $tagihan->keterangan = 'lunas';
-            $tagihan->update();
+        if(Tagihan::find($request->tagihan_id)->tipetagihan->nominal < $request->nominal){
+            $notification = array(
+                'title' => 'Pembayaran Gagal',
+                'description' => 'Nominal Terlalu Besar!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            $entri = new Pembayaran;
+            $entri->nominal = $request->nominal;
+            $entri->siswa_id = $request->siswa_id;
+            $entri->petugas_id = Auth::user()->petugas->id;
+            $entri->kelas_id = $request->kelas_id;
+            $entri->tagihan_id = $request->tagihan_id;
+            $entri->keterangan = $ket;
+            $entri->sisa_tagihan = $tipetagihan - ($request->nominal+$sudahdibayar);
+            $entri->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $entri->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+            $entri->save();
+    
+            if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
+            {
+                $tagihan = Tagihan::find($request->tagihan_id);
+                $tagihan->keterangan = 'lunas';
+                $tagihan->update();
+            }
         }
 
         $notification = array(

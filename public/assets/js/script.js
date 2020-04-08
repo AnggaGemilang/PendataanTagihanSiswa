@@ -287,6 +287,30 @@ tail.select(".select-move", {
 });
 
 /* ---------------------------------------------------
+    SET 0 VALUE ON BUTTON
+----------------------------------------------------- */
+
+$('.date_picker').focus(function(){
+    $('button.btn-times').fadeIn().click(function(){
+        $('.date_picker').val('').change().focusout();
+    });
+});
+
+$('.date_picker').focusout(function(){
+    $('.btn-times').fadeOut();
+});
+
+$('.input-toggle-times').focus(function(){
+    $('.btn-times2').fadeIn().click(function(){
+        $('.input-toggle-times').val('').trigger('keyup');
+    });
+});
+
+$('.input-toggle-times').focusout(function(){
+    $('.btn-times2').fadeOut();
+});
+
+/* ---------------------------------------------------
     FILTER CARI LIHAT DATA
 ----------------------------------------------------- */
 

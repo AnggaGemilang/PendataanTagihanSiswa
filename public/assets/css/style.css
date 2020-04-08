@@ -123,15 +123,6 @@ span {
     margin-right: 5px;
 }
 
-.dropdown-detail
-{
-    position: absolute;
-    top: 22px !important;
-    right: 56px !important;
-    display: none;
-    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
-}
-
 #item-history
 {
     background: #FFFFFF !important;
@@ -153,6 +144,18 @@ span {
 /* ---------------------------------------------------
     Custom Form Input
 ----------------------------------------------------- */
+
+.btn-times,
+.btn-times2
+{
+    position: absolute;
+    border: none;
+    background: transparent;
+    right: 10px;
+    top: 6.5px;
+    display: none;
+    outline: none !important;
+}
 
 label.check-wrapper {
     font-size: 14px;
@@ -309,12 +312,20 @@ option.greylight-bg:focus
     border: none;
 }
 
+.dropdown-detail
+{
+    position: absolute;
+    top: 30px !important;
+    right: 38px !important;
+    display: none;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
+}
 
 .dropdown-navbar
 {
     position: absolute;
-    right: 5px;
     top: 35px;
+    right: 3px;
     display: none;
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
 }

@@ -15,9 +15,10 @@
         <div class="col-md-6">
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
-                <input type="text" class="form-control pl-5" name="field_cari" id="field_cari" aria-describedby="helpId"
+                <input type="text" class="form-control pl-5 input-toggle-times" name="field_cari" id="field_cari" aria-describedby="helpId"
                     placeholder="Cari Kelas Disini . . ."
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="col-md-3 pl-0">

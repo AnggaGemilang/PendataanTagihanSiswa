@@ -83,7 +83,7 @@
         <div class="col-md-5 position-relative d-flex justify-content-center pl-0" id="dropdown-detail">
             <img src="{{ asset('uploaded/images/profil_petugas/' . $petugas->profil) }}" class="prev-profil" alt="">
             <button type="button" class="btn btn-info position-absolute btn-toggle-option">
-                <i class="fas fa-ellipsis-v" style="color: #008A85;"></i>
+                <i class="fas fa-ellipsis-v" style="color: #24143F;"></i>
             </button>
             <div class="dropdown-navbar dropdown-detail">
                 <ul class="pl-0 mb-0">

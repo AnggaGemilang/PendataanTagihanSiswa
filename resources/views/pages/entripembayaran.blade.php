@@ -37,7 +37,7 @@
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Kelas</option>
                         @foreach($kelas as $k)
-                        <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                        <option value="{{ $k->id }}" {{ old('kelas_id')==$k->id ? 'selected' : '' }}>{{ $k->nama_kelas }}</option>
                         @endforeach
                     </select>
                 </div>

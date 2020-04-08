@@ -82,7 +82,7 @@
         <div class="col-md-5 d-flex justify-content-center pl-0 ml-0">
             <img src="{{ asset('uploaded/images/profil_siswa/' . $siswa->profil) }}" alt="" class="prev-profil">
             <button type="button" class="btn btn-info position-absolute btn-toggle-option">
-                <i class="fas fa-ellipsis-v" style="color: #008A85; "></i></button>
+                <i class="fas fa-ellipsis-v" style="color: #24143F; "></i></button>
             <div class="dropdown-navbar dropdown-detail">
                 <ul class="pl-0 mb-0">
                     <a href="{{ url('data/siswa/perbaharui/' . $siswa->slug . '/' . $siswa->id) }}">
@@ -126,8 +126,7 @@
                         @endphp
                     </td>
                     <td class="change">@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td class="change"><a type="button" class="btn btn-success"
-                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                    <td class="change"><a type="button" class="btn" style="background: #24143F; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
                             href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
@@ -165,8 +164,7 @@
                         @endphp
                     </td>
                     <td class="change">@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td class="change"><a type="button" class="btn btn-success"
-                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                    <td class="change"><a type="button" class="btn" style="background: #24143F; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
                             href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
