@@ -123,7 +123,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
             text: "Data akan terhapus secara permanen",
             icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#24143F",
+            confirmButtonColor: "#3AA9A5",
             confirmButtonText: "Hapus",
             cancelButtonText: "Batal",
             closeOnConfirm: false,
@@ -155,7 +155,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
-                    confirmButtonColor: "#24143F",
+                    confirmButtonColor: "#3AA9A5",
                     text: 'Data Gagal Dihapus!',
                 });
             }
@@ -171,7 +171,7 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
             text: "Data akan terhapus secara permanen",
             icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#24143F",
+            confirmButtonColor: "#3AA9A5",
             confirmButtonText: "Hapus",
             cancelButtonText: "Batal",
             closeOnConfirm: false,
@@ -203,7 +203,7 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
-                    confirmButtonColor: "#24143F",
+                    confirmButtonColor: "#3AA9A5",
                     text: 'Data Gagal Dihapus!',
                 })
             }

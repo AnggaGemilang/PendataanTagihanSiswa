@@ -61,7 +61,6 @@ class PetugasController extends Controller
             'no_telp' => 'bail|required|string|min:10|max:13',
             'nomor_induk' => 'bail|required|string|min:10|max:30',
             'email' => 'bail|required|email|unique:t_autentikasi',
-            'password' => 'bail|required|string|min:6|max:200',
         ], $messages);
 
         $path = "uploaded/images/profil_petugas/";
@@ -88,7 +87,7 @@ class PetugasController extends Controller
         $auth = new Autentikasi;
         $auth->nomor_induk = $request->nomor_induk;
         $auth->email = $request->email;
-        $auth->password = Hash::make($request->password);
+        $auth->password = Hash::make($request->nomor_induk);
         $auth->role_id = $request->role_id;
         $auth->petugas_id = $petugas_id;
         $auth->save();

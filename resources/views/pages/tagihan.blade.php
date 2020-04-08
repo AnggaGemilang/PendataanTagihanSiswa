@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="col-md-3 pl-0">
-            <a type="button" href="{{url('/data/tagihan/tambah')}}" class="btn w-100" style="background: #2C2E3E; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Tagihan</a>
+            <a type="button" href="{{url('/data/tagihan/tambah')}}" class="btn w-100" style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Tagihan</a>
         </div>
     </div>
 

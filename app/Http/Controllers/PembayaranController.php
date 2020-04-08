@@ -122,7 +122,7 @@ class PembayaranController extends Controller
     public function history()
     {
         $tipetagihan = TipeTagihan::all();
-        $id = Auth::user()->id;
+        $id = Auth::user()->siswa->id;
         $history = Pembayaran::orderBy('id', 'DESC')->get();
         $history_siswa = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
         return view('pages.history', compact(['history','history_siswa','tipetagihan','kelas']));
@@ -130,7 +130,25 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-        $tagihan = Tagihan::find($request->jenis_pembayaran);
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute terlalu pendek, minimal :min karakter',
+            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'email' => ':attribute memerlukan "@"',
+            'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+            'size' => ':attribute terlalu besar, maksimal berukuran :size',
+            'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+            'unique' => ':attribute sudah terpakai'
+        ];
+
+        $this->validate($request, [
+            'nominal' => 'bail|required|integer',
+            'siswa_id' => 'bail|required|integer',
+            'kelas_id' => 'bail|required|integer',
+            'tagihan_id' => 'bail|required|integer'
+        ], $messages);
+
+        $tagihan = Tagihan::find($request->tagihan_id);
         $tipetagihan = $tagihan->tipetagihan->nominal;
         $sudahdibayar = $tagihan->sudah_dibayar;
 
@@ -143,10 +161,10 @@ class PembayaranController extends Controller
 
         $entri = new Pembayaran;
         $entri->nominal = $request->nominal;
-        $entri->siswa_id = $request->nama_siswa;
+        $entri->siswa_id = $request->siswa_id;
         $entri->petugas_id = Auth::user()->petugas->id;
         $entri->kelas_id = $request->kelas_id;
-        $entri->tagihan_id = $request->jenis_pembayaran;
+        $entri->tagihan_id = $request->tagihan_id;
         $entri->keterangan = $ket;
         $entri->sisa_tagihan = $tipetagihan - ($request->nominal+$sudahdibayar);
         $entri->created_at = Carbon::now()->format('Y-m-d H:i:s');
@@ -155,7 +173,7 @@ class PembayaranController extends Controller
 
         if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
         {
-            $tagihan = Tagihan::find($request->jenis_pembayaran);
+            $tagihan = Tagihan::find($request->tagihan_id);
             $tagihan->keterangan = 'lunas';
             $tagihan->update();
         }
@@ -172,11 +190,10 @@ class PembayaranController extends Controller
 
     public function data()
     {
-        $tagihan = Tagihan::where('siswa_id', Auth::user()->id)->where('tipetagihan_id','>=','6')->get();
-        $tagihan_spp = Tagihan::where('siswa_id', Auth::user()->id)->whereBetween('tipetagihan_id', [1, 5])->get();
+        $tagihan = Tagihan::where('siswa_id', Auth::user()->siswa->id)->where('tipetagihan_id','>=','6')->get();
+        $tagihan_spp = Tagihan::where('siswa_id', Auth::user()->siswa->id)->whereBetween('tipetagihan_id', [1, 5])->get();
         $siswa = Siswa::find(Auth::user()->id);
-        $history = Pembayaran::where('siswa_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
-        return view('pages.datapembayaran', compact(['siswa','history','tagihan_spp','tagihan']));
+        return view('pages.datapembayaran', compact(['siswa','tagihan_spp','tagihan']));
     }
 
     public function cetak_pdf($jenis_filter, $periode)

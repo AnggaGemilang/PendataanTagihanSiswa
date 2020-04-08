@@ -26,19 +26,19 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    <div style="background: #E9ECEF; border-radius: 20px;" class="p-2 mt-4">
+    <div style="background: #EDE6F7; border-radius: 20px;" class="p-2 mt-4">
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal - Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
-            <li>Siapkan Terlebih Dahulu Data Siswa</li>
-            <li>Pastikan Data Yang Telah Disiapkan Valid</li>
-            <li>Foto Profil Maksimal Berukuran 300kb</li>
-            <li>Masukkan Data Dengan Baik Dan Teliti</li>
-            <li>Setelah Data Dimasukkan, Klik Tombol Tambah Siswa Untuk <i>Submit</i> Data</li>
+            <li>Pastikan data yang anda masukkan sudah valid</li>
+            <li>Isi semua form input dengan baik dan teliti</li>
+            <li>Untuk foto profil maksimal berukuran 1 Mb / 1000 Kb</li>
+            <li>Ketika siswa baru ditambahkan, tagihan wajib (SPP & uang bangunan) akan otomatis ditambahkan</li>
+            <li>Jika semua data sudah terisi, klik tombol tambah siswa</li>
         </ol>
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #2C2E3E !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
             @if ($status=='tambah')
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Siswa</p>
             @else
@@ -124,16 +124,6 @@
                 </div>
             </div>
 
-            <div class="row m-3" @if($status=="update" ) style="display: none;" @endif>
-                <div class="form-group w-100 position-relative">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-pwd form-control greylight-bg" name="password" id="password"
-                        aria-describedby="helpId" placeholder="Masukkan Password Siswa" value="{{ old('password') }}"
-                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
-                    <button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
-                </div>
-            </div>
-
             <div class="row m-3">
                 <div class="form-group w-100">
                     <label for="alamat">Alamat</label>
@@ -184,7 +174,7 @@
 
             @if($status=="update")
             <div class="row ml-3" style="margin-top: -10px;">
-                <label class="check-wrapper">Ubah Password User
+                <label class="check-wrapper">Ubah Password Siswa
                     <input type="checkbox" name="cb_ubahpassword" id="cb_ubahpassword">
                     <span class="checkmark"></span>
                 </label>
@@ -193,7 +183,7 @@
 
             <div class="row m-3 pb-4 pt-2">
                 <button type="submit" class="btn w-100 text-light"
-                    style="background: #2C2E3E !important;">@if($status=='update') Perbaharui Data @else Tambah Data
+                    style="background: #24143F !important;">@if($status=='update') Perbaharui Siswa @else Tambah Siswa
                     @endif<i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
@@ -213,8 +203,6 @@
         '<input type="password" class="form-pwd form-control greylight-bg mt-2" name="password" id="password"';
     ubahpassword += 'aria-describedby="helpId" placeholder="Masukkan Password Siswa"';
     ubahpassword += 'style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">';
-    ubahpassword +=
-        '<button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D; margin-top: 11px;"></i></button>';
     ubahpassword += '</div>';
     ubahpassword += '</div>';
 

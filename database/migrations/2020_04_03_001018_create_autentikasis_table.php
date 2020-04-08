@@ -15,7 +15,7 @@ class CreateAutentikasisTable extends Migration
     {
         Schema::create('t_autentikasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_induk');
+            $table->string('nomor_induk')->unique();
             $table->string('email', 150)->unique();
             $table->string('password');
             $table->integer('role_id');

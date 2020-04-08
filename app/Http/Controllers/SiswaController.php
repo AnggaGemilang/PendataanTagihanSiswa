@@ -66,9 +66,8 @@ class SiswaController extends Controller
             'no_telp' => 'bail|required|string|min:10|max:13',
             'kelas_id' => 'bail|required|integer',
             'profil' => 'bail|required|file|mimes:jpeg,bmp,png,jpg|max:1000',
-            'nomor_induk' => 'required|string|min:10|max:12',
+            'nomor_induk' => 'required|string|unique:t_autentikasi|min:10|max:12',
             'email' => 'bail|required|email|unique:t_autentikasi',
-            'password' => 'bail|required|string|min:6|max:200',
         ], $messages);
 
         $path = "uploaded/images/profil_siswa/";
@@ -101,7 +100,7 @@ class SiswaController extends Controller
         $auth = new Autentikasi;
         $auth->nomor_induk = $request->nomor_induk;
         $auth->email = $request->email;
-        $auth->password = Hash::make($request->password);
+        $auth->password = Hash::make($request->nomor_induk);
         $auth->role_id = 1;
         $auth->siswa_id = $siswa_id;
         $auth->save();
@@ -124,7 +123,7 @@ class SiswaController extends Controller
                 $tagihan->keterangan = "blm_lunas";
                 $tagihan->save();
             }
-        } else if ($tingkat_kelas->tipekelas_id==1){
+        } else if ($tingkat_kelas->tipekelas_id==2){
             for($y = 0; $y < count($paket_spp_xi); $y++)
             {
                 $tagihan = new Tagihan;

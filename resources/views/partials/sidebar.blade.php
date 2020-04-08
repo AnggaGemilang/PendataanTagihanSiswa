@@ -245,7 +245,7 @@ if(\Request::is('/')) {
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #2C2E3E;'>Generate Laporan</a>",
+                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</a>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,
@@ -285,11 +285,24 @@ if(\Request::is('/')) {
                 jenis_filter = $('.btn-generate').attr('jenis');
             });
 
-            $('a#gen').on('click', function (e) {
-            e.preventDefault();
-            var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" + periode;
-            location.href = url;
-        });
+            $('a#gen').on('click', function(e) {
+                if ($('#jenis_filter').children("option:selected").val() == '') {
+                    e.preventDefault();
+                    toastr.error("Gagal", "Cuk", {
+                        "showMethod": "slideDown",
+                        "hideMethod": "slideUp",
+                        timeOut: 3000
+                    });
+                    return false;
+                    console.log('agagal');
+                } else {
+                    console.log('bnerhasil');
+                    e.preventDefault();
+                    var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
+                    periode;
+                    location.href = url;
+                }
+            });
         });
 
     });

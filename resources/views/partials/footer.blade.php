@@ -9,12 +9,12 @@
             <div>
                 <ul class="nav ml-auto float-right">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="color: #2C2E3E; font-weight: 500;">
+                        <a class="nav-link" href="#" style="color: #24143F; font-weight: 500;">
                             Privasi
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="color: #2C2E3E; font-weight: 500;">
+                        <a class="nav-link" href="#" style="color: #24143F; font-weight: 500;">
                             Bantuan
                         </a>
                     </li>

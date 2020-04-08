@@ -10,19 +10,19 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    <div style="background: #E9ECEF; border-radius: 20px;" class="p-2 mt-4">
-        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
+    <div style="background: #EDE6F7; border-radius: 20px;" class="p-2 mt-4">
+        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
-            <li>Pilih Dahulu Kelas Siswa Yang Ingin Dientri</li>
-            <li>Pilih Nama Siswa Terkait</li>
-            <li>Pilih Jenis Tagihan Yang Akan Dibayarkan</li>
-            <li>Masukkan Nominal Uang Yang Akan Siswa Bayarkan</li>
-            <li>Submit Pembayaran Dan Data Tagihan Akan Otomatis Terakumulasi</li>
+            <li>Form input dibawah saling berkaitan</li>
+            <li>Jika anda memilih, hasilnya akan berbeda antara satu sama lain</li>
+            <li>Tagihan tidak akan bisa diklik ketika sudah lunas</li>
+            <li>Pastikan data yang ditambahkan sudah valid</li>
+            <li>Sistem akan mengakumulasi secara otomatis hasil entri pembayaran</li>
         </ol>
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #2C2E3E !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Entri Pembayaran Tagihan</p>
         </div>
 
@@ -45,8 +45,8 @@
     
             <div class="row m-3">
                 <div class="form-group w-100">
-                    <label for="nama_siswa">Siswa</label>
-                    <select name="nama_siswa" id="nama_siswa" class="form-control greylight-bg w-100 pl-2"
+                    <label for="siswa_id">Siswa</label>
+                    <select name="siswa_id" id="siswa_id" class="form-control greylight-bg w-100 pl-2"
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Siswa</option>
                         <div class="wrapper-option"></div>
@@ -56,8 +56,8 @@
 
             <div class="row m-3">
                 <div class="form-group w-100">
-                    <label for="jenis_pembayaran">Jenis Tagihan</label>
-                    <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-control greylight-bg w-100 pl-2"
+                    <label for="tagihan_id">Jenis Tagihan</label>
+                    <select name="tagihan_id" id="tagihan_id" class="form-control greylight-bg w-100 pl-2"
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Pembayaran</option>
                     </select>
@@ -75,7 +75,7 @@
             </div>
     
             <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light" style="background: #2C2E3E !important;">Tambah
+                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">Tambah
                     Pembayaran <i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
@@ -90,6 +90,7 @@
 <script>
     $('#kelas_id').on('change', function(){
         if($(this).val() != ''){
+            console.log('kelas_id');
             var kelas_id = $(this).children("option:selected").val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -102,14 +103,15 @@
                 success:function(result)
                 {
                     console.log(result);
-                    $('#nama_siswa').html(result);
+                    $('#siswa_id').html(result);
                 }
             })
         }
     });
 
-    $('#nama_siswa').on('change', function(){
+    $('#siswa_id').on('change', function(){
         if($(this).val() != ''){
+            console.log('siswa_id');
             var siswa_id = $(this).children("option:selected").val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
@@ -122,14 +124,15 @@
                 success:function(result)
                 {
                     console.log(result);
-                    $('#jenis_pembayaran').html(result);
+                    $('#tagihan_id').html(result);
                 }
             })
         }
     });
 
-    $('#jenis_pembayaran').on('change', function(){
+    $('#tagihan_id').on('change', function(){
         if($(this).val() != ''){
+            console.log('tagihan_id');
             var tagihan_id = $(this).children("option:selected").val();
             var _token = $('input[name="_token"]').val();
             $.ajax({

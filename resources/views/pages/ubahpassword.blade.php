@@ -11,19 +11,19 @@
         <span class="breadcrumb-item active"></span>
     </nav>
 
-    <div style="background: #E9ECEF; border-radius: 20px;" class="p-2 mt-4">
-        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Cara Mengentri Pembayaran</p>
+    <div style="background: #EDE6F7; border-radius: 20px;" class="p-2 mt-4">
+        <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
-            <li>Pertama, pilih terlebih dahulu jenis pembayaran</li>
-            <li>Kemudian, pilih kelas siswa tersebut</li>
-            <li>Lalu, pilih nama siswa yang ingin membayar</li>
-            <li>Masukkan nominal uang yang akan siswa bayar</li>
-            <li>Terakhir, submit pembayaran dan data akan otomatis terupdate</li>
+            <li>Harap ganti password saat pertama kali login</li>
+            <li>Jangan pernah berikan password anda kepada orang lain</li>
+            <li>Password default adalah Nomor Induk anda sendiri</li>
+            <li>Pastikan anda mengetahui password sebelumnya</li>
+            <li>Klik tombol ubah password ketika keterangan bernilai "password sama"</li>
         </ol>
     </div>
 
     <div class="col-md-12 mt-4" style="background: white; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #2C2E3E !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Password</p>
         </div>
 
@@ -81,7 +81,7 @@
             </div>
 
             <div class="row m-3" style="padding-bottom: 40px;">
-                <button type="submit" class="btn w-100 text-light" style="background: #2C2E3E !important;">Ubah
+                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">Ubah
                     Password <i class="fas fa-save pl-2"></i></button>
         </form>
 

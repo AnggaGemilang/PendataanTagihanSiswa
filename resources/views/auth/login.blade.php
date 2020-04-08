@@ -10,25 +10,22 @@
         </div>
         <div class="row justify-content-center mb-2">
             <h2 class="title w-100 mb-4 pb-2">Login Tagihan Sekolah</h2>
-            <form method="POST" action="{{ route('login') }}" class="w-100">
+            <form method="POST" action="{{ route('login') }}" class="w-100" id="form-submit">
                 {{ csrf_field() }}
                 <div class="row m-2 mt-3 pt-2">
                     <div class="form-group w-100">
                         <input id="login" type="login" name="login" id="login" value="{{ old('email') }}" required 
-                        @if($errors->has('email')) class="is-invalid form-pwd form-control greylight-bg mt-1" @endif
-                        autocomplete="off" autofocus class="@error('email') is-invalid @enderror form-control greylight-bg
-                     mt-1"
+                        autocomplete="off" autofocus class="greylight-bgmt-1"
                         aria-describedby="helpId" placeholder="Nomor Induk atau Email" >
                     </div>
                 </div>
     
                 <div class="row m-2 d-flex justify-content-center">
                     <div class="form-group w-100 position-relative">
-                        <input id="password" type="password" name="password" required @if ($errors->has('nomor_induk'))
-                        class="is-invalid form-pwd form-control greylight-bg mt-1" @endif
-                        autocomplete="off" class="@error('password') is-invalid @enderror form-pwd form-control
-                        greylight-bg mt-1"
+                        <input id="password" type="password" name="password" required autocomplete="off" class="form-pwd mt-1"
                         aria-describedby="helpId" placeholder="Password" >
+                    </div>
+                    <div class="wrapper-icon-show">
                         <button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
                     </div>
                 </div>
@@ -42,7 +39,7 @@
                     </div>
                 </div>
     
-                <div class="row m-2 mt-3 justify-content-center">
+                <div class="row m-2 mt-2 justify-content-center">
                     <button type="submit" class="btn btn-login text-light" 
                         style="background: #1EB5AD; outline: #B0A1FF !important;">Login
                     </button>

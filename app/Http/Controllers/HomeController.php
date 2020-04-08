@@ -16,7 +16,13 @@ class HomeController extends Controller
     
     public function index()
     {
-        $id = Auth::user()->id;
+        $id = '';
+
+        if(Auth::user()->role_id=="1")
+        {
+            $id = Auth::user()->siswa->id;
+        }
+        
         $history = Pembayaran::orderBy('id', 'DESC')->get();
         $history_siswa = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
         $today_time = Carbon::now()->toDateString();
