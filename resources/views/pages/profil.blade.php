@@ -80,8 +80,7 @@
                             style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;" alt="">
                     </div>
                     <div class="row justify-content-center">
-                        <label for="profil" class="btn ubah-profil-btn mr-3"
-                        style="background: #24143F; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
+                        <label for="profil" class="btn ubah-profil-btn mr-3">Ubah
                         Profil</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>

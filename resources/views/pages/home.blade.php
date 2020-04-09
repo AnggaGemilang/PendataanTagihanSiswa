@@ -32,6 +32,13 @@
         <h3>History Pembayaran</h3>
     </div>
 
+    @if($history_siswa->count()==0)
+    <div class="container-fluid mt-3">
+        <div class="row d-flex justify-content-center align-content-center content-no-data">
+            <h4>TIdak Ada Data</h4>
+        </div>
+    </div>
+    @else
     @foreach ($history_siswa as $h)
     <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
         <div class="row">
@@ -45,6 +52,7 @@
         <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
     </div>
     @endforeach
+    @endif
 
     @else
 
@@ -71,6 +79,13 @@
         <h3>History Pembayaran</h3>
     </div>
 
+    @if($history_siswa->count()==0)
+    <div class="container-fluid mt-3">
+        <div class="row d-flex justify-content-center align-content-center content-no-data">
+            <h4>TIdak Ada Data</h4>
+        </div>
+    </div>
+    @else
     @foreach ($history as $h)
     <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
         <div class="row history">
@@ -84,6 +99,7 @@
         <h4>{{ $h->tagihan->siswa->nama_siswa }}</h4>
     </div>
     @endforeach
+    @endif
 
     @endif
 

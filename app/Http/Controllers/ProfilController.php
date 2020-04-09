@@ -125,15 +125,34 @@ class ProfilController extends Controller
 
     public function ubahstore(Request $request, $id, $role)
     {
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute terlalu pendek, minimal :min karakter',
+            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'email' => ':attribute memerlukan "@"',
+            'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+            'size' => ':attribute terlalu besar, maksimal berukuran :size',
+            'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+            'unique' => ':attribute sudah terpakai'
+        ];
+
+        $this->validate($request, [
+            'password_baru' => 'bail|required|string|min:6|max:100',
+        ], $messages);
+
         if($role=="siswa")
         {
+            $user = Auth::user();
             $siswa = Autentikasi::where('siswa_id',$id)->first();
             $siswa->password = Hash::make($request->password_baru);
             $siswa->update();
+            Auth::logout();
         }else{
+            $user = Auth::user();
             $petugas = Autentikasi::where('petugas_id',$id)->first();
             $petugas->password = Hash::make($request->password_baru);
             $petugas->update();
+            Auth::logout();
         }
 
         $notification = array(
@@ -142,6 +161,6 @@ class ProfilController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect('ubahpassword')->with($notification);
+        return redirect('login')->with($notification);
     }
 }

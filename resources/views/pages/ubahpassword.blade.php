@@ -15,10 +15,10 @@
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
             <li>Harap ganti password saat pertama kali login</li>
-            <li>Jangan pernah berikan password anda kepada orang lain</li>
             <li>Password default adalah Nomor Induk anda sendiri</li>
             <li>Pastikan anda mengetahui password sebelumnya</li>
             <li>Klik tombol ubah password ketika keterangan bernilai "password sama"</li>
+            <li>Ketika berhasil, untuk keamanan anda akan diarahkan kembali untuk login</li>
         </ol>
     </div>
 
@@ -57,8 +57,9 @@
             <div class="row m-3">
                 <div class="form-group w-100 position-relative mb-2">
                     <label for="password_baru">Password Baru</label>
-                    <input type="password" class="form-pwd form-control greylight-bg" name="password_baru"
-                        id="password_baru" aria-describedby="helpId" placeholder="Masukkan Password Baru Anda"
+                    <input type="password" class="form-pwd form-control greylight-bg" value="{{ old('password_baru') }}"
+                        name="password_baru" id="password_baru" aria-describedby="helpId"
+                        placeholder="Masukkan Password Baru Anda"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
@@ -138,14 +139,13 @@
     });
 
     $(document).on('submit', '#form-submit', function (e) {
-        if ($('#konfirmasi_password').attr('confirmstatus') == "false" && $('#password_lama').attr(
-            'oldstatus') == "false") {
+        if ($('#konfirmasi_password').attr('confirmstatus') == "false" || $('#password_lama').attr(
+                'oldstatus') == "false") {
             e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal',
-                confirmButtonColor: "#3AA9A5",
-                text: 'Password Tidak Valid!',
+            toastr.error("Password Tidak Valid!", "Ubah Password Gagal", {
+                "showMethod": "slideDown",
+                "hideMethod": "slideUp",
+                timeOut: 3000
             });
         }
     });

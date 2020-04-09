@@ -75,6 +75,13 @@
                     @endforeach
                 </tbody>
             </table>
+            @if($kelas->count()==0)
+            <div class="container-fluid mt-3">
+                <div class="row d-flex justify-content-center align-content-center content-no-data" style="min-height: 41vh;">
+                    <h4>TIdak Ada Data</h4>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

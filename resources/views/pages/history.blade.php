@@ -55,8 +55,14 @@
     </div>
 
     @if(Auth::User()->role_id=="1")
-
     <div class="row m-1" id="wrapper-history">
+        @if($history->count()==0)
+        <div class="container-fluid mt-3">
+            <div class="row d-flex justify-content-center align-content-center content-no-data" style="min-height: 47vh;">
+                <h4>TIdak Ada Data</h4>
+            </div>
+        </div>
+        @else
         @foreach ($history_siswa as $h)
         <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
             <div class="row">
@@ -70,11 +76,19 @@
             <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
         </div>
         @endforeach
+        @endif
     </div>
 
     @else
 
     <div class="row m-1" id="wrapper-history">
+        @if($history->count()==0)
+        <div class="container-fluid mt-3">
+            <div class="row d-flex justify-content-center align-content-center content-no-data" style="min-height: 47vh;">
+                <h4>TIdak Ada Data</h4>
+            </div>
+        </div>
+        @else
         @foreach ($history as $h)
         <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
             <div class="row">
@@ -89,6 +103,7 @@
         </div>
         </a>
         @endforeach
+        @endif
     </div>
 
     @endif
@@ -241,7 +256,7 @@
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</a>",
+                "<button disabled id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</button>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,
@@ -277,14 +292,30 @@
             $('.btn-generate').attr("jenis", jenis_filter);
 
             $('#' + jenis_filter).on('change', function () {
-                periode = $(this).children("option:selected").val();
-                jenis_filter = $('.btn-generate').attr('jenis');
-            });
+                if ($(this).children("option:selected").val() == '') {
+                    $('#gen').attr('disabled');
+                } else if ($(this).children("option:selected").val() != '') {
+                    $('#gen').removeAttr('disabled');
+                    periode = $(this).children("option:selected").val();
+                    jenis_filter = $('.btn-generate').attr('jenis');
+                }
 
-            $('a#gen').on('click', function (e) {
-                e.preventDefault();
-                var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" + periode;
-                location.href = url;
+            });
+            $('#gen').on('click', function(e) {
+                if ($('#' + jenis_filter).val() == '') {
+                    e.preventDefault();
+                    toastr.error("Mohon Lengkapi Form!", "Generate Gagal", {
+                        "showMethod": "slideDown",
+                        "hideMethod": "slideUp",
+                        timeOut: 3000
+                    });
+                    return false;
+                } else {
+                    e.preventDefault();
+                    var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
+                    periode;
+                    location.href = url;
+                }
             });
         });
     });

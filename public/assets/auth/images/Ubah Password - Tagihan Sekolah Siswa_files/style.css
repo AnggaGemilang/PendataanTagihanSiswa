@@ -17,14 +17,6 @@ body {
     Random
 ----------------------------------------------------- */
 
-.content-no-data
-{
-    min-height: 25vh; 
-    background: white; 
-    border-radius: 15px;
-    box-shadow: 1px 2px 14px rgba(0,0,0,0.1);
-}
-
 .breadcrumb {
     background-color: #EDE6F7 !important;
 }
@@ -378,19 +370,10 @@ option.greylight-bg:focus
     list-style: none;
 }
 
-.ubah-profil-btn
-{
-    background: #24143F; 
-    color: #ffffff; 
-    margin-top: 19px; 
-    box-shadow: 1px 3px 6px rgba(0,0,0,0.1); 
-    padding: 5px 35px;
-}
-
 .ubah-profil-btn:hover
 {
     cursor: pointer;
-    background: #563096 !important;
+    background: #008A85 !important;
 }
 
 #main-content

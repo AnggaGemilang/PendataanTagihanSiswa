@@ -245,7 +245,7 @@ if(\Request::is('/')) {
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<a id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</a>",
+                "<button disabled type='submit' id='gen' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</button>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,
@@ -281,22 +281,25 @@ if(\Request::is('/')) {
             $('.btn-generate').attr("jenis", jenis_filter);
 
             $('#' + jenis_filter).on('change', function () {
-                periode = $(this).children("option:selected").val();
-                jenis_filter = $('.btn-generate').attr('jenis');
-            });
+                if ($(this).children("option:selected").val() == '') {
+                    $('#gen').attr('disabled');
+                } else if ($(this).children("option:selected").val() != '') {
+                    $('#gen').removeAttr('disabled');
+                    periode = $(this).children("option:selected").val();
+                    jenis_filter = $('.btn-generate').attr('jenis');
+                }
 
-            $('a#gen').on('click', function(e) {
-                if ($('#jenis_filter').children("option:selected").val() == '') {
+            });
+            $('#gen').on('click', function(e) {
+                if ($('#' + jenis_filter).val() == '') {
                     e.preventDefault();
-                    toastr.error("Gagal", "Cuk", {
+                    toastr.error("Mohon Lengkapi Form!", "Generate Gagal", {
                         "showMethod": "slideDown",
                         "hideMethod": "slideUp",
                         timeOut: 3000
                     });
                     return false;
-                    console.log('agagal');
                 } else {
-                    console.log('bnerhasil');
                     e.preventDefault();
                     var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
                     periode;
