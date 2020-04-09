@@ -55,14 +55,14 @@
     </div>
 
     @if(Auth::User()->role_id=="1")
-    <div class="row m-1" id="wrapper-history">
-        @if($history->count()==0)
-        <div class="container-fluid mt-3">
-            <div class="row d-flex justify-content-center align-content-center content-no-data" style="min-height: 47vh;">
-                <h4>TIdak Ada Data</h4>
-            </div>
+    @if($history->count()==0)
+    <div class="container-fluid mt-3">
+        <div class="row d-flex justify-content-center align-content-center content-history-no-data">
+            <h4>TIdak Ada Data</h4>
         </div>
-        @else
+    </div>
+    @else
+    <div class="row m-1" id="wrapper-history">
         @foreach ($history_siswa as $h)
         <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
             <div class="row">
@@ -81,14 +81,14 @@
 
     @else
 
-    <div class="row m-1" id="wrapper-history">
-        @if($history->count()==0)
-        <div class="container-fluid mt-3">
-            <div class="row d-flex justify-content-center align-content-center content-no-data" style="min-height: 47vh;">
-                <h4>TIdak Ada Data</h4>
-            </div>
+    @if($history->count()==0)
+    <div class="container-fluid mt-3">
+        <div class="row d-flex justify-content-center align-content-center content-history-no-data">
+            <h4>TIdak Ada Data</h4>
         </div>
-        @else
+    </div>
+    @else
+    <div class="row m-1" id="wrapper-history">
         @foreach ($history as $h)
         <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
             <div class="row">

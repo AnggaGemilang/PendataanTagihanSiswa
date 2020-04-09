@@ -72,14 +72,14 @@
                     @endforeach
                 </tbody>
             </table>
-            @if($petugas->count()==0)
-            <div class="container-fluid mt-3">
-                <div class="row d-flex justify-content-center align-content-center content-no-data" style="min-height: 41vh;">
-                    <h4>TIdak Ada Data</h4>
-                </div>
-            </div>
-            @endif
         </div>
+        @if($petugas->count()==0)
+        <div class="container-fluid mt-3">
+            <div class="row d-flex justify-content-center align-content-center kelola-data-no-data">
+                <h4>TIdak Ada Data</h4>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 

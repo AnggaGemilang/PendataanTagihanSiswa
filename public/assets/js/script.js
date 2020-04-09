@@ -1,97 +1,53 @@
 /* ---------------------------------------------------
     SIDEBAR COLLAPSE
 ----------------------------------------------------- */
-
-$(document).ready(function() {
-    // run test on initial page load
-    checkSize();
-
-    // run test on resize of the window
-    $(window).resize(checkSize);
-});
-
-//Function to the css rule
-function checkSize(){
-    // $('#sidebar').attr('style', 'min-width: 80px; max-width: 80px; text-align: center; margin-left: -80px !important;');
-    // $('.navbar.top').attr('style', 'left: 0px !important;');
-    // $('#content-section').attr('style', 'width: 100%; margin-left: 0px !important; position: relative; min-height: 100vh; transition: all 0.3s; padding-bottom: 80px;');
-
-    // $('.navbar.top').attr('style', 'padding: 15px 10px; border: none; border-radius: 0; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); background: #FFFFFF !important; position: fixed !important; position: fixed !important; right: 0px; transition: all 0.3s; left: 250px; z-index: 999;');
-    // $('#content-section').attr('style', 'width: 100%; margin-left: 250px; position: relative; min-height: 100vh; transition: all 0.3s; padding-bottom: 80px;');
-    // $('#sidebar').attr('style', 'min-width: 250px; max-width: 250px; background: #2C2E3E; color: #fff; min-height: 100% !important; transition: all 0.3s; position: fixed; z - index: 999;');
-
-    if ($("#tanda-responsive").css("display") == "none" ){
-        console.log('leungit');
-        $('#sidebarCollapse').on('click', function () {
-            if ($('#content-section').hasClass('status-actived')) {
-                $('#content-section').removeClass('status-actived');
-                $('#content-section').attr('style', 'margin-left: 0px !important;');
-                $('nav.navbar.top').attr('style', 'left: 0px !important;');
-            } else {
-                $('#content-section').addClass('status-actived');
-                $('#content-section').attr('style','margin-left: 80px !important;');
-                $('nav.navbar.top').attr('style','left: 80px !important;');
-                $('#profil-list > a > h6').hide();
-                $('#item-list > a > span').hide();
-                $('.child-item-list > li > a > span').hide();
-                $('[data-toggle="tooltip"]').tooltip('enable');
-                $('#item-list > a > i').css('width', '37px');
-                $('.child-item-list > li > a > i').css('width', '36px');
-            }
-        });
-    } else {
-        console.log('muncul');
+$('#profil-list > a > h6').show();
+$('#item-list > a > span').show();
+$('#sidebarCollapse').on('click', function () {
+    if ($('#content-section').hasClass('status-actived')) {
+        $('#content-section').css('margin-left', '250px');
+        $('nav.navbar.top').css('left', '250px');
+        $('#content-section').removeClass('status-actived');
         $('#profil-list > a > h6').show();
         $('#item-list > a > span').show();
-        $('#sidebarCollapse').on('click', function () {
-            if ($('#content-section').hasClass('status-actived')) {
-                $('#content-section').css('margin-left', '250px');
-                $('nav.navbar.top').css('left', '250px');
-                $('#content-section').removeClass('status-actived');
-                $('#profil-list > a > h6').show();
-                $('#item-list > a > span').show();
-                $('#item-list > a > i').css('width', '18px');
-                $('.child-item-list > li > a > span').show();
-                $('.child-item-list > li > a > i').css('width', '18px');
-                $('[data-toggle="tooltip"]').tooltip('disable')
-            } else {
-                $('#content-section').css('margin-left', '80px');
-                $('nav.navbar.top').css('left', '80px');
-                $('#content-section').addClass('status-actived');
-                $('#profil-list > a > h6').hide();
-                $('#item-list > a > span').hide();
-                $('#item-list > a > i').css('width', '37px');
-                $('.child-item-list > li > a > span').hide();
-                $('.child-item-list > li > a > i').css('width', '36px');
-                $('[data-toggle="tooltip"]').tooltip('enable');
-            }
-        });
+        $('#item-list > a > i').css('width', '18px');
+        $('.child-item-list > li > a > span').show();
+        $('.child-item-list > li > a > i').css('width', '18px');
+        $('[data-toggle="tooltip"]').tooltip('disable')
+    } else {
+        $('#content-section').css('margin-left', '80px');
+        $('nav.navbar.top').css('left', '80px');
+        $('#content-section').addClass('status-actived');
+        $('#profil-list > a > h6').hide();
+        $('#item-list > a > span').hide();
+        $('#item-list > a > i').css('width', '37px');
+        $('.child-item-list > li > a > span').hide();
+        $('.child-item-list > li > a > i').css('width', '36px');
+        $('[data-toggle="tooltip"]').tooltip('enable');
     }
-}
+});
 
 /* ---------------------------------------------------
     DROPDOWN BUTTON OPTION
 ----------------------------------------------------- */
 
-$(document).click(function(){
-    if($('#btn-dropdownnavbar').hasClass('status'))
-    {
+$(document).click(function () {
+    if ($('#btn-dropdownnavbar').hasClass('status')) {
         $('#btn-dropdownnavbar').removeClass('status');
         $(".dropdown-navbar-status").fadeOut();
         return false;
-    } else if ($('.btn-toggle-option').hasClass('status_edit'))
-    {
+    } else if ($('.btn-toggle-option').hasClass('status_edit')) {
         $('.btn-toggle-option').removeClass('status_edit');
         $(".dropdown-detail").fadeOut();
         return false;
-    } 
+    }
 });
 
-$('.dropdown-navbar-status').click(function(e){
+$('.dropdown-navbar-status').click(function (e) {
     e.stopPropagation();
 });
 
-$(".dropdown-detail").click(function(e){
+$(".dropdown-detail").click(function (e) {
     e.stopPropagation();
 });
 
@@ -290,23 +246,23 @@ tail.select(".select-move", {
     SET 0 VALUE ON BUTTON
 ----------------------------------------------------- */
 
-$('.date_picker').focus(function(){
-    $('button.btn-times').fadeIn().click(function(){
+$('.date_picker').focus(function () {
+    $('button.btn-times').fadeIn().click(function () {
         $('.date_picker').val('').change().focusout();
     });
 });
 
-$('.date_picker').focusout(function(){
+$('.date_picker').focusout(function () {
     $('.btn-times').fadeOut();
 });
 
-$('.input-toggle-times').focus(function(){
-    $('.btn-times2').fadeIn().click(function(){
+$('.input-toggle-times').focus(function () {
+    $('.btn-times2').fadeIn().click(function () {
         $('.input-toggle-times').val('').trigger('keyup');
     });
 });
 
-$('.input-toggle-times').focusout(function(){
+$('.input-toggle-times').focusout(function () {
     $('.btn-times2').fadeOut();
 });
 
