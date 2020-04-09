@@ -33,7 +33,7 @@
     </div>
 
     @if($history_siswa->count()==0)
-    <div class="container-fluid mt-3">
+    <div class="container-fluid mt-3 wrapper-content-no-data">
         <div class="row d-flex justify-content-center align-content-center content-no-data">
             <h4>TIdak Ada Data</h4>
         </div>
@@ -79,8 +79,8 @@
         <h3>History Pembayaran</h3>
     </div>
 
-    @if($history_siswa->count()==0)
-    <div class="container-fluid mt-3">
+    @if($history->count()==0)
+    <div class="container-fluid mt-3 wrapper-content-no-data">
         <div class="row d-flex justify-content-center align-content-center content-no-data">
             <h4>TIdak Ada Data</h4>
         </div>
@@ -110,86 +110,119 @@
 
 @push('extras-css')
 <style>
+    .content-no-data {
+        top: 490px;
+        bottom: 105px;
+        left: 44px;
+        right: 45px;
+        min-height: 98px;
+        position: absolute;
+        background: #FAFAFA !important;
+        border-radius: 15px;
+        box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper-content-no-data {
+        margin-bottom: 130px !important;
+    }
+
     @media (max-width: 865px) {
-        .row > .col.atas
-        {
+        .content-no-data {
+            min-width: 270px !important;
+            top: 665px !important;
+            bottom: 400px !important;
+        }
+
+        .wrapper-content-no-data {
+            margin-bottom: 110px !important;
+        }
+
+        .row>.col.atas {
             flex: 0 0 100%;
         }
 
-        .row > .col.atas:last-child
-        {
+        .row>.col.atas:last-child {
             margin-top: 20px !important;
             margin-left: 0px !important;
         }
 
-        .info-content
-        {
+        .info-content {
             margin-top: 14px;
             margin-bottom: -6px;
         }
 
-        .info-content > p
-        {
+        .info-content>p {
             margin-bottom: 0px !important;
         }
     }
 
+    @media (max-width: 663px) {
+        .wrapper-content-no-data {
+            margin-bottom: 130px !important;
+        }
+
+        #content-section {
+            padding-bottom: 50px !important;
+        }
+    }
+
     @media (max-width: 556px) {
-        .row.atas-siswa > .col
-        {
+        .row.atas-siswa>.col {
             flex: 0 0 100%;
         }
 
-        .row.atas-siswa > .col:nth-child(2)
-        {
+        .row.atas-siswa>.col:nth-child(2) {
             margin-top: -5px;
             margin-left: 7px;
         }
 
-        .row.atas-siswa > .col > h4
-        {
+        .row.atas-siswa>.col>h4 {
             margin-bottom: 0px !important;
             float: left !important;
         }
     }
 
     @media (max-width: 468px) {
-        #item-history > h4
-        {
+        #item-history>h4 {
             margin-bottom: 0px !important;
         }
 
-        #item-history > h3
-        {
+        #item-history>h3 {
             margin-top: 0px !important;
             margin-bottom: 0px !important;
         }
-        
-        .row > .col.bawah
-        {
+
+        .row>.col.bawah {
             flex: 0 0 100%;
         }
 
-        .row > .col.bawah > p
-        {
+        .row>.col.bawah>p {
             margin-bottom: 5px !important;
         }
 
-        .row > .col.bawah:nth-child(2) > p
-        {
+        .row>.col.bawah:nth-child(2)>p {
             margin-top: -2px !important;
         }
 
-        p.kekiri
-        {
+        p.kekiri {
             float: left !important;
         }
     }
 
     @media (max-width: 431px) {
-        .row > .col.atas > img
-        {
+        .row>.col.atas>img {
             display: none;
+        }
+    }
+
+    @media (max-width: 335px) {
+        .content-no-data {
+            top: 690px !important;
+            bottom: 210px !important;
+        }
+
+        .wrapper-content-no-data {
+            margin-bottom: 120px !important;
         }
     }
 </style>
@@ -232,6 +265,5 @@
             }
         });
     });
-
 </script>
 @endpush

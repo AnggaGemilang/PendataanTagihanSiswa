@@ -4,7 +4,7 @@
 @section('content')
 
 <div id="particles-js">
-    <div class="container">
+    <div class="container" id="main-content">
         <div class="row img-logo justify-content-center mb-5">
             <img src="{{ asset('assets') }}/auth/images/smkn4-logo.png" alt="">
         </div>
@@ -30,9 +30,9 @@
                     </div>
                 </div>
                 
-                <div class="row d-flex justify-content-left mt-2 pt-1">
+                <div class="row m-2 d-flex justify-content-left mt-2 pt-1">
                     <div class="form-group w-100 position-relative">
-                        <label class="wrapper-checkbox" style="color: #9389B8; font-size: 14px; font-weight: 500;">Ingat Saya?
+                        <label class="wrapper-checkbox position-relative" style="color: #9389B8; font-size: 14px; font-weight: 500;">Remember Me?
                             <input type="checkbox" style="width: 10px; !important;">
                             <span class="checkmark"></span>
                           </label>

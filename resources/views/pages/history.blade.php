@@ -29,9 +29,10 @@
         <div class="col-md-6">
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
-                <input type="text" class="form-control pl-5 input-toggle-times" name="filter_history" id="filter_history" aria-describedby="helpId" placeholder="Cari Pembayaran Siswa Disini . . ."
-                style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
-                    <button class="btn-times2"><i class="fa fa-times"></i></button>
+                <input type="text" class="form-control pl-5 input-toggle-times" name="filter_history"
+                    id="filter_history" aria-describedby="helpId" placeholder="Cari Pembayaran Siswa Disini . . ."
+                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="col-md-3 pl-0">
@@ -49,14 +50,14 @@
             <div class="form-group position-relative">
                 <input type="text" id="filter_tanggal" placeholder="Tanggal" class="date_picker w-100"
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 2px; height: 38px; outline: none; padding-left: 20px;">
-                    <button class="btn-times"><i class="fa fa-times"></i></button>
+                <button class="btn-times"><i class="fa fa-times"></i></button>
             </div>
         </div>
     </div>
 
     @if(Auth::User()->role_id=="1")
     @if($history->count()==0)
-    <div class="container-fluid mt-3">
+    <div class="container-fluid mt-3 wrapper-content-history-no-data">
         <div class="row d-flex justify-content-center align-content-center content-history-no-data">
             <h4>TIdak Ada Data</h4>
         </div>
@@ -82,7 +83,7 @@
     @else
 
     @if($history->count()==0)
-    <div class="container-fluid mt-3">
+    <div class="container-fluid mt-3 wrapper-content-history-no-data">
         <div class="row d-flex justify-content-center align-content-center content-history-no-data">
             <h4>TIdak Ada Data</h4>
         </div>
@@ -115,7 +116,33 @@
 
 @push('extras-css')
 <style>
+    .content-history-no-data {
+        top: 300px;
+        min-height: 100px;
+        bottom: 100px;
+        position: absolute;
+        left: 40px;
+        right: 40px;
+        background: #FAFAFA !important;
+        border-radius: 15px;
+        box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper-history-content-no-data {
+        margin-bottom: 130px !important;
+    }
+
     @media (max-width: 808px) {
+        .content-history-no-data {
+            min-width: 270px !important;
+            top: 370px !important;
+            bottom: 95px !important;
+        }
+
+        .wrapper-history-content-no-data {
+            margin-bottom: 110px !important;
+        }
+
         .row.paling-atas>.col-9 {
             flex: 0 0 100%;
             max-width: 100%;
@@ -127,6 +154,22 @@
             padding-left: 15px !important;
             flex: 0 0 100% !important;
             max-width: 100% !important;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .row.mt-3>.col-md-3 {
+            margin-left: 15px;
+        }
+
+        .content-history-no-data {
+            min-width: 270px !important;
+            top: 480px !important;
+            bottom: 95px !important;
+        }
+
+        .wrapper-history-content-no-data {
+            margin-bottom: 110px !important;
         }
     }
 
@@ -153,9 +196,27 @@
         }
     }
 
-    @media (max-width: 767px) {
-        .row.mt-3>.col-md-3 {
-            margin-left: 15px;
+    @media (max-width: 462px) {
+        .content-history-no-data {
+            min-width: 270px !important;
+            top: 530px !important;
+            bottom: 95px !important;
+        }
+
+        .wrapper-history-content-no-data {
+            margin-bottom: 110px !important;
+        }
+    }
+
+    @media (max-width: 358px) {
+        .content-history-no-data {
+            min-width: 270px !important;
+            top: 550px !important;
+            bottom: 95px !important;
+        }
+
+        .wrapper-history-content-no-data {
+            margin-bottom: 110px !important;
         }
     }
 </style>
@@ -163,7 +224,6 @@
 
 @push('extras-js')
 <script>
-    
     $(function () {
         $('.date_picker').datepicker({
             format: "yyyy-mm-dd",
@@ -301,7 +361,7 @@
                 }
 
             });
-            $('#gen').on('click', function(e) {
+            $('#gen').on('click', function (e) {
                 if ($('#' + jenis_filter).val() == '') {
                     e.preventDefault();
                     toastr.error("Mohon Lengkapi Form!", "Generate Gagal", {
@@ -313,7 +373,7 @@
                 } else {
                     e.preventDefault();
                     var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
-                    periode;
+                        periode;
                     location.href = url;
                 }
             });

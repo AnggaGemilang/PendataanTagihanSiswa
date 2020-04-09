@@ -17,34 +17,11 @@ body {
     Random
 ----------------------------------------------------- */
 
-.content-no-data
-{
-    top: 490px;
-    bottom: 105px;
-    left: 50px; 
-    right: 50px;
-    position: absolute;
-    background: #FAFAFA !important; 
-    border-radius: 15px;
-    box-shadow: 0px 1px 20px rgba(0,0,0,0.1);
-}
-
-.content-history-no-data
-{
-    top: 300px; 
-    bottom: 100px; 
-    position: absolute; 
-    left: 40px; 
-    right: 40px; 
-    background: #FAFAFA !important; 
-    border-radius: 15px; 
-    box-shadow: 0px 1px 20px rgba(0,0,0,0.1);
-}
-
 .kelola-data-no-data
 {
     top: 380px; 
     bottom: 100px; 
+    min-height: 100px;
     position: absolute; 
     left: 40px; 
     right: 40px; 
@@ -566,7 +543,7 @@ a.article:hover {
     position: relative;
     min-height: 100vh;
     transition: all 0.3s;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 #main-content
@@ -680,15 +657,5 @@ a.article:hover {
     .container-fluid > .col.footer:nth-child(2)
     {
         margin-top: 5px;
-    }
-
-    #content-section {
-        padding-bottom: 110px !important;
-    }
-}
-
-@media(max-width: 341px) {
-    #content-section {
-        padding-bottom: 130px !important;
     }
 }

@@ -235,6 +235,7 @@ class SiswaController extends Controller
         $siswa->delete();
         $auth = Autentikasi::where('siswa_id',$id)->first()->delete();
         $tagihan = Tagihan::where('siswa_id',$id)->get()->each->delete();
+        $pembayaran = Pembayaran::where('siswa_id',$id)->get()->each->delete();
 
         return redirect()->back();
     }

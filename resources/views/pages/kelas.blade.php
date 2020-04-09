@@ -77,7 +77,7 @@
             </table>
         </div>
         @if($kelas->count()==0)
-        <div class="container-fluid mt-3">
+        <div class="container-fluid mt-3 wrapper-kelola-data-no-data">
             <div class="row d-flex justify-content-center align-content-center kelola-data-no-data">
                 <h4>TIdak Ada Data</h4>
             </div>
@@ -100,14 +100,30 @@
         min-width: 115px !important;
     }
 
-    @media (max-width: 768px) {
-        .row.mt-4 > .col-md-3
-        {
+    @media (max-width: 769px) {
+        .row.mt-4>.col-md-3 {
+            flex: 0 0 98%;
+            max-width: 98%;
             margin-left: 15px;
+        }
+
+        .row.mt-4>.col-md-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .kelola-data-no-data {
+            min-width: 270px !important;
+            top: 465px !important;
+            bottom: 90px !important;
+        }
+
+        .wrapper-kelola-data-no-data {
+            margin-bottom: 110px !important;
         }
     }
 
-    @media (max-width: 806px) {
+    @media (max-width: 846px) {
         td > a
         {
             margin-top: 5px;
@@ -119,6 +135,18 @@
         {
             margin-left: 4px;
             width: 70px;
+        }
+    }
+
+    @media (max-width: 571px) {
+        .kelola-data-no-data {
+            min-width: 270px !important;
+            top: 488px !important;
+            bottom: 90px !important;
+        }
+
+        .wrapper-kelola-data-no-data {
+            margin-bottom: 110px !important;
         }
     }
 </style>

@@ -81,7 +81,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <label for="profil" class="btn ubah-profil-btn mr-3">Ubah
-                        Profil</label>
+                        Foto</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
                 </div>
@@ -126,7 +126,7 @@
             <div class="row mb-2 ml-3 mr-3 mt-2">
                 <button type="submit" class="btn mt-3 w-100 mb-5"
                     style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
-                    Data</button>
+                    Profil</button>
             </div>
         </form>
 
@@ -181,7 +181,7 @@
                     <div class="row justify-content-center">
                         <label for="profil" class="btn ubah-profil-btn mr-3"
                         style="background: #24143F; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
-                        Profil</label>
+                        Foto</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
                 </div>
@@ -202,7 +202,7 @@
             <div class="row ml-3 mr-3 mt-2">
                 <button type="submit" class="btn mt-3 w-100 mb-5"
                     style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
-                    Data <i class="fas fa-save pl-2"></i></button>
+                    Profil <i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
 
