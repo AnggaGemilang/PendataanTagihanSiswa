@@ -1,17 +1,16 @@
 @extends('layouts.layout')
 @section('title')
-{{ $tagihan[0]->tipetagihan->nama_tagihan }}
+{{ $tipetagihan->nama_tagihan }}
 @endsection
 
 @section('content')
 
 <div id="main-content">
-    <h1>{{ $tagihan[0]->tipetagihan->nama_tagihan }}</h1>
+    <h1>Daftar Tagihan {{ $tipetagihan->nama_tagihan }}</h1>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('/data/tagihan')}}">Tagihan</a>
-        <a class="breadcrumb-item"
-            href="{{url('/data/tagihan/detail/'.$tagihan[0]->tipetagihan->slug.'/'.$tagihan[0]->tipetagihan->id)}}">{{ $tagihan[0]->tipetagihan->nama_tagihan }}</a>
+        <a class="breadcrumb-item" href="{{url('/data/tipetagihan')}}">Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('/data/tipetagihan/detail/'. $tipetagihan->slug.'/'. $tipetagihan->id)}}">{{ $tipetagihan->nama_tagihan }}</a>
         <span class="breadcrumb-item active"></span>
     </nav>
 
@@ -59,6 +58,7 @@
                         <th>Sudah Dibayar</th>
                         <th>Sisa Tagihan</th>
                         <th>Keterangan</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody align="center">
@@ -74,6 +74,14 @@
                         <td>{{ $t->sudah_dibayar }}</td>
                         <td>Rp. {{ $t->tipetagihan->nominal - $t->sudah_dibayar }}</td>
                         <td>@if($t->keterangan=="blm_lunas") Belum Lunas @else Sudah Lunas @endif</td>
+                        <td>
+                            <button type="button" data-url="{{ url('data/tagihan/hapus/' . $t->id ) }}"
+                                class="btn btn-danger text-light" id="btn-hapus"
+                                style="padding: 4px 11px; font-size: 14.5px;"><i class="fas fa-trash-alt"></i></button>
+                            <a href="{{ url('data/tagihan/perbaharui/' . $t->id ) }}"
+                                class="btn btn-success text-light"
+                                style="padding: 4px 9.5px; font-size: 14.5px;"><i class="fas fa-pen"></i></a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

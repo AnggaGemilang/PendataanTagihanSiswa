@@ -20,7 +20,6 @@ class CreatePetugasTable extends Migration
             $table->string('slug', 200);
             $table->string('profil')->nullable();
             $table->integer('role_id');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

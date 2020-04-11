@@ -23,8 +23,6 @@ class CreateSiswasTable extends Migration
             $table->string('no_telp', 13)->nullable();
             $table->string('profil');
             $table->integer('role_id');
-            $table->integer('tipekelas_id');
-            $table->softDeletes()->nullable();
             $table->timestamps();
         });
     }

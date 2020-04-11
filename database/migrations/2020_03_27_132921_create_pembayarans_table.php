@@ -22,7 +22,6 @@ class CreatePembayaransTable extends Migration
             $table->integer('kelas_id')->unsigned();
             $table->integer('petugas_id')->unsigned();
             $table->integer('tagihan_id')->unsigned();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

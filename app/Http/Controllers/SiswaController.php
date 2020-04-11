@@ -81,7 +81,7 @@ class SiswaController extends Controller
             $constraint->aspectRatio();
         })->save($path.$nama_gambar);
 
-        $tipekelas_id = Kelas::find($request->kelas_id)->tipekelas->id;
+        // $tipekelas_id = Kelas::find($request->kelas_id)->tipekelas->id;
 
         $siswa = new Siswa;
         $siswa->nisn = $request->nisn;
@@ -90,7 +90,7 @@ class SiswaController extends Controller
         $siswa->alamat = $request->alamat;
         $siswa->no_telp = $request->no_telp;
         $siswa->kelas_id = $request->kelas_id;
-        $siswa->tipekelas_id = $tipekelas_id;
+        // $siswa->tipekelas_id = $tipekelas_id;
         $siswa->profil = $nama_gambar;
         $siswa->role_id = 1;
         $siswa->save();

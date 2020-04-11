@@ -63,12 +63,16 @@ Route::group(['middleware' => ['auth','roleMiddleware:2']], function(){
     Route::post('data/petugas/perbaharui/{slug}/{id}/store', 'PetugasController@update')->name('perbaharui_petugas_store');
     Route::post('data/petugas/hapus/{id}', 'PetugasController@destroy')->name('hapus_petugas_store');
 
-    Route::get('data/tagihan', 'TagihanController@index')->name('tagihan');
-    Route::get('data/tagihan/detail/{slug}/{id}', 'TagihanController@detail')->name('detail_tagihan');
-    Route::get('data/tagihan/tambah', 'TagihanController@tambah')->name('tambah_tagihan');
-    Route::post('data/tagihan/tambah/store/{kelas_id}/{tipetagihan_id}', 'TagihanController@store')->name('tambah_tagihan_store');
-    Route::get('data/tagihan/perbaharui/{slug}', 'TagihanController@showupdate')->name('perbaharui_tagihan');
-    Route::post('data/tagihan/perbaharui/{slug}/store', 'TagihanController@update')->name('perbaharui_tagihan_store');
+    Route::get('data/tipetagihan', 'TipeTagihanController@index')->name('tipetagihan');
+    Route::get('data/tipetagihan/detail/{slug}/{id}', 'TipeTagihanController@detail')->name('detail_tipetagihan');
+    Route::get('data/tipetagihan/tambah', 'TipeTagihanController@tambah')->name('tambah_tipetagihan');
+    Route::post('data/tipetagihan/tambah/store/{kelas_id}/{tipetagihan_id}', 'TipeTagihanController@store')->name('tambah_tipetagihan_store');
+    Route::get('data/tipetagihan/perbaharui/{slug}', 'TipeTagihanController@showupdate')->name('perbaharui_tipetagihan');
+    Route::post('data/tipetagihan/perbaharui/{slug}/store', 'TipeTagihanController@update')->name('perbaharui_tipetagihan_store');
+    Route::post('data/tipetagihan/hapus/{id}', 'TipeTagihanController@destroy')->name('hapus_tipetagihan_store');
+
+    Route::get('data/tagihan/perbaharui/{id}', 'TagihanController@showUpdate')->name('perbaharui_tagihan');
+    Route::post('data/tagihan/perbaharui/{id}/store', 'TagihanController@update')->name('perbaharui_tagihan_store');
     Route::post('data/tagihan/hapus/{id}', 'TagihanController@destroy')->name('hapus_tagihan_store');
 
 });

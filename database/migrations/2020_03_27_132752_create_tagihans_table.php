@@ -19,7 +19,6 @@ class CreateTagihansTable extends Migration
             $table->bigInteger('tipetagihan_id')->unsigned();
             $table->bigInteger('sudah_dibayar')->unsigned();
             $table->enum('keterangan', ['lunas','blm_lunas']);
-            $table->softDeletes();
             $table->timestamps();
         });
     }

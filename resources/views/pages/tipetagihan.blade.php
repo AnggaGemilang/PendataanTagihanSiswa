@@ -4,10 +4,10 @@
 @section('content')
 
 <div id="main-content">
-    <h1>Data Tagihan</h1>
+    <h1>Data Jenis Tagihan</h1>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('/data/tagihan')}}">Data Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('/data/tipetagihan')}}">Data Jenis Tagihan</a>
         <span class="breadcrumb-item active"></span>
     </nav>
 
@@ -16,14 +16,14 @@
             <div class="form-group position-relative">
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
                 <input type="text" class="form-control pl-5 input-toggle-times" name="field_cari" id="field_cari"
-                    aria-describedby="helpId" placeholder="Cari Tagihan Disini . . ."
+                    aria-describedby="helpId" placeholder="Cari Jenis Tagihan Disini . . ."
                     style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
                 <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="col-md-3 pl-0">
-            <a type="button" href="{{url('/data/tagihan/tambah')}}" class="btn w-100"
-                style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Tagihan</a>
+            <a type="button" href="{{url('/data/tipetagihan/tambah')}}" class="btn w-100"
+                style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Data</a>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
                 <thead align="center">
                     <tr id="header-tr">
                         <th class="except" scope="col">No</th>
-                        <th scope="col">Nama Tagihan</th>
+                        <th scope="col">Nama Jenis Tagihan</th>
                         <th scope="col">Nominal</th>
                         <th scope="col">Aksi</th>
                     </tr>
@@ -43,15 +43,15 @@
                     $no = 1;
                     @endphp
                     @foreach ($tipetagihan as $t)
-                    <tr href="tagihan/detail/{{ $t->slug }}/{{ $t->id }}" id="row-main">
+                    <tr href="tipetagihan/detail/{{ $t->slug }}/{{ $t->id }}" id="row-main">
                         <th class="except" scope="row">{{$no++}}</th>
                         <td>{{ $t->nama_tagihan }}</td>
                         <td>Rp. {{ $t->nominal }}</td>
                         <td>
-                            <button type="button" data-url="{{ url('data/tagihan/hapus/' . $t->id) }}"
+                            <button type="button" data-url="{{ url('data/tipetagihan/hapus/' . $t->id) }}"
                                 class="btn btn-danger text-light" id="btn-hapus"
                                 style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
-                            <a href="{{ url('data/tagihan/perbaharui/' . $t->slug ) }}" class="btn btn-success"
+                            <a href="{{ url('data/tipetagihan/perbaharui/' . $t->slug ) }}" class="btn btn-success"
                                 style="padding: 4px 15px; font-size: 14.5px;">Edit</button>
                         </td>
                     </tr>

@@ -70,7 +70,7 @@ if(\Request::is('/')) {
                     <span>Home</span>
                 </a>
             </li>
-            <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }}" id="item-list">
+        <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }} {{ @$data_pembayaran }}" id="item-list">
                 <a href="#pageSubPembayaran" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-briefcase" style="width: 18px;"></i>
                     <span class="pembayaranSPP">Pembayaran</span>
@@ -141,10 +141,10 @@ if(\Request::is('/')) {
                         </a>
                     </li>
                     <li class="{{ @$data_tagihan }}">
-                        <a href="{{ url('/data/tagihan') }}" style="padding-left: 27px;" data-toggle="tooltip"
+                        <a href="{{ url('/data/tipetagihan') }}" style="padding-left: 27px;" data-toggle="tooltip"
                             data-placement="right" title="Data Tagihan">
                             <i class="fas fa-file-invoice-dollar" style="width: 18px;"></i>
-                            <span>Data Tagihan</span>
+                            <span>Jenis Tagihan</span>
                         </a>
                     </li>
                 </ul>

@@ -20,7 +20,6 @@ class CreateKelasTable extends Migration
             $table->string('slug', 200);
             $table->string('jurusan', 200);
             $table->string('wali_kelas', 200);
-            $table->softDeletes()->nullable();
             $table->timestamps();
         });
     }

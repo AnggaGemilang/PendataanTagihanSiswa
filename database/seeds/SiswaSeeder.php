@@ -23,7 +23,6 @@ class SiswaSeeder extends Seeder
             'kelas_id' => 1,
             'no_telp' => '083195008217',
             'profil' => '',
-            'tipekelas_id' => 1,
             'role_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

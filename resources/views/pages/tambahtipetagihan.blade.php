@@ -10,20 +10,20 @@
 
 <div id="main-content">
     @if ($status=='tambah')
-    <h1>Tambah Tagihan</h1>
+    <h1>Tambah Jenis Tagihan</h1>
     @else
-    <h1>Perbaharui Tagihan</h1>
+    <h1>Perbaharui Jenis Tagihan</h1>
     @endif
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('data/tagihan/')}}">Data Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('data/tipetagihan/')}}">Data Jenis Tagihan</a>
         @if ($status=='tambah')
-        <a class="breadcrumb-item" href="{{url('data/tagihan/tambah')}}">Tambah Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('data/tipetagihan/tambah')}}">Tambah Jenis Tagihan</a>
         @else
-        <a class="breadcrumb-item" href="{{url('data/tagihan/perbaharui/' . $tipetagihan->slug )}}">Perbaharui
-            Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('data/tipetagihan/perbaharui/' . $tipetagihan->slug )}}">Perbaharui
+            Jenis Tagihan</a>
         <a class="breadcrumb-item"
-            href="{{url('data/tagihan/perbaharui/' . $tipetagihan->slug )}}">{{ $tipetagihan->nama_tagihan }}</a>
+            href="{{url('data/tipetagihan/perbaharui/' . $tipetagihan->slug )}}">{{ $tipetagihan->nama_tagihan }}</a>
         @endif
         <span class="breadcrumb-item active"></span>
     </nav>
@@ -42,23 +42,27 @@
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
         <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
             @if($status=='tambah')
-            <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Tagihan</p>
+            <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Jenis Tagihan</p>
             @else
-            <p class="text-light m-0 pl-4" style="font-weight: 500;">Perbaharui Tagihan</p>
+            <p class="text-light m-0 pl-4" style="font-weight: 500;">Perbaharui Data Jenis Tagihan</p>
             @endif
         </div>
 
-        <form id="form-tambah-tagihan" @if($status=='tambah' ) action="" @else
-            action="{{ url('data/tagihan/perbaharui/' . $tipetagihan->slug . '/store') }}" @endif method="post">
+        <form id="form-tambah-tagihan" 
+        @if($status=='tambah') 
+        action="" 
+        @else
+        action="{{ url('data/tipetagihan/perbaharui/' . $tipetagihan->slug . '/store') }}" 
+        @endif method="post">
 
             {{ csrf_field() }}
 
             <div class="row m-3 mt-4 pt-2">
                 <div class="form-group w-100">
                     <label for="nama_tagihan" @if($status=="tambah" ) data-idtipetagihan="{{ $last_id->id+1 }}" @endif
-                        id="label_tipetagihan_id">Nama Tagihan</label>
+                        id="label_tipetagihan_id">Nama Jenis Tagihan</label>
                     <input type="text" class="form-control greylight-bg" name="nama_tagihan" id="nama_tagihan" required="required"
-                        aria-describedby="helpId" placeholder="Masukkan Nama Tagihan" @if($status=='update' )
+                        aria-describedby="helpId" placeholder="Masukkan Nama Jenis Tagihan" @if($status=='update' )
                         value="{{ $tipetagihan->nama_tagihan }}" @endif
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
@@ -88,8 +92,8 @@
             @endif
 
             <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">@if($status=='tambah')Tambah
-                    Tagihan @else Perbaharui Tagihan @endif<i class="fas fa-save pl-2"></i></button>
+                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">@if($status=='tambah')Tambah Jenis
+                    Tagihan @else Perbaharui Jenis Tagihan @endif<i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
 

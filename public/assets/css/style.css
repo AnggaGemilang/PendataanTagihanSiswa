@@ -397,6 +397,7 @@ option.greylight-bg:focus
 .ubah-profil-btn:hover
 {
     cursor: pointer;
+    color: white !important;
     background: #563096 !important;
 }
 

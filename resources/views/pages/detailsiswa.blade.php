@@ -178,6 +178,13 @@
         <h3>History Pembayaran</h3>
     </div>
 
+    @if($history->count()==0)
+    <div class="container-fluid mt-3 wrapper-detail-content-no-data">
+        <div class="row d-flex p-5 justify-content-center align-content-center detail-content-no-data">
+            <p style="font-size: 18px;">TIdak Ada Data</p>
+        </div>
+    </div>
+    @else    
     @foreach ($history as $h)
     <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
         <div class="row">
@@ -191,6 +198,7 @@
         <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
     </div>
     @endforeach
+    @endif
 
     @endif
 
