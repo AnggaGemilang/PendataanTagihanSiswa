@@ -2,25 +2,28 @@
     SIDEBAR COLLAPSE RESPONSIVE
 ----------------------------------------------------- */
 
-jQuery(function($){
+jQuery(function ($) {
     var i = 1;
     var clickAllowed = true;
-    var widthWindow = 0;
+    var changeAllowed = true;
+    var widthWindow = $(window).width();
 
-    $('#sidebarCollapse').click(function(){
-        if(clickAllowed) {
+    $('#sidebarCollapse').click(function () {
+        if (clickAllowed) {
             console.log("klik" + widthWindow);
-            if(widthWindow <= 1127)
-            {
+            if (widthWindow <= 1127) {
                 if ($(this).hasClass('status-actived')) {
                     $(this).removeClass('status-actived');
                     $('#content-section').attr('style', 'margin-left: 0px !important;');
                     $('nav.navbar.top').attr('style', 'left: 0px !important;');
+                    $('#sidebar').attr('style','left: 0;');
+                    $('[data-toggle="tooltip"]').tooltip('disable');
                     console.log('hilang-hapus');
                 } else {
                     $(this).addClass('status-actived');
-                    $('#content-section').attr('style','margin-left: 80px !important;');
-                    $('nav.navbar.top').attr('style','left: 80px !important;');
+                    $('#content-section').attr('style', 'margin-left: 80px !important;');
+                    $('#sidebar').attr('style','left: 80px;');
+                    $('nav.navbar.top').attr('style', 'left: 80px !important;');
                     $('.child-item-list > li > a > span').hide();
                     $('[data-toggle="tooltip"]').tooltip('enable');
                     $('#item-list > a > i').css('width', '37px');
@@ -28,10 +31,9 @@ jQuery(function($){
                     console.log('hilang-tambah');
                 }
             } else {
-                if($(this).hasClass('status-actived'))
-                {
+                if ($(this).hasClass('status-actived')) {
                     $(this).removeClass('status-actived');
-                    $('#content-section').attr('style','margin-left: 250px !important;');
+                    $('#content-section').attr('style', 'margin-left: 250px;');
                     $('nav.navbar.top').css('left', '250px');
                     $('#item-list > a > i').css('width', '18px');
                     $('.child-item-list > li > a > span').show();
@@ -42,7 +44,7 @@ jQuery(function($){
                     console.log('muncul-hapus');
                 } else {
                     $(this).addClass('status-actived');
-                    $('#content-section').attr('style','margin-left: 80px !important;');
+                    $('#content-section').attr('style', 'margin-left: 80px;');
                     $('nav.navbar.top').css('left', '80px');
                     $('#item-list > a > i').css('width', '37px');
                     $('.child-item-list > li > a > span').hide();
@@ -54,26 +56,30 @@ jQuery(function($){
                 }
             }
         }
-    }); 
+    });
 
-    onResize = function() {
-        if($(window).width() <= 1127){
+    onResize = function () {
+        if ($(window).width() <= 1127) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
+            $('#profil-list > a > h6').hide();
+            $('#item-list > a > span').hide();
             console.log("dibawah");
-        } else if ($(window).width() >= 1127){
+        } else if ($(window).width() >= 1127) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
+            $('#sidebar').attr('style','left:0 !important;');
+            $('#profil-list > a > h6').show();
+            $('#item-list > a > span').show();
             console.log("diatas");
-        }
-        else{
+        } else {
             clickAllowed = false;
             console.log(clickAllowed);
         }
 
-        console.log('resize: '+ i);
+        console.log('resize: ' + i);
         i++;
     }
 

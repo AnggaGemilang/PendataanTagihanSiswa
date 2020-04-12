@@ -389,6 +389,12 @@ option.greylight-bg:focus {
     max-width: 250px;
     background: #24143F;
     color: #fff;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    left: 0;
+    margin-left: 0px !important;
     min-height: 100% !important;
     transition: all 0.3s;
     position: fixed;
@@ -528,6 +534,10 @@ a.article:hover {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
+@media (max-width: 1870px) {
+
+}
+
 @media (max-width: 1127px) {
 
     #profil-list>a>h6,
@@ -540,15 +550,7 @@ a.article:hover {
     #sidebar {
         min-width: 80px;
         max-width: 80px;
-        text-align: center;
-        top: 0;
-        bottom: 0;
         margin-left: -80px !important;
-    }
-
-    #sidebar:not(.sidebar-header) {
-        overflow-y: auto;
-        overflow-x: hidden;
     }
 
     .navbar.top {
@@ -573,9 +575,9 @@ a.article:hover {
         transform: translateX(50%);
     }
 
-    #sidebar.active {
+    /* #sidebar.active {
         margin-left: 0 !important;
-    }
+    } */
 
     #sidebar .sidebar-header h3,
     #sidebar .CTAs {

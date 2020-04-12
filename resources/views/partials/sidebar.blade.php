@@ -180,6 +180,10 @@ if(\Request::is('/')) {
     var periode;
     var jenis_filter;
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' });
+    })
+
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
@@ -318,16 +322,15 @@ if(\Request::is('/')) {
     }
 
     #sidebar::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px darkgray;
-        border-radius: 10px;
+        border-radius: 200px;
     }
 
     #sidebar::-webkit-scrollbar-thumb {
-        background: darkgray;
-        border-radius: 10px;
+        background: #939393;
+        border-radius: 200px;
     }
 
     #sidebar::-webkit-scrollbar-thumb:hover {
-        background: #939393;
+        background: darkgray;
     }
 </style>
