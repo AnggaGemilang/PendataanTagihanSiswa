@@ -5,7 +5,7 @@
 
 <div id="main-content">
     <div class="row paling-atas">
-        <div @if(Auth::User()->role_id=="1" || Auth::User()->role_id=="3") class="col-12" @else class="col-9" @endif>
+        <div class="col-12">
             <h1>History Pembayaran</h1>
             <nav class="breadcrumb">
                 <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
@@ -13,15 +13,6 @@
                 <span class="breadcrumb-item active"></span>
             </nav>
         </div>
-        @if(Auth::User()->role_id=="2")
-        <div class="col-3 pl-0 d-flex justify-content-center align-items-center mt-4 pt-3">
-            <button type="button" class="btn w-100" id="btn-generate" data-baseurl="{{ url('/') }}"
-                style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 47px;">
-                Generate Report
-                <i class="ml-2 fas fa-file-download"></i>
-            </button>
-        </div>
-        @endif
     </div>
     <div class="clearfix"></div>
 
@@ -106,9 +97,7 @@
         @endforeach
         @endif
     </div>
-
     @endif
-
 </div>
 
 @include('partials.footer')
@@ -116,6 +105,11 @@
 
 @push('extras-css')
 <style>
+    #content
+    {
+        padding-bottom: 90px !important;
+    }
+
     .content-history-no-data {
         top: 300px;
         min-height: 100px;
@@ -133,16 +127,6 @@
     }
 
     @media (max-width: 808px) {
-        .content-history-no-data {
-            min-width: 270px !important;
-            top: 370px !important;
-            bottom: 95px !important;
-        }
-
-        .wrapper-history-content-no-data {
-            margin-bottom: 110px !important;
-        }
-
         .row.paling-atas>.col-9 {
             flex: 0 0 100%;
             max-width: 100%;
@@ -164,7 +148,7 @@
 
         .content-history-no-data {
             min-width: 270px !important;
-            top: 480px !important;
+            top: 415px !important;
             bottom: 95px !important;
         }
 
@@ -199,7 +183,7 @@
     @media (max-width: 462px) {
         .content-history-no-data {
             min-width: 270px !important;
-            top: 530px !important;
+            top: 460px !important;
             bottom: 95px !important;
         }
 
@@ -208,15 +192,15 @@
         }
     }
 
-    @media (max-width: 358px) {
+    @media (max-width: 357px) {
         .content-history-no-data {
             min-width: 270px !important;
-            top: 550px !important;
-            bottom: 95px !important;
+            top: 490px !important;
+            bottom: 105px !important;
         }
 
         .wrapper-history-content-no-data {
-            margin-bottom: 110px !important;
+            margin-bottom: 320px !important;
         }
     }
 </style>

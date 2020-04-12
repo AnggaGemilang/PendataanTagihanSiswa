@@ -66,14 +66,13 @@ input {
     border: none !important;
 }
 
-#main-content
-{
+#main-content {
     min-width: 280px !important;
 }
 
 #particles-js {
     width: 100%;
-    height: 102vh;
+    height: 100vh;
     background-image: linear-gradient(to right, #1B122D, #1C0F29);
     background-size: cover;
     background-position: 50% 50%;
@@ -178,4 +177,12 @@ input {
         min-width: 140px !important;
         width: 440px !important;
     }
+
+    body {
+        overflow-y: auto;
+    }
+}
+
+@media(max-width: 386px) {
+
 }

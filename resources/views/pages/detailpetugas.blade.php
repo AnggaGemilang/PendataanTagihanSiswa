@@ -98,8 +98,7 @@
         </div>
     </div>
 
-    <div class="row m-1 mt-4 mb-4"
-        style="background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 30px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
+    <div class="row m-1 mt-5 mb-4 info-lainnya" >
         <h3 class="p-2 w-100 mb-4" style="font-weight: 600;">Info Lainnya</h3>
         <hr>
         <span class="pl-2"
@@ -113,6 +112,17 @@
 
 @push('extras-css')
 <style>
+    .info-lainnya
+    {
+        background: #FFFFFF !important; 
+        border-radius: 10px; 
+        padding-left: 20px; 
+        padding-right: 20px; 
+        padding-top: 15px; 
+        padding-bottom: 30px; 
+        box-shadow: 1px 2px 14px rgba(0,0,0,0.1);
+    }
+
     .btn-toggle-option {
         right: 0px;
         top: 18px;
@@ -144,6 +154,11 @@
         {
             margin-right: 0px !important;
             padding-right: 0px !important;
+        }
+
+        .row.mt-4 > .col-md-5
+        {
+            margin-top: 20px !important;
         }
     }
 

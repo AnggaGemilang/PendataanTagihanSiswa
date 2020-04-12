@@ -84,9 +84,9 @@
 
     @media (max-width: 768px) {
         .row.mt-4>.col-md-3 {
-            flex: 0 0 98%;
-            max-width: 98%;
-            margin-left: 15px;
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding-left: 14.5px !important;
         }
 
         .row.mt-4>.col-md-6 {

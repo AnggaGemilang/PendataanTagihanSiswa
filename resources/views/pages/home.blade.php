@@ -158,7 +158,7 @@
 
     @media (max-width: 663px) {
         .wrapper-content-no-data {
-            margin-bottom: 130px !important;
+            margin-bottom: 135px !important;
         }
 
         #content-section {
@@ -215,14 +215,25 @@
         }
     }
 
-    @media (max-width: 335px) {
+    @media (max-width: 337px) {
         .content-no-data {
             top: 690px !important;
             bottom: 210px !important;
         }
 
         .wrapper-content-no-data {
-            margin-bottom: 120px !important;
+            margin-bottom: 135px !important;
+        }
+    }
+
+    @media (max-width: 335px) {
+        .content-no-data {
+            top: 725px !important;
+            bottom: 210px !important;
+        }
+
+        .wrapper-content-no-data {
+            margin-bottom: 135px !important;
         }
     }
 </style>

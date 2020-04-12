@@ -12,7 +12,7 @@ if(\Request::is('/')) {
 @$data_kelas = 'active';
 } else if (\Request::is('data/petugas')) {
 @$data_petugas = 'active';
-} else if (\Request::is('data/tagihan')) {
+} else if (\Request::is('data/tipetagihan')) {
 @$data_tagihan = 'active';
 } else if (\Request::is('pembayaran/data')) {
 @$data_pembayaran = 'active';
