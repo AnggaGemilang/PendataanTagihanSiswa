@@ -42,7 +42,7 @@ if(\Request::is('/')) {
                     href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"
                     @endif >
                     <div
-                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: 3px; margin-top: 3px;">
+                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: -1px; margin-top: 3px;">
                         <img @if(Auth::User()->role_id=="1")
                         src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
                         @else
@@ -70,7 +70,7 @@ if(\Request::is('/')) {
                     <span>Home</span>
                 </a>
             </li>
-        <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }} {{ @$data_pembayaran }}" id="item-list">
+            <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }} {{ @$data_pembayaran }}" id="item-list">
                 <a href="#pageSubPembayaran" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-briefcase" style="width: 18px;"></i>
                     <span class="pembayaranSPP">Pembayaran</span>
@@ -290,7 +290,7 @@ if(\Request::is('/')) {
                 }
 
             });
-            $('#gen').on('click', function(e) {
+            $('#gen').on('click', function (e) {
                 if ($('#' + jenis_filter).val() == '') {
                     e.preventDefault();
                     toastr.error("Mohon Lengkapi Form!", "Generate Gagal", {
@@ -302,7 +302,7 @@ if(\Request::is('/')) {
                 } else {
                     e.preventDefault();
                     var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
-                    periode;
+                        periode;
                     location.href = url;
                 }
             });
@@ -311,3 +311,23 @@ if(\Request::is('/')) {
     });
 </script>
 @endpush
+
+<style>
+    #sidebar::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    #sidebar::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px darkgray;
+        border-radius: 10px;
+    }
+
+    #sidebar::-webkit-scrollbar-thumb {
+        background: darkgray;
+        border-radius: 10px;
+    }
+
+    #sidebar::-webkit-scrollbar-thumb:hover {
+        background: #939393;
+    }
+</style>

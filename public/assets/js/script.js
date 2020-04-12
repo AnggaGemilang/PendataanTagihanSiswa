@@ -1,64 +1,86 @@
 /* ---------------------------------------------------
-    SIDEBAR COLLAPSE
+    SIDEBAR COLLAPSE RESPONSIVE
 ----------------------------------------------------- */
 
-$(document).ready(function () {
-    checkSize();
-    $(window).resize(checkSize);
-});
+jQuery(function($){
+    var i = 1;
+    var clickAllowed = true;
+    var widthWindow = 0;
 
+    $('#sidebarCollapse').click(function(){
+        if(clickAllowed) {
+            console.log("klik" + widthWindow);
+            if(widthWindow <= 1127)
+            {
+                if ($(this).hasClass('status-actived')) {
+                    $(this).removeClass('status-actived');
+                    $('#content-section').attr('style', 'margin-left: 0px !important;');
+                    $('nav.navbar.top').attr('style', 'left: 0px !important;');
+                    console.log('hilang-hapus');
+                } else {
+                    $(this).addClass('status-actived');
+                    $('#content-section').attr('style','margin-left: 80px !important;');
+                    $('nav.navbar.top').attr('style','left: 80px !important;');
+                    $('.child-item-list > li > a > span').hide();
+                    $('[data-toggle="tooltip"]').tooltip('enable');
+                    $('#item-list > a > i').css('width', '37px');
+                    $('.child-item-list > li > a > i').css('width', '36px');
+                    console.log('hilang-tambah');
+                }
+            } else {
+                if($(this).hasClass('status-actived'))
+                {
+                    $(this).removeClass('status-actived');
+                    $('#content-section').attr('style','margin-left: 250px !important;');
+                    $('nav.navbar.top').css('left', '250px');
+                    $('#item-list > a > i').css('width', '18px');
+                    $('.child-item-list > li > a > span').show();
+                    $('.child-item-list > li > a > i').css('width', '18px');
+                    $('[data-toggle="tooltip"]').tooltip('disable');
+                    $('#profil-list > a > h6').show();
+                    $('#item-list > a > span').show();
+                    console.log('muncul-hapus');
+                } else {
+                    $(this).addClass('status-actived');
+                    $('#content-section').attr('style','margin-left: 80px !important;');
+                    $('nav.navbar.top').css('left', '80px');
+                    $('#item-list > a > i').css('width', '37px');
+                    $('.child-item-list > li > a > span').hide();
+                    $('#profil-list > a > h6').hide();
+                    $('#item-list > a > span').hide();
+                    $('.child-item-list > li > a > i').css('width', '36px');
+                    $('[data-toggle="tooltip"]').tooltip('enable');
+                    console.log('muncul-tambah');
+                }
+            }
+        }
+    }); 
 
-function checkSize() {
-    if ($("#tanda-responsive").css("display") == "none") {
-        console.log('leungit');
-        $('#profil-list > a > h6').hide();
-        $('#item-list > a > span').hide();
-        $('#sidebarCollapse').on('click', function () {
-            if ($('#content-section').hasClass('status-actived')) {
-                $('#content-section').removeClass('status-actived');
-                $('#content-section').attr('style', 'margin-left: 0px !important;');
-                $('nav.navbar.top').attr('style', 'left: 0px !important;');
-            } else {
-                $('#content-section').addClass('status-actived');
-                $('#content-section').attr('style','margin-left: 80px !important;');
-                $('nav.navbar.top').attr('style','left: 80px !important;');
-                $('#profil-list > a > h6').hide();
-                $('#item-list > a > span').hide();
-                $('.child-item-list > li > a > span').hide();
-                $('[data-toggle="tooltip"]').tooltip('enable');
-                $('#item-list > a > i').css('width', '37px');
-                $('.child-item-list > li > a > i').css('width', '36px');
-            }
-        });
-    } else {
-        console.log('muncul');
-        $('#profil-list > a > h6').show();
-        $('#item-list > a > span').show();
-        $('#sidebarCollapse').on('click', function () {
-            if ($('#content-section').hasClass('status-actived')) {
-                $('#content-section').css('margin-left', '250px');
-                $('nav.navbar.top').css('left', '250px');
-                $('#content-section').removeClass('status-actived');
-                $('#profil-list > a > h6').show();
-                $('#item-list > a > span').show();
-                $('#item-list > a > i').css('width', '18px');
-                $('.child-item-list > li > a > span').show();
-                $('.child-item-list > li > a > i').css('width', '18px');
-                $('[data-toggle="tooltip"]').tooltip('disable')
-            } else {
-                $('#content-section').css('margin-left', '80px');
-                $('nav.navbar.top').css('left', '80px');
-                $('#content-section').addClass('status-actived');
-                $('#profil-list > a > h6').hide();
-                $('#item-list > a > span').hide();
-                $('#item-list > a > i').css('width', '37px');
-                $('.child-item-list > li > a > span').hide();
-                $('.child-item-list > li > a > i').css('width', '36px');
-                $('[data-toggle="tooltip"]').tooltip('enable');
-            }
-        });
+    onResize = function() {
+        if($(window).width() <= 1127){
+            widthWindow = null;
+            widthWindow = $(window).width();
+            clickAllowed = true;
+            console.log("dibawah");
+        } else if ($(window).width() >= 1127){
+            widthWindow = null;
+            widthWindow = $(window).width();
+            clickAllowed = true;
+            console.log("diatas");
+        }
+        else{
+            clickAllowed = false;
+            console.log(clickAllowed);
+        }
+
+        console.log('resize: '+ i);
+        i++;
     }
-}
+
+    $(document).ready(onResize);
+    var timer;
+    $(window).bind('resize', onResize);
+});
 
 /* ---------------------------------------------------
     DROPDOWN BUTTON OPTION
