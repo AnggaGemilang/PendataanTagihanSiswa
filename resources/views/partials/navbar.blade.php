@@ -67,7 +67,7 @@
             icon: "question",
             showCancelButton: true,
             confirmButtonColor: "#24143F",
-            confirmButtonText: "Hapus",
+            confirmButtonText: "Logout",
             cancelButtonText: "Batal",
             closeOnConfirm: false,
             closeOnCancel: false,

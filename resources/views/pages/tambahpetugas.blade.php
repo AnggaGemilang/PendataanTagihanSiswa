@@ -124,7 +124,7 @@
                         <i class="far fa-file" style="color: #7E8387;"></i>
                     </label>
                     <input type="file" name="profil" id="profil" class="infile float-left">
-                    <span class="float-left" style="margin-left: 20px; font-size: 13px; margin-top: 15px; color: #888888;"></span>
+                    <span class="float-left" style="font-size: 13px; margin-top: 15px; color: #888888;"></span>
                     <div class="clearfix"></div><br><br>
                     <p style="font-size: 12px; margin-top: -45px;"><i>*Foto Maksimal Berukuran 1 Mb</i></p>
                 </div>

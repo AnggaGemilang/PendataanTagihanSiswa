@@ -24,9 +24,9 @@ class AutentikasiSeeder extends Seeder
         ]);
 
         Autentikasi::create([
-            'nomor_induk' => 123456,
+            'nomor_induk' => 12345678910,
             'email' => 'admin@mail.id',
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('12345678910'),
             'role_id' => 2,
             'petugas_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -34,9 +34,9 @@ class AutentikasiSeeder extends Seeder
         ]);
 
         Autentikasi::create([
-            'nomor_induk' => 7891011,
+            'nomor_induk' => 1112131415,
             'email' => 'petugas@mail.id',
-            'password' => Hash::make('7891011'),
+            'password' => Hash::make('1112131415'),
             'role_id' => 3,
             'petugas_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

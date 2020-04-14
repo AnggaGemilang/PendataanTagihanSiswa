@@ -14,6 +14,7 @@ class PetugasSeeder extends Seeder
             'no_telp' => '083195008217',
             'role_id' => 2,
             'slug' => Str::slug('admin','-'),
+            'profil' => 'admin-profil.jpeg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -23,6 +24,7 @@ class PetugasSeeder extends Seeder
             'no_telp' => '081232323339',
             'role_id' => 3,
             'slug' => Str::slug('petugas','-'),
+            'profil' => 'petugas-profil.jpeg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

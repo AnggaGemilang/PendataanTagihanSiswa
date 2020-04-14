@@ -19,7 +19,7 @@
                 <h4 class="p-2 w-100 mb-4" style="font-weight: 600;">Informasi</h4>
             </div>
             <div class="col">
-                <h4 class="float-right pt-2" id="wrapper-clock"></h4>
+                <h4 class="float-right pt-2"><span id="wrapper-day"></span><span id="wrapper-date"></span></h4>
             </div>
         </div>
         <div class="row info-content">
@@ -215,6 +215,12 @@
         }
     }
 
+    @media (max-width: 414px) {
+        #wrapper-date {
+            margin-top: 5px;
+        }
+    }
+
     @media (max-width: 337px) {
         .content-no-data {
             top: 690px !important;
@@ -244,8 +250,12 @@
     setInterval(function () {
         var weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
         var date = new Date();
-        $('#wrapper-clock').html(
-            weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " + date
+        $('#wrapper-day').html(
+            weekday[date.getDay()] + ","
+        ).css('margin-right','8px');
+
+        $('#wrapper-date').html(
+            date.getDate() + " - " + date.getMonth() + " - " + date
             .getFullYear() + ", " + date.getHours() +
             ":" + date.getMinutes() + ":" + date.getSeconds()
         );

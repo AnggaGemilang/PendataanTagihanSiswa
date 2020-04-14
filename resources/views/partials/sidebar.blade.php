@@ -150,7 +150,7 @@ if(\Request::is('/')) {
                 </ul>
             </li>
             <li id="item-list">
-                <a href="" data-toggle="tooltip" data-placement="right" title="Ubah Password" id="btn-generate">
+                <a href="" data-toggle="tooltip" data-placement="right" title="Generate Laporan" id="btn-generate">
                     <i class="fas fa-chart-pie" style="width: 18px;"></i>
                     <span>Generate Laporan</span>
                 </a>

@@ -99,10 +99,10 @@
     </div>
 
     <div class="row m-1 mt-5 mb-4 info-lainnya" >
-        <h3 class="p-2 w-100 mb-4" style="font-weight: 600;">Info Lainnya</h3>
+        <h3 class="p-2 w-100 mb-3 pb-3" style="font-weight: 600;">Info Lainnya</h3>
         <hr>
         <span class="pl-2"
-            style="margin-top: 3.5px; margin-right: 4px; margin-left: 8px; border-left: 3px #24143F solid; height: 20px;"></span>
+            style="margin-top: 3.5px; margin-right: 4px; margin-left: 20px; border-left: 3px #24143F solid; height: 20px;"></span>
         <p>Tidak Ada Data</p>
     </div>
 </div>

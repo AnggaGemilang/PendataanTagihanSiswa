@@ -65,6 +65,7 @@ jQuery(function ($) {
             clickAllowed = true;
             $('#profil-list > a > h6').hide();
             $('#item-list > a > span').hide();
+            $('[data-toggle="tooltip"]').tooltip('enable');
             console.log("dibawah");
         } else if ($(window).width() >= 1127) {
             widthWindow = null;
@@ -73,6 +74,7 @@ jQuery(function ($) {
             $('#sidebar').attr('style','left:0 !important;');
             $('#profil-list > a > h6').show();
             $('#item-list > a > span').show();
+            $('[data-toggle="tooltip"]').tooltip('disable');
             console.log("diatas");
         } else {
             clickAllowed = false;

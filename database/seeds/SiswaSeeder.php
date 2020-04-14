@@ -22,7 +22,7 @@ class SiswaSeeder extends Seeder
             'alamat' => 'Jalan Ciguruwik Babakan Sukamulya RT. 02 RW. 13 No. 53',
             'kelas_id' => 1,
             'no_telp' => '083195008217',
-            'profil' => '',
+            'profil' => 'angga-profil.jpeg',
             'role_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

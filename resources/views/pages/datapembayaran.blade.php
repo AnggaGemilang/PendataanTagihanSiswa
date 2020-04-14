@@ -22,7 +22,6 @@
                     <td style="font-weight: 600;">Sudah Dibayar</td>
                     <td style="font-weight: 600;">Sisa</td>
                     <td style="font-weight: 600;">Status</td>
-                    <td style="font-weight: 600;">Aksi</td>
                 </tr>
             </thead>
             <tbody align="center">
@@ -41,9 +40,6 @@
                         @endphp
                     </td>
                     <td>@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td><a type="button" class="btn btn-success"
-                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px; color: white;"
-                            href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -61,7 +57,6 @@
                     <td style="font-weight: 600;">Sudah Dibayar</td>
                     <td style="font-weight: 600;">Sisa</td>
                     <td style="font-weight: 600;">Status</td>
-                    <td style="font-weight: 600;">Aksi</td>
                 </tr>
             </thead>
             <tbody align="center">
@@ -80,9 +75,6 @@
                         @endphp
                     </td>
                     <td>@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td><a type="button" class="btn btn-success"
-                            style="padding-top: 5px; padding-bottom: 5px; font-size: 12px; color: white;"
-                            href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
             </tbody>
