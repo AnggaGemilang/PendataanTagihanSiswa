@@ -14,7 +14,7 @@
                 {{ csrf_field() }}
                 <div class="row m-2 mt-3 pt-2">
                     <div class="form-group w-100">
-                        <input id="login" type="login" name="login" id="login" value="{{ old('login') }}" required 
+                        <input id="login" type="login" name="login" id="login" value="{{ old('login') }}" 
                         autocomplete="off" autofocus class="greylight-bgmt-1"
                         aria-describedby="helpId" placeholder="Nomor Induk atau Email" >
                     </div>
@@ -22,7 +22,7 @@
     
                 <div class="row m-2 d-flex justify-content-center">
                     <div class="form-group w-100 position-relative">
-                        <input id="password" type="password" name="password" required autocomplete="off" class="form-pwd mt-1"
+                        <input id="password" type="password" name="password" autocomplete="off" class="form-pwd mt-1"
                         aria-describedby="helpId" placeholder="Password" >
                     </div>
                     <div class="wrapper-icon-show">

@@ -17,6 +17,8 @@ jQuery(function ($) {
                     $('#content-section').attr('style', 'margin-left: 0px !important;');
                     $('nav.navbar.top').attr('style', 'left: 0px !important;');
                     $('#sidebar').attr('style','left: 0;');
+                    $('.penghalang').fadeOut(300);
+                    $('body').css('overflow','auto');
                     $('[data-toggle="tooltip"]').tooltip('disable');
                     console.log('hilang-hapus');
                 } else {
@@ -27,6 +29,8 @@ jQuery(function ($) {
                     $('.child-item-list > li > a > span').hide();
                     $('[data-toggle="tooltip"]').tooltip('enable');
                     $('#item-list > a > i').css('width', '37px');
+                    $('.penghalang').fadeIn(300);
+                    $('body').css('overflow','hidden');
                     $('.child-item-list > li > a > i').css('width', '36px');
                     console.log('hilang-tambah');
                 }
@@ -63,8 +67,6 @@ jQuery(function ($) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
-            $('#profil-list > a > h6').hide();
-            $('#item-list > a > span').hide();
             $('[data-toggle="tooltip"]').tooltip('enable');
             console.log("dibawah");
         } else if ($(window).width() >= 1127) {
@@ -72,9 +74,8 @@ jQuery(function ($) {
             widthWindow = $(window).width();
             clickAllowed = true;
             $('#sidebar').attr('style','left:0 !important;');
-            $('#profil-list > a > h6').show();
-            $('#item-list > a > span').show();
             $('[data-toggle="tooltip"]').tooltip('disable');
+            $('.penghalang').fadeOut(300);
             console.log("diatas");
         } else {
             clickAllowed = false;
@@ -86,7 +87,6 @@ jQuery(function ($) {
     }
 
     $(document).ready(onResize);
-    var timer;
     $(window).bind('resize', onResize);
 });
 

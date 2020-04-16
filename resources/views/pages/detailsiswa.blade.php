@@ -179,12 +179,10 @@
     </div>
 
     @if($history->count()==0)
-    <div class="container-fluid mt-3 wrapper-detail-content-no-data">
-        <div class="row d-flex p-5 justify-content-center align-content-center detail-content-no-data">
-            <p style="font-size: 18px;">TIdak Ada Data</p>
-        </div>
+    <div class="alert mt-3" role="alert" style="background: #EDE6F7 !important;">
+        <i class="fas fa-exclamation-circle pr-2" ></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk mengentri pembayaran.
     </div>
-    @else    
+    @else
     @foreach ($history as $h)
     <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
         <div class="row">

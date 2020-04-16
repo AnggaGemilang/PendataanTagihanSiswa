@@ -102,8 +102,8 @@
         <h3 class="p-2 w-100 mb-3 pb-3" style="font-weight: 600;">Info Lainnya</h3>
         <hr>
         <span class="pl-2"
-            style="margin-top: 3.5px; margin-right: 4px; margin-left: 20px; border-left: 3px #24143F solid; height: 20px;"></span>
-        <p>Tidak Ada Data</p>
+            style="margin-top: 4px; margin-right: 9px; margin-left: 20px; border-left: 3px #24143F solid; height: 20px;"></span>
+        <p>Data Tidak Ditemukan</p>
     </div>
 </div>
 

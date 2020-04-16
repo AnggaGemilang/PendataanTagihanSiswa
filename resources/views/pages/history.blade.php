@@ -74,10 +74,8 @@
     @else
 
     @if($history->count()==0)
-    <div class="container-fluid mt-3 wrapper-content-history-no-data">
-        <div class="row d-flex justify-content-center align-content-center content-history-no-data">
-            <h4>TIdak Ada Data</h4>
-        </div>
+    <div class="alert alert-danger mt-3" role="alert">
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
     </div>
     @else
     <div class="row m-1" id="wrapper-history">
@@ -105,25 +103,8 @@
 
 @push('extras-css')
 <style>
-    #content
-    {
+    #content {
         padding-bottom: 90px !important;
-    }
-
-    .content-history-no-data {
-        top: 300px;
-        min-height: 100px;
-        bottom: 100px;
-        position: absolute;
-        left: 40px;
-        right: 40px;
-        background: #FAFAFA !important;
-        border-radius: 15px;
-        box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .wrapper-history-content-no-data {
-        margin-bottom: 130px !important;
     }
 
     @media (max-width: 808px) {
@@ -144,16 +125,6 @@
     @media (max-width: 767px) {
         .row.mt-3>.col-md-3 {
             margin-left: 15px;
-        }
-
-        .content-history-no-data {
-            min-width: 270px !important;
-            top: 415px !important;
-            bottom: 95px !important;
-        }
-
-        .wrapper-history-content-no-data {
-            margin-bottom: 110px !important;
         }
     }
 
@@ -177,30 +148,6 @@
 
         p.kekiri {
             float: left !important;
-        }
-    }
-
-    @media (max-width: 462px) {
-        .content-history-no-data {
-            min-width: 270px !important;
-            top: 460px !important;
-            bottom: 95px !important;
-        }
-
-        .wrapper-history-content-no-data {
-            margin-bottom: 110px !important;
-        }
-    }
-
-    @media (max-width: 357px) {
-        .content-history-no-data {
-            min-width: 270px !important;
-            top: 490px !important;
-            bottom: 105px !important;
-        }
-
-        .wrapper-history-content-no-data {
-            margin-bottom: 320px !important;
         }
     }
 </style>

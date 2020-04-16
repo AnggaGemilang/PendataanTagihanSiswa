@@ -75,14 +75,12 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-        @if($kelas->count()==0)
-        <div class="container-fluid mt-3 wrapper-kelola-data-no-data">
-            <div class="row d-flex justify-content-center align-content-center kelola-data-no-data">
-                <h4>TIdak Ada Data</h4>
+            @if($kelas->count()==0)
+            <div class="alert alert-danger mt-3" role="alert">
+                <i class="fas fa-exclamation-circle pr-2" ></i> Data Tidak Ditemukan, Klik <a href="{{ url('data/kelas/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan kelas baru.
             </div>
+            @endif
         </div>
-        @endif
     </div>
 </div>
 
@@ -111,16 +109,6 @@
             flex: 0 0 100%;
             max-width: 100%;
         }
-
-        .kelola-data-no-data {
-            min-width: 270px !important;
-            top: 465px !important;
-            bottom: 90px !important;
-        }
-
-        .wrapper-kelola-data-no-data {
-            margin-bottom: 110px !important;
-        }
     }
 
     @media (max-width: 846px) {
@@ -135,18 +123,6 @@
         {
             margin-left: 4px;
             width: 70px;
-        }
-    }
-
-    @media (max-width: 571px) {
-        .kelola-data-no-data {
-            min-width: 270px !important;
-            top: 488px !important;
-            bottom: 90px !important;
-        }
-
-        .wrapper-kelola-data-no-data {
-            margin-bottom: 110px !important;
         }
     }
 </style>

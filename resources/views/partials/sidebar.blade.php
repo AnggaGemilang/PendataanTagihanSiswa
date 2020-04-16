@@ -42,7 +42,7 @@ if(\Request::is('/')) {
                     href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"
                     @endif >
                     <div
-                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: -1px; margin-top: 3px;">
+                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: 1.5px; margin-top: 3px;">
                         <img @if(Auth::User()->role_id=="1")
                         src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
                         @else
@@ -51,14 +51,14 @@ if(\Request::is('/')) {
                         style="width:100%; height:100%; border-radius:60px; object-fit: cover;" alt="">
                     </div>
                     @if(Auth::User()->role_id=="1")
-                    <h6 id="biodata-section" style="margin-left: 75px; margin-top: 7px;">
+                    <h6 id="biodata-section" style="margin-left: 70px; margin-top: 7px;">
                         {{ Auth::User()->siswa->nama_siswa }}</h6>
-                    <h6 id="biodata-section" style="margin-left: 75px;" class="mb-0">
+                    <h6 id="biodata-section" style="margin-left: 70px;" class="mb-0">
                         {{ Auth::User()->siswa->autentikasi->nomor_induk }}</h6>
                     @else
-                    <h6 id="biodata-section" style="margin-left: 75px; margin-top: 7px;">
+                    <h6 id="biodata-section" style="margin-left: 70px; margin-top: 7px;">
                         {{ Auth::User()->petugas->nama_petugas }}</h6>
-                    <h6 id="biodata-section" style="margin-left: 75px;" class="mb-0">
+                    <h6 id="biodata-section" style="margin-left: 70px;" class="mb-0">
                         {{ Auth::User()->petugas->autentikasi->nomor_induk }}</h6>
                     @endif
                     <div class="clearfix"></div>
@@ -67,7 +67,7 @@ if(\Request::is('/')) {
             <li class="{{ @$dashboard }}" id="item-list" data-toggle="tooltip" data-placement="right" title="Home">
                 <a href="{{ url('/') }}" id="data" data-baseurl="{{ url('/') }}">
                     <i class="fas fa-home" style="width: 18px;"></i>
-                    <span>Home</span>
+                    <span>Beranda</span>
                 </a>
             </li>
             <li class="{{ @$history_pembayaran }} {{ @$entri_pembayaran }} {{ @$data_pembayaran }}" id="item-list">
@@ -169,6 +169,7 @@ if(\Request::is('/')) {
     <div id="content-section" class="status-sd">
         @include('partials.navbar')
         <div id="content">
+            <div class="penghalang"></div>
             @yield('content')
         </div>
     </div>
@@ -318,7 +319,7 @@ if(\Request::is('/')) {
 
 <style>
     #sidebar::-webkit-scrollbar {
-        width: 5px;
+        width: 2px;
     }
 
     #sidebar::-webkit-scrollbar-track {

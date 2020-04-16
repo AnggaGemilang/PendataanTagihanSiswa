@@ -19,7 +19,7 @@
                 <h4 class="p-2 w-100 mb-4" style="font-weight: 600;">Informasi</h4>
             </div>
             <div class="col">
-                <h4 class="float-right pt-2"><span id="wrapper-day"></span><span id="wrapper-date"></span></h4>
+                <h4 class="float-right pt-2" id="wrapper-clock"></h4>
             </div>
         </div>
         <div class="row info-content">
@@ -32,11 +32,9 @@
         <h3>History Pembayaran</h3>
     </div>
 
-    @if($history_siswa->count()==0)
-    <div class="container-fluid mt-3 wrapper-content-no-data">
-        <div class="row d-flex justify-content-center align-content-center content-no-data">
-            <h4>TIdak Ada Data</h4>
-        </div>
+    @if($history->count()==0)
+    <div class="alert alert-danger mt-3" role="alert">
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
     </div>
     @else
     @foreach ($history_siswa as $h)
@@ -80,10 +78,8 @@
     </div>
 
     @if($history->count()==0)
-    <div class="container-fluid mt-3 wrapper-content-no-data">
-        <div class="row d-flex justify-content-center align-content-center content-no-data">
-            <h4>TIdak Ada Data</h4>
-        </div>
+    <div class="alert alert-danger mt-3" role="alert">
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
     </div>
     @else
     @foreach ($history as $h)
@@ -110,33 +106,12 @@
 
 @push('extras-css')
 <style>
-    .content-no-data {
-        top: 490px;
-        bottom: 105px;
-        left: 44px;
-        right: 45px;
-        min-height: 98px;
-        position: absolute;
-        background: #FAFAFA !important;
-        border-radius: 15px;
-        box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .wrapper-content-no-data {
-        margin-bottom: 130px !important;
+    .penghalang
+    {
+        height: 99.5% !important;
     }
 
     @media (max-width: 865px) {
-        .content-no-data {
-            min-width: 270px !important;
-            top: 665px !important;
-            bottom: 400px !important;
-        }
-
-        .wrapper-content-no-data {
-            margin-bottom: 110px !important;
-        }
-
         .row>.col.atas {
             flex: 0 0 100%;
         }
@@ -153,16 +128,6 @@
 
         .info-content>p {
             margin-bottom: 0px !important;
-        }
-    }
-
-    @media (max-width: 663px) {
-        .wrapper-content-no-data {
-            margin-bottom: 135px !important;
-        }
-
-        #content-section {
-            padding-bottom: 50px !important;
         }
     }
 
@@ -214,34 +179,6 @@
             display: none;
         }
     }
-
-    @media (max-width: 414px) {
-        #wrapper-date {
-            margin-top: 5px;
-        }
-    }
-
-    @media (max-width: 337px) {
-        .content-no-data {
-            top: 690px !important;
-            bottom: 210px !important;
-        }
-
-        .wrapper-content-no-data {
-            margin-bottom: 135px !important;
-        }
-    }
-
-    @media (max-width: 335px) {
-        .content-no-data {
-            top: 725px !important;
-            bottom: 210px !important;
-        }
-
-        .wrapper-content-no-data {
-            margin-bottom: 135px !important;
-        }
-    }
 </style>
 @endpush
 
@@ -250,12 +187,8 @@
     setInterval(function () {
         var weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
         var date = new Date();
-        $('#wrapper-day').html(
-            weekday[date.getDay()] + ","
-        ).css('margin-right','8px');
-
-        $('#wrapper-date').html(
-            date.getDate() + " - " + date.getMonth() + " - " + date
+        $('#wrapper-clock').html(
+            weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " + date
             .getFullYear() + ", " + date.getHours() +
             ":" + date.getMinutes() + ":" + date.getSeconds()
         );

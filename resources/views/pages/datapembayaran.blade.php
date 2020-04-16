@@ -1,13 +1,13 @@
 @extends('layouts.layout')
-@section('title','Data Pembayaran')
+@section('title','Data Tagihan')
 
 @section('content')
 
 <div id="main-content">
-    <h1>Data Pembayaran</h1>
+    <h1>Data Tagihan</h1>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('/pembayaran/data')}}">Data Pembayaran</a>
+        <a class="breadcrumb-item" href="{{url('/pembayaran/data')}}">Data Tagihan</a>
         <span class="breadcrumb-item active"></span>
     </nav>
 
