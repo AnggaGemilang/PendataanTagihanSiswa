@@ -10,19 +10,20 @@ jQuery(function ($) {
 
     $('#sidebarCollapse').click(function () {
         if (clickAllowed) {
-            console.log("klik" + widthWindow);
+            console.log("klik-clicked : " + widthWindow + 'px');
             if (widthWindow <= 1127) {
-                if ($(this).hasClass('status-actived')) {
-                    $(this).removeClass('status-actived');
-                    $('#content-section').attr('style', 'margin-left: 0px !important;');
-                    $('nav.navbar.top').attr('style', 'left: 0px !important;');
-                    $('#sidebar').attr('style','left: 0;');
+                if ($(this).hasClass('status-hilang-actived')) {
+                    $(this).removeClass('status-hilang-actived');
+                    $('#content-section').attr('style', '');
+                    $('nav.navbar.top').attr('style', '');
+                    $('#sidebar').attr('style','');
+                    $('#item-list > a > i').css('width', '18px');
                     $('.penghalang').fadeOut(300);
                     $('body').css('overflow','auto');
                     $('[data-toggle="tooltip"]').tooltip('disable');
                     console.log('hilang-hapus');
                 } else {
-                    $(this).addClass('status-actived');
+                    $(this).addClass('status-hilang-actived');
                     $('#content-section').attr('style', 'margin-left: 80px !important;');
                     $('#sidebar').attr('style','left: 80px;');
                     $('nav.navbar.top').attr('style', 'left: 80px !important;');
@@ -35,25 +36,25 @@ jQuery(function ($) {
                     console.log('hilang-tambah');
                 }
             } else {
-                if ($(this).hasClass('status-actived')) {
-                    $(this).removeClass('status-actived');
-                    $('#content-section').attr('style', 'margin-left: 250px;');
-                    $('nav.navbar.top').css('left', '250px');
+                if ($(this).hasClass('status-muncul-actived')) {
+                    $(this).removeClass('status-muncul-actived');
+                    $('#content-section').attr('style', '');
+                    $('nav.navbar.top').attr('style','');
                     $('#item-list > a > i').css('width', '18px');
-                    $('.child-item-list > li > a > span').show();
+                    $('.child-item-list > li > a > span').attr('style','');
                     $('.child-item-list > li > a > i').css('width', '18px');
                     $('[data-toggle="tooltip"]').tooltip('disable');
-                    $('#profil-list > a > h6').show();
-                    $('#item-list > a > span').show();
+                    $('#profil-list > a > h6').attr('style','');
+                    $('#item-list > a > span').attr('style','');
                     console.log('muncul-hapus');
                 } else {
-                    $(this).addClass('status-actived');
-                    $('#content-section').attr('style', 'margin-left: 80px;');
-                    $('nav.navbar.top').css('left', '80px');
+                    $(this).addClass('status-muncul-actived');
+                    $('#content-section').attr('style', 'margin-left: 80px !important;');
+                    $('nav.navbar.top').attr('style','left: 80px !important');
                     $('#item-list > a > i').css('width', '37px');
-                    $('.child-item-list > li > a > span').hide();
-                    $('#profil-list > a > h6').hide();
-                    $('#item-list > a > span').hide();
+                    $('.child-item-list > li > a > span').attr('style','display: none !important');
+                    $('#profil-list > a > h6').attr('style','display: none !important');
+                    $('#item-list > a > span').attr('style','display: none !important');
                     $('.child-item-list > li > a > i').css('width', '36px');
                     $('[data-toggle="tooltip"]').tooltip('enable');
                     console.log('muncul-tambah');
@@ -63,25 +64,42 @@ jQuery(function ($) {
     });
 
     onResize = function () {
-        if ($(window).width() <= 1127) {
+        if ($('#sidebarCollapse').hasClass('status-muncul-actived') && $(window).width() <= 1127)
+        {
+            $('#sidebarCollapse').removeClass('status-muncul-actived');
+            $('#sidebar').attr('style','').removeClass('active');
+            $('#content-section').attr('style', '');
+            $('nav.navbar.top').attr('style', '');
+            $('.child-item-list > li > a > span').attr('style','');
+            $('#profil-list > a > h6').attr('style','');
+            $('#item-list > a > span').attr('style','');
+            $('#item-list > a > i').css('width', '18px');
+            console.log('trigger-normal-hilang');
+        } else if ($(window).width() <= 1127) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
-            $('[data-toggle="tooltip"]').tooltip('enable');
             console.log("dibawah");
+        } else if ($('#sidebarCollapse').hasClass('status-hilang-actived') && $(window).width() >= 1127)
+        {
+            $('#sidebarCollapse').removeClass('status-hilang-actived');
+            $('#content-section').attr('style', '');
+            $('nav.navbar.top').attr('style', '');
+            $('#sidebar').attr('style','').removeClass('active');
+            $('#item-list > a > i').css('width', '18px');
+            $('.penghalang').fadeOut(300);
+            console.log('trigger-normal-muncul');
         } else if ($(window).width() >= 1127) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
-            $('#sidebar').attr('style','left:0 !important;');
-            $('[data-toggle="tooltip"]').tooltip('disable');
-            $('.penghalang').fadeOut(300);
             console.log("diatas");
         } else {
             clickAllowed = false;
             console.log(clickAllowed);
         }
-
+    
+        console.log('width: ' + widthWindow);
         console.log('resize: ' + i);
         i++;
     }

@@ -40,9 +40,8 @@ if(\Request::is('/')) {
                     href="{{url('profil/' . Auth::User()->siswa->slug . '/' . Auth::User()->siswa->id . '/' . Auth::User()->role_id)}}"
                     @else
                     href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"
-                    @endif >
-                    <div
-                        style="width: 54px; height: 54px; border-radius: 50px; float: left; margin-left: 1.5px; margin-top: 3px;">
+                    @endif>
+                    <div class="profil-sidebar">
                         <img @if(Auth::User()->role_id=="1")
                         src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
                         @else
@@ -51,14 +50,14 @@ if(\Request::is('/')) {
                         style="width:100%; height:100%; border-radius:60px; object-fit: cover;" alt="">
                     </div>
                     @if(Auth::User()->role_id=="1")
-                    <h6 id="biodata-section" style="margin-left: 70px; margin-top: 7px;">
+                    <h6 id="biodata-section" class="profil-item">
                         {{ Auth::User()->siswa->nama_siswa }}</h6>
-                    <h6 id="biodata-section" style="margin-left: 70px;" class="mb-0">
+                    <h6 id="biodata-section" class="profil-item">
                         {{ Auth::User()->siswa->autentikasi->nomor_induk }}</h6>
                     @else
-                    <h6 id="biodata-section" style="margin-left: 70px; margin-top: 7px;">
+                    <h6 id="biodata-section" class="profil-item">
                         {{ Auth::User()->petugas->nama_petugas }}</h6>
-                    <h6 id="biodata-section" style="margin-left: 70px;" class="mb-0">
+                    <h6 id="biodata-section" class="profil-item">
                         {{ Auth::User()->petugas->autentikasi->nomor_induk }}</h6>
                     @endif
                     <div class="clearfix"></div>
@@ -182,7 +181,9 @@ if(\Request::is('/')) {
     var jenis_filter;
 
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' });
+        $('[data-toggle="tooltip"]').tooltip({
+            boundary: 'window'
+        });
     })
 
     $(document).ready(function () {

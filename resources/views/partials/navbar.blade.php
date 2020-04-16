@@ -1,6 +1,5 @@
 <nav class="navbar top navbar-expand-lg navbar-light">
     <div class="container-fluid atas-nav" style="min-width: 290px;">
-
         <button type="button" id="sidebarCollapse" class="btn btn-info"
             style="margin-top: 4px; margin-bottom:2px; background: #FFFFFF !important;">
             <i class="fas fa-align-left"

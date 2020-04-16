@@ -12,14 +12,13 @@
 
     @if(Auth::User()->role_id=="1")
 
-    <div class="col-md-12"
-        style="margin-top: 40px; background: #FFFFFF !important; border-radius: 10px; padding-left: 20px; padding-right: 20px; padding-top: 15px; padding-bottom: 30px; box-shadow: 1px 2px 14px rgba(0,0,0,0.1);">
+    <div class="col-md-12 content-siswa">
         <div class="row atas-siswa">
             <div class="col">
                 <h4 class="p-2 w-100 mb-4" style="font-weight: 600;">Informasi</h4>
             </div>
             <div class="col">
-                <h4 class="float-right pt-2" id="wrapper-clock"></h4>
+                <h4 class="float-right pt-2"><span id="wrapper-day"></span><span id="wrapper-date"></span></h4>
             </div>
         </div>
         <div class="row info-content">
@@ -79,7 +78,9 @@
 
     @if($history->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
-        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+            href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran
+        baru.
     </div>
     @else
     @foreach ($history as $h)
@@ -106,8 +107,7 @@
 
 @push('extras-css')
 <style>
-    .penghalang
-    {
+    .penghalang {
         height: 99.5% !important;
     }
 
@@ -187,15 +187,30 @@
     setInterval(function () {
         var weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
         var date = new Date();
-        $('#wrapper-clock').html(
-            weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " + date
-            .getFullYear() + ", " + date.getHours() +
-            ":" + date.getMinutes() + ":" + date.getSeconds()
+
+        $('#wrapper-day').html(
+            weekday[date.getDay()] + ", "
+        ).css('margin-right', '8px');
+
+        $('#wrapper-date').html(
+            ((date.getDate() < 10) ? "0" + date.getDate() : date.getDate()) + " - " + ((date.getMonth() <
+                10) ? "0" + date.getMonth() : date.getMonth()) + " - " + date
+            .getFullYear() + ", " + ((date.getHours() < 10) ? "0" + date.getHours() : date.getHours()) +
+            ":" + ((date.getMinutes() < 10) ? "0" + date.getMinutes() : date.getMinutes()) + ":" + ((date
+                .getSeconds() < 10) ? "0" + date.getSeconds() : date.getSeconds())
         );
 
-        $('#tgl-hari').html(weekday[date.getDay()] + ", " + date.getDate() + " - " + date.getMonth() + " - " +
-            date.getFullYear());
-        $('#waktu').html(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+        $('#tgl-hari').html(
+            weekday[date.getDay()] + ", " + ((date.getDate() < 10) ? "0" + date.getDate() : date
+        .getDate()) + " - " + ((date.getMonth() < 10) ? "0" + date.getMonth() : date.getMonth()) + " - " +
+            date
+            .getFullYear()
+        );
+        $('#waktu').html(
+            ((date.getHours() < 10) ? "0" + date.getHours() : date.getHours()) +
+            ":" + ((date.getMinutes() < 10) ? "0" + date.getMinutes() : date.getMinutes()) + ":" + ((date
+                .getSeconds() < 10) ? "0" + date.getSeconds() : date.getSeconds())
+        );
     }, 500);
 
     $(document).on('click', '#item-history', function () {
