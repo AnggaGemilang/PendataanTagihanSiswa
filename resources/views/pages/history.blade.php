@@ -48,10 +48,8 @@
 
     @if(Auth::User()->role_id=="1")
     @if($history->count()==0)
-    <div class="container-fluid mt-3 wrapper-content-history-no-data">
-        <div class="row d-flex justify-content-center align-content-center content-history-no-data">
-            <h4>TIdak Ada Data</h4>
-        </div>
+    <div class="alert alert-danger mt-3" role="alert">
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, segera lakukan pembayaran kepada petugas.
     </div>
     @else
     <div class="row m-1" id="wrapper-history">

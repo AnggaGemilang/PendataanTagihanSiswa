@@ -34,7 +34,7 @@
 
     @if($history->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
-        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, segera lakukan pembayaran kepada petugas.
     </div>
     @else
     @foreach ($history_siswa as $h)
