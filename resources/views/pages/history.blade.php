@@ -104,7 +104,7 @@
 @push('extras-css')
 <style>
     #content {
-        padding-bottom: 8px !important;
+        padding-bottom: 1px !important;
     }
 
     @media (max-width: 808px) {

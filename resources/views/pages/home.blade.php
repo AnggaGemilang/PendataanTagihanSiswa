@@ -107,6 +107,11 @@
 
 @push('extras-css')
 <style>
+    #content
+    {
+        margin-bottom: -12px !important;
+    }
+
     .penghalang {
         height: 99.5% !important;
     }

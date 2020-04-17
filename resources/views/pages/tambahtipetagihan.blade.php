@@ -71,8 +71,9 @@
                     <label for="nominal">Nominal Biaya</label>
                     <div class="nominal position-relative">
                         <span class="position-absolute" style="left: 13px; top: 5.5px;">Rp.</span>
-                        <input type="text" class="form-control greylight-bg" name="nominal" id="nominal"
-                            aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran"
+                        <input type="text"  name="nominal" id="nominal"
+                            aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran" @if($status=='update' )
+                            value="{{ $tipetagihan->nominal }}" class="form-control greylight-bg uangs" @else class="form-control greylight-bg" @endif
                             style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-left: 45px; padding-top: 3.5px; font-size: 16px;">
                     </div>
                 </div>
@@ -106,6 +107,11 @@
 
 @push('extras-js')
 <script>
+    $(document).ready(function(){
+        var value = $('.uangs').val();
+        $('.uangs').val(formatRupiah(value));
+    });
+
     var nominal = document.getElementById('nominal');
     nominal.addEventListener('keyup', function (e) {
         nominal.value = formatRupiah(this.value);

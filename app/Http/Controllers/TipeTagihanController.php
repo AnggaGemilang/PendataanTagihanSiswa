@@ -52,7 +52,7 @@ class TipeTagihanController extends Controller
         $messages = [
             'required' => ':attribute wajib diisi',
             'min' => ':attribute terlalu pendek, minimal :min karakter',
-            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'max' => ':attribute ter    lalu panjang, maksimal :max karakter',
             'email' => ':attribute memerlukan "@"',
             'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
             'size' => ':attribute terlalu besar, maksimal berukuran :size',

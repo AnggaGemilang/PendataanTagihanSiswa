@@ -28,8 +28,9 @@
 
         @if($auth->role_id=='1')
 
-        <form action="{{ url('profil/' . $auth->siswa->slug . '/' . $auth->siswa->role_id . '/' . $auth->siswa->id . '/perbaharui/store' ) }}" method="post"
-            enctype="multipart/form-data">
+        <form
+            action="{{ url('profil/' . $auth->siswa->slug . '/' . $auth->siswa->role_id . '/' . $auth->siswa->id . '/perbaharui/store' ) }}"
+            method="post" enctype="multipart/form-data">
 
             {{ csrf_field() }}
 
@@ -77,11 +78,12 @@
                 <div class="col foto-side">
                     <div class="row justify-content-center pt-4 mt-3 mr-2">
                         <img src="{{ asset('uploaded/images/profil_siswa/' . $auth->siswa->profil) }}"
-                            style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;" alt="">
+                            style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;"
+                            alt="">
                     </div>
                     <div class="row justify-content-center">
                         <label for="profil" class="btn ubah-profil-btn mr-3">Ubah
-                        Foto</label>
+                            Foto</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
                 </div>
@@ -97,8 +99,8 @@
             <div class="row ml-3 mr-3 pl-1 pr-1">
                 <div class="form-group w-100">
                     <label for="email_siswa">Email</label>
-                    <input type="text" class="form-control" name="email_siswa" id="email_siswa" aria-describedby="helpId"
-                        placeholder="Masukkan Email Siswa" value="{{ $auth->email }}" disabled
+                    <input type="text" class="form-control" name="email_siswa" id="email_siswa"
+                        aria-describedby="helpId" placeholder="Masukkan Email Siswa" value="{{ $auth->email }}" disabled
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
@@ -132,8 +134,9 @@
 
         @else
 
-        <form action="{{ url('profil/' . $auth->petugas->slug . '/' . $auth->petugas->id . '/' . $auth->petugas->role_id . '/perbaharui/store' ) }}" method="post"
-            enctype="multipart/form-data">
+        <form
+            action="{{ url('profil/' . $auth->petugas->slug . '/' . $auth->petugas->id . '/' . $auth->petugas->role_id . '/perbaharui/store' ) }}"
+            method="post" enctype="multipart/form-data">
 
             {{ csrf_field() }}
 
@@ -159,16 +162,18 @@
                     <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="no_telp">Nomor Telepon</label>
-                            <input type="text" class="form-control" name="no_telp" id="no_telp" aria-describedby="helpId"
-                                placeholder="Masukkan Nomor Telepon" value="{{ $auth->petugas->no_telp }}"
+                            <input type="text" class="form-control" name="no_telp" id="no_telp"
+                                aria-describedby="helpId" placeholder="Masukkan Nomor Telepon"
+                                value="{{ $auth->petugas->no_telp }}"
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
                     <div class="row m-1 ml-3 mr-3">
                         <div class="form-group w-100">
                             <label for="email_petugas">Email</label>
-                            <input type="text" class="form-control" name="email_petugas" id="email_petugas" aria-describedby="helpId"
-                                placeholder="Masukkan Email Siswa" value="{{ $auth->email }}" disabled
+                            <input type="text" class="form-control" name="email_petugas" id="email_petugas"
+                                aria-describedby="helpId" placeholder="Masukkan Email Siswa" value="{{ $auth->email }}"
+                                disabled
                                 style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         </div>
                     </div>
@@ -176,12 +181,13 @@
                 <div class="col foto-side">
                     <div class="row justify-content-center pt-4 mt-3 mr-2">
                         <img src="{{ asset('uploaded/images/profil_petugas/' . $auth->petugas->profil) }}"
-                            style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;" alt="">
+                            style="width:240px; height:240px; border-radius:50px; object-fit: cover; margin-top: 15px;"
+                            alt="">
                     </div>
                     <div class="row justify-content-center">
                         <label for="profil" class="btn ubah-profil-btn mr-3"
-                        style="background: #24143F; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
-                        Foto</label>
+                            style="background: #24143F; color: #ffffff; margin-top: 19px; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); padding: 5px 35px;">Ubah
+                            Foto</label>
                         <input type="file" name="profil" id="profil" class="d-none">
                     </div>
                 </div>
@@ -216,29 +222,35 @@
 
 @push ('extras-css')
 <style>
+    #content {
+        padding-bottom: 11px !important;
+    }
+
+    @media (max-width: 1127px) {
+        #content {
+            padding-bottom: 0px !important;
+        }
+    }
+
     @media (max-width: 988px) {
-        .row.mt-3 > .col-md-8
-        {
+        .row.mt-3>.col-md-8 {
             flex: 0 0 100% !important;
             max-width: 100% !important;
         }
 
-        .col.foto-side > .row:nth-child(1)
-        {
+        .col.foto-side>.row:nth-child(1) {
             margin-top: -30px !important;
             margin-right: -13px !important;
         }
 
-        .col.foto-side > .row:nth-child(2) > label
-        {
+        .col.foto-side>.row:nth-child(2)>label {
             width: 100% !important;
             margin-left: 32px;
             margin-top: 30px !important;
             margin-right: 32px !important;
         }
 
-        .form-bawah
-        {
+        .form-bawah {
             margin-top: 15px;
         }
     }

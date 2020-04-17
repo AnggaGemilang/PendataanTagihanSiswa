@@ -112,7 +112,7 @@
         }
     }
 
-    @media (max-width: 671px) {
+    @media (max-width: 749px) {
         td>a {
             margin-top: 5px;
             width: 70px;
