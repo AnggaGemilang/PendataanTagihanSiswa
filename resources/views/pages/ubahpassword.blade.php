@@ -27,12 +27,7 @@
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Password</p>
         </div>
 
-        <form @if(Auth::user()->role_id=='1')
-            action="{{ url('ubahpassword/store/' . Auth::user()->siswa->id  . '/' . Auth::user()->siswa->role->nama_role ) }}"
-            @else
-            action="{{ url('ubahpassword/store/' . Auth::user()->petugas->id  . '/' . Auth::user()->petugas->role->nama_role ) }}"
-            @endif
-            method="POST" id="form-submit">
+        <form action="{{ url('ubahpassword/store') }}" method="POST" id="form-submit">
 
             {{ csrf_field() }}
 
@@ -43,7 +38,7 @@
                         id="password_lama" aria-describedby="helpId" placeholder="Masukkan Password Lama Anda"
                         oldstatus="false"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
-                    <button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
+                    <button type="button" class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
                 </div>
             </div>
 
@@ -57,7 +52,7 @@
             <div class="row m-3">
                 <div class="form-group w-100 position-relative mb-2">
                     <label for="password_baru">Password Baru</label>
-                    <input type="password" class="form-pwd form-control greylight-bg" value="{{ old('password_baru') }}"
+                    <input type="password" class="form-pwd form-control greylight-bg"
                         name="password_baru" id="password_baru" aria-describedby="helpId"
                         placeholder="Masukkan Password Baru Anda"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
@@ -95,7 +90,19 @@
 
 @push('extras-js')
 <script>
-    $('#password_lama').on('keyup', function () {
+    function delay(callback, ms) {
+        var timer = 0;
+        return function () {
+            var context = this,
+                args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                callback.apply(context, args);
+            }, ms || 0);
+        };
+    }
+
+    $('#password_lama').keyup(delay(function (e) {
         var value = $(this).val();
         if (value.length > 0) {
             $.ajaxSetup({
@@ -107,6 +114,8 @@
                 url: "ubahpassword/fetch/" + value,
                 type: 'GET',
                 success: function (data) {
+                    console.log(data);
+                    console.log(value);
                     if (data == "benar") {
                         $('#oldpwd_content_true').show();
                         $('#oldpwd_content_false').hide();
@@ -122,7 +131,7 @@
                 }
             })
         }
-    });
+    }, 300));
 
     $('#konfirmasi_password').on('keyup', function () {
         var value_before = $('#password_baru').val();

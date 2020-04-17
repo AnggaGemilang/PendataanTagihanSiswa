@@ -27,7 +27,7 @@ class PembayaranController extends Controller
         return view('pages.entripembayaran', compact(['kelas','tipetagihan','siswa']));
     }
 
-    public function detail($id)
+    public function detail(Request $request, $id)
     {
         $data = Pembayaran::find($id);
 
@@ -68,12 +68,12 @@ class PembayaranController extends Controller
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
         $content .= '<td class="exceptt">Uang Diterima</td>';
         $content .= '<td class="exceptt" width="20" align="center">:</td>';
-        $content .= '<td class="exceptt">Rp. ' . $data->nominal ?? "" . '</td>';
+        $content .= '<td class="exceptt">' . $request->diterima . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
         $content .= '<td class="exceptt">Sisa Tagihan</td>';
         $content .= '<td class="exceptt" width="20" align="center">:</td>';
-        $content .= '<td class="exceptt">Rp. ' . $data->sisa_tagihan ?? "" . '</td>';
+        $content .= '<td class="exceptt">' . $request->sisa . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
         $content .= '<td class="exceptt">Keterangan</td>';
@@ -107,15 +107,8 @@ class PembayaranController extends Controller
             if($t->keterangan=='lunas'){
                 $status = 'disabled';
             }
-            $output .= "<option " . $status . " value='" . $t->id . "'>" . $t->tipetagihan->nama_tagihan . "</option>";
+            $output .= "<option data-sisa='" . ($t->tipetagihan->nominal - $t->sudah_dibayar) . "' " . $status . " value='" . $t->id . "'>" . $t->tipetagihan->nama_tagihan . "</option>";
         }
-        return $output;
-    }
-
-    public function fetchSisaTagihan($tipetagihan)
-    {
-        $tagihan = Tagihan::find($tipetagihan);
-        $output = "<p style='font-size: 15px; margin-bottom: -10px !important;'>Sisa Tagihan : Rp. " . ($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar) . "</p>";
         return $output;
     }
 
@@ -146,7 +139,7 @@ class PembayaranController extends Controller
         ];
 
         $this->validate($request, [
-            'nominal' => 'bail|required|integer',
+            'nominal' => 'bail|required',
             'siswa_id' => 'bail|required|integer',
             'kelas_id' => 'bail|required|integer',
             'tagihan_id' => 'bail|required|integer'
@@ -155,15 +148,16 @@ class PembayaranController extends Controller
         $tagihan = Tagihan::find($request->tagihan_id);
         $tipetagihan = $tagihan->tipetagihan->nominal;
         $sudahdibayar = $tagihan->sudah_dibayar;
+        $after_nominal = intval(str_replace(".", "", $request->nominal));
 
-        if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
+        if($tipetagihan - ($after_nominal+$sudahdibayar)==0)
         {
             $ket = 'lunas';
         } else {
             $ket = 'blm_lunas';
         }
 
-        if(Tagihan::find($request->tagihan_id)->tipetagihan->nominal < $request->nominal){
+        if(Tagihan::find($request->tagihan_id)->tipetagihan->nominal < $after_nominal){
             $notification = array(
                 'title' => 'Pembayaran Gagal',
                 'description' => 'Nominal Terlalu Besar!',
@@ -172,18 +166,18 @@ class PembayaranController extends Controller
             return redirect()->back()->with($notification);
         } else {
             $entri = new Pembayaran;
-            $entri->nominal = $request->nominal;
+            $entri->nominal = $after_nominal;
             $entri->siswa_id = $request->siswa_id;
             $entri->petugas_id = Auth::user()->petugas->id;
             $entri->kelas_id = $request->kelas_id;
             $entri->tagihan_id = $request->tagihan_id;
             $entri->keterangan = $ket;
-            $entri->sisa_tagihan = $tipetagihan - ($request->nominal+$sudahdibayar);
+            $entri->sisa_tagihan = $tipetagihan - ($after_nominal+$sudahdibayar);
             $entri->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $entri->updated_at = Carbon::now()->format('Y-m-d H:i:s');
             $entri->save();
     
-            if($tipetagihan - ($request->nominal+$sudahdibayar)==0)
+            if($tipetagihan - ($after_nominal+$sudahdibayar)==0)
             {
                 $tagihan = Tagihan::find($request->tagihan_id);
                 $tagihan->keterangan = 'lunas';

@@ -118,15 +118,12 @@
                 <tr style="height: 50px;">
                     <td class="except">{{ $no++ }}</td>
                     <td class="change">{{ $ts->tipetagihan->nama_tagihan }}</td>
-                    <td class="change">Rp. {{ $ts->tipetagihan->nominal }}</td>
-                    <td class="change">Rp. {{ $ts->sudah_dibayar }}</td>
-                    <td class="change">
-                        @php
-                        echo "Rp. " . ($ts->tipetagihan->nominal - $ts->sudah_dibayar)
-                        @endphp
-                    </td>
+                    <td class="change uang">{{ $ts->tipetagihan->nominal }}</td>
+                    <td class="change uang">{{ $ts->sudah_dibayar }}</td>
+                    <td class="change uang">@php echo($ts->tipetagihan->nominal-$ts->sudah_dibayar)@endphp</td>
                     <td class="change">@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td class="change"><a type="button" class="btn" style="background: #24143F; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                    <td class="change"><a type="button" class="btn"
+                            style="background: #24143F; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
                             href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
@@ -156,15 +153,12 @@
                 <tr style="height: 50px;">
                     <td class="except">{{ $no2++ }}</td>
                     <td class="change">{{ $t->tipetagihan->nama_tagihan }}</td>
-                    <td class="change">Rp. {{ $t->tipetagihan->nominal }}</td>
-                    <td class="change">Rp. {{ $t->sudah_dibayar }}</td>
-                    <td class="change">
-                        @php
-                        echo "Rp. " . ($t->tipetagihan->nominal - $t->sudah_dibayar)
-                        @endphp
-                    </td>
+                    <td class="change uang">{{ $t->tipetagihan->nominal }}</td>
+                    <td class="change uang">{{ $t->sudah_dibayar }}</td>
+                    <td class="change uang">@php echo($t->tipetagihan->nominal - $t->sudah_dibayar)@endphp</td>
                     <td class="change">@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td class="change"><a type="button" class="btn" style="background: #24143F; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                    <td class="change"><a type="button" class="btn"
+                            style="background: #24143F; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
                             href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
                 </tr>
                 @endforeach
@@ -180,11 +174,14 @@
 
     @if($history->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
-        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+            href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran
+        baru.
     </div>
     @else
     @foreach ($history as $h)
-    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
+    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}"
+        data-diterima="{{ $h->nominal }}">
         <div class="row">
             <div class="col bawah">
                 <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -193,7 +190,7 @@
                 <p class="float-right kekiri">{{ $h->created_at }}</p>
             </div>
         </div>
-        <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
+        <h3 style="margin-top: -5px;" class="uang">{{ $h->nominal }}</h3>
     </div>
     @endforeach
     @endif
@@ -311,11 +308,28 @@
 
 @push('extras-js')
 <script>
+    $(document).ready(function () {
+        var value;
+        $('.uang').each(function (i) {
+            value = $(this).text();
+            console.log(value + ' : ' + i);
+            $(this).html(conventer(value, i));
+        });
+    });
+
     $(document).on('click', '#item-history', function () {
         var id = $(this).data('id');
+        var diterima = conventer($(this).data('diterima'));
+        var sisa = conventer($(this).data('sisa'));
+        console.log(diterima);
+        console.log(sisa);
         $.ajax({
             url: '/pembayaran/history/detail/' + id,
             type: 'get',
+            data: {
+                sisa:sisa,
+                diterima:diterima
+            },
             dataType: 'json',
             success: function (data) {
                 console.log(data);

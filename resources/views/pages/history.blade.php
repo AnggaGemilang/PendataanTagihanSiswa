@@ -54,7 +54,7 @@
     @else
     <div class="row m-1" id="wrapper-history">
         @foreach ($history_siswa as $h)
-        <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
+        <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
             <div class="row">
                 <div class="col">
                     <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -63,7 +63,7 @@
                     <p class="float-right kekiri">{{ $h->created_at }}</p>
                 </div>
             </div>
-            <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
+            <h3 style="margin-top: -5px;" class="uang">Rp. {{ $h->nominal }}</h3>
         </div>
         @endforeach
         @endif
@@ -73,12 +73,14 @@
 
     @if($history->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
-        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran baru.
+        <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+            href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran
+        baru.
     </div>
     @else
     <div class="row m-1" id="wrapper-history">
         @foreach ($history as $h)
-        <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}">
+        <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
             <div class="row">
                 <div class="col">
                     <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -153,6 +155,16 @@
 
 @push('extras-js')
 <script>
+    $(document).ready(function () {
+        var value;
+        $('.uang').each(function (i) {
+            value = $(this).text();
+            console.log(value + ' : ' + i);
+            $(this).html(conventer(value, i));
+        });
+    });
+
+
     $(function () {
         $('.date_picker').datepicker({
             format: "yyyy-mm-dd",
@@ -165,9 +177,18 @@
 
     $(document).on('click', '#item-history', function () {
         var id = $(this).data('id');
+        var diterima = conventer($(this).data('diterima'));
+        var sisa = conventer($(this).data('sisa'));
+        console.log(diterima);
+        console.log(sisa);
+
         $.ajax({
             url: 'history/detail/' + id,
             type: 'get',
+            data: {
+                diterima:diterima,
+                sisa:sisa
+            },
             dataType: 'json',
             success: function (data) {
                 console.log(data);

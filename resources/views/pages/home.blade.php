@@ -37,7 +37,7 @@
     </div>
     @else
     @foreach ($history_siswa as $h)
-    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
+    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
         <div class="row">
             <div class="col bawah">
                 <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -46,7 +46,7 @@
                 <p class="float-right kekiri">{{ $h->created_at }}</p>
             </div>
         </div>
-        <h3 style="margin-top: -5px;">Rp. {{ $h->nominal }}</h3>
+        <h3 style="margin-top: -5px;" class="uang">Rp. {{ $h->nominal }}</h3>
     </div>
     @endforeach
     @endif
@@ -73,7 +73,7 @@
     </div>
 
     <div class="row mt-4 ml-1">
-        <h3>History Pembayaran</h3>
+        <h3>Pembayaran Hari ini</h3>
     </div>
 
     @if($history->count()==0)
@@ -84,7 +84,7 @@
     </div>
     @else
     @foreach ($history as $h)
-    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}">
+    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
         <div class="row history">
             <div class="col bawah">
                 <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -184,6 +184,15 @@
 
 @push('extras-js')
 <script>
+    $(document).ready(function () {
+        var value;
+        $('.uang').each(function (i) {
+            value = $(this).text();
+            console.log(value + ' : ' + i);
+            $(this).html(conventer(value, i));
+        });
+    });
+
     setInterval(function () {
         var weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
         var date = new Date();
@@ -202,7 +211,8 @@
 
         $('#tgl-hari').html(
             weekday[date.getDay()] + ", " + ((date.getDate() < 10) ? "0" + date.getDate() : date
-        .getDate()) + " - " + ((date.getMonth() < 10) ? "0" + date.getMonth() : date.getMonth()) + " - " +
+                .getDate()) + " - " + ((date.getMonth() < 10) ? "0" + date.getMonth() : date.getMonth()) +
+            " - " +
             date
             .getFullYear()
         );
@@ -215,9 +225,15 @@
 
     $(document).on('click', '#item-history', function () {
         var id = $(this).data('id');
+        var diterima = conventer($(this).data('diterima'));
+        var sisa = conventer($(this).data('sisa'));
         $.ajax({
             url: 'pembayaran/history/detail/' + id,
             type: 'get',
+            data: {
+                diterima: diterima,
+                sisa: sisa
+            },
             dataType: 'json',
             success: function (data) {
                 console.log(data);

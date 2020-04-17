@@ -16,6 +16,7 @@ use App\Siswa;
 use App\Petugas;
 use App\Autentikasi;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ProfilController extends Controller
 {
@@ -123,7 +124,7 @@ class ProfilController extends Controller
         return $status;
     }
 
-    public function ubahstore(Request $request, $id, $role)
+    public function resetStore(Request $request)
     {
         $messages = [
             'required' => ':attribute wajib diisi',
@@ -140,27 +141,19 @@ class ProfilController extends Controller
             'password_baru' => 'bail|required|string|min:6|max:100',
         ], $messages);
 
-        if($role=="siswa")
-        {
-            $user = Auth::user();
-            $siswa = Autentikasi::where('siswa_id',$id)->first();
-            $siswa->password = Hash::make($request->password_baru);
-            $siswa->update();
-            Auth::logout();
-        }else{
-            $user = Auth::user();
-            $petugas = Autentikasi::where('petugas_id',$id)->first();
-            $petugas->password = Hash::make($request->password_baru);
-            $petugas->update();
-            Auth::logout();
-        }
+        $password = $request->password_baru;
+        $id = Auth::User()->id;
+        $user = Autentikasi::find($id);
+        if (!$user) return redirect()->back()->withErrors(['email' => 'Email not found']);
+        $user->password = \Hash::make($password);
+        $user->update();
+        Auth::login($user);
 
         $notification = array(
             'title' => 'Berhasil',
             'description' => 'Password Berhasil Diubah!',
             'alert-type' => 'success'
         );
-
-        return redirect('login')->with($notification);
+        return redirect('ubahpassword')->with($notification);
     }
 }

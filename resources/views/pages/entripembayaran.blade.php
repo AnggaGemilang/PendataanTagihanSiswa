@@ -37,7 +37,7 @@
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         <option value="">Pilih Kelas</option>
                         @foreach($kelas as $k)
-                        <option value="{{ $k->id }}" {{ old('kelas_id')==$k->id ? 'selected' : '' }}>
+                        <option value="{{ $k->id }}">
                             {{ $k->nama_kelas }}</option>
                         @endforeach
                     </select>
@@ -68,9 +68,12 @@
             <div class="row m-3">
                 <div class="form-group w-100">
                     <label for="nominal">Nominal</label>
-                    <input type="text" class="form-control greylight-bg" name="nominal" id="nominal"
-                        aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran"
-                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                    <div class="nominal position-relative">
+                        <span class="position-absolute" style="left: 13px; top: 5.5px;">Rp.</span>
+                        <input type="text" class="form-control greylight-bg" name="nominal" id="nominal"
+                            aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran"
+                            style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-left: 42px; padding-top: 3.5px; font-size: 16px;">
+                    </div>
                 </div>
                 <p id="sisa_tagihan_pembayaran"></p>
             </div>
@@ -90,8 +93,7 @@
 @push('extras-css')
 <style>
     @media (max-width: 1128px) {
-        .col-md-12.mt-4
-        {
+        .col-md-12.mt-4 {
             margin-bottom: 0px !important;
         }
     }
@@ -100,6 +102,25 @@
 
 @push('extras-js')
 <script>
+    var nominal = document.getElementById('nominal');
+    nominal.addEventListener('keyup', function (e) {
+        nominal.value = formatRupiah(this.value);
+        console.log(nominal.value = formatRupiah(this.value));
+    });
+    function formatRupiah(angka) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return rupiah;
+    }
+
     $('#kelas_id').on('change', function () {
         if ($(this).val() != '') {
             console.log('kelas_id');
@@ -141,23 +162,10 @@
     });
 
     $('#tagihan_id').on('change', function () {
-        if ($(this).val() != '') {
-            console.log('tagihan_id');
-            var tagihan_id = $(this).children("option:selected").val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: "entripembayaran/" + tagihan_id + "/getSisaTagihan",
-                method: "GET",
-                data: {
-                    tagihan_id: tagihan_id,
-                    _token: _token,
-                },
-                success: function (result) {
-                    console.log(result);
-                    $('#sisa_tagihan_pembayaran').html(result);
-                }
-            })
-        }
+        var sisa_tagihan = conventer($(this).find(':selected').data('sisa'));
+        var output = "<p style='font-size: 15px; margin-bottom: -10px !important;'>Sisa Tagihan : " +
+            sisa_tagihan + "</p>";
+        $('#sisa_tagihan_pembayaran').html(output);
     });
 </script>
 @endpush

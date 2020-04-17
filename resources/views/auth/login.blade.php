@@ -26,7 +26,7 @@
                         aria-describedby="helpId" placeholder="Password" >
                     </div>
                     <div class="wrapper-icon-show">
-                        <button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
+                        <button type="button" class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
                     </div>
                 </div>
                 

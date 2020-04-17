@@ -19,7 +19,7 @@ Route::group(['middleware' => ['auth','roleMiddleware:1,2,3']], function(){
 
     Route::get('ubahpassword', 'ProfilController@ubahpassword')->name('ubahpassword');
     Route::get('ubahpassword/fetch/{old}', 'ProfilController@fetch_oldpassword')->name('ubahpassword_fetch');
-    Route::post('ubahpassword/store/{id}/{role}', 'ProfilController@ubahstore')->name('ubahpassword_store');
+    Route::post('ubahpassword/store', 'ProfilController@resetStore')->name('ubahpassword_stote');
 
     Route::get('profil/{slug}/{id}/{role_id}', 'ProfilController@index')->name('profile');
     Route::post('profil/{slug}/{id}/{role_id}/perbaharui/store', 'ProfilController@update')->name('perbaharui_profile');

@@ -21,6 +21,7 @@ class SiswaSeeder extends Seeder
             'slug' => Str::slug('Angga Gemilang','-'),
             'alamat' => 'Jalan Ciguruwik Babakan Sukamulya RT. 02 RW. 13 No. 53',
             'kelas_id' => 1,
+            'tipekelas_id' => 1,
             'no_telp' => '083195008217',
             'profil' => 'angga-profil.jpeg',
             'role_id' => 1,

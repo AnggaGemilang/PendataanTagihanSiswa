@@ -5,7 +5,6 @@
 jQuery(function ($) {
     var i = 1;
     var clickAllowed = true;
-    var changeAllowed = true;
     var widthWindow = $(window).width();
 
     $('#sidebarCollapse').click(function () {
@@ -79,6 +78,7 @@ jQuery(function ($) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
+            $('[data-toggle="tooltip"]').tooltip('enable');
             console.log("dibawah");
         } else if ($('#sidebarCollapse').hasClass('status-hilang-actived') && $(window).width() >= 1127)
         {
@@ -93,6 +93,7 @@ jQuery(function ($) {
             widthWindow = null;
             widthWindow = $(window).width();
             clickAllowed = true;
+            $('[data-toggle="tooltip"]').tooltip('disable');
             console.log("diatas");
         } else {
             clickAllowed = false;
@@ -107,6 +108,17 @@ jQuery(function ($) {
     $(document).ready(onResize);
     $(window).bind('resize', onResize);
 });
+
+/* ---------------------------------------------------
+    RUPIAH CHANGE
+----------------------------------------------------- */
+
+function conventer(value) {
+    var reverse = value.toString().split('').reverse().join(''),
+        ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join('.').split('').reverse().join('');
+    return "Rp. " + ribuan;
+}
 
 /* ---------------------------------------------------
     DROPDOWN BUTTON OPTION

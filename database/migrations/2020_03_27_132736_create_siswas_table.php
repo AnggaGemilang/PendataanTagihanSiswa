@@ -20,6 +20,7 @@ class CreateSiswasTable extends Migration
             $table->string('slug', 200);
             $table->text('alamat')->nullable();
             $table->integer('kelas_id')->unsigned();
+            $table->integer('tipekelas_id')->unsigned();
             $table->string('no_telp', 13)->nullable();
             $table->string('profil');
             $table->integer('role_id');

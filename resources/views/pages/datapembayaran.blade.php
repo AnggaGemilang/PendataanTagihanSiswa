@@ -32,13 +32,9 @@
                 <tr style="height: 50px;">
                     <td class="except">{{ $no++ }}</td>
                     <td>{{ $ts->tipetagihan->nama_tagihan }}</td>
-                    <td>Rp. {{ $ts->tipetagihan->nominal }}</td>
-                    <td>Rp. {{ $ts->sudah_dibayar }}</td>
-                    <td>
-                        @php
-                            echo "Rp. " . ($ts->tipetagihan->nominal - $ts->sudah_dibayar)
-                        @endphp
-                    </td>
+                    <td class="uang">{{ $ts->tipetagihan->nominal }}</td>
+                    <td class="uang">{{ $ts->sudah_dibayar }}</td>
+                    <td class="uang">@php echo ($ts->tipetagihan->nominal - $ts->sudah_dibayar)@endphp</td>
                     <td>@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
                 </tr>
                 @endforeach
@@ -61,19 +57,15 @@
             </thead>
             <tbody align="center">
                 @php
-                    $no2 = 1;
+                $no2 = 1;
                 @endphp
                 @foreach ($tagihan as $t)
                 <tr style="height: 50px;">
                     <td class="except">{{ $no2++ }}</td>
                     <td>{{ $t->tipetagihan->nama_tagihan }}</td>
-                    <td>Rp. {{ $t->tipetagihan->nominal }}</td>
-                    <td>Rp. {{ $t->sudah_dibayar }}</td>
-                    <td>
-                        @php
-                            echo "Rp. " . ($t->tipetagihan->nominal - $t->sudah_dibayar)
-                        @endphp
-                    </td>
+                    <td class="uang">{{ $t->tipetagihan->nominal }}</td>
+                    <td class="uang">{{ $t->sudah_dibayar }}</td>
+                    <td class="uang">@php echo($t->tipetagihan->nominal - $t->sudah_dibayar)@endphp</td>
                     <td>@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
                 </tr>
                 @endforeach
@@ -85,27 +77,38 @@
 @include('partials.footer')
 @endsection
 
+@push('extras-js')
+<script>
+    $(document).ready(function () {
+        var value;
+        $('tr > .uang').each(function (i) {
+            value = $(this).text();
+            console.log(value + ' : ' + i);
+            $(this).html(conventer(value, i));
+        });
+    });
+</script>
+@endpush
+
 @push ('extras-css')
 <style>
-    .bg-data
-    {
-        background: #FFFFFF !important; 
-        border-radius: 10px; 
-        padding-left: 20px; 
-        padding-right: 20px; 
-        padding-top: 15px; 
-        padding-bottom: 15px; 
-        box-shadow: 1px 2px 14px rgba(0,0,0,0.1);
+    .bg-data {
+        background: #FFFFFF !important;
+        border-radius: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        box-shadow: 1px 2px 14px rgba(0, 0, 0, 0.1);
         overflow: auto;
     }
-    td.except
-    {
+
+    td.except {
         min-width: 50px;
     }
-    td:not(.except)
-    {
+
+    td:not(.except) {
         min-width: 144px !important;
     }
-
 </style>
 @endpush
