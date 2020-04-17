@@ -33,8 +33,10 @@
         <ol style="opacity: 0.7;">
             <li>Pastikan data yang telah anda masukkan valid</li>
             <li>Tagihan wajib (SPP & uang bangunan) akan muncul otomatis ketika penambahkan data siswa</li>
-            <li>Kolom "Untuk Siswa Kelas" berfungsi untuk menentukan tujuan tagihan akan diberlakukan untuk siswa kelas berapa</li>
-            <li>Contoh: ketika menambahkan tagihan "Uang PKL" maka pilih option kelas 12 pada kolom Untuk Siswa Kelas</li>
+            <li>Kolom "Untuk Siswa Kelas" berfungsi untuk menentukan tujuan tagihan akan diberlakukan untuk siswa kelas
+                berapa</li>
+            <li>Contoh: ketika menambahkan tagihan "Uang PKL" maka pilih option kelas 12 pada kolom Untuk Siswa Kelas
+            </li>
             <li>Ketika semua data sudah terisi, maka klik tombol tambah tagihan</li>
         </ol>
     </div>
@@ -48,12 +50,8 @@
             @endif
         </div>
 
-        <form id="form-tambah-tagihan" 
-        @if($status=='tambah') 
-        action="" 
-        @else
-        action="{{ url('data/tipetagihan/perbaharui/' . $tipetagihan->slug . '/store') }}" 
-        @endif method="post">
+        <form id="form-tambah-tagihan" @if($status=='tambah' ) action="" @else
+            action="{{ url('data/tipetagihan/perbaharui/' . $tipetagihan->slug . '/store') }}" @endif method="post">
 
             {{ csrf_field() }}
 
@@ -61,7 +59,7 @@
                 <div class="form-group w-100">
                     <label for="nama_tagihan" @if($status=="tambah" ) data-idtipetagihan="{{ $last_id->id+1 }}" @endif
                         id="label_tipetagihan_id">Nama Jenis Tagihan</label>
-                    <input type="text" class="form-control greylight-bg" name="nama_tagihan" id="nama_tagihan" required="required"
+                    <input type="text" class="form-control greylight-bg" name="nama_tagihan" id="nama_tagihan"
                         aria-describedby="helpId" placeholder="Masukkan Nama Jenis Tagihan" @if($status=='update' )
                         value="{{ $tipetagihan->nama_tagihan }}" @endif
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
@@ -71,10 +69,12 @@
             <div class="row m-3">
                 <div class="form-group w-100">
                     <label for="nominal">Nominal Biaya</label>
-                    <input type="text" class="form-control greylight-bg" name="nominal" id="nominal" required="required"
-                        aria-describedby="helpId" placeholder="Masukkan Nominal Biaya " @if($status=='update' )
-                        value="{{ $tipetagihan->nominal }}" @endif
-                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                    <div class="nominal position-relative">
+                        <span class="position-absolute" style="left: 13px; top: 5.5px;">Rp.</span>
+                        <input type="text" class="form-control greylight-bg" name="nominal" id="nominal"
+                            aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran"
+                            style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-left: 45px; padding-top: 3.5px; font-size: 16px;">
+                    </div>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
             <div class="row m-3">
                 <div class="form-group w-100 mb-2">
                     <label for="id_kelas">Untuk Siswa Kelas</label><br>
-                    <select class="select-move" id="tipekelas" name="tipekelas[]" multiple required="required">
+                    <select class="select-move" id="tipekelas" name="tipekelas[]" multiple>
                         @foreach ($tipekelas as $tp)
                         <option value="{{ $tp->id }}">{{ $tp->nama_tipekelas }} ({{ $tp->desc }})</option>
                         @endforeach
@@ -92,7 +92,8 @@
             @endif
 
             <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">@if($status=='tambah')Tambah Jenis
+                <button type="submit" class="btn w-100 text-light"
+                    style="background: #24143F !important;">@if($status=='tambah')Tambah Jenis
                     Tagihan @else Perbaharui Jenis Tagihan @endif<i class="fas fa-save pl-2"></i></button>
             </div>
         </form>
@@ -105,6 +106,39 @@
 
 @push('extras-js')
 <script>
+    var nominal = document.getElementById('nominal');
+    nominal.addEventListener('keyup', function (e) {
+        nominal.value = formatRupiah(this.value);
+        console.log(nominal.value = formatRupiah(this.value));
+    });
+
+    function formatRupiah(angka) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return rupiah;
+    }
+
+
+    $('#form-tambah-tagihan').submit(function (e) {
+        if ($('#tipekelas').val() == '') {
+            e.preventDefault();
+            toastr.error("Mohon Lengkapi Form!", "Gagal Menambahkan Data", {
+                "showMethod": "slideDown",
+                "hideMethod": "slideUp",
+                timeOut: 3000
+            });
+            return false;
+        }
+    });
+
     $('#tipekelas').on('change', function () {
         var kelas_id = $(this).val();
         var tipetagihanid = $("#label_tipetagihan_id").data('idtipetagihan');

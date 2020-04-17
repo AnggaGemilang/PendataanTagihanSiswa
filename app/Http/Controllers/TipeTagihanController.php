@@ -49,10 +49,28 @@ class TipeTagihanController extends Controller
 
     public function store(Request $request, $kelas_id, $tipetagihan_id)
     {
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute terlalu pendek, minimal :min karakter',
+            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'email' => ':attribute memerlukan "@"',
+            'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+            'size' => ':attribute terlalu besar, maksimal berukuran :size',
+            'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+            'unique' => ':attribute sudah terpakai'
+        ];
+
+        $this->validate($request, [
+            'nama_tagihan' => 'bail|required|string|max:200',
+            'nominal' => 'bail|required',
+        ], $messages);
+
+        $after_nominal = intval(str_replace(".", "", $request->nominal));
+
         $tipetagihan = new TipeTagihan;
         $tipetagihan->nama_tagihan = $request->nama_tagihan;
         $tipetagihan->slug = Str::slug($request->nama_tagihan);
-        $tipetagihan->nominal = $request->nominal;
+        $tipetagihan->nominal = $after_nominal;
         $tipetagihan->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->save();
@@ -95,10 +113,28 @@ class TipeTagihanController extends Controller
 
     public function update(Request $request, $slug)
     {
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute terlalu pendek, minimal :min karakter',
+            'max' => ':attribute terlalu panjang, maksimal :max karakter',
+            'email' => ':attribute memerlukan "@"',
+            'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+            'size' => ':attribute terlalu besar, maksimal berukuran :size',
+            'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+            'unique' => ':attribute sudah terpakai'
+        ];
+
+        $this->validate($request, [
+            'nama_tagihan' => 'bail|required|string|max:200',
+            'nominal' => 'bail|required',
+        ], $messages);
+
+        $after_nominal = intval(str_replace(".", "", $request->nominal));
+
         $tipetagihan = TipeTagihan::where('slug',$slug)->first();
         $tipetagihan->nama_tagihan = $request->nama_tagihan;
         $tipetagihan->slug = Str::slug($request->nama_tagihan);
-        $tipetagihan->nominal = $request->nominal;
+        $tipetagihan->nominal = $after_nominal;
         $tipetagihan->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->update();

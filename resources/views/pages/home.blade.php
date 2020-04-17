@@ -184,15 +184,6 @@
 
 @push('extras-js')
 <script>
-    $(document).ready(function () {
-        var value;
-        $('.uang').each(function (i) {
-            value = $(this).text();
-            console.log(value + ' : ' + i);
-            $(this).html(conventer(value, i));
-        });
-    });
-
     setInterval(function () {
         var weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
         var date = new Date();

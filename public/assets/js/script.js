@@ -113,6 +113,15 @@ jQuery(function ($) {
     RUPIAH CHANGE
 ----------------------------------------------------- */
 
+$(document).ready(function () {
+    var value;
+    $('.uang').each(function (i) {
+        value = $(this).text();
+        console.log(value + ' : ' + i);
+        $(this).html(conventer(value, i));
+    });
+});
+
 function conventer(value) {
     var reverse = value.toString().split('').reverse().join(''),
         ribuan = reverse.match(/\d{1,3}/g);

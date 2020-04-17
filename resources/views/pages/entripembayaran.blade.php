@@ -72,7 +72,7 @@
                         <span class="position-absolute" style="left: 13px; top: 5.5px;">Rp.</span>
                         <input type="text" class="form-control greylight-bg" name="nominal" id="nominal"
                             aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran"
-                            style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-left: 42px; padding-top: 3.5px; font-size: 16px;">
+                            style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-left: 45px; padding-top: 3.5px; font-size: 16px;">
                     </div>
                 </div>
                 <p id="sisa_tagihan_pembayaran"></p>
