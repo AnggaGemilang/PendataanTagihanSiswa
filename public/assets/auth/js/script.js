@@ -18,3 +18,10 @@ $(document).keypress(function (e) {
         $('#form-submit').submit();
     }
 });
+
+function show()
+{
+    $('#form-submit').submit();
+    $('#btn-submit').attr('disabled','true').css('padding-right','50px');
+    $('.loader').show();
+}

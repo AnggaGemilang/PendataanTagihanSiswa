@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #241937 !important; height: 65px; align-content: center;">
             @if ($status=='tambah')
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Siswa</p>
             @else
@@ -46,8 +46,10 @@
             @endif
         </div>
 
+        <!-- id="form_tambah_siswa" -->
+
         <form @if($status=='tambah') 
-            action="{{ url('data/siswa/tambah/store') }}" id="form_tambah_siswa"
+            action="{{ url('data/siswa/tambah/store') }}" id="form-submit"
             @else
             action="{{url('data/siswa/perbaharui/' . $siswa->id . '/store')}}" 
             @endif 
@@ -181,10 +183,10 @@
             </div>
             @endif
 
-            <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light"
-                    style="background: #24143F !important;">@if($status=='update') Perbaharui Siswa @else Tambah Siswa
+            <div class="row m-3 pb-4 pt-2 position-relative">
+                <button type="submit" class="btn w-100 text-light" style="background: #241937 !important; transition: all .3s;" id="btn-submit" onclick="show()">@if($status=='update') Perbaharui Siswa @else Tambah Siswa
                     @endif<i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
         </form>
 

@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-3 pl-0">
             <a type="button" href="{{url('/data/siswa/tambah')}}" class="btn w-100"
-                style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Siswa</a>
+                style="background: #241937; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Siswa</a>
         </div>
     </div>
 
@@ -63,7 +63,7 @@
                         <td>{{ $s->class->nama_kelas }}</td>
                         <td>
                             <img src="{{ asset('uploaded/images/profil_siswa/' . $s->profil) }}"
-                                style="width:78px; height:78px; border-radius:60px;object-fit: cover;" alt="">
+                                style="width:78px; height:78px; border-radius:60px;object-fit: cover;">
                         </td>
                         <td>
                             <button type="button" data-url="{{ url('data/siswa/hapus/' . $s->id) }}"

@@ -70,9 +70,9 @@
                         <th class="except" scope="row">{{$no++}}</th>
                         <td>{{ $t->siswa->nama_siswa }}</td>
                         <td>{{ $t->siswa->class->nama_kelas }}</td>
-                        <td>{{ $t->tipetagihan->nominal }}</td>
-                        <td>{{ $t->sudah_dibayar }}</td>
-                        <td>Rp. {{ $t->tipetagihan->nominal - $t->sudah_dibayar }}</td>
+                        <td class="uang">{{ $t->tipetagihan->nominal }}</td>
+                        <td class="uang">{{ $t->sudah_dibayar }}</td>
+                        <td class="uang">{{ $t->tipetagihan->nominal - $t->sudah_dibayar }}</td>
                         <td>@if($t->keterangan=="blm_lunas") Belum Lunas @else Sudah Lunas @endif</td>
                         <td>
                             <button type="button" data-url="{{ url('data/tagihan/hapus/' . $t->id ) }}"
@@ -120,4 +120,17 @@
         }
     }
 </style>
+@endpush
+
+@push('extras-js')
+<script>
+    $(document).ready(function () {
+        var value;
+        $('.uang').each(function (i) {
+            value = $(this).text();
+            console.log(value + ' : ' + i);
+            $(this).html(conventer(value, i));
+        });
+    });
+</script>
 @endpush

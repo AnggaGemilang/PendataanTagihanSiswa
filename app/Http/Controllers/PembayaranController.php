@@ -81,7 +81,7 @@ class PembayaranController extends Controller
         $content .= '<td class="exceptt" class="text-capitalize">' . $ket . '</td>';
         $content .= '</tr>';
         $content .= '</table>';
-        $content .= '<a href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'" jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #2C2E3E;">Lihat Data Pembayaran</a>';
+        $content .= '<a href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'" jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #241937;">Lihat Data Pembayaran</a>';
         
         echo json_encode($content);
     }

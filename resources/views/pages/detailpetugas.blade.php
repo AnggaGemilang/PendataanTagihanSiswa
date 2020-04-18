@@ -83,7 +83,7 @@
         <div class="col-md-5 position-relative d-flex justify-content-center pl-0" id="dropdown-detail">
             <img src="{{ asset('uploaded/images/profil_petugas/' . $petugas->profil) }}" class="prev-profil" alt="">
             <button type="button" class="btn btn-info position-absolute btn-toggle-option">
-                <i class="fas fa-ellipsis-v" style="color: #24143F;"></i>
+                <i class="fas fa-ellipsis-v" style="color: #241937;"></i>
             </button>
             <div class="dropdown-navbar dropdown-detail">
                 <ul class="pl-0 mb-0">
@@ -102,7 +102,7 @@
         <h3 class="p-2 w-100 mb-3 pb-3" style="font-weight: 600;">Info Lainnya</h3>
         <hr>
         <span class="pl-2"
-            style="margin-top: 4px; margin-right: 9px; margin-left: 20px; border-left: 3px #24143F solid; height: 20px;"></span>
+            style="margin-top: 4px; margin-right: 9px; margin-left: 20px; border-left: 3px #241937 solid; height: 20px;"></span>
         <p>Data Tidak Ditemukan</p>
     </div>
 </div>

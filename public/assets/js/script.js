@@ -15,22 +15,22 @@ jQuery(function ($) {
                     $(this).removeClass('status-hilang-actived');
                     $('#content-section').attr('style', '');
                     $('nav.navbar.top').attr('style', '');
-                    $('#sidebar').attr('style','');
+                    $('#sidebar').attr('style', '');
                     $('#item-list > a > i').css('width', '18px');
                     $('.penghalang').fadeOut(300);
-                    $('body').css('overflow','auto');
+                    $('body').css('overflow', 'auto');
                     $('[data-toggle="tooltip"]').tooltip('disable');
                     console.log('hilang-hapus');
                 } else {
                     $(this).addClass('status-hilang-actived');
                     $('#content-section').attr('style', 'margin-left: 80px !important;');
-                    $('#sidebar').attr('style','left: 80px;');
+                    $('#sidebar').attr('style', 'left: 80px;');
                     $('nav.navbar.top').attr('style', 'left: 80px !important;');
                     $('.child-item-list > li > a > span').hide();
                     $('[data-toggle="tooltip"]').tooltip('enable');
                     $('#item-list > a > i').css('width', '37px');
                     $('.penghalang').fadeIn(300);
-                    $('body').css('overflow','hidden');
+                    $('body').css('overflow', 'hidden');
                     $('.child-item-list > li > a > i').css('width', '36px');
                     console.log('hilang-tambah');
                 }
@@ -38,22 +38,22 @@ jQuery(function ($) {
                 if ($(this).hasClass('status-muncul-actived')) {
                     $(this).removeClass('status-muncul-actived');
                     $('#content-section').attr('style', '');
-                    $('nav.navbar.top').attr('style','');
+                    $('nav.navbar.top').attr('style', '');
                     $('#item-list > a > i').css('width', '18px');
-                    $('.child-item-list > li > a > span').attr('style','');
+                    $('.child-item-list > li > a > span').attr('style', '');
                     $('.child-item-list > li > a > i').css('width', '18px');
                     $('[data-toggle="tooltip"]').tooltip('disable');
-                    $('#profil-list > a > h6').attr('style','');
-                    $('#item-list > a > span').attr('style','');
+                    $('#profil-list > a > h6').attr('style', '');
+                    $('#item-list > a > span').attr('style', '');
                     console.log('muncul-hapus');
                 } else {
                     $(this).addClass('status-muncul-actived');
                     $('#content-section').attr('style', 'margin-left: 80px !important;');
-                    $('nav.navbar.top').attr('style','left: 80px !important');
+                    $('nav.navbar.top').attr('style', 'left: 80px !important');
                     $('#item-list > a > i').css('width', '37px');
-                    $('.child-item-list > li > a > span').attr('style','display: none !important');
-                    $('#profil-list > a > h6').attr('style','display: none !important');
-                    $('#item-list > a > span').attr('style','display: none !important');
+                    $('.child-item-list > li > a > span').attr('style', 'display: none !important');
+                    $('#profil-list > a > h6').attr('style', 'display: none !important');
+                    $('#item-list > a > span').attr('style', 'display: none !important');
                     $('.child-item-list > li > a > i').css('width', '36px');
                     $('[data-toggle="tooltip"]').tooltip('enable');
                     console.log('muncul-tambah');
@@ -63,15 +63,14 @@ jQuery(function ($) {
     });
 
     onResize = function () {
-        if ($('#sidebarCollapse').hasClass('status-muncul-actived') && $(window).width() <= 1127)
-        {
+        if ($('#sidebarCollapse').hasClass('status-muncul-actived') && $(window).width() <= 1127) {
             $('#sidebarCollapse').removeClass('status-muncul-actived');
-            $('#sidebar').attr('style','').removeClass('active');
+            $('#sidebar').attr('style', '').removeClass('active');
             $('#content-section').attr('style', '');
             $('nav.navbar.top').attr('style', '');
-            $('.child-item-list > li > a > span').attr('style','');
-            $('#profil-list > a > h6').attr('style','');
-            $('#item-list > a > span').attr('style','');
+            $('.child-item-list > li > a > span').attr('style', '');
+            $('#profil-list > a > h6').attr('style', '');
+            $('#item-list > a > span').attr('style', '');
             $('#item-list > a > i').css('width', '18px');
             console.log('trigger-normal-hilang');
         } else if ($(window).width() <= 1127) {
@@ -80,12 +79,11 @@ jQuery(function ($) {
             clickAllowed = true;
             $('[data-toggle="tooltip"]').tooltip('enable');
             console.log("dibawah");
-        } else if ($('#sidebarCollapse').hasClass('status-hilang-actived') && $(window).width() >= 1127)
-        {
+        } else if ($('#sidebarCollapse').hasClass('status-hilang-actived') && $(window).width() >= 1127) {
             $('#sidebarCollapse').removeClass('status-hilang-actived');
             $('#content-section').attr('style', '');
             $('nav.navbar.top').attr('style', '');
-            $('#sidebar').attr('style','').removeClass('active');
+            $('#sidebar').attr('style', '').removeClass('active');
             $('#item-list > a > i').css('width', '18px');
             $('.penghalang').fadeOut(300);
             console.log('trigger-normal-muncul');
@@ -99,7 +97,7 @@ jQuery(function ($) {
             clickAllowed = false;
             console.log(clickAllowed);
         }
-    
+
         console.log('width: ' + widthWindow);
         console.log('resize: ' + i);
         i++;
@@ -181,7 +179,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
             text: "Data akan terhapus secara permanen",
             icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#24143F",
+            confirmButtonColor: "#241937",
             confirmButtonText: "Hapus",
             cancelButtonText: "Batal",
             closeOnConfirm: false,
@@ -213,7 +211,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
-                    confirmButtonColor: "#24143F",
+                    confirmButtonColor: "#241937",
                     text: 'Data Gagal Dihapus!',
                 });
             }
@@ -229,7 +227,7 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
             text: "Data akan terhapus secara permanen",
             icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#24143F",
+            confirmButtonColor: "#241937",
             confirmButtonText: "Hapus",
             cancelButtonText: "Batal",
             closeOnConfirm: false,
@@ -261,7 +259,7 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
-                    confirmButtonColor: "#24143F",
+                    confirmButtonColor: "#241937",
                     text: 'Data Gagal Dihapus!',
                 })
             }
@@ -417,4 +415,38 @@ $("#filter_tanggal").on("change", function () {
     $("#wrapper-history #item-history").filter(function () {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
+});
+
+/* ---------------------------------------------------
+    FUNCTION SHOW
+----------------------------------------------------- */
+
+function show() {
+    $('#form-submit').submit();
+    $('#btn-submit').attr('disabled', 'true');
+    $('.loader').show();
+}
+
+/* ---------------------------------------------------
+    BUTTON BACK TO TOP
+----------------------------------------------------- */
+
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 200) {
+        if ($('.btn-top').hasClass('slide-out')) {
+            $('.btn-top').removeClass('slide-out').addClass('slide-in');
+        } else {
+            $('.btn-top').addClass('slide-in');
+        }
+    } else {
+        if ($('.btn-top').hasClass('slide-in')) {
+            $('.btn-top').removeClass('slide-in').addClass('slide-out');
+        }
+    }
+});
+
+$('.btn-top').click(function () {
+    $('html, body').animate({
+        scrollTop: 0
+    }, '300');
 });

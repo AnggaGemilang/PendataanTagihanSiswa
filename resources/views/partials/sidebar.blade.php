@@ -251,7 +251,7 @@ if(\Request::is('/')) {
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<button disabled type='submit' id='gen' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</button>",
+                "<button disabled type='submit' id='gen' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #241937;'>Generate Laporan</button>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,

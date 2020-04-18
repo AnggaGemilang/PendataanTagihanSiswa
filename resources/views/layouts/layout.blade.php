@@ -37,7 +37,11 @@
 
 </head>
 
-<body>
+<body class="position-relative">
+
+    <button class="btn-top" type="button">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </button>
 
     @include('partials.sidebar')
 
@@ -103,9 +107,6 @@
     @endif
     </script>
     @endif
-
     @stack('extras-js')
-
 </body>
-
 </html>

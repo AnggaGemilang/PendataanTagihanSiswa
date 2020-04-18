@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-md-12 mt-4" style="background: white; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #241937 !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Password</p>
         </div>
 
@@ -37,7 +37,7 @@
                     <input type="password" class="form-pwd form-control greylight-bg" name="password_lama"
                         id="password_lama" aria-describedby="helpId" placeholder="Masukkan Password Lama Anda"
                         oldstatus="false"
-                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-right: 53px;">
                     <button type="button" class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>
                 </div>
             </div>
@@ -52,9 +52,8 @@
             <div class="row m-3">
                 <div class="form-group w-100 position-relative mb-2">
                     <label for="password_baru">Password Baru</label>
-                    <input type="password" class="form-pwd form-control greylight-bg"
-                        name="password_baru" id="password_baru" aria-describedby="helpId"
-                        placeholder="Masukkan Password Baru Anda"
+                    <input type="password" class="form-pwd form-control greylight-bg" name="password_baru"
+                        id="password_baru" aria-describedby="helpId" placeholder="Masukkan Password Baru Anda"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
@@ -76,9 +75,11 @@
                     id="pwd_content_false">Password Tidak Sama</p>
             </div>
 
-            <div class="row m-3" style="padding-bottom: 40px;">
-                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">Ubah
+            <div class="row m-3 position-relative" style="padding-bottom: 40px;">
+                <button type="submit" class="btn w-100 text-light" onclick="show()" disabled="true"
+                    style="background: #241937 !important; transition: all .3s;" id="btn-submit">Ubah
                     Password <i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="top: 4px !important; display: none;">
         </form>
 
     </div>
@@ -147,16 +148,15 @@
         }
     });
 
-    $(document).on('submit', '#form-submit', function (e) {
-        if ($('#konfirmasi_password').attr('confirmstatus') == "false" || $('#password_lama').attr(
-                'oldstatus') == "false") {
-            e.preventDefault();
-            toastr.error("Password Tidak Valid!", "Ubah Password Gagal", {
-                "showMethod": "slideDown",
-                "hideMethod": "slideUp",
-                timeOut: 3000
-            });
-        }
+    $(document).ready(function () {
+        $('#konfirmasi_password, #password_lama').on('keyup', function () {
+            if ($('#konfirmasi_password').attr('confirmstatus') == "false" || $('#password_lama').attr(
+                    'oldstatus') == "false") {
+                $('#btn-submit').attr('disabled', true);
+            } else {
+                $('#btn-submit').attr('disabled', false);
+            }
+        });
     });
 </script>
 @endpush

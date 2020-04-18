@@ -42,7 +42,7 @@
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #241937 !important; height: 65px; align-content: center;">
             @if($status=='tambah')
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Tambah Data Jenis Tagihan</p>
             @else
@@ -50,7 +50,7 @@
             @endif
         </div>
 
-        <form id="form-tambah-tagihan" @if($status=='tambah' ) action="" @else
+        <form id="form-submit" @if($status=='tambah' ) action="" @else
             action="{{ url('data/tipetagihan/perbaharui/' . $tipetagihan->slug . '/store') }}" @endif method="post">
 
             {{ csrf_field() }}
@@ -71,7 +71,7 @@
                     <label for="nominal">Nominal Biaya</label>
                     <div class="nominal position-relative">
                         <span class="position-absolute" style="left: 13px; top: 5.5px;">Rp.</span>
-                        <input type="text"  name="nominal" id="nominal"
+                        <input type="text" name="nominal" id="nominal"
                             aria-describedby="helpId" placeholder="Masukkan Nominal Pembayaran" @if($status=='update' )
                             value="{{ $tipetagihan->nominal }}" class="form-control greylight-bg uangs" @else class="form-control greylight-bg" @endif
                             style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-left: 45px; padding-top: 3.5px; font-size: 16px;">
@@ -92,10 +92,10 @@
             </div>
             @endif
 
-            <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light"
-                    style="background: #24143F !important;">@if($status=='tambah')Tambah Jenis
+            <div class="row m-3 pb-4 pt-2 position-relative">
+                <button type="submit" class="btn w-100 text-light" style="background: #241937 !important; transition: all .3s;" id="btn-submit">@if($status=='tambah')Tambah Jenis
                     Tagihan @else Perbaharui Jenis Tagihan @endif<i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
         </form>
 
@@ -132,8 +132,7 @@
         return rupiah;
     }
 
-
-    $('#form-tambah-tagihan').submit(function (e) {
+    $('#btn-submit').on('click',function (e) {
         if ($('#tipekelas').val() == '') {
             e.preventDefault();
             toastr.error("Mohon Lengkapi Form!", "Gagal Menambahkan Data", {
@@ -142,13 +141,15 @@
                 timeOut: 3000
             });
             return false;
+        } else {
+            show();
         }
     });
 
     $('#tipekelas').on('change', function () {
         var kelas_id = $(this).val();
         var tipetagihanid = $("#label_tipetagihan_id").data('idtipetagihan');
-        $('#form-tambah-tagihan').attr("action", "tambah/store/" + kelas_id + "/" + tipetagihanid);
+        $('#form-submit').attr("action", "tambah/store/" + kelas_id + "/" + tipetagihanid);
     });
 </script>
 @endpush

@@ -22,11 +22,11 @@
     </div>
 
     <div class="col-md-12 mt-4 pb-2 mb-3" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #241937 !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Entri Pembayaran Tagihan</p>
         </div>
 
-        <form action="{{ url('pembayaran/entripembayaran/store') }}" method="post">
+        <form action="{{ url('pembayaran/entripembayaran/store') }}" method="post" id="form-submit">
 
             {{ csrf_field() }}
 
@@ -78,9 +78,10 @@
                 <p id="sisa_tagihan_pembayaran"></p>
             </div>
 
-            <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">Tambah
+            <div class="row m-3 pb-4 pt-2 position-relative">
+                <button type="submit" class="btn w-100 text-light" id="btn-submit" onclick="show()" style="background: #241937 !important; transition: all .3s;">Tambah
                     Pembayaran <i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
         </form>
 
@@ -107,6 +108,7 @@
         nominal.value = formatRupiah(this.value);
         console.log(nominal.value = formatRupiah(this.value));
     });
+
     function formatRupiah(angka) {
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
             split = number_string.split(','),

@@ -35,18 +35,20 @@ class TagihanController extends Controller
         ];
 
         $this->validate($request, [
-            'sudah_dibayar' => 'bail|required|integer',
+            'sudah_dibayar' => 'bail|required',
         ], $messages);
 
+        $after_sudah_dibayar = intval(str_replace(".", "", $request->sudah_dibayar));
+
         $tagihan = Tagihan::find($id);
-        $nominal = $tagihan->tipetagihan->nominal - $request->sudah_dibayar;
+        $nominal = $tagihan->tipetagihan->nominal - $after_sudah_dibayar;
         if($nominal==0)
         {
             $tagihan->keterangan = "lunas";            
         } else {
             $tagihan->keterangan = "blm_lunas";
         }
-        $tagihan->sudah_dibayar = $request->sudah_dibayar;
+        $tagihan->sudah_dibayar = $after_sudah_dibayar;
         $tagihan->update();
 
         $notification = array(

@@ -24,25 +24,33 @@
     </div>
 
     <div class="col-md-12 mt-4 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
-        <div class="row" style="background: #24143F !important; height: 65px; align-content: center;">
+        <div class="row" style="background: #241937 !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Perbaharui Tagihan</p>
         </div>
 
-        <form id="form-tambah-tagihan" action="{{ url('data/tagihan/perbaharui/' . $tagihan->id  . '/store') }}" method="post">
+        <form action="{{ url('data/tagihan/perbaharui/' . $tagihan->id  . '/store') }}" method="post" id="form-submit">
 
             {{ csrf_field() }}
 
             <div class="row m-3 mt-4 pt-2">
                 <div class="form-group w-100">
                     <label for="sudah_dibayar">Sudah Dibayar</label>
-                    <input type="number" class="form-control greylight-bg" name="sudah_dibayar" id="sudah_dibayar" required="required"
-                        placeholder="Masukkan Jumlah Sudah Dibayar" @if($status=="update") value="{{ $tagihan->sudah_dibayar }}" @endif value="{{ old('sudah_dibayar') }}"
-                        style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                    <div class="nominal position-relative">
+                        <span class="position-absolute" style="left: 13px; top: 5.5px;">Rp.</span>
+                        <input type="text" class="form-control greylight-bg uangs" id="nominal" name="sudah_dibayar"
+                            id="sudah_dibayar" required="required" placeholder="Masukkan Jumlah Sudah Dibayar"
+                            @if($status=="update" ) value="{{ $tagihan->sudah_dibayar }}" @endif
+                            value="{{ old('sudah_dibayar') }}"
+                            style="border: none; border-radius: 8px; padding-left: 45px; padding-top: 3.5px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
+                    </div>
                 </div>
             </div>
 
-            <div class="row m-3 pb-4 pt-2">
-                <button type="submit" class="btn w-100 text-light" style="background: #24143F !important;">Perbaharui Tagihan<i class="fas fa-save pl-2"></i></button>
+            <div class="row m-3 pb-4 pt-2 position-relative">
+                <button type="submit" class="btn w-100 text-light"
+                    style="background: #241937 !important; transition: all .3s;" id="btn-submit"
+                    onclick="show()">Perbaharui Tagihan<i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
         </form>
 
@@ -50,3 +58,32 @@
 </div>
 @include('partials.footer')
 @endsection
+
+@push('extras-js')
+<script>
+    $(document).ready(function () {
+        var value = $('.uangs').val();
+        $('.uangs').val(formatRupiah(value));
+    });
+
+    var nominal = document.getElementById('nominal');
+    nominal.addEventListener('keyup', function (e) {
+        nominal.value = formatRupiah(this.value);
+        console.log(nominal.value = formatRupiah(this.value));
+    });
+
+    function formatRupiah(angka) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return rupiah;
+    }
+</script>
+@endpush

@@ -79,7 +79,10 @@
     </div>
     @else
     <div class="row m-1" id="wrapper-history">
-        @foreach ($history as $h)
+        @php
+            $first = 0;
+        @endphp
+        @foreach ($history->take(5) as $index => $h)
         <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
             <div class="row">
                 <div class="col">
@@ -92,10 +95,18 @@
             <h4 style="margin-top: -5px;">{{ $h->tagihan->siswa->nama_siswa }}</h4>
         </div>
         </a>
+        @php
+            $first=$h->id;
+        @endphp
         @endforeach
         @endif
     </div>
     @endif
+
+    <div class="row mr-2 mt-3 justify-content-end">
+        <p style="font-weight: 400;">{{ $first }} - {{ $history->count() }} dari {{ $history->count() }} Data Ditampilkan</p>
+    </div>
+
 </div>
 
 @include('partials.footer')
@@ -104,7 +115,7 @@
 @push('extras-css')
 <style>
     #content {
-        padding-bottom: 1px !important;
+        padding-bottom: 4px !important;
     }
 
     @media (max-width: 808px) {
@@ -266,7 +277,7 @@
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<button disabled id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #24143F;'>Generate Laporan</button>",
+                "<button disabled id='gen' href='' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #241937;'>Generate Laporan</button>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,

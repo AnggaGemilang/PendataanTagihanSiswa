@@ -56,14 +56,14 @@
     <div class="col-md-12 mt-4 pt-3">
         <div class="row">
             <div class="col mr-4 atas"
-                style="background: #24143F; border-radius: 10px; color: #FFFFFF; padding: 20px; position: relative;">
+                style="background: #241937; border-radius: 10px; color: #FFFFFF; padding: 20px; position: relative;">
                 <h4>Siswa Membayar</h4>
                 <h1 style="font-size: 60px;">{{ $countbayar }}</h1>
                 <img src="{{asset('assets')}}/images/profil-icon.png" alt=""
                     style="position: absolute; right: -20px; top: 30px;">
             </div>
             <div class="col ml-4 atas"
-                style="background: #24143F; border-radius: 10px; color: #FFFFFF; padding: 20px; position: relative;">
+                style="background: #241937; border-radius: 10px; color: #FFFFFF; padding: 20px; position: relative;">
                 <h4 id="tgl-hari"></h4>
                 <h1 style="font-size: 60px;" id="waktu"></h1>
                 <img src="{{asset('assets')}}/images/jam-icon.png" alt=""

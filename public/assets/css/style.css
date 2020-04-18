@@ -17,6 +17,14 @@ body {
     Random
 ----------------------------------------------------- */
 
+.loader
+{
+    position: absolute; 
+    width: 30px; 
+    right: 10px; 
+    top: 12px;
+}
+
 .alert-no-data
 {
     font-weight: 510;
@@ -54,7 +62,7 @@ body {
 #sidebarCollapse:focus,
 .btn-toggle-option:focus
 {
-    border-color: #24143F !important;
+    border-color: #241937 !important;
     box-shadow: 0 0 0 0.2rem rgba(36, 20, 63, 0.25);
 }
 
@@ -66,7 +74,7 @@ body {
     margin-top: 4px;
     margin-right: 4px;
     margin-left: 25px;
-    border-left: 3px #24143F solid;
+    border-left: 3px #241937 solid;
     height: 21px;
 }
 
@@ -160,7 +168,62 @@ span {
 }
 
 /* ---------------------------------------------------
-    Custom Form Input
+    BUTTON BACK TO TOP
+----------------------------------------------------- */
+
+.btn-top
+{
+    position: fixed; 
+    width: 38px; 
+    height: 38px; 
+    background:white;
+    box-shadow: 0 1px 20px 4px rgba(0,0,0,0.1); 
+    bottom: 38px;
+    right: -100px;
+    z-index: 99; 
+    border: none;
+    border-radius: 50px;
+    transition: all .3s;
+    outline: none !important;
+}
+
+.btn-top:focus
+{
+    border-color: #241937 !important;
+    box-shadow: 0 0 0 0.2rem rgba(36,25,55,0.25);
+}
+
+.slide-in {
+    animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+    animation: slide-out 0.5s forwards;
+}
+ 
+@keyframes slide-in {
+    100% { 
+        right: 25px; 
+    }
+}
+    
+@keyframes slide-out {
+    0% { 
+        right: 25px; 
+    }
+
+    100% { 
+        right: -100px; 
+    }
+}
+
+.btn-top > i
+{
+    color: #241937 !important;
+}
+
+/* ---------------------------------------------------
+    CUSTOM FORM INPUT
 ----------------------------------------------------- */
 
 .btn-times,
@@ -216,8 +279,8 @@ input[type=checkbox] {
 }
 
 .check-wrapper input:checked~.checkmark {
-    background-color: #24143F;
-    border: 1.3px solid #24143F;
+    background-color: #241937;
+    border: 1.3px solid #241937;
 }
 
 .checkmark:after {
@@ -291,11 +354,11 @@ option.greylight-bg:focus {
 }
 
 .select-handle {
-    background: #24143F !important;
+    background: #241937 !important;
 }
 
 /* ---------------------------------------------------
-    Navbar
+    NAVBAR
 ----------------------------------------------------- */
 
 .navbar.top {
@@ -344,7 +407,7 @@ option.greylight-bg:focus {
 
 .dropdown-navbar>ul>a>li>i,
 .dropdown-navbar>ul>li>button>i {
-    color: #24143F;
+    color: #241937;
 }
 
 .dropdown-navbar>ul>a>li:hover i,
@@ -355,8 +418,8 @@ option.greylight-bg:focus {
 .dropdown-navbar>ul>a>li:hover,
 .dropdown-navbar>ul>li>button:hover {
     color: white !important;
-    background: #24143F;
-    border-bottom: 1px solid #24143F;
+    background: #241937;
+    border-bottom: 1px solid #241937;
 }
 
 .dropdown-navbar>ul>a>li>i,
@@ -378,7 +441,7 @@ option.greylight-bg:focus {
 }
 
 .ubah-profil-btn {
-    background: #24143F;
+    background: #241937;
     color: #ffffff;
     margin-top: 19px;
     box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.1);
@@ -422,7 +485,7 @@ option.greylight-bg:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #24143F;
+    background: #241937;
     color: #fff;
     top: 0;
     bottom: 0;
@@ -483,7 +546,7 @@ option.greylight-bg:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #24143F;
+    background: #241937;
 }
 
 #sidebar .sidebar-header strong {
@@ -498,7 +561,7 @@ option.greylight-bg:focus {
 }
 
 #sidebar ul li a:hover {
-    color: #24143F;
+    color: #241937;
     background: #F7F7F7;
 }
 
@@ -510,7 +573,7 @@ option.greylight-bg:focus {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #24143F;
+    color: #241937;
     background: #F7F7F7;
 }
 

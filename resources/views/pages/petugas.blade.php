@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-md-3 pl-0">
-            <a type="button" href="{{url('/data/petugas/tambah')}}" class="btn w-100" style="background: #24143F; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Petugas</a>
+            <a type="button" href="{{url('/data/petugas/tambah')}}" class="btn w-100" style="background: #241937; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1);">Tambah Petugas</a>
         </div>
     </div>
 
