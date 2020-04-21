@@ -17,7 +17,7 @@
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
                 <input type="text" class="form-control pl-5 input-toggle-times" name="field_cari" id="field_cari"
                     aria-describedby="helpId" placeholder="Cari Siswa Disini . . ."
-                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    style="padding-right: 41px; border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
                 <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
@@ -62,8 +62,7 @@
                         <td>{{ $s->nama_siswa }}</td>
                         <td>{{ $s->class->nama_kelas }}</td>
                         <td>
-                            <img src="{{ asset('uploaded/images/profil_siswa/' . $s->profil) }}"
-                                style="width:78px; height:78px; border-radius:60px;object-fit: cover;">
+                            <img src="{{ asset('uploaded/images/profil_siswa/' . $s->profil) }}" class="img-table">
                         </td>
                         <td>
                             <button type="button" data-url="{{ url('data/siswa/hapus/' . $s->id) }}"
@@ -78,12 +77,17 @@
                 </tbody>
             </table>
             @if($siswa->count()==0)
-            <div class="alert alert-danger mt-3" role="alert">
+            <div class="alert alert-danger mt-4" role="alert">
             <i class="fas fa-exclamation-circle pr-2" ></i> Data Tidak Ditemukan, Klik <a href="{{ url('data/siswa/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan siswa baru.
             </div>
             @endif
         </div>
     </div>
+
+    <div class="row mt-0 justify-content-end mr-2">
+        <p style="font-weight: 400;"><span id="custom-count">{{$siswa->count()}}</span> dari {{ $siswa->count() }} Data Ditampilkan</p>
+    </div>
+
 </div>
 
 @include('partials.footer')

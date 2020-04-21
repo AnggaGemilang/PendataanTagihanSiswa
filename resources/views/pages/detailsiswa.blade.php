@@ -9,7 +9,8 @@
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
         <a class="breadcrumb-item" href="{{url('/data/siswa')}}">Data Siswa</a>
-        <a class="breadcrumb-item" href="{{url('/data/siswa/detail/' . $siswa->slug)}}">{{ $siswa->nama_siswa }}</a>
+        <a class="breadcrumb-item"
+            href="{{url('/data/siswa/detail/' . $siswa->slug . '/' . $siswa->id)}}">{{ $siswa->nama_siswa }}</a>
         <span class="breadcrumb-item active"></span>
     </nav>
 
@@ -122,9 +123,13 @@
                     <td class="change uang">{{ $ts->sudah_dibayar }}</td>
                     <td class="change uang">@php echo($ts->tipetagihan->nominal-$ts->sudah_dibayar)@endphp</td>
                     <td class="change">@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td class="change"><a type="button" class="btn"
-                            style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
-                            href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
+                    <td class="change">
+                        <form action="{{ url('pembayaran/entripembayaran') }}" method="get">
+                            <button type="submit" class="btn" @if($ts->keterangan=='lunas') disabled @endif
+                                style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                                href="">Bayar</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -157,9 +162,13 @@
                     <td class="change uang">{{ $t->sudah_dibayar }}</td>
                     <td class="change uang">@php echo($t->tipetagihan->nominal - $t->sudah_dibayar)@endphp</td>
                     <td class="change">@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
-                    <td class="change"><a type="button" class="btn"
-                            style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
-                            href="{{ url('pembayaran/entripembayaran') }}">Bayar</a></td>
+                    <td class="change">
+                        <form action="{{ url('pembayaran/entripembayaran') }}" method="get">
+                            <button type="submit" class="btn" @if($t->keterangan=='lunas') disabled @endif
+                                style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
+                                href="">Bayar</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -180,7 +189,7 @@
     </div>
     @else
     @foreach ($history as $h)
-    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}"
+    <div class="col-md-12 mt-4 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}"
         data-diterima="{{ $h->nominal }}">
         <div class="row">
             <div class="col bawah">
@@ -327,8 +336,8 @@
             url: '/pembayaran/history/detail/' + id,
             type: 'get',
             data: {
-                sisa:sisa,
-                diterima:diterima
+                sisa: sisa,
+                diterima: diterima
             },
             dataType: 'json',
             success: function (data) {

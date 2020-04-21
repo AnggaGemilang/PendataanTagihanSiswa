@@ -251,7 +251,7 @@ if(\Request::is('/')) {
         Swal.fire({
             title: '<span class="m-2">Generate Report</span>',
             html: jenis_filter +
-                "<button disabled type='submit' id='gen' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #241937;'>Generate Laporan</button>",
+                "<button disabled type='submit' id='gen' jenis='' class='btn text-light w-100 btn-generate' style='margin-bottom:20px; margin-top: 30px; background: #241937; transition: all .5s;'>Generate Laporan</button>",
             showCloseButton: true,
             showCancelButton: false,
             showConfirmButton: false,
@@ -288,29 +288,13 @@ if(\Request::is('/')) {
 
             $('#' + jenis_filter).on('change', function () {
                 if ($(this).children("option:selected").val() == '') {
-                    $('#gen').attr('disabled');
+                    $('#gen').attr('disabled', true);
                 } else if ($(this).children("option:selected").val() != '') {
-                    $('#gen').removeAttr('disabled');
+                    $('#gen').attr('disabled', false);
                     periode = $(this).children("option:selected").val();
                     jenis_filter = $('.btn-generate').attr('jenis');
                 }
 
-            });
-            $('#gen').on('click', function (e) {
-                if ($('#' + jenis_filter).val() == '') {
-                    e.preventDefault();
-                    toastr.error("Mohon Lengkapi Form!", "Generate Gagal", {
-                        "showMethod": "slideDown",
-                        "hideMethod": "slideUp",
-                        timeOut: 3000
-                    });
-                    return false;
-                } else {
-                    e.preventDefault();
-                    var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
-                        periode;
-                    location.href = url;
-                }
             });
         });
 

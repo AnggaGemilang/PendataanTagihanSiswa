@@ -45,7 +45,7 @@ class AutentikasiSeeder extends Seeder
 
         Autentikasi::create([
             'nomor_induk' => 12345678910,
-            'email' => 'admin@mail.id',
+            'email' => 'kusmoro@mail.id',
             'password' => Hash::make('12345678910'),
             'role_id' => 2,
             'petugas_id' => 1,
@@ -55,7 +55,7 @@ class AutentikasiSeeder extends Seeder
 
         Autentikasi::create([
             'nomor_induk' => 1112131415,
-            'email' => 'petugas@mail.id',
+            'email' => 'nana@mail.id',
             'password' => Hash::make('1112131415'),
             'role_id' => 3,
             'petugas_id' => 2,

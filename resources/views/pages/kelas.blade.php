@@ -17,7 +17,7 @@
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
                 <input type="text" class="form-control pl-5 input-toggle-times" name="field_cari" id="field_cari" aria-describedby="helpId"
                     placeholder="Cari Kelas Disini . . ."
-                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    style="padding-right: 41px; border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
                     <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
@@ -76,12 +76,17 @@
                 </tbody>
             </table>
             @if($kelas->count()==0)
-            <div class="alert alert-danger mt-3" role="alert">
+            <div class="alert alert-danger mt-4" role="alert">
                 <i class="fas fa-exclamation-circle pr-2" ></i> Data Tidak Ditemukan, Klik <a href="{{ url('data/kelas/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan kelas baru.
             </div>
             @endif
         </div>
     </div>
+
+    <div class="row mt-0 justify-content-end mr-2">
+        <p style="font-weight: 400;"><span id="custom-count">{{$kelas->count()}}</span> dari {{ $kelas->count() }} Data Ditampilkan</p>
+    </div>
+
 </div>
 
 @include('partials.footer')

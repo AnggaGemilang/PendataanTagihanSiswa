@@ -22,7 +22,7 @@
                 <i class="fas fa-search position-absolute" style="margin-left: 15px; margin-top: 11px;"></i>
                 <input type="text" class="form-control pl-5 input-toggle-times" name="filter_history"
                     id="filter_history" aria-describedby="helpId" placeholder="Cari Pembayaran Siswa Disini . . ."
-                    style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
+                    style="padding-right: 41px; border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1); padding-top: 8px;">
                 <button class="btn-times2"><i class="fa fa-times"></i></button>
             </div>
         </div>
@@ -82,7 +82,7 @@
         @php
             $first = 0;
         @endphp
-        @foreach ($history->take(5) as $index => $h)
+        @foreach ($history->take(15) as $index => $h)
         <div class="col-md-12 mt-3 mb-2" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
             <div class="row">
                 <div class="col">
@@ -103,9 +103,15 @@
     </div>
     @endif
 
-    <div class="row mr-2 mt-3 justify-content-end">
-        <p style="font-weight: 400;">{{ $first }} - {{ $history->count() }} dari {{ $history->count() }} Data Ditampilkan</p>
+    @if(Auth::User()->role_id=="1")
+    <div @if($history->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>
+        <p style="font-weight: 400;"><span id="custom-count" data-count="{{$history->count()}}">{{$history->count()}}</span> dari {{ $history->count() }} Data Ditampilkan</p>
     </div>
+    @else
+    <div @if($history->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>
+        <p style="font-weight: 400;"><span id="custom-count" data-count="{{($history->count()>0)?$first:0}} - {{$history->count()}}">{{($history->count()>0)?$first:0}} - {{$history->count()}}</span> dari {{ $history->count() }} Data Ditampilkan</p>
+    </div>
+    @endif
 
 </div>
 

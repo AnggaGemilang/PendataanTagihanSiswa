@@ -3,6 +3,7 @@
 
 <head>
     <title>Laporan Pembayaran Tagihan Sekolah Siswa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <style type="text/css">
@@ -19,7 +20,7 @@
         <h4>Laporan Pembayaran Tagihan Sekolah Siswa</h4>
     </center>
 
-    <div class="container-fluid mt-3">
+    <div class="container-fluid mt-4">
         <div class="row">
             <div class="col">
                 <table width="350">
@@ -50,13 +51,11 @@
             </div>
         </div>
     </div>
-
     <br>
-
     <table class='table table-bordered' style="margin-top: 45px;">
         <thead>
             <tr align="center" style="text-align: center !important;">
-                <th>No</th>
+                <th width="5">No</th>
                 <th>Nama Siswa</th>
                 <th>Kelas</th>
                 <th>Petugas</th>
@@ -72,13 +71,13 @@
             @endphp
             @foreach($pembayaran as $p)
             <tr align="center" style="text-align: center;">
-                <th>{{ $no++ }}</th>
+                <th width="5">{{ $no++ }}</th>
                 <td>{{$p->tagihan->siswa->nama_siswa}}</td>
                 <td>{{$p->kelas->nama_kelas}}</td>
                 <td>{{$p->petugas->nama_petugas}}</td>
                 <td>{{$p->tagihan->tipetagihan->nama_tagihan}}</td>
                 <td>{{$p->created_at}}</td>
-                <td>Rp. {{$p->nominal}}
+                <td class="uang">Rp. {{ number_format($p->nominal,0,'.','.')}}
                     @php
                     $jumlah_uang += $p->nominal;
                     @endphp
@@ -87,7 +86,7 @@
             @endforeach
             <tr align="center">
                 <td colspan="6">Total Uang Diterima</td>
-                <td>Rp. {{ $jumlah_uang }}</td>
+                <td class="uang">Rp. {{ number_format($jumlah_uang,0,'.','.') }}</td>
             </tr>
         </tbody>
     </table>

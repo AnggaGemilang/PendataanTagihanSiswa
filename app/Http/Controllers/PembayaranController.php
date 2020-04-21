@@ -157,7 +157,7 @@ class PembayaranController extends Controller
             $ket = 'blm_lunas';
         }
 
-        if(Tagihan::find($request->tagihan_id)->tipetagihan->nominal < $after_nominal){
+        if((Tagihan::find($request->tagihan_id)->tipetagihan->nominal - Tagihan::find($request->tagihan_id)->sudah_dibayar) < $after_nominal){
             $notification = array(
                 'title' => 'Pembayaran Gagal',
                 'description' => 'Nominal Terlalu Besar!',

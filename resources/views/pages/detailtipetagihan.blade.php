@@ -88,6 +88,11 @@
             </table>
         </div>
     </div>
+
+    <div class="row mt-0 justify-content-end mr-2">
+        <p style="font-weight: 400;"><span id="custom-count">{{$tagihan->count()}}</span> dari {{ $tagihan->count() }} Data Ditampilkan</p>
+    </div>
+
 </div>
 
 @include('partials.footer')

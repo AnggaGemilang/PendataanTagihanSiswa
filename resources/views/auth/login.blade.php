@@ -46,8 +46,7 @@
                         <button type="submit" id="btn-submit" class="btn btn-login text-light" onclick="show()"
                             style="background: #1EB5AD; outline: #B0A1FF !important;">Login
                         </button>
-                        <img src="{{ asset('assets') }}/images/loader.gif" class="loader"
-                            style="display: none;">
+                        <img src="{{ asset('assets') }}/images/loader.gif" class="loader" style="display: none;">
                     </div>
                 </div>
             </form>
@@ -55,3 +54,13 @@
     </div>
 </div>
 @endsection
+
+@push('extras-js')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+@endpush

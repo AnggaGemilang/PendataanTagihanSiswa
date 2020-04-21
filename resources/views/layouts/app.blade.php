@@ -6,11 +6,9 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta name="theme-color" content="#0D9447" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#1C102B" />
     <title>@yield('title') - Tagihan Sekolah Siswa</title>
-
     @stack("extras-css")
 
     <!-- Styles-->

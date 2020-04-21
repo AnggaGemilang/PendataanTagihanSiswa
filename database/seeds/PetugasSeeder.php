@@ -10,8 +10,8 @@ class PetugasSeeder extends Seeder
     public function run()
     {
         Petugas::create([
-            'nama_petugas' => 'admin',
-            'no_telp' => '083195008217',
+            'nama_petugas' => 'Kusmoro Rusli',
+            'no_telp' => '083173002217',
             'role_id' => 2,
             'slug' => Str::slug('admin','-'),
             'profil' => 'admin-profil.png',
@@ -20,7 +20,7 @@ class PetugasSeeder extends Seeder
         ]);
 
         Petugas::create([
-            'nama_petugas' => 'petugas',
+            'nama_petugas' => 'Nana Suryana',
             'no_telp' => '081232323339',
             'role_id' => 3,
             'slug' => Str::slug('petugas','-'),
