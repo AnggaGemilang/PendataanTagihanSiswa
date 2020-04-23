@@ -181,6 +181,7 @@ class PembayaranController extends Controller
             return false;
         } else {
             $auth = Siswa::find($request->siswa_id)->autentikasi;
+            $tipetagihan_id = Tagihan::find($request->tagihan_id)->tipetagihan->id; 
             $nama_tagihan = Tagihan::find($request->tagihan_id)->tipetagihan->nama_tagihan;
             $nama_siswa = Siswa::find($request->siswa_id)->nama_siswa;
 
@@ -189,6 +190,7 @@ class PembayaranController extends Controller
             $entri->siswa_id = $request->siswa_id;
             $entri->petugas_id = Auth::user()->petugas->id;
             $entri->kelas_id = $request->kelas_id;
+            $entri->tipetagihan_id = $tipetagihan_id;
             $entri->tagihan_id = $request->tagihan_id;
             $entri->keterangan = $ket;
             $entri->sisa_tagihan = $tipetagihan - ($after_nominal+$sudahdibayar);

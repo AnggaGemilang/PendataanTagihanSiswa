@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row ml-3 mr-3 pl-1 pr-1">
+            <div class="row ml-3 mr-3 pl-1 pr-1 no_telp">
                 <div class="form-group w-100">
                     <label for="no_telp">Nomor Telepon</label>
                     <input type="text" class="form-control" name="no_telp" id="no_telp" aria-describedby="helpId"
@@ -235,6 +235,11 @@
     }
 
     @media (max-width: 988px) {
+        .no_telp
+        {
+            margin-top: 15px;
+        }
+
         .row.mt-3>.col-md-8 {
             flex: 0 0 100% !important;
             max-width: 100% !important;

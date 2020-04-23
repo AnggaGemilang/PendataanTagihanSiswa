@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div class="row mt-0 justify-content-end mr-2">
+    <div class="row mt-0 justify-content-end mr-1">
         <p style="font-weight: 400;"><span id="custom-count">{{$kelas->count()}}</span> dari {{ $kelas->count() }} Data Ditampilkan</p>
     </div>
 

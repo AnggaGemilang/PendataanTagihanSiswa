@@ -87,7 +87,7 @@
             </button>
             <div class="dropdown-navbar dropdown-detail">
                 <ul class="pl-0 mb-0">
-                    <a href="{{ url('data/petugas/perbaharui/' . $petugas->slug) }}">
+                    <a href="{{ url('data/petugas/perbaharui/' . $petugas->slug . '/' . $petugas->id) }}">
                         <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                     </a>
                     <li style="list-style: none;"><button type="button" data-direct="/data/petugas"

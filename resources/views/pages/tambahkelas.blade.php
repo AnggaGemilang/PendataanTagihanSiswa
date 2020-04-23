@@ -66,8 +66,8 @@
                         <option value="">Pilih Tingkat Kelas</option>
                         @foreach($tipekelas as $tk)
                         <option value="{{ $tk->id }}"
-                            @if($status=='update' )
-                            {{ $kelas->id==$tk->id ? 'selected' : '' }} 
+                            @if($status=='update')
+                            {{ $kelas->tipekelas->id==$tk->id ? 'selected' : '' }} 
                             @else
                             {{ old('tipekelas_id')==$tk->id ? 'selected' : '' }}
                             @endif>

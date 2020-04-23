@@ -45,7 +45,7 @@
                         </div>
                         <ul class="pl-0" id="notif-content">
                             @if(count(Auth::User()->unreadNotifications)==0)
-                            <a onclick="e.preventDefault();" id="not" style="height: 50px;">
+                            <a onclick="e.preventDefault();" id="not" style="min-height: 40px !important;">
                                 <li class="text-center">Tidak Ada Notifikasi</li>
                             </a>
                             @endif

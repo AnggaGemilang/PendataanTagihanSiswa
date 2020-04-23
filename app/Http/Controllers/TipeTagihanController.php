@@ -11,6 +11,7 @@ use App\Tagihan;
 use App\Siswa;
 use App\Petugas;
 use App\Kelas;
+use App\Pembayaran;
 
 class TipeTagihanController extends Controller
 {
@@ -66,8 +67,10 @@ class TipeTagihanController extends Controller
         ], $messages);
 
         $after_nominal = intval(str_replace(".", "", $request->nominal));
+        $last_id_tipetagihan = TipeTagihan::orderBy('id','DESC')->first()->id;
 
         $tipetagihan = new TipeTagihan;
+        $tipetagihan->id = $last_id_tipetagihan+1;
         $tipetagihan->nama_tagihan = $request->nama_tagihan;
         $tipetagihan->slug = Str::slug($request->nama_tagihan);
         $tipetagihan->nominal = $after_nominal;
@@ -152,13 +155,7 @@ class TipeTagihanController extends Controller
     {
         $tipetagihan = TipeTagihan::find($id)->delete();
         $tagihan = Tagihan::where('tipetagihan_id',$id)->get()->each->delete();
-
-        $notification = array(
-            'title' => 'Berhasil',
-            'description' => 'Tipe Tagihan Berhasil Dihapus!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
+        $pembayaran = Pembayaran::where('tipetagihan_id',$id)->get()->each->delete();
+        echo json_encode('sukses');
     }
 }

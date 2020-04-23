@@ -68,12 +68,6 @@ class TagihanController extends Controller
         $siswa = $tagihan->siswa->id;
         $pembayaran = Pembayaran::where('tagihan_id',$id)->where('siswa_id',$siswa)->get()->each->delete();
 
-        $notification = array(
-            'title' => 'Berhasil',
-            'description' => 'Tagihan Berhasil Dihapus!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
+        echo json_encode('sukses');
     }
 }

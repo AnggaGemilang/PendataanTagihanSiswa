@@ -108,9 +108,7 @@
                 </div>
                 @if($status=='detailsiswa')
                 <div id="sisa_wrapper">
-                    <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Sisa Tagihan
-                        : Rp. {{ number_format(($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar),0,'.','.') }}
-                    </p>
+                    <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Sisa Tagihan : Rp. {{ number_format(($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar),0,'.','.') }}</p>
                 </div>
                 @else
                 <p id="sisa_tagihan_pembayaran"></p>
@@ -141,16 +139,19 @@
     }
 
     @media (max-width: 373px) {
-    .swal2-cancel
-    {
-        padding: 9px 58px !important;        
+        .swal2-cancel
+        {
+            padding: 9px 58px !important;        
+        }
     }
 
     @media (max-width: 354px) {
-    .swal2-cancel.swal2-styled
-    {
-        padding: 9px 58px !important;        
+        .swal2-cancel.swal2-styled
+        {
+            padding: 9px 58px !important;        
+        }
     }
+
 }
 </style>
 @endpush
@@ -444,14 +445,10 @@
                                 console.log(value);
                                 if (data == 'sukses') {
                                     if (value == 'Sisa Tagihan : Rp. 0') {
-                                        var base_url = $('#form-submit').attr(
-                                            'data-baseurl');
-                                        var slug = $('#siswa_id').children(
-                                            "option:selected").attr('realslug');
-                                        var siswa_id = $('#siswa_id').children(
-                                            "option:selected").val();
-                                        var url = base_url + "/data/siswa/detail/" + slug +
-                                            "/" + siswa_id;
+                                        var base_url = $('#form-submit').attr('data-baseurl');
+                                        var slug = $('#siswa_id').children("option:selected").attr('realslug');
+                                        var siswa_id = $('#siswa_id').children("option:selected").val();
+                                        var url = base_url + "/data/siswa/detail/" + slug + "/" + siswa_id;
                                         location.href = url;
                                     } else {
                                         $('#nominal').val("");
