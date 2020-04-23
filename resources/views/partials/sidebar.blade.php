@@ -296,8 +296,14 @@ if(\Request::is('/')) {
                 }
 
             });
-        });
 
+            $('#gen').on('click', function (e) {
+                e.preventDefault();
+                var url = base_url + "/pembayaran/cetak_pdf/" + jenis_filter + "/" +
+                    periode;
+                location.href = url;
+            });
+        });
     });
 </script>
 @endpush

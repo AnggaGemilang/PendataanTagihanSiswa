@@ -24,7 +24,15 @@ class PembayaranController extends Controller
         $kelas = Kelas::all();
         $tipetagihan = TipeTagihan::all();
         $siswa = Siswa::all();
-        return view('pages.entripembayaran', compact(['kelas','tipetagihan','siswa']));
+        return view('pages.entripembayaran', compact(['kelas','tipetagihan','siswa']))->with('status','normal');
+    }
+
+    public function indexCust($kelas_id, $siswa_id, $tagihan_id)
+    {
+        $kelas = Kelas::find($kelas_id);
+        $tagihan = Tagihan::find($tagihan_id);
+        $siswa = Siswa::find($siswa_id);
+        return view('pages.entripembayaran', compact(['kelas','tagihan','siswa']))->with('status','detailsiswa');
     }
 
     public function detail(Request $request, $id)
@@ -92,7 +100,7 @@ class PembayaranController extends Controller
         $output = "<option value=''>Pilih Siswa</option>";
         foreach($kelas->students as $student)
         {
-            $output .= "<option value='" . $student->id . "'>" . $student->nama_siswa . "</option>";
+            $output .= "<option slug='" . $student->nama_siswa . "' value='" . $student->id . "'>" . $student->nama_siswa . "</option>";
         }
         return $output;
     }
@@ -107,7 +115,7 @@ class PembayaranController extends Controller
             if($t->keterangan=='lunas'){
                 $status = 'disabled';
             }
-            $output .= "<option data-sisa='" . ($t->tipetagihan->nominal - $t->sudah_dibayar) . "' " . $status . " value='" . $t->id . "'>" . $t->tipetagihan->nama_tagihan . "</option>";
+            $output .= "<option slug='" . $t->tipetagihan->nama_tagihan . "' data-sisa='" . ($t->tipetagihan->nominal - $t->sudah_dibayar) . "' " . $status . " value='" . $t->id . "'>" . $t->tipetagihan->nama_tagihan . "</option>";
         }
         return $output;
     }
@@ -158,12 +166,8 @@ class PembayaranController extends Controller
         }
 
         if((Tagihan::find($request->tagihan_id)->tipetagihan->nominal - Tagihan::find($request->tagihan_id)->sudah_dibayar) < $after_nominal){
-            $notification = array(
-                'title' => 'Pembayaran Gagal',
-                'description' => 'Nominal Terlalu Besar!',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
+            echo json_encode('gagal_terlalu_besar');
+            return false;
         } else {
             $entri = new Pembayaran;
             $entri->nominal = $after_nominal;
@@ -185,14 +189,7 @@ class PembayaranController extends Controller
             }
         }
 
-        $notification = array(
-            'title' => 'Berhasil',
-            'description' => 'Pembayaran Berhasil!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
-
+        echo json_encode('sukses');
     }
 
     public function data()

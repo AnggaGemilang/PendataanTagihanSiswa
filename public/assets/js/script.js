@@ -83,8 +83,11 @@ jQuery(function ($) {
             $('#sidebarCollapse').removeClass('status-hilang-actived');
             $('#content-section').attr('style', '');
             $('nav.navbar.top').attr('style', '');
+            $('.child-item-list > li > a > span').attr('style', '');
             $('#sidebar').attr('style', '').removeClass('active');
             $('#item-list > a > i').css('width', '18px');
+            $('.child-item-list > li > a > i').css('width', '18px');
+            $('body').css('overflow', 'auto');
             $('.penghalang').fadeOut(300);
             console.log('trigger-normal-muncul');
         } else if ($(window).width() >= 1127) {
@@ -194,7 +197,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
                 });
                 $.ajax({
                     url: link,
-                    type: 'POST',
+                    method: 'POST',
                     success: function () {
                         $("#table-refresh").load(document.URL + ' #table-refresh');
                         toastr.success("Data Berhasil Dihapus!", "Berhasil", {

@@ -36,8 +36,12 @@
         <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, segera lakukan pembayaran kepada petugas.
     </div>
     @else
-    @foreach ($history_siswa as $h)
-    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
+    @php
+    $first = 0;
+    @endphp
+    @foreach ($history_siswa->take(10) as $h)
+    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}"
+        data-diterima="{{ $h->nominal }}">
         <div class="row">
             <div class="col bawah">
                 <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -48,8 +52,16 @@
         </div>
         <h3 style="margin-top: -5px;" class="uang">Rp. {{ $h->nominal }}</h3>
     </div>
+    @php
+    $first=$h->id;
+    @endphp
     @endforeach
     @endif
+
+    <div @if($history_siswa->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end
+        mr-4 pr-1" @endif>
+        <p style="font-weight: 400;"><span id="custom-count">10 dari {{ $history_siswa->count() }} Data Ditampilkan</p>
+    </div>
 
     @else
 
@@ -84,7 +96,8 @@
     </div>
     @else
     @foreach ($history as $h)
-    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}" data-diterima="{{ $h->nominal }}">
+    <div class="col-md-12 mt-3 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}"
+        data-diterima="{{ $h->nominal }}">
         <div class="row history">
             <div class="col bawah">
                 <p>Pembayaran {{ $h->tagihan->tipetagihan->nama_tagihan }}</p>
@@ -107,8 +120,7 @@
 
 @push('extras-css')
 <style>
-    #content
-    {
+    #content {
         margin-bottom: -12px !important;
     }
 

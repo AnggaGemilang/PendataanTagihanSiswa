@@ -104,8 +104,8 @@
     @endif
 
     @if(Auth::User()->role_id=="1")
-    <div @if($history->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>
-        <p style="font-weight: 400;"><span id="custom-count" data-count="{{$history->count()}}">{{$history->count()}}</span> dari {{ $history->count() }} Data Ditampilkan</p>
+    <div @if($history_siswa->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>
+        <p style="font-weight: 400;"><span id="custom-count" data-count="{{$history_siswa->count()}}">{{$history_siswa->count()}}</span> dari {{ $history_siswa->count() }} Data Ditampilkan</p>
     </div>
     @else
     <div @if($history->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>

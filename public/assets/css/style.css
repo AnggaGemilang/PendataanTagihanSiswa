@@ -776,3 +776,9 @@ a.article:hover {
         padding: 9px 41px !important;        
     }
 }
+
+@media (min-width: 202px){
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row !important;
+    }   
+}

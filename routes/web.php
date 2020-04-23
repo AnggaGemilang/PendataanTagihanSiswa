@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth','roleMiddleware:2']], function(){
     Route::post('data/tagihan/perbaharui/{id}/store', 'TagihanController@update')->name('perbaharui_tagihan_store');
     Route::post('data/tagihan/hapus/{id}', 'TagihanController@destroy')->name('hapus_tagihan_store');
 
+    Route::get('pembayaran/entripembayaran/{kelas_id}/{siswa_id}/{tagihan_id}', 'PembayaranController@indexCust')->name('tambah_pembayaran');
+
 });
 
 Route::group(['middleware' => ['auth','roleMiddleware:2,3']], function(){

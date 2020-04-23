@@ -90,8 +90,8 @@
                         <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                     </a>
                     <li style="list-style: none;"><button type="button" data-direct="{{ url('data/siswa') }}"
-                            data-url="{{ url('data/siswa/hapus/' . $siswa->id) }}" class="btn text-dark"
-                            id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
+                        data-url="{{ url('data/siswa/hapus/' . $siswa->id) }}" class="btn text-dark"
+                        id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
                 </ul>
             </div>
         </div>
@@ -124,11 +124,10 @@
                     <td class="change uang">@php echo($ts->tipetagihan->nominal-$ts->sudah_dibayar)@endphp</td>
                     <td class="change">@if($ts->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
                     <td class="change">
-                        <form action="{{ url('pembayaran/entripembayaran') }}" method="get">
-                            <button type="submit" class="btn" @if($ts->keterangan=='lunas') disabled @endif
-                                style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
-                                href="">Bayar</button>
-                        </form>
+                        <a @if($ts->keterangan=='lunas') class="disabled btn" @else class="btn" @endif
+                            style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size:
+                            12px;"
+                            href="{{ url('pembayaran/entripembayaran/' . $ts->siswa->class->id .  '/' . $ts->siswa->id . '/' . $ts->id) }}">Bayar</a>
                     </td>
                 </tr>
                 @endforeach
@@ -163,11 +162,10 @@
                     <td class="change uang">@php echo($t->tipetagihan->nominal - $t->sudah_dibayar)@endphp</td>
                     <td class="change">@if($t->keterangan=="blm_lunas")Belum Lunas @else Lunas @endif</td>
                     <td class="change">
-                        <form action="{{ url('pembayaran/entripembayaran') }}" method="get">
-                            <button type="submit" class="btn" @if($t->keterangan=='lunas') disabled @endif
-                                style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size: 12px;"
-                                href="">Bayar</button>
-                        </form>
+                        <a @if($t->keterangan=='lunas') class="disabled btn" @else class="btn" @endif
+                            style="background: #241937; color: white; padding-top: 5px; padding-bottom: 5px; font-size:
+                            12px;"
+                            href="{{ url('pembayaran/entripembayaran/' . $ts->siswa->class->id .  '/' . $ts->siswa->id . '/' . $t->id) }}">Bayar</a>
                     </td>
                 </tr>
                 @endforeach
@@ -213,6 +211,12 @@
 
 @push('extras-css')
 <style>
+    a.disabled {
+        pointer-events: none;
+        cursor: default;
+        background: #534D5B !important;
+    }
+
     .bg-data {
         background: #FFFFFF !important;
         border-radius: 10px;
