@@ -32,14 +32,15 @@
                         </div>
                         <ul class="pl-0" id="notif-content">
                             @if(count(Auth::User()->unreadNotifications)==0)
-                            <a onclick="e.preventDefault();" id="not">
+                            <a onclick="e.preventDefault();" id="not" style="height: 50px;">
                                 <li class="text-center">Tidak Ada Notifikasi</li>
                             </a>
                             @endif
                             @foreach (Auth::User()->unreadNotifications as $notification)
                             <a data-id="{{ $notification->id }}" id="markRead">
-                                <li style="padding-left: 15px !important;">Anda Membayar <span
-                                        style="font-weight: 600;"> {{ $notification->data['nama_tagihan'] }}</span></li>
+                                <li style="padding-left: 15px !important;" style="font-size: 16px;">Anda Membayar <span
+                                        style="font-weight: 600;"> {{ $notification->data['nama_tagihan'] }}</span> <br>
+                                <p class="mb-0" style="font-size: 14px;">{{ $notification->created_at }}</p></li>
                             </a>
                             @endforeach
                         </ul>

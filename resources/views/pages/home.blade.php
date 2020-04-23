@@ -31,7 +31,7 @@
         <h3>History Pembayaran</h3>
     </div>
 
-    @if($history->count()==0)
+    @if($history_siswa->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
         <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, segera lakukan pembayaran kepada petugas.
     </div>
@@ -58,9 +58,8 @@
     @endforeach
     @endif
 
-    <div @if($history_siswa->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end
-        mr-4 pr-1" @endif>
-        <p style="font-weight: 400;"><span id="custom-count">10 dari {{ $history_siswa->count() }} Data Ditampilkan</p>
+    <div class="row mt-4 justify-content-end mr-2">
+        <p style="font-weight: 400;"><span id="custom-count">{{$history_siswa->take(10)->count()}}</span> dari {{ $history_siswa->count() }} Data Ditampilkan</p>
     </div>
 
     @else

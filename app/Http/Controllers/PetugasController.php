@@ -177,12 +177,6 @@ class PetugasController extends Controller
         }
         $petugas->delete();
         $auth = Autentikasi::where('petugas_id', $id)->first()->delete();
-        $notification = array(
-            'title' => 'Berhasil',
-            'description' => 'Petugas Berhasil Dihapus!',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
+        echo json_encode('sukses');
     }
 }

@@ -86,6 +86,11 @@
                     @endforeach
                 </tbody>
             </table>
+            @if($tagihan->count()==0)
+            <div class="alert alert-danger mt-4" role="alert">
+            <i class="fas fa-exclamation-circle pr-2" ></i> Data Tidak Ditemukan, Klik <a href="{{ url('data/siswa/tambah') }}" class="alert-no-data">Disini</a> untuk membuat data tagihan dengan menambahkan siswa baru.
+            </div>
+            @endif
         </div>
     </div>
 

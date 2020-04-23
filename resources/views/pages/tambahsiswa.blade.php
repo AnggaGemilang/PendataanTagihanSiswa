@@ -20,8 +20,8 @@
         @if ($status=='tambah')
         <a class="breadcrumb-item" href="{{url('data/siswa/tambah')}}">Tambah Siswa</a>
         @else
-        <a class="breadcrumb-item" href="{{url('data/siswa/perbaharui/' . $siswa->slug )}}">Perbaharui Siswa</a>
-        <a class="breadcrumb-item" href="{{url('data/siswa/perbaharui/' . $siswa->slug )}}">{{$siswa->nama_siswa}}</a>
+        <a class="breadcrumb-item" href="{{url('data/siswa/perbaharui/' . $siswa->slug . '/' . $siswa->id )}}">Perbaharui Siswa</a>
+        <a class="breadcrumb-item" href="{{url('data/siswa/perbaharui/' . $siswa->slug . '/' . $siswa->id )}}">{{$siswa->nama_siswa}}</a>
         @endif
         <span class="breadcrumb-item active"></span>
     </nav>
@@ -46,10 +46,8 @@
             @endif
         </div>
 
-        <!-- id="form_tambah_siswa" -->
-
-        <form @if($status=='tambah') 
-            action="{{ url('data/siswa/tambah/store') }}" id="form-submit"
+        <form id="form-submit" @if($status=='tambah') 
+            action="{{ url('data/siswa/tambah/store') }}"
             @else
             action="{{url('data/siswa/perbaharui/' . $siswa->id . '/store')}}" 
             @endif 

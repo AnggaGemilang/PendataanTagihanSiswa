@@ -47,7 +47,7 @@
     </div>
 
     @if(Auth::User()->role_id=="1")
-    @if($history->count()==0)
+    @if($history_siswa->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
         <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, segera lakukan pembayaran kepada petugas.
     </div>
@@ -104,11 +104,11 @@
     @endif
 
     @if(Auth::User()->role_id=="1")
-    <div @if($history_siswa->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>
-        <p style="font-weight: 400;"><span id="custom-count" data-count="{{$history_siswa->count()}}">{{$history_siswa->count()}}</span> dari {{ $history_siswa->count() }} Data Ditampilkan</p>
+    <div @if($history_siswa->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row justify-content-end mr-4 pr-1" @endif>
+        <p style="font-weight: 400;"><span id="custom-count" data-count="{{$history_siswa->take(15)->count()}}">{{$history_siswa->take(15)->count()}}</span> dari {{ $history_siswa->count() }} Data Ditampilkan</p>
     </div>
     @else
-    <div @if($history->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row mt-3 justify-content-end mr-4 pr-1" @endif>
+    <div @if($history->count()>0) class="row mt-3 justify-content-end mr-2" @else class="row justify-content-end mr-4 pr-1" @endif>
         <p style="font-weight: 400;"><span id="custom-count" data-count="{{($history->count()>0)?$first:0}} - {{$history->count()}}">{{($history->count()>0)?$first:0}} - {{$history->count()}}</span> dari {{ $history->count() }} Data Ditampilkan</p>
     </div>
     @endif

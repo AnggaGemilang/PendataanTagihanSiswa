@@ -76,7 +76,7 @@ class ProfilController extends Controller
         return view('pages.profil', compact(['kelas','role', 'auth']));
     }
 
-    public function update(Request $request, $slug, $id, $role_id)
+    public function update(Request $request, $slug, $role_id, $id)
     {
         if($role_id=="1")
         {
@@ -111,8 +111,7 @@ class ProfilController extends Controller
     
             return redirect('profil/' . $auth->siswa->slug . '/' . $auth->siswa->id . '/' . $auth->siswa->role_id)->with($notification);            
 
-        }
-        else{
+        }else{
             $petugas = Petugas::where('slug',$slug)->first();
             $petugas->nama_petugas = $request->nama_petugas;
             $petugas->slug = Str::slug($request->nama_petugas,'-');
@@ -129,7 +128,6 @@ class ProfilController extends Controller
                 $petugas->profil = $nama_gambar;
             }
             $petugas->update();
-    
             $auth = Autentikasi::where('petugas_id', $id)->first();
             $auth->nomor_induk = $auth->nomor_induk;
             $auth->email = $auth->email;

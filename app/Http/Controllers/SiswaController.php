@@ -237,6 +237,6 @@ class SiswaController extends Controller
         $tagihan = Tagihan::where('siswa_id',$id)->get()->each->delete();
         $pembayaran = Pembayaran::where('siswa_id',$id)->get()->each->delete();
 
-        return redirect()->back();
+        echo json_encode('sukses');
     }
 }

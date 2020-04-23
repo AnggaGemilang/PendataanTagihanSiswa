@@ -7,7 +7,11 @@
     <h1>Profil Saya</h1>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('/profil')}}">Profil Saya</a>
+        @if(Auth::User()->role_id=='1')
+        <a class="breadcrumb-item" href="{{url('/profil/' . $auth->siswa->slug . '/' . $auth->siswa->id . '/' . $auth->siswa->role_id)}}">Profil Saya</a>
+        @else 
+        <a class="breadcrumb-item" href="{{url('/profil/' . $auth->petugas->slug . '/' . $auth->petugas->id . '/' . $auth->petugas->role_id)}}">Profil Saya</a>
+        @endif
         <span class="breadcrumb-item active"></span>
     </nav>
 
@@ -28,7 +32,7 @@
 
         @if($auth->role_id=='1')
 
-        <form
+        <form id="form-submit"
             action="{{ url('profil/' . $auth->siswa->slug . '/' . $auth->siswa->role_id . '/' . $auth->siswa->id . '/perbaharui/store' ) }}"
             method="post" enctype="multipart/form-data">
 
@@ -125,17 +129,16 @@
                     </select>
                 </div>
             </div>
-            <div class="row mb-2 ml-3 mr-3 mt-2">
-                <button type="submit" class="btn mt-3 w-100 mb-5"
-                    style="background: #241937; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
-                    Profil</button>
+            <div class="row m-3 pb-4 pt-2 position-relative">
+                <button type="submit" class="btn w-100 text-light" style="background: #241937 !important; transition: all .3s;" id="btn-submit" onclick="show()">Ubah Profil<i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
         </form>
 
         @else
 
-        <form
-            action="{{ url('profil/' . $auth->petugas->slug . '/' . $auth->petugas->id . '/' . $auth->petugas->role_id . '/perbaharui/store' ) }}"
+        <form id="form-submit"
+            action="{{ url('profil/' . $auth->petugas->slug . '/' . $auth->petugas->role_id . '/' . $auth->petugas->id . '/perbaharui/store' ) }}"
             method="post" enctype="multipart/form-data">
 
             {{ csrf_field() }}
@@ -205,10 +208,9 @@
                     </select>
                 </div>
             </div>
-            <div class="row ml-3 mr-3 mt-2">
-                <button type="submit" class="btn mt-3 w-100 mb-5"
-                    style="background: #241937; color: #ffffff; box-shadow: 1px 3px 6px rgba(0,0,0,0.1); height: 35px; padding: 0px 35px;">Ubah
-                    Profil <i class="fas fa-save pl-2"></i></button>
+            <div class="row m-3 pb-4 pt-2 position-relative">
+                <button type="submit" class="btn w-100 text-light" style="background: #241937 !important; transition: all .3s;" id="btn-submit" onclick="show()">Ubah Profil<i class="fas fa-save pl-2"></i></button>
+                <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
         </form>
 

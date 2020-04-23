@@ -14,7 +14,7 @@
     </nav>
 
     <div class="row mt-4 ml-1 mr-1 position-relative">
-        <h2 class="mb-4 w-100" style="font-size: 40px;">XII - RPL 1</h2>
+        <h2 class="mb-4 w-100" style="font-size: 40px;">{{ $kelas->nama_kelas }}</h2>
         <table>
             <tbody>
                 <tr>
@@ -58,7 +58,7 @@
                 <a href="{{ url('data/kelas/perbaharui/' . $kelas->slug) }}">
                     <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                 </a>
-                <li style="list-style: none;"><button type="button" data-direct="{{ url('data/kelas') }}" data-url="{{ url('data/kelas/hapus/' . $kelas->id) }}" class="btn text-dark" id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
+                <li style="list-style: none;"><button type="button" data-direct="/data/kelas" data-url="{{ url('data/kelas/hapus/' . $kelas->id) }}" class="btn text-dark" id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
             </ul>
         </div>
     </div>
@@ -97,9 +97,12 @@
                 @endforeach
             </tbody>
         </table>
+        @if($kelas->students->count()==0)
+        <div class="alert alert-danger mt-4 w-100" role="alert">
+        <i class="fas fa-exclamation-circle pr-2" ></i> Data Tidak Ditemukan, Klik <a href="{{ url('data/siswa/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan siswa baru.
+        </div>
+        @endif
     </div>
-
-
 </div>
 
 @include('partials.footer')

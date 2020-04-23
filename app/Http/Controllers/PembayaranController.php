@@ -38,6 +38,7 @@ class PembayaranController extends Controller
 
     public function detail(Request $request, $id)
     {
+        $action = "";
         $data = Pembayaran::find($id);
 
         if($data->keterangan=='blm_lunas')
@@ -45,6 +46,15 @@ class PembayaranController extends Controller
             $ket = 'Belum Lunas';
         } else {
             $ket = 'Lunas';
+        }
+
+        if(Auth::User()->role_id=="3")
+        {
+            $action="style='display: none !important;'";
+        } else if (Auth::User()->role_id=="2"){
+            $action='href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'"';
+        } else {
+            $action='href="/pembayaran/data"';
         }
         
         $content = '<h2 style="text-align:left; margin-bottom:20px; font-weight:500;">Detail Pembayaran</h2>';
@@ -90,7 +100,7 @@ class PembayaranController extends Controller
         $content .= '<td class="exceptt" class="text-capitalize">' . $ket . '</td>';
         $content .= '</tr>';
         $content .= '</table>';
-        $content .= '<a href="/data/siswa/detail/' . $data->tagihan->siswa->slug . '/' . $data->tagihan->siswa->id .'" jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #241937;">Lihat Data Pembayaran</a>';
+        $content .= '<a ' . $action . 'jenis="" class="btn text-light w-100 btn-generate" style="margin-bottom:7px; margin-top: 30px; background: #241937;">Lihat Data Pembayaran</a>';
         
         echo json_encode($content);
     }

@@ -20,8 +20,8 @@
         @if ($status=='tambah')
         <a class="breadcrumb-item" href="{{url('data/petugas/tambah')}}">Tambah Petugas</a>
         @else
-        <a class="breadcrumb-item" href="{{url('data/petugas/perbaharui/' . $petugas->slug)}}">Perbaharui Petugas</a>
-        <a class="breadcrumb-item" href="{{url('data/petugas/perbaharui/' . $petugas->slug)}}">{{$petugas->nama_petugas}}</a>
+        <a class="breadcrumb-item" href="{{url('data/petugas/perbaharui/' . $petugas->slug . '/' . $petugas->id)}}">Perbaharui Petugas</a>
+        <a class="breadcrumb-item" href="{{url('data/petugas/perbaharui/' . $petugas->slug . '/' . $petugas->id)}}">{{$petugas->nama_petugas}}</a>
         @endif
         <span class="breadcrumb-item active"></span>
     </nav>

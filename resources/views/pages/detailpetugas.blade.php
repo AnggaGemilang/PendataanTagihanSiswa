@@ -90,7 +90,7 @@
                     <a href="{{ url('data/petugas/perbaharui/' . $petugas->slug) }}">
                         <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                     </a>
-                    <li style="list-style: none;"><button type="button" data-direct="{{ url('data/petugas') }}"
+                    <li style="list-style: none;"><button type="button" data-direct="/data/petugas"
                             data-url="{{ url('data/petugas/hapus/' . $petugas->id) }}" class="btn text-dark"
                             id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
                 </ul>

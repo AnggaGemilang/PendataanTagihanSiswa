@@ -12,15 +12,9 @@ $('.dropdown-navbar.notif').on('click','#markRead',function (e) {
         dataType: 'json',
         success: function (data) {
             console.log(data.jumlah);
-            if(data.jumlah==0)
-            {
-                $('#badge-notif').css({'visibility':'hidden', 'z-index':'-9999'});
-            } else {
-                $('#badge-notif').html(data.jumlah);
-            }
+            $('#badge-notif').html(data.jumlah);
             console.log(data.content);
             $("#notif-content").load(document.URL + " #notif-content > *");
-            // $('#notif-content').html(data.content);
         },
         error: function (err) {
             console.log(err);
@@ -164,7 +158,12 @@ function conventer(value) {
     DROPDOWN BUTTON OPTION
 ----------------------------------------------------- */
 
-$(document).not('.dropdown-navbar.notif').click(function () {
+$('.dropdown-navbar.notif').on('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+});
+
+$(document).click(function () {
     if ($('#btn-dropdownnavbar').hasClass('status')) {
         $('#btn-dropdownnavbar').removeClass('status');
         $(".dropdown-navbar-status").fadeOut();
@@ -271,7 +270,9 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
 $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
     e.stopPropagation();
     var link = $(this).attr('data-url');
-    var direct = $(this).attr('data-direct');
+    var direct = window.location.origin + $(this).attr('data-direct');
+    console.log(direct);
+
     swal.fire({
             title: "Apakah Anda Yakin?",
             text: "Data akan terhapus secara permanen",
@@ -292,16 +293,15 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
                 });
                 $.ajax({
                     url: link,
-                    type: 'POST',
-                    success: function () {
-                        // toastr.success("Data Berhasil Dihapus!", "Berhasil", {
-                        //     "showMethod": "slideDown",
-                        //     "hideMethod": "slideUp",
-                        //     timeOut: 3000
-                        // });
-                        $(location).attr('href', direct);
+                    method: 'POST',
+                    dataType: 'json',
+                    success:function(data) {
+                        if(data=='sukses')
+                        {
+                            $(location).attr('href', direct);
+                        }
                     },
-                    error: function (err) {
+                    error:function (err) {
                         console.log(err);
                     }
                 })

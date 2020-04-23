@@ -50,7 +50,7 @@ class KelasController extends Controller
 
         $this->validate($request, [
             'nama_kelas' => 'required|string|max:200',
-            'tipekelas_id' => 'required|integer|max:1',
+            'tipekelas_id' => 'required|integer',
             'jurusan' => 'required|string|max:200',
             'wali_kelas' => 'required|string|max:200',
         ], $messages);
@@ -95,7 +95,7 @@ class KelasController extends Controller
 
         $this->validate($request, [
             'nama_kelas' => 'required|string|max:200',
-            'tipekelas_id' => 'required|integer|max:1',
+            'tipekelas_id' => 'required|integer',
             'jurusan' => 'required|string|max:200',
             'wali_kelas' => 'required|string|max:200',
         ], $messages);
@@ -129,6 +129,6 @@ class KelasController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        echo json_encode('sukses');
     }
 }

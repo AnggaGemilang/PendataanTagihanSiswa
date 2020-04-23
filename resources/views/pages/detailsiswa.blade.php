@@ -89,9 +89,10 @@
                     <a href="{{ url('data/siswa/perbaharui/' . $siswa->slug . '/' . $siswa->id) }}">
                         <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                     </a>
-                    <li style="list-style: none;"><button type="button" data-direct="{{ url('data/siswa') }}"
-                        data-url="{{ url('data/siswa/hapus/' . $siswa->id) }}" class="btn text-dark"
-                        id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
+                    <li style="list-style: none;">
+                        <button id="btn-hapus" type="button" data-direct="/data/siswa"
+                            data-url="{{ url('data/siswa/hapus/' . $siswa->id) }}" class="btn text-dark"><i
+                                class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
                 </ul>
             </div>
         </div>
@@ -133,6 +134,12 @@
                 @endforeach
             </tbody>
         </table>
+        @if($tagihan_spp->count()==0)
+        <div class="alert alert-danger mt-4 w-100" role="alert">
+            <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+                href="{{ url('data/tipetagihan/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan tagihan baru.
+        </div>
+        @endif
     </div>
 
     <div class="row m-1 mt-4 mb-4 bg-data">
@@ -171,6 +178,12 @@
                 @endforeach
             </tbody>
         </table>
+        @if($tagihan->count()==0)
+        <div class="alert alert-danger mt-4 w-100" role="alert">
+            <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+                href="{{ url('data/tipetagihan/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan tagihan baru.
+        </div>
+        @endif
     </div>
 
     @if(Auth::User()->role_id!='1')
@@ -182,11 +195,12 @@
     @if($history->count()==0)
     <div class="alert alert-danger mt-3" role="alert">
         <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
-            href="{{ url('pembayaran/entripembayaran') }}" class="alert-no-data">Disini</a> untuk menambahkan pembayaran
+            href="{{ url('pembayaran/entripembayaran/') }}" class="alert-no-data">Disini</a> untuk menambahkan
+        pembayaran
         baru.
     </div>
     @else
-    @foreach ($history as $h)
+    @foreach ($history->take(10) as $h)
     <div class="col-md-12 mt-4 mb-4" id="item-history" data-id="{{ $h->id }}" data-sisa="{{ $h->sisa_tagihan }}"
         data-diterima="{{ $h->nominal }}">
         <div class="row">
@@ -201,8 +215,11 @@
     </div>
     @endforeach
     @endif
-
     @endif
+
+    <div class="row mt-0 justify-content-end mr-2">
+        <p style="font-weight: 400;"><span id="custom-count">{{$history->take(10)->count()}}</span> dari {{ $history->count() }} Data Ditampilkan</p>
+    </div>
 
 </div>
 

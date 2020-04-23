@@ -40,6 +40,12 @@
                 @endforeach
             </tbody>
         </table>
+        @if($tagihan_spp->count()==0)
+        <div class="alert alert-danger mt-4 w-100" role="alert">
+            <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+                href="{{ url('data/tipetagihan/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan tagihan baru.
+        </div>
+        @endif
     </div>
 
     <div class="row m-1 mt-4 mb-4 bg-data">
@@ -71,6 +77,12 @@
                 @endforeach
             </tbody>
         </table>
+        @if($tagihan->count()==0)
+        <div class="alert alert-danger mt-4 w-100" role="alert">
+            <i class="fas fa-exclamation-circle pr-2"></i> Data Tidak Ditemukan, Klik <a
+                href="{{ url('data/tipetagihan/tambah') }}" class="alert-no-data">Disini</a> untuk menambahkan tagihan baru.
+        </div>
+        @endif
     </div>
 </div>
 
