@@ -287,23 +287,23 @@
 
     @media(max-width: 498px) {
         td>h4 {
-            font-size: 15px;
+            font-size: 17px;
         }
 
         .row>h2.mb-4 {
-            font-size: 28px !important;
+            font-size: 32px !important;
         }
 
         .bg-data>h3 {
             font-size: 23px;
         }
 
-        table>thead>tr {
-            font-size: 14px;
+        .bg-data>table>thead>tr {
+            font-size: 17px;
         }
 
-        table>tbody>tr {
-            font-size: 12px !important;
+        .bg-data>table>tbody>tr {
+            font-size: 15px !important;
         }
     }
 

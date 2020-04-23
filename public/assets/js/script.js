@@ -192,6 +192,11 @@ $('#btn-dropdownnavbar').click(function (e) {
     e.preventDefault();
     $(".dropdown-navbar-status").fadeToggle();
     $(this).toggleClass('status');
+    if($(this).hasClass('status') && $('#btn-dropdownnotif').hasClass('status'))
+    {
+        $('#btn-dropdownnotif').removeClass('status');
+        $(".dropdown-navbar.notif").fadeOut();
+    }
     return false;
 });
 
@@ -200,6 +205,11 @@ $('#btn-dropdownnotif').click(function (e) {
     e.preventDefault();
     $(".dropdown-navbar.notif").fadeToggle();
     $(this).toggleClass('status');
+    if($(this).hasClass('status') && $('#btn-dropdownnavbar').hasClass('status'))
+    {
+        $('#btn-dropdownnavbar').removeClass('status');
+        $(".dropdown-navbar-status").fadeOut();
+    }
     return false;
 });
 

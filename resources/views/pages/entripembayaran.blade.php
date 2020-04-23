@@ -12,9 +12,13 @@
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
         @if($status=='detailsiswa')
         <a class="breadcrumb-item" href="{{url('/data/siswa')}}">Data Siswa</a>
-        <a class="breadcrumb-item" href="{{url('data/siswa/detail/' . $siswa->slug . '/' . $siswa->id )}}">{{ $siswa->nama_siswa }}</a>
-        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran/' . $kelas->id . '/' . $siswa->id . '/' . $tagihan->id)}}">Tambah Pembayaran</a>
-        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran/' . $kelas->id . '/' . $siswa->id . '/' . $tagihan->id)}}">{{ $tagihan->tipetagihan->nama_tagihan }}</a>
+        <a class="breadcrumb-item"
+            href="{{url('data/siswa/detail/' . $siswa->slug . '/' . $siswa->id )}}">{{ $siswa->nama_siswa }}</a>
+        <a class="breadcrumb-item"
+            href="{{url('pembayaran/entripembayaran/' . $kelas->id . '/' . $siswa->id . '/' . $tagihan->id)}}">Tambah
+            Pembayaran</a>
+        <a class="breadcrumb-item"
+            href="{{url('pembayaran/entripembayaran/' . $kelas->id . '/' . $siswa->id . '/' . $tagihan->id)}}">{{ $tagihan->tipetagihan->nama_tagihan }}</a>
         @else
         <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran')}}">Tambah Pembayaran</a>
         @endif
@@ -34,8 +38,7 @@
 
     <div class="col-md-12 mt-4 pb-2 mb-3" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
         <div class="row" style="background: #241937 !important; height: 65px; align-content: center;">
-            <p class="text-light m-0 pl-4" style="font-weight: 500;">Entri Pembayaran Tagihan
-                @if($status=="detailsiswa") {{ $tagihan->tipetagihan->nama_tagihan }} @endif</p>
+            <p class="text-light m-0 pl-4" style="font-weight: 500;">Entri Pembayaran Tagihan</p>
         </div>
 
         <form action="" method="post" id="form-submit" data-baseurl="{{ url('/') }}">
@@ -67,7 +70,8 @@
                     <select name="siswa_id" id="siswa_id" class="form-control greylight-bg w-100 pl-2"
                         style="height: 37px; border: none; border-radius: 7px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                         @if($status=='detailsiswa')
-                        <option value="{{ $siswa->id }}" realslug={{ $siswa->slug }} slug="{{ $siswa->nama_siswa }}">{{ $siswa->nama_siswa }}
+                        <option value="{{ $siswa->id }}" realslug={{ $siswa->slug }} slug="{{ $siswa->nama_siswa }}">
+                            {{ $siswa->nama_siswa }}
                         </option>
                         @else
                         <option value="">Pilih Siswa</option>
@@ -104,7 +108,9 @@
                 </div>
                 @if($status=='detailsiswa')
                 <div id="sisa_wrapper">
-                    <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Sisa Tagihan : Rp. {{ number_format(($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar),0,'.','.') }}</p>
+                    <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Sisa Tagihan
+                        : Rp. {{ number_format(($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar),0,'.','.') }}
+                    </p>
                 </div>
                 @else
                 <p id="sisa_tagihan_pembayaran"></p>
@@ -133,6 +139,19 @@
             margin-bottom: 0px !important;
         }
     }
+
+    @media (max-width: 373px) {
+    .swal2-cancel
+    {
+        padding: 9px 58px !important;        
+    }
+
+    @media (max-width: 354px) {
+    .swal2-cancel.swal2-styled
+    {
+        padding: 9px 58px !important;        
+    }
+}
 </style>
 @endpush
 
@@ -243,7 +262,6 @@
     });
 
     $('#btn-submit').on('click', function (e) {
-
         if ($(this).hasClass('normal_bray')) {
             $content =
                 '<h2 style="text-align:left; margin-bottom:20px; font-weight:500;">Konfirmasi Pembayaran</h2>';
@@ -290,6 +308,7 @@
             }).then((result) => {
                 $(this).attr('disabled', true);
                 $('.loader').show();
+
                 if (result.value) {
                     $.ajaxSetup({
                         headers: {
@@ -311,6 +330,7 @@
                             if (data == 'sukses') {
                                 $(this).attr('disabled', true);
                                 $('.loader').hide();
+
                                 $('#siswa_id').val("");
                                 $('#siswa_id').children('option:not(:first)').remove();
                                 $('#kelas_id').val("");
@@ -325,6 +345,9 @@
                                     timeOut: 3000
                                 });
                             } else {
+                                $(this).attr('disabled', true);
+                                $('.loader').hide();
+
                                 toastr.error("Nominal Terlalu Besar!", "Gagal", {
                                     "showMethod": "slideDown",
                                     "hideMethod": "slideUp",
@@ -337,6 +360,9 @@
                         }
                     })
                 } else {
+                    $(this).attr('disabled', true);
+                    $('.loader').hide();
+
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',
@@ -412,15 +438,20 @@
                             $("#sisa_wrapper").load(document.URL + ' #sisa_wrapper');
                             $(this).attr('disabled', true);
                             $('.loader').hide();
+
                             function successFunc() {
                                 var value = $('#sisa_tagihan_pembayaran').text();
                                 console.log(value);
                                 if (data == 'sukses') {
                                     if (value == 'Sisa Tagihan : Rp. 0') {
-                                        var base_url = $('#form-submit').attr('data-baseurl');
-                                        var slug = $('#siswa_id').children("option:selected").attr('realslug');
-                                        var siswa_id = $('#siswa_id').children("option:selected").val();
-                                        var url = base_url + "/data/siswa/detail/" + slug + "/" + siswa_id; 
+                                        var base_url = $('#form-submit').attr(
+                                            'data-baseurl');
+                                        var slug = $('#siswa_id').children(
+                                            "option:selected").attr('realslug');
+                                        var siswa_id = $('#siswa_id').children(
+                                            "option:selected").val();
+                                        var url = base_url + "/data/siswa/detail/" + slug +
+                                            "/" + siswa_id;
                                         location.href = url;
                                     } else {
                                         $('#nominal').val("");
@@ -432,6 +463,11 @@
                                         });
                                     }
                                 } else {
+                                    if (nominal.length > 0) {
+                                        $('#btn-submit').attr('disabled', false);
+                                    }
+                                    $('.loader').hide();
+
                                     toastr.error("Nominal Terlalu Besar!", "Gagal", {
                                         "showMethod": "slideDown",
                                         "hideMethod": "slideUp",
@@ -446,6 +482,11 @@
                         }
                     })
                 } else {
+                    if (nominal.length > 0) {
+                        $('#btn-submit').attr('disabled', false);
+                    }
+                    $('.loader').hide();
+
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',

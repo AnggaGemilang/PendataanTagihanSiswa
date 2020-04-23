@@ -409,6 +409,7 @@ option.greylight-bg:focus {
 
 .dropdown-navbar.notif
 {
+    right: 160px !important;
     min-width: 159px; 
     max-height: 263px;
     z-index: 999; 
@@ -794,13 +795,10 @@ a.article:hover {
     }
 }
 
-@media (max-width: 531px) {
+@media (max-width: 521px) {
     .dropdown-navbar.notif
     {
-        min-width: 300px;
-        transform: translate(-52%, 4%) !important;
-        left: 100% !important;
-        top: 100% !important;
+        right: 0px !important;
     }
 }
 

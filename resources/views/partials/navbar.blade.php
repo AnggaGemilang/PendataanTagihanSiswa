@@ -16,6 +16,19 @@
                         <span class="badge badge-success" id="badge-notif"
                             style="position: absolute; top: -5px; left: 23px; background: #241937 !important;">{{ count(Auth::User()->unreadNotifications) }}</span>
                     </button>
+                </li>
+                @endif
+
+                <li class="nav-item position-relative">
+                    <a id="btn-dropdownnavbar" href=""
+                        style="color: #24143F; font-weight: 500; text-transform: capitalize;">
+                        @if(Auth::User()->role_id=="1")
+                        {{ Auth::User()->siswa->nama_siswa }}
+                        @else
+                        {{ Auth::User()->petugas->nama_petugas }}
+                        @endif
+                        <i class="fas fa-caret-down ml-2"></i>
+                    </a>
                     <div class="dropdown-navbar notif">
                         <div class="container-fluid"
                             style="border-bottom: 1px solid rgba(0, 0, 0, 0.15); padding: 5px 15px;">
@@ -45,19 +58,6 @@
                             @endforeach
                         </ul>
                     </div>
-                </li>
-                @endif
-
-                <li class="nav-item position-relative">
-                    <a id="btn-dropdownnavbar" href=""
-                        style="color: #24143F; font-weight: 500; text-transform: capitalize;">
-                        @if(Auth::User()->role_id=="1")
-                        {{ Auth::User()->siswa->nama_siswa }}
-                        @else
-                        {{ Auth::User()->petugas->nama_petugas }}
-                        @endif
-                        <i class="fas fa-caret-down ml-2"></i>
-                    </a>
                     <div class="dropdown-navbar dropdown-navbar-status"
                         style="min-width: 129px !important; z-index: 999;">
                         <ul class="pl-0">

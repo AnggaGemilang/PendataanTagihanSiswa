@@ -25,7 +25,7 @@
         </ol>
     </div>
 
-    <div class="col-md-12" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
+    <div class="col-md-12 pb-2" style="background: #FFFFFF; box-shadow: 1px 1px 12px rgba(0,0,0,0.1);">
         <div class="row mt-4" style="background: #241937 !important; height: 65px; align-content: center;">
             <p class="text-light m-0 pl-4" style="font-weight: 500;">Ubah Profil</p>
         </div>
