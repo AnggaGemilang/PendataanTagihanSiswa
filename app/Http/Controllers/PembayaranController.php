@@ -9,6 +9,7 @@ use App\Siswa;
 use App\TipeTagihan;
 use App\Tagihan;
 use App\Pembayaran;
+use App\Notifications\TambahPembayaran;
 use Auth;
 use PDF;
 
@@ -169,6 +170,10 @@ class PembayaranController extends Controller
             echo json_encode('gagal_terlalu_besar');
             return false;
         } else {
+            $auth = Siswa::find($request->siswa_id)->autentikasi;
+            $nama_tagihan = Tagihan::find($request->tagihan_id)->tipetagihan->nama_tagihan;
+            $nama_siswa = Siswa::find($request->siswa_id)->nama_siswa;
+
             $entri = new Pembayaran;
             $entri->nominal = $after_nominal;
             $entri->siswa_id = $request->siswa_id;
@@ -187,6 +192,8 @@ class PembayaranController extends Controller
                 $tagihan->keterangan = 'lunas';
                 $tagihan->update();
             }
+
+            $auth->notify(new TambahPembayaran($nama_tagihan, $nama_siswa));
         }
 
         echo json_encode('sukses');

@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth','roleMiddleware:1,2,3']], function(){
 
 Route::group(['middleware' => ['auth','roleMiddleware:1']], function(){
 
+    Route::get('markAsRead/{id}', 'ProfilController@read')->name('read');
     Route::get('pembayaran/data', 'PembayaranController@data')->name('datapembayaran');
 
 });

@@ -407,6 +407,15 @@ option.greylight-bg:focus {
     border: none;
 }
 
+.dropdown-navbar.notif
+{
+    min-width: 159px; 
+    max-height: 263px;
+    z-index: 999; 
+    background: white !important; 
+    overflow-y: auto;
+}
+
 .dropdown-detail {
     position: absolute;
     top: 30px !important;
@@ -433,8 +442,16 @@ option.greylight-bg:focus {
     color: white !important;
 }
 
+.dropdown-navbar.notif>ul>a#not>li:hover
+{
+    cursor: default !important;
+    color: black !important;
+}
+
+.dropdown-navbar.notif>ul>a:not(#not)>li:hover,
 .dropdown-navbar>ul>a>li:hover,
 .dropdown-navbar>ul>li>button:hover {
+    cursor: pointer !important;
     color: white !important;
     background: #241937;
     border-bottom: 1px solid #241937;
@@ -445,6 +462,14 @@ option.greylight-bg:focus {
     transition: 0.5s;
 }
 
+.dropdown-navbar.notif>ul>a>li
+{
+    width: 300px;
+    padding: 6px 10px !important;
+    font-size: 16px;
+}
+
+.dropdown-navbar.notif>ul>a>li,
 .dropdown-navbar>ul>a>li,
 .dropdown-navbar>ul>li>button {
     background: #FFFFFF;
@@ -767,6 +792,16 @@ a.article:hover {
     #content-section
     {
         padding-bottom: 110px;
+    }
+}
+
+@media (max-width: 531px) {
+    .dropdown-navbar.notif
+    {
+        min-width: 300px;
+        transform: translate(-52%, 4%) !important;
+        left: 100% !important;
+        top: 100% !important;
     }
 }
 

@@ -8,12 +8,45 @@
 
         <div>
             <ul class="nav navbar-nav ml-auto">
+                @if(Auth::User()->role_id=='1')
                 <li class="nav-item position-relative mr-4">
-                    <button style="background: transparent; border: none; outline: none !important;">
+                    <button id="btn-dropdownnotif"
+                        style="background: transparent; border: none; outline: none !important;">
                         <i class="far fa-bell" style="font-size: 21px; color: #241937;"></i>
-                        <span class="badge badge-success" style="position: absolute; top: -5px; left: 23px; background: #241937 !important;">1</span>
+                        <span class="badge badge-success" id="badge-notif"
+                            style="position: absolute; top: -5px; left: 23px; background: #241937 !important;">{{ count(Auth::User()->unreadNotifications) }}</span>
                     </button>
+                    <div class="dropdown-navbar notif">
+                        <div class="container-fluid"
+                            style="border-bottom: 1px solid rgba(0, 0, 0, 0.15); padding: 5px 15px;">
+                            <div class="row" id="not">
+                                <div class="col">
+                                    <p class="mb-0" style="font-weight: 500; color: black;">Notifikasi</p>
+                                </div>
+                                <div class="col" style="align-self: center; text-align: right;">
+                                    <button id="closeNotif"
+                                        style="border: none; background: transparent; outline: none;"><i
+                                            class="fas fa-times-circle" style="color: #241937;"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="pl-0" id="notif-content">
+                            @if(count(Auth::User()->unreadNotifications)==0)
+                            <a onclick="e.preventDefault();" id="not">
+                                <li class="text-center">Tidak Ada Notifikasi</li>
+                            </a>
+                            @endif
+                            @foreach (Auth::User()->unreadNotifications as $notification)
+                            <a data-id="{{ $notification->id }}" id="markRead">
+                                <li style="padding-left: 15px !important;">Anda Membayar <span
+                                        style="font-weight: 600;"> {{ $notification->data['nama_tagihan'] }}</span></li>
+                            </a>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
+                @endif
+
                 <li class="nav-item position-relative">
                     <a id="btn-dropdownnavbar" href=""
                         style="color: #24143F; font-weight: 500; text-transform: capitalize;">

@@ -159,7 +159,7 @@
             margin-top: -7px !important;
         }
 
-        .row>.col {
+        .row:not(#not)>.col {
             flex: 0 0 100%;
         }
 

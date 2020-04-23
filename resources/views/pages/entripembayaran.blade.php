@@ -10,11 +10,13 @@
     @endif
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran')}}">Tambah Pembayaran</a>
         @if($status=='detailsiswa')
-        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran')}}">{{ $siswa->nama_siswa }}</a>
-        <a class="breadcrumb-item"
-            href="{{url('pembayaran/entripembayaran')}}">{{ $tagihan->tipetagihan->nama_tagihan }}</a>
+        <a class="breadcrumb-item" href="{{url('/data/siswa')}}">Data Siswa</a>
+        <a class="breadcrumb-item" href="{{url('data/siswa/detail/' . $siswa->slug . '/' . $siswa->id )}}">{{ $siswa->nama_siswa }}</a>
+        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran/' . $kelas->id . '/' . $siswa->id . '/' . $tagihan->id)}}">Tambah Pembayaran</a>
+        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran/' . $kelas->id . '/' . $siswa->id . '/' . $tagihan->id)}}">{{ $tagihan->tipetagihan->nama_tagihan }}</a>
+        @else
+        <a class="breadcrumb-item" href="{{url('pembayaran/entripembayaran')}}">Tambah Pembayaran</a>
         @endif
         <span class="breadcrumb-item active"></span>
     </nav>
@@ -286,6 +288,8 @@
                 closeOnCancel: false,
 
             }).then((result) => {
+                $(this).attr('disabled', true);
+                $('.loader').show();
                 if (result.value) {
                     $.ajaxSetup({
                         headers: {
@@ -305,6 +309,8 @@
                         success: function (data) {
                             console.log(data);
                             if (data == 'sukses') {
+                                $(this).attr('disabled', true);
+                                $('.loader').hide();
                                 $('#siswa_id').val("");
                                 $('#siswa_id').children('option:not(:first)').remove();
                                 $('#kelas_id').val("");
@@ -382,6 +388,9 @@
                 closeOnConfirm: false,
                 closeOnCancel: false,
             }).then((result) => {
+                $(this).attr('disabled', true);
+                $('.loader').show();
+
                 if (result.value) {
                     $.ajaxSetup({
                         headers: {
@@ -401,7 +410,8 @@
                         success: function (data) {
                             console.log(data);
                             $("#sisa_wrapper").load(document.URL + ' #sisa_wrapper');
-
+                            $(this).attr('disabled', true);
+                            $('.loader').hide();
                             function successFunc() {
                                 var value = $('#sisa_tagihan_pembayaran').text();
                                 console.log(value);
@@ -429,7 +439,7 @@
                                     });
                                 }
                             }
-                            setTimeout(successFunc, 300);
+                            setTimeout(successFunc, 600);
                         },
                         error: function (err) {
                             console.log(err);

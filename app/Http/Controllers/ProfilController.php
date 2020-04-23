@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Hash;
@@ -23,6 +24,42 @@ class ProfilController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function read($id)
+    {
+        $content = '';
+        $notification = Auth::User()->notifications()->find($id);
+
+        if($notification) {
+            $notification->markAsRead();
+        }
+        if(count(Auth::User()->unreadNotifications)==0)
+        {
+            $content .= '<a href="" id="not">';
+            $content .= '<li class="text-center">Tidak Ada Notifikasi</li>';
+            $content .= '</a>';
+        } else {
+            foreach(Auth::User()->unreadNotifications as $notification)
+            {
+                $content .= '<a href="" data-id="{{ $notification->id }}">';
+                $content .= '<li><i class="fas fa-credit-card" style="width:28px; padding-left: 3px;"></i> Anda Membayar'; 
+                $content .= '<span style="font-weight: 600;">' . $notification->data['nama_tagihan'] . '</span>';
+                $content .= '</li>';
+                $content .= '</a>';
+            }
+        }
+        $content .= '</ul>';
+        $content .= '</div>';
+
+        $jumlah = count(Auth::User()->unreadNotifications);
+
+        $response = array(
+            'jumlah' => $jumlah, 
+            'content' => $content,
+        );
+
+        echo json_encode($response);
     }
 
     public function index($slug, $id, $role_id)
@@ -144,7 +181,6 @@ class ProfilController extends Controller
         $password = $request->password_baru;
         $id = Auth::User()->id;
         $user = Autentikasi::find($id);
-        if (!$user) return redirect()->back()->withErrors(['email' => 'Email not found']);
         $user->password = \Hash::make($password);
         $user->update();
         Auth::login($user);
