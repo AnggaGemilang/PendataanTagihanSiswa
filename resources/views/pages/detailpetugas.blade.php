@@ -85,14 +85,17 @@
             <button type="button" class="btn btn-info position-absolute btn-toggle-option">
                 <i class="fas fa-ellipsis-v" style="color: #241937;"></i>
             </button>
-            <div class="dropdown-navbar dropdown-detail">
+            <div class="dropdown-detail">
+                <div class="triangle"></div>
                 <ul class="pl-0 mb-0">
                     <a href="{{ url('data/petugas/perbaharui/' . $petugas->slug . '/' . $petugas->id) }}">
                         <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                     </a>
-                    <li style="list-style: none;"><button type="button" data-direct="/data/petugas"
-                            data-url="{{ url('data/petugas/hapus/' . $petugas->id) }}" class="btn text-dark"
-                            id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
+                    <a href="" onclick="event.preventDefault()">
+                        <li data-direct="/data/petugas" data-url="{{ url('data/petugas/hapus/' . $petugas->id) }}">
+                            <i class="fas fa-trash-alt pr-3"></i>Hapus
+                        </li>
+                    </a>
                 </ul>
             </div>
         </div>

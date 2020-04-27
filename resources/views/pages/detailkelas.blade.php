@@ -53,12 +53,17 @@
             </tbody>
         </table>
         <button type="button" class="mt-2 btn btn-info position-absolute btn-toggle-option"><i class="fas fa-ellipsis-v" style="color:#008A85; "></i></button>
-        <div class="dropdown-navbar dropdown-detail">
+        <div class="dropdown-detail">
+            <div class="triangle"></div>
             <ul class="pl-0 mb-0">
                 <a href="{{ url('data/kelas/perbaharui/' . $kelas->slug) }}">
                     <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                 </a>
-                <li style="list-style: none;"><button type="button" data-direct="/data/kelas" data-url="{{ url('data/kelas/hapus/' . $kelas->id) }}" class="btn text-dark" id="btn-hapus"><i class="fas fa-trash-alt pr-3"></i>Hapus</button></li>
+                <a href="" onclick="event.preventDefault();">
+                    <li id="btn-hapus" data-direct="/data/kelas" data-url="{{ url('data/kelas/hapus/' . $kelas->id) }}">
+                        <i class="fas fa-trash-alt pr-3"></i>Hapus
+                    </li>
+                </a>
             </ul>
         </div>
     </div>

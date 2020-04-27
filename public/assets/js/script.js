@@ -1,5 +1,5 @@
 /* ---------------------------------------------------
-    SIDEBAR COLLAPSE RESPONSIVE
+    MARK AS READ NOTIFICATION
 ----------------------------------------------------- */
 
 $('.dropdown-navbar.notif').on('click','#markRead',function (e) {
@@ -166,15 +166,15 @@ $('.dropdown-navbar.notif').on('click', function(e){
 $(document).click(function () {
     if ($('#btn-dropdownnavbar').hasClass('status')) {
         $('#btn-dropdownnavbar').removeClass('status');
-        $(".dropdown-navbar-status").fadeOut();
+        $(".dropdown-navbar-status").removeClass('slide-up');
         return false;
     } else if ($('.btn-toggle-option').hasClass('status_edit')) {
         $('.btn-toggle-option').removeClass('status_edit');
-        $(".dropdown-detail").fadeOut();
+        $(".dropdown-detail").removeClass('slide-right');
         return false;
     } else if ($('#btn-dropdownnotif').hasClass('status')) {
         $('#btn-dropdownnotif').removeClass('status');
-        $(".dropdown-navbar.notif").fadeOut();
+        $(".dropdown-navbar.notif").removeClass('slide-up');
         return false;
     }
 });
@@ -190,12 +190,12 @@ $(".dropdown-detail").click(function (e) {
 $('#btn-dropdownnavbar').click(function (e) {
     e.stopPropagation();
     e.preventDefault();
-    $(".dropdown-navbar-status").fadeToggle();
+    $(".dropdown-navbar-status").toggleClass('slide-up');
     $(this).toggleClass('status');
     if($(this).hasClass('status') && $('#btn-dropdownnotif').hasClass('status'))
     {
         $('#btn-dropdownnotif').removeClass('status');
-        $(".dropdown-navbar.notif").fadeOut();
+        $(".dropdown-navbar.notif").removeClass('slide-up');
     }
     return false;
 });
@@ -203,12 +203,12 @@ $('#btn-dropdownnavbar').click(function (e) {
 $('#btn-dropdownnotif').click(function (e) {
     e.stopPropagation();
     e.preventDefault();
-    $(".dropdown-navbar.notif").fadeToggle();
+    $(".dropdown-navbar.notif").toggleClass('slide-up');
     $(this).toggleClass('status');
     if($(this).hasClass('status') && $('#btn-dropdownnavbar').hasClass('status'))
     {
         $('#btn-dropdownnavbar').removeClass('status');
-        $(".dropdown-navbar-status").fadeOut();
+        $(".dropdown-navbar-status").removeClass('slide-up');
     }
     return false;
 });
@@ -216,13 +216,13 @@ $('#btn-dropdownnotif').click(function (e) {
 $('.btn-toggle-option').click(function (e) {
     e.stopPropagation();
     e.preventDefault();
-    $(".dropdown-detail").fadeToggle();
+    $('.dropdown-detail').toggleClass('slide-right');
     $(this).toggleClass('status_edit');
     return false;
 });
 
 $('#closeNotif').on('click', function () {
-    $(".dropdown-navbar.notif").fadeOut();
+    $(".dropdown-navbar.notif").removeClass('slide-up');
     $(".dropdown-navbar.notif").removeClass('status');
 });
 
@@ -282,7 +282,6 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
     var link = $(this).attr('data-url');
     var direct = window.location.origin + $(this).attr('data-direct');
     console.log(direct);
-
     swal.fire({
             title: "Apakah Anda Yakin?",
             text: "Data akan terhapus secara permanen",

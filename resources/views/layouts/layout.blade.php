@@ -27,7 +27,7 @@
         href="{{ asset('assets') }}/pytesNET-tail.select-d6454ba/css/bootstrap4/tail.select-default.css">
 
     <!-- Favicon-->
-    <link rel="icon" type="image/png" href="{{asset('assets')}}/images/favicon.png">
+    <link rel="icon" href="{{asset('assets')}}/images/favicon.ico" type="image/x-icon" />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
