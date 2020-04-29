@@ -14,6 +14,7 @@ use App\Role;
 use App\Kelas;
 use Image;
 use File;
+use Auth;
 
 class PetugasController extends Controller
 {
@@ -24,7 +25,7 @@ class PetugasController extends Controller
     
     public function index()
     {
-        $petugas = Petugas::all();
+        $petugas = Petugas::all()->except(Auth::User()->petugas->id);
         $role = Role::find(['2','3']);
         return view('pages.petugas', compact(['petugas','role']));
     }
@@ -153,6 +154,7 @@ class PetugasController extends Controller
         $auth = Autentikasi::where('petugas_id',$id)->first();
         $auth->nomor_induk = $request->nomor_induk;
         $auth->email = $request->email;
+        $auth->role_id = $request->role_id;
         if(strlen($request->password)>0)
         {
             $auth->password = Hash::make($request->password);

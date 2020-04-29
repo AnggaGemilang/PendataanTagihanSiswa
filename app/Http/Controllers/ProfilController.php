@@ -26,6 +26,37 @@ class ProfilController extends Controller
         $this->middleware('auth');
     }
 
+    public function notification()
+    {
+        $content = '';
+        if(count(Auth::User()->unreadNotifications)==0)
+        {
+            $content .= '<a href="" id="not">';
+            $content .= '<li class="text-center">Tidak Ada Notifikasi</li>';
+            $content .= '</a>';
+        } else {
+            foreach(Auth::User()->unreadNotifications as $notification)
+            {
+                $content .= '<a href="" data-id="{{ $notification->id }}">';
+                $content .= '<li><i class="fas fa-credit-card" style="width:28px; padding-left: 3px;"></i> Anda Membayar'; 
+                $content .= '<span style="font-weight: 600;">' . $notification->data['nama_tagihan'] . '</span>';
+                $content .= '</li>';
+                $content .= '</a>';
+            }
+        }
+        $content .= '</ul>';
+        $content .= '</div>';
+
+        $jumlah = count(Auth::User()->unreadNotifications);
+
+        $response = array(
+            'jumlah' => $jumlah, 
+            'content' => $content,
+        );
+
+        echo json_encode($response);
+    }
+
     public function read($id)
     {
         $content = '';
@@ -80,6 +111,23 @@ class ProfilController extends Controller
     {
         if($role_id=="1")
         {
+            $messages = [
+                'required' => ':attribute wajib diisi',
+                'min' => ':attribute terlalu pendek, minimal :min karakter',
+                'max' => ':attribute terlalu panjang, maksimal :max karakter',
+                'email' => ':attribute memerlukan "@"',
+                'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+                'size' => ':attribute terlalu besar, maksimal berukuran :size',
+                'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+                'unique' => ':attribute sudah terpakai'
+            ];
+    
+            $this->validate($request, [
+                'nama_siswa' => 'bail|required|string|max:200',
+                'alamat' => 'bail|required|string|max:220',
+                'no_telp' => 'bail|required|string|min:10|max:13',
+            ], $messages);
+
             $siswa = Siswa::where('slug',$slug)->first();
             $siswa->nama_siswa = $request->nama_siswa;
             $siswa->slug = Str::slug($request->nama_siswa,'-');
@@ -112,6 +160,23 @@ class ProfilController extends Controller
             return redirect('profil/' . $auth->siswa->slug . '/' . $auth->siswa->id . '/' . $auth->siswa->role_id)->with($notification);            
 
         }else{
+
+            $messages = [
+                'required' => ':attribute wajib diisi',
+                'min' => ':attribute terlalu pendek, minimal :min karakter',
+                'max' => ':attribute terlalu panjang, maksimal :max karakter',
+                'email' => ':attribute memerlukan "@"',
+                'profil.max' => 'file terlalu besar, maksimal berukuran 1 Mb',
+                'size' => ':attribute terlalu besar, maksimal berukuran :size',
+                'mimes' => 'format file salah, harus berjenis jpg,jpeg,png,bmp',
+                'unique' => ':attribute sudah terpakai'
+            ];
+    
+            $this->validate($request, [
+                'nama_petugas' => 'bail|required|string|max:200',
+                'no_telp' => 'bail|required|string|min:10|max:13',
+            ], $messages);
+
             $petugas = Petugas::where('slug',$slug)->first();
             $petugas->nama_petugas = $request->nama_petugas;
             $petugas->slug = Str::slug($request->nama_petugas,'-');

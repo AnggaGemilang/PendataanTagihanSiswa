@@ -439,7 +439,6 @@
                             $("#sisa_wrapper").load(document.URL + ' #sisa_wrapper');
                             $(this).attr('disabled', true);
                             $('.loader').hide();
-
                             function successFunc() {
                                 var value = $('#sisa_tagihan_pembayaran').text();
                                 console.log(value);
@@ -472,7 +471,7 @@
                                     });
                                 }
                             }
-                            setTimeout(successFunc, 600);
+                            setTimeout(successFunc, 1000);
                         },
                         error: function (err) {
                             console.log(err);

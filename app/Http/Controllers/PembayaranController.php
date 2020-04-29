@@ -28,7 +28,7 @@ class PembayaranController extends Controller
         return view('pages.entripembayaran', compact(['kelas','tipetagihan','siswa']))->with('status','normal');
     }
 
-    public function indexCust($kelas_id, $siswa_id, $tagihan_id)
+    public function autofill($kelas_id, $siswa_id, $tagihan_id)
     {
         $kelas = Kelas::find($kelas_id);
         $tagihan = Tagihan::find($tagihan_id);

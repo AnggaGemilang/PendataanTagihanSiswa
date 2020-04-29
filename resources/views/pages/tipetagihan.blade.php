@@ -46,7 +46,7 @@
                     <tr href="tipetagihan/detail/{{ $t->slug }}/{{ $t->id }}" id="row-main">
                         <th class="except" scope="row">{{$no++}}</th>
                         <td>{{ $t->nama_tagihan }}</td>
-                        <td>Rp. {{ $t->nominal }}</td>
+                        <td class="uang">{{ $t->nominal }}</td>
                         <td>
                             <button type="button" data-url="{{ url('data/tipetagihan/hapus/' . $t->id) }}"
                                 class="btn btn-danger text-light" id="btn-hapus"

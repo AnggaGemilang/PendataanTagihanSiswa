@@ -165,7 +165,6 @@
         ubahpassword += '<input type="password" class="form-pwd form-control greylight-bg" name="password" id="password"';
         ubahpassword += 'aria-describedby="helpId" placeholder="Masukkan Password Siswa"';
         ubahpassword += 'style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">';
-        ubahpassword += '<button class="btn-eye"><i class="fas fa-eye" style="color: #6C757D;"></i></button>';
         ubahpassword += '</div>';
         ubahpassword += '</div>';
 

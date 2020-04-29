@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth','roleMiddleware:1,2,3']], function(){
 Route::group(['middleware' => ['auth','roleMiddleware:1']], function(){
 
     Route::get('markAsRead/{id}', 'ProfilController@read')->name('read');
+    Route::get('markAsRead', 'ProfilController@notification')->name('read');
     Route::get('pembayaran/data', 'PembayaranController@data')->name('datapembayaran');
 
 });
@@ -76,7 +77,7 @@ Route::group(['middleware' => ['auth','roleMiddleware:2']], function(){
     Route::post('data/tagihan/perbaharui/{id}/store', 'TagihanController@update')->name('perbaharui_tagihan_store');
     Route::post('data/tagihan/hapus/{id}', 'TagihanController@destroy')->name('hapus_tagihan_store');
 
-    Route::get('pembayaran/entripembayaran/{kelas_id}/{siswa_id}/{tagihan_id}', 'PembayaranController@indexCust')->name('tambah_pembayaran');
+    Route::get('pembayaran/entripembayaran/{kelas_id}/{siswa_id}/{tagihan_id}', 'PembayaranController@autofill')->name('tambah_pembayaran');
 
 });
 

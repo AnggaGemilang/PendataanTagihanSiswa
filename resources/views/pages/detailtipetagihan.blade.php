@@ -131,16 +131,3 @@
     }
 </style>
 @endpush
-
-@push('extras-js')
-<script>
-    $(document).ready(function () {
-        var value;
-        $('.uang').each(function (i) {
-            value = $(this).text();
-            console.log(value + ' : ' + i);
-            $(this).html(conventer(value, i));
-        });
-    });
-</script>
-@endpush

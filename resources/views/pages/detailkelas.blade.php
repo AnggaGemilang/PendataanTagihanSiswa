@@ -52,7 +52,9 @@
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="mt-2 btn btn-info position-absolute btn-toggle-option"><i class="fas fa-ellipsis-v" style="color:#008A85; "></i></button>
+        <button type="button" class="btn btn-info position-absolute btn-toggle-option" style="top: 15px;">
+            <i class="fas fa-ellipsis-v" style="color: #241937;"></i>
+        </button>
         <div class="dropdown-detail">
             <div class="triangle"></div>
             <ul class="pl-0 mb-0">

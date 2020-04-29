@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Kelas;
 use App\Siswa;
 use App\TipeKelas;
+use App\Pembayaran;
 
 class KelasController extends Controller
 {
@@ -122,6 +123,7 @@ class KelasController extends Controller
     {
         $kelas = Kelas::find($id)->delete();
         $siswa = Siswa::where('kelas_id',$id)->get()->each->delete();
+        $pembayaran = Pembayaran::where('kelas_id', $id)->get()->each->delete();
 
         $notification = array(
             'title' => 'Berhasil',

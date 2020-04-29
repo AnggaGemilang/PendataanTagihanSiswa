@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <ul class="pl-0" id="notif-content" style="overflow-y: auto; max-height: 240px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                        <ul class="pl-0" id="notif-content" style="overflow-y: auto; max-height: 241px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                             @if(count(Auth::User()->unreadNotifications)==0)
                             <a onclick="preventDefault();" id="not" class="pb-5">
                                 <li class="text-center">Tidak Ada Notifikasi</li>
@@ -112,6 +112,32 @@
         </div>
     </div>
 </nav>
+
+@if(Auth::User()->role_id==1)
+@push('extras-js')
+<script>
+    (function getNotification(){
+    $.ajax({
+        url: window.location.origin + '/markAsRead',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data.jumlah);
+            $('#badge-notif').html(data.jumlah);
+            console.log(data.content);
+            $("#notif-content").load(document.URL + " #notif-content > *");
+        },
+        complete: function() {
+            setTimeout(getNotification, 3000);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+})();
+</script>
+@endpush
+@endif
 
 @push('extras-js')
 <script>

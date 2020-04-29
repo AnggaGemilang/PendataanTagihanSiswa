@@ -356,7 +356,7 @@
         console.log(diterima);
         console.log(sisa);
         $.ajax({
-            url: '/pembayaran/history/detail/' + id,
+            url: window.location.origin + '/pembayaran/history/detail/' + id,
             type: 'get',
             data: {
                 sisa: sisa,

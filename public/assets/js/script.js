@@ -8,7 +8,7 @@ $('.dropdown-navbar.notif').on('click','#markRead',function (e) {
     var id = $(this).data('id');
     $.ajax({
         url: window.location.origin + '/markAsRead/' + id,
-        method: 'GET',
+        type: 'GET',
         dataType: 'json',
         success: function (data) {
             console.log(data.jumlah);
@@ -253,7 +253,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
                 });
                 $.ajax({
                     url: link,
-                    method: 'POST',
+                    type: 'POST',
                     success: function () {
                         $("#table-refresh").load(document.URL + ' #table-refresh');
                         toastr.success("Data Berhasil Dihapus!", "Berhasil", {
@@ -280,7 +280,7 @@ $("#table-refresh").on('click', '#btn-hapus', function (e) {
 $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
     e.stopPropagation();
     var link = $(this).attr('data-url');
-    var direct = window.location.origin + $(this).attr('data-direct');
+    var direct = $(this).attr('data-direct');
     console.log(direct);
     swal.fire({
             title: "Apakah Anda Yakin?",
@@ -302,7 +302,7 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
                 });
                 $.ajax({
                     url: link,
-                    method: 'POST',
+                    type: 'POST',
                     dataType: 'json',
                     success:function(data) {
                         if(data=='sukses')
