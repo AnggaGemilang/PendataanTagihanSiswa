@@ -66,6 +66,7 @@
                 </div>
             </div>
 
+            @if($status=="tambah")
             <div class="row m-3">
                 <div class="form-group w-100">
                     <label for="nominal">Nominal Biaya</label>
@@ -79,7 +80,6 @@
                 </div>
             </div>
 
-            @if($status=="tambah")
             <div class="row m-3">
                 <div class="form-group w-100 mb-2">
                     <label for="id_kelas">Untuk Siswa Kelas</label><br>
