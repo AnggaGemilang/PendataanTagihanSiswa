@@ -62,7 +62,7 @@
                     <li><i class="fas fa-pencil-alt pr-3 pt-1"></i>Edit</li>
                 </a>
                 <a href="" onclick="event.preventDefault();">
-                    <li id="btn-hapus" data-direct="/data/kelas" data-url="{{ url('data/kelas/hapus/' . $kelas->id) }}">
+                    <li id="btn-hapus" data-desc="<span style='text-align: center; font-size: 17px; padding: 0px 15px;'>Data Kelas, Siswa, Autentikasi, Pembayaran, dan Tagihan Akan Terhapus Secara Permanen</span>" data-direct="/data/kelas" data-url="{{ url('data/kelas/hapus/' . $kelas->id) }}">
                         <i class="fas fa-trash-alt pr-3"></i>Hapus
                     </li>
                 </a>

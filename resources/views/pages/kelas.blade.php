@@ -67,7 +67,7 @@
                         <td>{{$k->wali_kelas}}</td>
                         <td>
                             <button type="button" data-url="{{ url('data/kelas/hapus/' . $k->id) }}" class="btn btn-danger text-light" id="btn-hapus"
-                                style="padding: 4px 10px; font-size: 13px;">Hapus</button>
+                                style="padding: 4px 10px; font-size: 13px;" data-desc="<span style='text-align: center; font-size: 17px; padding: 0px 15px;'>Data Kelas, Siswa, Autentikasi, Pembayaran, dan Tagihan Akan Terhapus Secara Permanen</span>">Hapus</button>
                             <a type="button" href="{{url('/data/kelas/perbaharui/' . $k->slug )}}"
                                 class="ml-1 btn btn-success" style="padding: 4px 10px; font-size: 13px;">Edit</a>
                         </td>

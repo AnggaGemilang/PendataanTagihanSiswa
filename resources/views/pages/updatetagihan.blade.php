@@ -19,9 +19,9 @@
         <p class="mb-1 ml-2 pl-1 mt-2 text-dark" style="font-weight: 500;">Hal Yang Harus Diperhatikan</p>
         <ol style="opacity: 0.7;">
             <li>Petugas hanya dapat mengubah data "sudah dibayar" dari suatu tagihan</li>
-            <li>Fitur ini harap digunakan hany dalam keadaan terdesak saja</li>
-            <li>Contohnya seperti ketika petugas salah input pembayaran siswa</li>
             <li>Jangan gunakan fitur ini ketika tidak terdesak</li>
+            <li>Harap gunakan fitur ini hanya dalam keadaan terdesak saja</li>
+            <li>Contohnya seperti ketika petugas salah input pembayaran siswa</li>
         </ol>
     </div>
 

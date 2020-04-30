@@ -233,9 +233,10 @@ $('#closeNotif').on('click', function () {
 $("#table-refresh").on('click', '#btn-hapus', function (e) {
     e.stopPropagation();
     var link = $(this).attr('data-url');
+    var desc = $(this).attr('data-desc');
     swal.fire({
             title: "Apakah Anda Yakin?",
-            text: "Data akan terhapus secara permanen",
+            html: desc,
             icon: "question",
             showCancelButton: true,
             confirmButtonColor: "#241937",
@@ -281,10 +282,11 @@ $(".dropdown-detail").on('click', '#btn-hapus', function (e) {
     e.stopPropagation();
     var link = $(this).attr('data-url');
     var direct = $(this).attr('data-direct');
+    var desc = $(this).attr('data-desc');
     console.log(direct);
     swal.fire({
             title: "Apakah Anda Yakin?",
-            text: "Data akan terhapus secara permanen",
+            html: desc,
             icon: "question",
             showCancelButton: true,
             confirmButtonColor: "#241937",

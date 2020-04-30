@@ -65,7 +65,7 @@
                                 style="width:78px; height:78px; border-radius:60px;object-fit: cover;" alt="">
                         </td>
                         <td>
-                            <button type="button" data-url="{{ url('data/petugas/hapus/' . $p->id) }}" class="btn btn-danger text-light" id="btn-hapus" style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
+                            <button type="button" data-url="{{ url('data/petugas/hapus/' . $p->id) }}" class="btn btn-danger text-light" id="btn-hapus" data-desc="<span><span style='text-align: center; font-size: 17px; padding: 0px 15px;'>Data Petugas, dan Autentikasi Akan Terhapus Secara Permanen</span>" style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
                             <a href="{{ url('data/petugas/perbaharui/' . $p->slug . '/' . $p->id) }}" class="btn btn-success text-light" style="padding: 4px 15px; font-size: 14.5px;">Edit</a>
                         </td>
                     </tr>

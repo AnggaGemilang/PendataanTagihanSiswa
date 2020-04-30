@@ -49,7 +49,7 @@
                         <td class="uang">{{ $t->nominal }}</td>
                         <td>
                             <button type="button" data-url="{{ url('data/tipetagihan/hapus/' . $t->id) }}"
-                                class="btn btn-danger text-light" id="btn-hapus"
+                                class="btn btn-danger text-light" id="btn-hapus" data-desc="<span style='text-align: center; font-size: 17px; padding: 0px 15px;'>Data Jenis Tagihan, Tagihan, dan Pembayaran Akan Terhapus Secara Permanen</span>"
                                 style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
                             <a href="{{ url('data/tipetagihan/perbaharui/' . $t->slug ) }}" class="btn btn-success"
                                 style="padding: 4px 15px; font-size: 14.5px;">Edit</button>

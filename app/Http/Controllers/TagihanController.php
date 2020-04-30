@@ -40,7 +40,7 @@ class TagihanController extends Controller
 
         $after_sudah_dibayar = intval(str_replace(".", "", $request->sudah_dibayar));
 
-        if((Tagihan::find($id)->tipetagihan->nominal - Tagihan::find($id)->sudah_dibayar) < $after_sudah_dibayar)
+        if(Tagihan::find($id)->tipetagihan->nominal < $after_sudah_dibayar)
         {
             $notification = array(
                 'title' => 'Gagal',

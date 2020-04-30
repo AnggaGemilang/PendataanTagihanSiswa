@@ -66,7 +66,7 @@
                         </td>
                         <td>
                             <button type="button" data-url="{{ url('data/siswa/hapus/' . $s->id) }}"
-                                class="btn btn-danger text-light" id="btn-hapus"
+                                class="btn btn-danger text-light" id="btn-hapus" data-desc="<span style='text-align: center; font-size: 17px; padding: 0px 15px;'>Data Siswa, Autentikasi, Pembayaran, dan Tagihan Akan Terhapus Secara Permanen</span>"
                                 style="padding: 4px 10px; font-size: 14.5px;">Hapus</button>
                             <a href="{{ url('data/siswa/perbaharui/' . $s->slug . '/' . $s->id) }}"
                                 class="btn btn-success text-light"

@@ -76,7 +76,7 @@
                         <td>@if($t->keterangan=="blm_lunas") Belum Lunas @else Sudah Lunas @endif</td>
                         <td>
                             <button type="button" data-url="{{ url('data/tagihan/hapus/' . $t->id ) }}"
-                                class="btn btn-danger text-light" id="btn-hapus"
+                                class="btn btn-danger text-light" id="btn-hapus" data-desc="<span style='text-align: center; font-size: 17.5px; padding: 0px 15px;'>Data Tagihan, dan Pembayaran Akan Terhapus Secara Permanen</span>"
                                 style="padding: 4px 11px; font-size: 14.5px;"><i class="fas fa-trash-alt"></i></button>
                             <a href="{{ url('data/tagihan/perbaharui/' . $t->id ) }}"
                                 class="btn btn-success text-light"
