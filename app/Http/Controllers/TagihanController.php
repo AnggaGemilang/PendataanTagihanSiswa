@@ -40,34 +40,41 @@ class TagihanController extends Controller
 
         $after_sudah_dibayar = intval(str_replace(".", "", $request->sudah_dibayar));
 
-        $tagihan = Tagihan::find($id);
-        $nominal = $tagihan->tipetagihan->nominal - $after_sudah_dibayar;
-        if($nominal==0)
+        if((Tagihan::find($id)->tipetagihan->nominal - Tagihan::find($id)->sudah_dibayar) < $after_sudah_dibayar)
         {
-            $tagihan->keterangan = "lunas";            
+            $notification = array(
+                'title' => 'Gagal',
+                'description' => 'Nominal Terlalu Besar',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
         } else {
-            $tagihan->keterangan = "blm_lunas";
+            $tagihan = Tagihan::find($id);
+            $nominal = $tagihan->tipetagihan->nominal - $after_sudah_dibayar;
+            if($nominal==0)
+            {
+                $tagihan->keterangan = "lunas";            
+            } else {
+                $tagihan->keterangan = "blm_lunas";
+            }
+            $tagihan->sudah_dibayar = $after_sudah_dibayar;
+            $tagihan->update();
+
+            $notification = array(
+                'title' => 'Berhasil',
+                'description' => 'Siswa Berhasil Ditambahkan!',
+                'alert-type' => 'success'
+            );
+
+            return redirect('data/tipetagihan/detail/' . $tagihan->tipetagihan->slug . '/' .  $tagihan->tipetagihan->id)->with($notification);
         }
-        $tagihan->sudah_dibayar = $after_sudah_dibayar;
-        $tagihan->update();
-
-        $notification = array(
-            'title' => 'Berhasil',
-            'description' => 'Siswa Berhasil Ditambahkan!',
-            'alert-type' => 'success'
-        );
-
-        return redirect('data/tipetagihan/detail/' . $tagihan->tipetagihan->slug . '/' .  $tagihan->tipetagihan->id)->with($notification);
     }
 
     public function destroy($id)
     {
-        $tagihan = Tagihan::find($id);
-        $tagihan->delete();
-
+        $tagihan = Tagihan::find($id)->delete();
         $siswa = $tagihan->siswa->id;
         $pembayaran = Pembayaran::where('tagihan_id',$id)->where('siswa_id',$siswa)->get()->each->delete();
-
         echo json_encode('sukses');
     }
 }

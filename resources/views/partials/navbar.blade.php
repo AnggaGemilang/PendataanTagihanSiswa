@@ -44,7 +44,8 @@
                                 </div>
                             </div>
                         </div>
-                        <ul class="pl-0" id="notif-content" style="overflow-y: auto; max-height: 241px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                        <ul class="pl-0" id="notif-content"
+                            style="overflow-y: auto; max-height: 241px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                             @if(count(Auth::User()->unreadNotifications)==0)
                             <a onclick="preventDefault();" id="not" class="pb-5">
                                 <li class="text-center">Tidak Ada Notifikasi</li>
@@ -63,7 +64,8 @@
                     <div class="dropdown-navbar dropdown-navbar-status"
                         style="min-width: 310px !important; z-index: 999;">
                         <div class="profil-navbar-wrapper">
-                            <div class="row m-0 pt-4 pb-4" style="background: rgba(36,25,55,0.65); border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                            <div class="row m-0 pt-4 pb-4"
+                                style="background: rgba(36,25,55,0.65); border-top-left-radius: 10px; border-top-right-radius: 10px;">
                                 <div class="col-3 ml-1">
                                     <img @if(Auth::User()->role_id=="1")
                                     src="{{ asset('uploaded/images/profil_siswa/' . Auth::User()->siswa->profil) }}"
@@ -92,10 +94,13 @@
                                 @else
                                 href="{{url('profil/' . Auth::User()->petugas->slug . '/' . Auth::User()->petugas->id . '/' . Auth::User()->role_id)}}"
                                 @endif >
-                                <li class="profil"><i class="far fa-address-card" style="width: 38px; font-size: 16px; color: rgba(0, 0, 0, 0.5);"></i>Profile</li>
+                                <li class="profil"><i class="far fa-address-card"
+                                        style="width: 38px; font-size: 16px; color: rgba(0, 0, 0, 0.5);"></i>Profile
+                                </li>
                             </a>
                             <a href="" id="btn-about">
-                                <li><i class="far fa-question-circle" style="width: 38px; font-size: 16px; color: rgba(0, 0, 0, 0.5);"></i>About</li>
+                                <li><i class="far fa-question-circle"
+                                        style="width: 38px; font-size: 16px; color: rgba(0, 0, 0, 0.5);"></i>About</li>
                             </a>
                             <li class="btn-logout">
                                 <a href="{{ route('logout') }}" id="btn-logout">Logout
@@ -116,25 +121,26 @@
 @if(Auth::User()->role_id==1)
 @push('extras-js')
 <script>
-    (function getNotification(){
-    $.ajax({
-        url: window.location.origin + '/markAsRead',
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            console.log(data.jumlah);
-            $('#badge-notif').html(data.jumlah);
-            console.log(data.content);
-            $("#notif-content").load(document.URL + " #notif-content > *");
-        },
-        complete: function() {
-            setTimeout(getNotification, 3000);
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    })
-})();
+    (function getNotification() {
+        $.ajax({
+            url: window.location.origin + '/markAsRead',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.jumlah);
+                $('#badge-notif').html(data.jumlah);
+                console.log(data.content);
+                $("#notif-content").load(document.URL + " #notif-content > *");
+            },
+            complete: function () {
+                setTimeout(getNotification, 3000);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    })();
+
 </script>
 @endpush
 @endif
@@ -170,9 +176,15 @@
                         "event.preventDefault(); document.getElementById('logout-form').submit();");
                     $('#logout-form').submit();
                 } else {
-
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        confirmButtonColor: "#241937",
+                        text: 'Login Gagal!',
+                    });
                 }
             });
     });
+
 </script>
 @endpush

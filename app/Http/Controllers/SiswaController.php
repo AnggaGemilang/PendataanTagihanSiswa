@@ -103,13 +103,12 @@ class SiswaController extends Controller
         $auth->password = Hash::make($request->nomor_induk);
         $auth->role_id = 1;
         $auth->siswa_id = $siswa_id;
+        $auth->kelas_id = $request->kelas_id;
         $auth->save();
 
-        $paket_spp_x = array(3,4,5);
-        $paket_spp_xi = array(2,3,4);
-        $paket_spp_xii = array(1,2,3);
-
-        $siswa_id = Siswa::orderBy('id','desc')->first()->id;
+        $paket_spp_x = array(3,4,5, 6);
+        $paket_spp_xi = array(2,3,4, 6);
+        $paket_spp_xii = array(1,2,3, 6);
 
         $tingkat_kelas = Kelas::find($request->kelas_id);
         if($tingkat_kelas->tipekelas_id==1)
@@ -118,6 +117,7 @@ class SiswaController extends Controller
             {
                 $tagihan = new Tagihan;
                 $tagihan->siswa_id = $siswa_id;
+                $tagihan->kelas_id = $request->kelas_id;
                 $tagihan->tipetagihan_id = $paket_spp_x[$x];
                 $tagihan->sudah_dibayar = 0;
                 $tagihan->keterangan = "blm_lunas";
@@ -128,6 +128,7 @@ class SiswaController extends Controller
             {
                 $tagihan = new Tagihan;
                 $tagihan->siswa_id = $siswa_id;
+                $tagihan->kelas_id = $request->kelas_id;
                 $tagihan->tipetagihan_id = $paket_spp_xi[$y];
                 $tagihan->sudah_dibayar = 0;
                 $tagihan->keterangan = "blm_lunas";
@@ -138,6 +139,7 @@ class SiswaController extends Controller
             {
                 $tagihan = new Tagihan;
                 $tagihan->siswa_id = $siswa_id;
+                $tagihan->kelas_id = $request->kelas_id;
                 $tagihan->tipetagihan_id = $paket_spp_xii[$z];
                 $tagihan->sudah_dibayar = 0;
                 $tagihan->keterangan = "blm_lunas";
@@ -210,11 +212,16 @@ class SiswaController extends Controller
         $auth = Autentikasi::where('siswa_id',$id)->first();
         $auth->nomor_induk = $request->nomor_induk;
         $auth->email = $request->email;
+        $auth->kelas_id = $request->kelas_id;
         if(strlen($request->password)>0)
         {
             $auth->password = Hash::make($request->password);
         }
         $auth->update();
+
+        $tagihan = Tagihan::where('siswa_id', $id)->first();
+        $tagihan->kelas_id = $request->kelas_id;
+        $tagihan->update();
 
         $notification = array(
             'title' => 'Berhasil',
@@ -236,7 +243,6 @@ class SiswaController extends Controller
         $auth = Autentikasi::where('siswa_id',$id)->first()->delete();
         $tagihan = Tagihan::where('siswa_id',$id)->get()->each->delete();
         $pembayaran = Pembayaran::where('siswa_id',$id)->get()->each->delete();
-
         echo json_encode('sukses');
     }
 }

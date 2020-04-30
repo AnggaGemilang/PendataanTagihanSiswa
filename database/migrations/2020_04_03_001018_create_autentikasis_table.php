@@ -21,6 +21,7 @@ class CreateAutentikasisTable extends Migration
             $table->integer('role_id');
             $table->integer('petugas_id')->nullable();
             $table->integer('siswa_id')->nullable();
+            $table->integer('kelas_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

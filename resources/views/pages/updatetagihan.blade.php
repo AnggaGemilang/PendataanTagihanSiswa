@@ -4,12 +4,14 @@
 @section('content')
 
 <div id="main-content">
-    <h1>Perbaharui Tagihan</h1>
+    <h1>Perbaharui Tagihan {{ $tagihan->siswa->nama_siswa }}</h1>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('data/tagihan/')}}">Data Jenis Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('data/tipetagihan/detail/' . $tagihan->tipetagihan->slug . '/' . $tagihan->tipetagihan->id )}}">Data Jenis Tagihan</a>
         <a class="breadcrumb-item" href="{{url('data/tagihan/perbaharui/' . $tagihan->id  )}}">Perbaharui
             Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('data/tagihan/perbaharui/' . $tagihan->id  )}}">{{ $tagihan->tipetagihan->nama_tagihan }}</a>
+        <a class="breadcrumb-item" href="{{url('data/tagihan/perbaharui/' . $tagihan->id  )}}">{{ $tagihan->siswa->nama_siswa }}</a>
         <span class="breadcrumb-item active"></span>
     </nav>
 
@@ -43,6 +45,9 @@
                             value="{{ old('sudah_dibayar') }}"
                             style="border: none; border-radius: 8px; padding-left: 45px; padding-top: 3.5px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);">
                     </div>
+                </div>
+                <div class="mb-2">
+                    <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Sisa Tagihan : Rp. {{ number_format(($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar),0,'.','.') }}</p>
                 </div>
             </div>
 

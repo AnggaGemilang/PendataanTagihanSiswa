@@ -1,5 +1,5 @@
 /* ---------------------------------------------------
-    Main
+    MAIN
 ----------------------------------------------------- */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
@@ -10,7 +10,7 @@ body {
 }
 
 /* ---------------------------------------------------
-    Random
+    RANDOM
 ----------------------------------------------------- */
 
 .profil-navbar-wrapper
@@ -614,7 +614,7 @@ option.greylight-bg:focus {
 @keyframes slide-up {
     0%{
         opacity: 0;
-        top: 80px;
+        top: 90px;
     }
 
     100% {

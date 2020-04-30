@@ -38,6 +38,7 @@ class PembayaranController extends Controller
 
     public function detail(Request $request, $id)
     {
+        $pemeriksa = "";
         $action = "";
         $data = Pembayaran::find($id);
 
@@ -46,6 +47,13 @@ class PembayaranController extends Controller
             $ket = 'Belum Lunas';
         } else {
             $ket = 'Lunas';
+        }
+
+        if ($data->petugas==null)
+        {
+            $pemeriksa = "Tidak Diketahui";
+        } else {
+            $pemeriksa = $data->petugas->nama_petugas;
         }
 
         if(Auth::User()->role_id=="3")
@@ -82,7 +90,7 @@ class PembayaranController extends Controller
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
         $content .= '<td class="exceptt">Petugas Pemeriksa</td>';
         $content .= '<td class="exceptt" width="20" align="center">:</td>';
-        $content .= '<td class="exceptt">' . $data->petugas->nama_petugas ?? "" . '</td>';
+        $content .= '<td class="exceptt">' . $pemeriksa .  '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
         $content .= '<td class="exceptt">Uang Diterima</td>';
@@ -141,7 +149,7 @@ class PembayaranController extends Controller
         }
         $history = Pembayaran::orderBy('id', 'DESC')->get();
         $history_siswa = Pembayaran::where('siswa_id',$id)->orderBy('id', 'DESC')->get();
-        return view('pages.history', compact(['history','history_siswa','tipetagihan','kelas']));
+        return view('pages.history', compact(['history','history_siswa','tipetagihan']));
     }
 
     public function store(Request $request)

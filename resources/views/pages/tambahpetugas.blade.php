@@ -66,7 +66,7 @@
                 <div class="form-group w-100">
                     <label for="nama_petugas">Nama Lengkap</label>
                     <input type="text" class="form-control greylight-bg" name="nama_petugas" id="nama_petugas"
-                        aria-describedby="helpId" placeholder="Masukkan Username Petugas"
+                        aria-describedby="helpId" placeholder="Masukkan Nama Lengkap Petugas"
                         style="border: none; border-radius: 8px; box-shadow: 1px 1px 6px rgba(0,0,0,0.1);"
                         @if($status=='update' ) value="{{ $petugas->nama_petugas }}" @else value="{{ old('nama_petugas') }}" @endif>
                 </div>

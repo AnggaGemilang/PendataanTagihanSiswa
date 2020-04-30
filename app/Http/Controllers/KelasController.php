@@ -11,6 +11,8 @@ use App\Kelas;
 use App\Siswa;
 use App\TipeKelas;
 use App\Pembayaran;
+use App\Autentikasi;
+use App\Tagihan;
 
 class KelasController extends Controller
 {
@@ -28,7 +30,7 @@ class KelasController extends Controller
     public function detail($slug)
     {
         $kelas = Kelas::where('slug',$slug)->first();
-        return view('pages.detailkelas', compact(['kelas','history']));
+        return view('pages.detailkelas', compact(['kelas']));
     }
 
     public function tambah()
@@ -124,6 +126,8 @@ class KelasController extends Controller
         $kelas = Kelas::find($id)->delete();
         $siswa = Siswa::where('kelas_id',$id)->get()->each->delete();
         $pembayaran = Pembayaran::where('kelas_id', $id)->get()->each->delete();
+        $tagihan = Tagihan::where('kelas_id', $id)->get()->each->delete();
+        $auth = Autentikasi::where('kelas_id',$id)->get()->each->delete();
 
         $notification = array(
             'title' => 'Berhasil',
