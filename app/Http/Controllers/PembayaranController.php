@@ -80,7 +80,7 @@ class PembayaranController extends Controller
         $content .= '<tr style="text-align: left;">';
         $content .= '<td class="exceptt">Kelas</td>';
         $content .= '<td class="exceptt" width="20" align="center">:</td>';
-        $content .= '<td class="exceptt">' . $data->kelas->nama_kelas ?? "" . '</td>';
+        $content .= '<td class="exceptt">' . $data->tagihan->siswa->class->nama_kelas ?? "" . '</td>';
         $content .= '</tr>';
         $content .= '<tr style="text-align: left; margin-top: 5px;">';
         $content .= '<td class="exceptt">Jenis Tagihan</td>';
@@ -197,7 +197,6 @@ class PembayaranController extends Controller
             $entri->nominal = $after_nominal;
             $entri->siswa_id = $request->siswa_id;
             $entri->petugas_id = Auth::user()->petugas->id;
-            $entri->kelas_id = $request->kelas_id;
             $entri->tipetagihan_id = $tipetagihan_id;
             $entri->tagihan_id = $request->tagihan_id;
             $entri->keterangan = $ket;

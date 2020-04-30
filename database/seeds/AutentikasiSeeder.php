@@ -19,7 +19,6 @@ class AutentikasiSeeder extends Seeder
             'password' => Hash::make('1920117111'),
             'role_id' => 1,
             'siswa_id' => 1,
-            'kelas_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -30,7 +29,6 @@ class AutentikasiSeeder extends Seeder
             'password' => Hash::make('1819117111'),
             'role_id' => 1,
             'siswa_id' => 2,
-            'kelas_id' => 14,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -41,7 +39,6 @@ class AutentikasiSeeder extends Seeder
             'password' => Hash::make('1718117111'),
             'role_id' => 1,
             'siswa_id' => 3,
-            'kelas_id' => 27,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

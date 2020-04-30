@@ -125,8 +125,9 @@ class KelasController extends Controller
     {
         $arr_siswa = array();
         $arr_gambar = array();
-        $kelas = Kelas::find($id);
-        $siswa_id = $kelas->students;
+        
+        $kelas_id = Kelas::find($id);
+        $siswa_id = $kelas_id->students;
 
         foreach($siswa_id as $key => $sid)
         {
@@ -145,6 +146,8 @@ class KelasController extends Controller
             Tagihan::where('siswa_id', $arr_siswa[$i])->delete();
             Autentikasi::where('siswa_id',$arr_siswa[$i])->delete();
         }
+
+        $kelas = Kelas::find($id)->delete();
 
         $notification = array(
             'title' => 'Berhasil',

@@ -73,7 +73,7 @@
             <tr align="center" style="text-align: center;">
                 <th width="5">{{ $no++ }}</th>
                 <td>{{$p->tagihan->siswa->nama_siswa}}</td>
-                <td>{{$p->kelas->nama_kelas}}</td>
+                <td>{{$p->tagihan->siswa->class->nama_kelas}}</td>
                 <td>{{$p->petugas->nama_petugas}}</td>
                 <td>{{$p->tagihan->tipetagihan->nama_tagihan}}</td>
                 <td>{{$p->created_at}}</td>

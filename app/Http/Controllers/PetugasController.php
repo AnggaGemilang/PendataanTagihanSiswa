@@ -60,7 +60,7 @@ class PetugasController extends Controller
             'profil' => 'bail|required|file|mimes:jpeg,bmp,png,jpg|max:1000',
             'role_id' => 'bail|required|integer',
             'no_telp' => 'bail|required|string|min:10|max:13',
-            'nomor_induk' => 'bail|required|string|min:10|max:30',
+            'nomor_induk' => 'bail|required|unique:t_autentikasi|string|min:10|max:30',
             'email' => 'bail|required|email|unique:t_autentikasi',
         ], $messages);
 
@@ -128,7 +128,9 @@ class PetugasController extends Controller
             'profil' => 'bail|file|mimes:jpeg,bmp,png,jpg|max:1000',
             'role_id' => 'bail|required|integer',
             'no_telp' => 'bail|required|string|min:10|max:13',
-            'nomor_induk' => 'bail|required|string|min:10|max:30'
+            'nomor_induk' => 'bail|required|string|min:10|max:30',
+            'email' => 'bail|required|email',
+            'password' => 'string|min:6|max:100',
         ], $messages);
 
         $petugas = Petugas::where('slug',$slug)->first();

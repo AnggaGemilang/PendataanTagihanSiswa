@@ -126,6 +126,7 @@ class ProfilController extends Controller
                 'nama_siswa' => 'bail|required|string|max:200',
                 'alamat' => 'bail|required|string|max:220',
                 'no_telp' => 'bail|required|string|min:10|max:13',
+                'profil' => 'file|mimes:jpeg,bmp,png,jpg|max:1000',
             ], $messages);
 
             $siswa = Siswa::where('slug',$slug)->first();
@@ -175,6 +176,7 @@ class ProfilController extends Controller
             $this->validate($request, [
                 'nama_petugas' => 'bail|required|string|max:200',
                 'no_telp' => 'bail|required|string|min:10|max:13',
+                'profil' => 'file|mimes:jpeg,bmp,png,jpg|max:1000',
             ], $messages);
 
             $petugas = Petugas::where('slug',$slug)->first();
@@ -224,7 +226,7 @@ class ProfilController extends Controller
         return $status;
     }
 
-    public function resetStore(Request $request)
+    public function ubahpasswordstore(Request $request)
     {
         $messages = [
             'required' => ':attribute wajib diisi',

@@ -11,7 +11,6 @@ class TagihanSeeder extends Seeder
     {
         Tagihan::create([
             'siswa_id' => 1,
-            'kelas_id' => 1,
             'tipetagihan_id' => 3,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -21,7 +20,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 1,
-            'kelas_id' => 1,
             'tipetagihan_id' => 4,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -31,7 +29,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 1,
-            'kelas_id' => 1,
             'tipetagihan_id' => 5,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -41,7 +38,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 1,
-            'kelas_id' => 1,
             'tipetagihan_id' => 6,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -51,7 +47,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 2,
-            'kelas_id' => 14,
             'tipetagihan_id' => 2,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -61,7 +56,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 2,
-            'kelas_id' => 14,
             'tipetagihan_id' => 3,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -71,7 +65,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 2,
-            'kelas_id' => 14,
             'tipetagihan_id' => 4,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -81,7 +74,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 2,
-            'kelas_id' => 14,
             'tipetagihan_id' => 6,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -91,7 +83,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 3,
-            'kelas_id' => 27,
             'tipetagihan_id' => 1,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -101,7 +92,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 3,
-            'kelas_id' => 27,
             'tipetagihan_id' => 2,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -111,7 +101,6 @@ class TagihanSeeder extends Seeder
 
         Tagihan::create([
             'siswa_id' => 3,
-            'kelas_id' => 27,
             'tipetagihan_id' => 3,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
@@ -121,7 +110,6 @@ class TagihanSeeder extends Seeder
         
         Tagihan::create([
             'siswa_id' => 3,
-            'kelas_id' => 27,
             'tipetagihan_id' => 6,
             'sudah_dibayar' => 0,
             'keterangan' => 'blm_lunas',
