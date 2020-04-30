@@ -72,9 +72,10 @@ class TagihanController extends Controller
 
     public function destroy($id)
     {
-        $tagihan = Tagihan::find($id)->delete();
+        $tagihan = Tagihan::find($id);
         $siswa = $tagihan->siswa->id;
-        $pembayaran = Pembayaran::where('tagihan_id',$id)->where('siswa_id',$siswa)->get()->each->delete();
+        $tagihan->delete();
+        $pembayaran = Pembayaran::where('tagihan_id',$id)->where('siswa_id', $siswa)->get()->each->delete();
         echo json_encode('sukses');
     }
 }

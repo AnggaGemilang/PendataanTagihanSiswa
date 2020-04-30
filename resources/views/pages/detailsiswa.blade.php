@@ -82,7 +82,7 @@
         </div>
         <div class="col-md-5 d-flex justify-content-center pl-0 ml-0">
             <img src="{{ asset('uploaded/images/profil_siswa/' . $siswa->profil) }}" alt="" class="prev-profil">
-            <button type="button" class="btn btn-info position-absolute btn-toggle-option">
+            <button type="button" class="btn position-absolute btn-toggle-option">
                 <i class="fas fa-ellipsis-v" style="color: #241937; "></i></button>
             <div class="dropdown-detail">
                 <div class="triangle"></div>

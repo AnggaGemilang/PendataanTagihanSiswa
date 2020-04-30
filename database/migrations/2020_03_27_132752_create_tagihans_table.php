@@ -16,7 +16,6 @@ class CreateTagihansTable extends Migration
         Schema::create('t_tagihan', function (Blueprint $table) {
             $table->id('id');
             $table->bigInteger('siswa_id')->unsigned();
-            $table->bigInteger('kelas_id')->unsigned();
             $table->bigInteger('tipetagihan_id')->unsigned();
             $table->bigInteger('sudah_dibayar')->unsigned();
             $table->enum('keterangan', ['lunas','blm_lunas']);

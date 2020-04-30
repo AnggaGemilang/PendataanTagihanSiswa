@@ -19,7 +19,6 @@ class CreatePembayaransTable extends Migration
             $table->integer('sisa_tagihan')->unsigned()->nullable();
             $table->string('keterangan');
             $table->integer('siswa_id')->unsigned();
-            $table->integer('kelas_id')->unsigned();
             $table->integer('petugas_id')->unsigned();
             $table->integer('tipetagihan_id')->unsigned();
             $table->integer('tagihan_id')->unsigned();

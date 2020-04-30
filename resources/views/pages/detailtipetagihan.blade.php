@@ -9,7 +9,7 @@
     <h1>Daftar Tagihan {{ $tipetagihan->nama_tagihan }}</h1>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Beranda</a>
-        <a class="breadcrumb-item" href="{{url('/data/tipetagihan')}}">Tagihan</a>
+        <a class="breadcrumb-item" href="{{url('/data/tipetagihan')}}">Data Jenis Tagihan</a>
         <a class="breadcrumb-item" href="{{url('/data/tipetagihan/detail/'. $tipetagihan->slug.'/'. $tipetagihan->id)}}">{{ $tipetagihan->nama_tagihan }}</a>
         <span class="breadcrumb-item active"></span>
     </nav>

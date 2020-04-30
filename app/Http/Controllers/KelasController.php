@@ -123,11 +123,28 @@ class KelasController extends Controller
 
     public function destroy($id)
     {
-        $kelas = Kelas::find($id)->delete();
-        $siswa = Siswa::where('kelas_id',$id)->get()->each->delete();
-        $pembayaran = Pembayaran::where('kelas_id', $id)->get()->each->delete();
-        $tagihan = Tagihan::where('kelas_id', $id)->get()->each->delete();
-        $auth = Autentikasi::where('kelas_id',$id)->get()->each->delete();
+        $arr_siswa = array();
+        $arr_gambar = array();
+        $kelas = Kelas::find($id);
+        $siswa_id = $kelas->students;
+
+        foreach($siswa_id as $key => $sid)
+        {
+            array_push($arr_gambar, $sid->profil);
+            array_push($arr_siswa, $sid->id);
+        }
+
+        for($i = 0; $i < count($siswa_id); $i++)
+        {
+            Siswa::where('id', $arr_siswa[$i])->delete();
+            $gambar_lama = public_path("uploaded/images/profil_siswa/" . $arr_gambar[$i]);
+            if(\File::exists($gambar_lama)){
+                \File::delete($gambar_lama);
+            }
+            Pembayaran::where('siswa_id', $arr_siswa[$i])->delete();
+            Tagihan::where('siswa_id', $arr_siswa[$i])->delete();
+            Autentikasi::where('siswa_id',$arr_siswa[$i])->delete();
+        }
 
         $notification = array(
             'title' => 'Berhasil',

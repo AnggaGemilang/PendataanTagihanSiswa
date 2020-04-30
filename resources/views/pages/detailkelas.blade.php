@@ -52,7 +52,7 @@
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="btn btn-info position-absolute btn-toggle-option" style="top: 15px;">
+        <button type="button" class="btn position-absolute btn-toggle-option" style="top: 15px;">
             <i class="fas fa-ellipsis-v" style="color: #241937;"></i>
         </button>
         <div class="dropdown-detail">

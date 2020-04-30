@@ -106,9 +106,9 @@ class SiswaController extends Controller
         $auth->kelas_id = $request->kelas_id;
         $auth->save();
 
-        $paket_spp_x = array(3,4,5, 6);
-        $paket_spp_xi = array(2,3,4, 6);
-        $paket_spp_xii = array(1,2,3, 6);
+        $paket_spp_x = array(3,4,5,6);
+        $paket_spp_xi = array(2,3,4,6);
+        $paket_spp_xii = array(1,2,3,6);
 
         $tingkat_kelas = Kelas::find($request->kelas_id);
         if($tingkat_kelas->tipekelas_id==1)
@@ -222,6 +222,10 @@ class SiswaController extends Controller
         $tagihan = Tagihan::where('siswa_id', $id)->first();
         $tagihan->kelas_id = $request->kelas_id;
         $tagihan->update();
+
+        $pembayaran = Pembayaran::where('siswa_id', $id)->get();
+        $pembayaran->kelas_id = $request->kelas_id;
+        $pembayaran->each->update();
 
         $notification = array(
             'title' => 'Berhasil',

@@ -13,6 +13,11 @@ body {
     RANDOM
 ----------------------------------------------------- */
 
+.btn-toggle-option
+{
+    background: #F7F7F7 !important;
+}
+
 .profil-navbar-wrapper
 {
     background-color: red ;
@@ -87,7 +92,6 @@ body {
 #sidebarCollapse:focus,
 .btn-toggle-option:focus
 {
-    border-color: #241937 !important;
     box-shadow: 0 0 0 0.2rem rgba(36, 20, 63, 0.25);
 }
 
