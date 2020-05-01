@@ -62,7 +62,7 @@ class TagihanController extends Controller
 
             $notification = array(
                 'title' => 'Berhasil',
-                'description' => 'Siswa Berhasil Ditambahkan!',
+                'description' => 'Tagihan Siswa Telah Diubah!',
                 'alert-type' => 'success'
             );
 

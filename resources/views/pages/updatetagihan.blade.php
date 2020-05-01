@@ -48,6 +48,7 @@
                 </div>
                 <div class="mb-2">
                     <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Sisa Tagihan : Rp. {{ number_format(($tagihan->tipetagihan->nominal - $tagihan->sudah_dibayar),0,'.','.') }}</p>
+                    <p id="sisa_tagihan_pembayaran" style="font-size: 15px; margin-bottom: -1px !important">Nominal Tagihan : Rp. {{ number_format(($tagihan->tipetagihan->nominal),0,'.','.') }}</p>
                 </div>
             </div>
 

@@ -74,7 +74,7 @@
                 <th width="5">{{ $no++ }}</th>
                 <td>{{$p->tagihan->siswa->nama_siswa}}</td>
                 <td>{{$p->tagihan->siswa->class->nama_kelas}}</td>
-                <td>{{$p->petugas->nama_petugas}}</td>
+                <td>{{$p->petugas==null ? 'Tidak Diketahui' : $p->petugas->nama_petugas }}</td>
                 <td>{{$p->tagihan->tipetagihan->nama_tagihan}}</td>
                 <td>{{$p->created_at}}</td>
                 <td class="uang">Rp. {{ number_format($p->nominal,0,'.','.')}}

@@ -129,15 +129,12 @@ class TipeTagihanController extends Controller
 
         $this->validate($request, [
             'nama_tagihan' => 'bail|required|string|max:200',
-            'nominal' => 'bail|required',
         ], $messages);
-
-        $after_nominal = intval(str_replace(".", "", $request->nominal));
 
         $tipetagihan = TipeTagihan::where('slug',$slug)->first();
         $tipetagihan->nama_tagihan = $request->nama_tagihan;
         $tipetagihan->slug = Str::slug($request->nama_tagihan);
-        $tipetagihan->nominal = $after_nominal;
+        $tipetagihan->nominal = $tipetagihan->nominal;
         $tipetagihan->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $tipetagihan->update();

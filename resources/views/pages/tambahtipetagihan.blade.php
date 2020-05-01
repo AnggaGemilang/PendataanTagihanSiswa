@@ -93,7 +93,7 @@
             @endif
 
             <div class="row m-3 pb-4 pt-2 position-relative">
-                <button type="submit" class="btn w-100 text-light" style="background: #241937 !important; transition: all .3s;" id="btn-submit">@if($status=='tambah')Tambah Jenis
+                <button type="submit" class="btn w-100 text-light" onclick="show()" style="background: #241937 !important; transition: all .3s;" id="btn-submit" >@if($status=='tambah')Tambah Jenis
                     Tagihan @else Perbaharui Jenis Tagihan @endif<i class="fas fa-save pl-2"></i></button>
                 <img src="{{ asset('assets') }}/images/loader.gif" alt="" class="loader" style="display: none;">
             </div>
